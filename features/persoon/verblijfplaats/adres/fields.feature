@@ -88,10 +88,10 @@ Functionaliteit: Persoon: verblijfplaats binnenland (adres) velden vragen met fi
     | functieAdres.omschrijving | woonadres |
 
     Voorbeelden:
-    | fields                                   |
-    | verblijfplaats.functieAdres              |
-    | verblijfplaats.functieAdres.code         |
-    | verblijfplaats.functieAdres.omschrijving |
+    | fields                                             |
+    | verblijfplaats.functieAdres                        |
+    | verblijfplaats.functieAdres.code                   |
+    | verblijfplaats.functieAdres.omschrijving           |
     | verblijfplaatsBinnenland.functieAdres              |
     | verblijfplaatsBinnenland.functieAdres.code         |
     | verblijfplaatsBinnenland.functieAdres.omschrijving |

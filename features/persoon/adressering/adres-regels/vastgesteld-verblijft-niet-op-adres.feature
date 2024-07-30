@@ -54,3 +54,51 @@ Functionaliteit: leveren 'indicatie vastgesteld verblijft niet op adres' veld bi
     | inOnderzoek.datumIngangOnderzoekVerblijfplaats.type        | Datum                             |
     | inOnderzoek.datumIngangOnderzoekVerblijfplaats.datum       | 2002-07-01                        |
     | inOnderzoek.datumIngangOnderzoekVerblijfplaats.langFormaat | 1 juli 2002                       |
+
+  Scenario: gevraagde persoon verblijft niet meer op de geregistreerde locatie en hele groep adressering wordt gevraagd
+    Gegeven adres 'A1' heeft de volgende gegevens
+    | gemeentecode (92.10) | locatiebeschrijving (12.10)       |
+    | 0518                 | Woonboot tegenover de Grote Sloot |
+    En de persoon met burgerservicenummer '000000309' is ingeschreven op adres 'A1' met de volgende gegevens
+    | gemeente van inschrijving (09.10) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) |
+    | 0518                              | 089999                          | 20020701                       |
+    Als personen wordt gezocht met de volgende parameters
+    | naam                | waarde                          |
+    | type                | RaadpleegMetBurgerservicenummer |
+    | burgerservicenummer | 000000309                       |
+    | fields              | adressering                     |
+    Dan heeft de response een persoon met alleen de volgende 'adressering' gegevens
+    | naam                                                       | waarde                            |
+    | adresregel1                                                | Woonboot tegenover de Grote Sloot |
+    | adresregel2                                                | 'S-GRAVENHAGE                     |
+    | indicatieVastgesteldVerblijftNietOpAdres                   | true                              |
+    | inOnderzoek.adresregel1                                    | true                              |
+    | inOnderzoek.adresregel2                                    | true                              |
+    | inOnderzoek.adresregel3                                    | true                              |
+    | inOnderzoek.land                                           | true                              |
+    | inOnderzoek.datumIngangOnderzoekVerblijfplaats.type        | Datum                             |
+    | inOnderzoek.datumIngangOnderzoekVerblijfplaats.datum       | 2002-07-01                        |
+    | inOnderzoek.datumIngangOnderzoekVerblijfplaats.langFormaat | 1 juli 2002                       |
+
+  Scenario: gevraagde persoon verblijft niet meer op de geregistreerde locatie en hele groep adresseringBinnenland wordt gevraagd
+    Gegeven adres 'A1' heeft de volgende gegevens
+    | gemeentecode (92.10) | locatiebeschrijving (12.10)       |
+    | 0518                 | Woonboot tegenover de Grote Sloot |
+    En de persoon met burgerservicenummer '000000309' is ingeschreven op adres 'A1' met de volgende gegevens
+    | gemeente van inschrijving (09.10) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) |
+    | 0518                              | 089999                          | 20020701                       |
+    Als personen wordt gezocht met de volgende parameters
+    | naam                | waarde                          |
+    | type                | RaadpleegMetBurgerservicenummer |
+    | burgerservicenummer | 000000309                       |
+    | fields              | adresseringBinnenland           |
+    Dan heeft de response een persoon met alleen de volgende 'adressering' gegevens
+    | naam                                                       | waarde                            |
+    | adresregel1                                                | Woonboot tegenover de Grote Sloot |
+    | adresregel2                                                | 'S-GRAVENHAGE                     |
+    | indicatieVastgesteldVerblijftNietOpAdres                   | true                              |
+    | inOnderzoek.adresregel1                                    | true                              |
+    | inOnderzoek.adresregel2                                    | true                              |
+    | inOnderzoek.datumIngangOnderzoekVerblijfplaats.type        | Datum                             |
+    | inOnderzoek.datumIngangOnderzoekVerblijfplaats.datum       | 2002-07-01                        |
+    | inOnderzoek.datumIngangOnderzoekVerblijfplaats.langFormaat | 1 juli 2002                       |
