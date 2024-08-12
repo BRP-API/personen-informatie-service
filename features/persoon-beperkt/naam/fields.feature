@@ -109,7 +109,7 @@ Functionaliteit: Persoon beperkt: naam velden vragen met fields
     | volledigeNaam | Jan Pieter van den Maassen |
 
   Abstract Scenario: gevraagde veld heeft geen waarde
-    En adres 'A1' heeft de volgende gegevens
+    Gegeven adres 'A1' heeft de volgende gegevens
     | naam                 | waarde |
     | gemeentecode (92.10) | 0518   |
     | postcode (11.60)     | 2628HJ |

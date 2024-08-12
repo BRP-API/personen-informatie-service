@@ -16,7 +16,6 @@ Functionaliteit: Persoon beperkt: Opschorting bijhouding
 
 Regel: personen met afgevoerde persoonslijst worden niet gevonden bij het zoeken
 
-  @geen-protocollering
   Abstract Scenario: persoon opgeschort met reden "F" (fout) wordt gezocht met geslachtsnaam en geboortedatum <zoek overleden personen type> overleden personen
     En de persoon heeft de volgende 'inschrijving' gegevens
     | datum opschorting bijhouding (67.10) | reden opschorting bijhouding (67.20) |
@@ -35,7 +34,6 @@ Regel: personen met afgevoerde persoonslijst worden niet gevonden bij het zoeken
     | true                         | inclusief                    |
     | false                        | exclusief                    |
 
-  @geen-protocollering
   Abstract Scenario: persoon opgeschort met reden "F" (fout) wordt gezocht met geslachtsnaam, voornamen en gemeente van inschrijving <zoek overleden personen type> overleden personen
     En de persoon heeft de volgende 'inschrijving' gegevens
     | datum opschorting bijhouding (67.10) | reden opschorting bijhouding (67.20) |
@@ -55,7 +53,6 @@ Regel: personen met afgevoerde persoonslijst worden niet gevonden bij het zoeken
     | true                         | inclusief                    |
     | false                        | exclusief                    |
 
-  @geen-protocollering
   Abstract Scenario: persoon opgeschort met reden "F" (fout) wordt gezocht met nummeraanduiding identificatie <zoek overleden personen type> overleden personen
     En de persoon heeft de volgende 'inschrijving' gegevens
     | datum opschorting bijhouding (67.10) | reden opschorting bijhouding (67.20) |
@@ -73,7 +70,6 @@ Regel: personen met afgevoerde persoonslijst worden niet gevonden bij het zoeken
     | true                         | inclusief                    |
     | false                        | exclusief                    |
 
-  @geen-protocollering
   Abstract Scenario: persoon opgeschort met reden "F" (fout) wordt gezocht met postcode en huisnummer <zoek overleden personen type> overleden personen
     En de persoon heeft de volgende 'inschrijving' gegevens
     | datum opschorting bijhouding (67.10) | reden opschorting bijhouding (67.20) |
@@ -92,7 +88,6 @@ Regel: personen met afgevoerde persoonslijst worden niet gevonden bij het zoeken
     | true                         | inclusief                    |
     | false                        | exclusief                    |
 
-  @geen-protocollering
   Abstract Scenario: persoon opgeschort met reden "F" (fout) wordt gezocht met straat, huisnummer en gemeente van inschrijving <zoek overleden personen type> overleden personen
     En de persoon heeft de volgende 'inschrijving' gegevens
     | datum opschorting bijhouding (67.10) | reden opschorting bijhouding (67.20) |
@@ -115,7 +110,6 @@ Regel: personen met afgevoerde persoonslijst worden niet gevonden bij het zoeken
 
 Regel: personen op een logisch verwijderde persoonslijst worden niet gevonden bij het zoeken
 
-  @geen-protocollering
   Abstract Scenario: persoon opgeschort met reden "W" (wissen) wordt gezocht met geslachtsnaam en geboortedatum <zoek overleden personen type> overleden personen
     En de persoon heeft de volgende 'inschrijving' gegevens
     | datum opschorting bijhouding (67.10) | reden opschorting bijhouding (67.20) |
@@ -134,7 +128,6 @@ Regel: personen op een logisch verwijderde persoonslijst worden niet gevonden bi
     | true                         | inclusief                    |
     | false                        | exclusief                    |
 
-  @geen-protocollering
   Abstract Scenario: persoon opgeschort met reden "W" (wissen) wordt gezocht met geslachtsnaam, voornamen en gemeente van inschrijving <zoek overleden personen type> overleden personen
     En de persoon heeft de volgende 'inschrijving' gegevens
     | datum opschorting bijhouding (67.10) | reden opschorting bijhouding (67.20) |
@@ -154,7 +147,6 @@ Regel: personen op een logisch verwijderde persoonslijst worden niet gevonden bi
     | true                         | inclusief                    |
     | false                        | exclusief                    |
 
-  @geen-protocollering
   Abstract Scenario: persoon opgeschort met reden "W" (wissen) wordt gezocht met nummeraanduiding identificatie <zoek overleden personen type> overleden personen
     En de persoon heeft de volgende 'inschrijving' gegevens
     | datum opschorting bijhouding (67.10) | reden opschorting bijhouding (67.20) |
@@ -172,7 +164,6 @@ Regel: personen op een logisch verwijderde persoonslijst worden niet gevonden bi
     | true                         | inclusief                    |
     | false                        | exclusief                    |
 
-  @geen-protocollering
   Abstract Scenario: persoon opgeschort met reden "W" (wissen) wordt gezocht met postcode en huisnummer <zoek overleden personen type> overleden personen
     En de persoon heeft de volgende 'inschrijving' gegevens
     | datum opschorting bijhouding (67.10) | reden opschorting bijhouding (67.20) |
@@ -191,7 +182,6 @@ Regel: personen op een logisch verwijderde persoonslijst worden niet gevonden bi
     | true                         | inclusief                    |
     | false                        | exclusief                    |
 
-  @geen-protocollering
   Abstract Scenario: persoon opgeschort met reden "W" (wissen) wordt gezocht met straat, huisnummer en gemeente van inschrijving <zoek overleden personen type> overleden personen
     En de persoon heeft de volgende 'inschrijving' gegevens
     | datum opschorting bijhouding (67.10) | reden opschorting bijhouding (67.20) |
@@ -214,7 +204,6 @@ Regel: personen op een logisch verwijderde persoonslijst worden niet gevonden bi
 
 Regel: De optionele 'inclusiefOverledenPersonen' parameter moet worden opgegeven om een overleden persoon te kunnen vinden
 
-  @geen-protocollering
   Scenario: persoon opgeschort met reden "O" (overlijden) wordt gezocht met geslachtsnaam en geboortedatum exclusief overleden personen
     En de persoon heeft de volgende 'inschrijving' gegevens
     | datum opschorting bijhouding (67.10) | reden opschorting bijhouding (67.20) |
@@ -278,7 +267,6 @@ Regel: De optionele 'inclusiefOverledenPersonen' parameter moet worden opgegeven
     | R                            | pl is aangelegd in de rni      | false                        | exclusief                    |
     | .                            | onbekend                       | false                        | exclusief                    |
 
-  @geen-protocollering
   Scenario: persoon opgeschort met reden O" (overlijden) wordt gezocht met geslachtsnaam, voornamen en gemeente van inschrijving exclusief overleden personen
     En de persoon heeft de volgende 'inschrijving' gegevens
     | datum opschorting bijhouding (67.10) | reden opschorting bijhouding (67.20) |
@@ -345,7 +333,6 @@ Regel: De optionele 'inclusiefOverledenPersonen' parameter moet worden opgegeven
     | R                            | pl is aangelegd in de rni      | false                        | exclusief                    |
     | .                            | onbekend                       | false                        | exclusief                    |
 
-  @geen-protocollering
   Scenario: persoon opgeschort met reden "O" (overlijden) wordt gezocht met nummeraanduiding identificatie exclusief overleden personen
     En de persoon heeft de volgende 'inschrijving' gegevens
     | datum opschorting bijhouding (67.10) | reden opschorting bijhouding (67.20) |
@@ -406,7 +393,6 @@ Regel: De optionele 'inclusiefOverledenPersonen' parameter moet worden opgegeven
     | R                            | pl is aangelegd in de rni      | false                        | exclusief                    |
     | .                            | onbekend                       | false                        | exclusief                    |
 
-  @geen-protocollering
   Abstract Scenario: persoon opgeschort met reden "O" (overlijden) wordt gezocht met postcode en huisnummer exclusief overleden personen
     En de persoon heeft de volgende 'inschrijving' gegevens
     | datum opschorting bijhouding (67.10) | reden opschorting bijhouding (67.20) |
@@ -470,7 +456,6 @@ Regel: De optionele 'inclusiefOverledenPersonen' parameter moet worden opgegeven
     | R                            | pl is aangelegd in de rni      | false                        | exclusief                    |
     | .                            | onbekend                       | false                        | exclusief                    |
 
-  @geen-protocollering
   Abstract Scenario: persoon opgeschort met reden "O" (overlijden) wordt gezocht met straat, huisnummer en gemeente van inschrijving exclusief overleden personen
     En de persoon heeft de volgende 'inschrijving' gegevens
     | datum opschorting bijhouding (67.10) | reden opschorting bijhouding (67.20) |
