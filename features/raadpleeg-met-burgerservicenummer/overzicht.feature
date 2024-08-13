@@ -64,7 +64,6 @@ Regel: De optionele 'gemeenteVanInschrijving' parameter kan worden toegevoegd om
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
 
-  @geen-protocollering
   Scenario: Raadpleeg persoon met gemeenteVanInschrijving
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende 'verblijfplaats' gegevens
     | gemeente van inschrijving (09.10) |

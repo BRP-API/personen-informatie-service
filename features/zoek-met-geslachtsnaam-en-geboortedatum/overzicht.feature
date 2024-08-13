@@ -51,7 +51,6 @@ Regel: Geslachtsnaam (niet hooflettergevoelig) en geboortedatum zijn verplichte 
     | Käster        |
     | Kaster        |
 
-  @geen-protocollering
   Abstract Scenario: Zoek een persoon met een deel van zijn geslachtsnaam
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | geboortedatum (03.10) | geslachtsnaam (02.40) | voornamen (02.10) |

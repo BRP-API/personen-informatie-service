@@ -90,7 +90,6 @@ Functionaliteit: Leveren van lege waarden
       En heeft de persoon geen partners
       En heeft de persoon geen kinderen
 
-    @geen-protocollering
     Scenario: ZoekMetGeslachtsnaamEnGeboortedatum vindt geen enkele persoon
       Als personen wordt gezocht met de volgende parameters
       | naam          | waarde                              |
@@ -102,7 +101,6 @@ Functionaliteit: Leveren van lege waarden
       | fields        | burgerservicenummer                 |
       Dan heeft de response 0 personen
 
-    @geen-protocollering
     Scenario: RaadpleegMetBurgerservicenummer vindt geen enkele persoon (bsn voldoet niet aan 11-proef)
       Als personen wordt gezocht met de volgende parameters
       | naam                | waarde                          |

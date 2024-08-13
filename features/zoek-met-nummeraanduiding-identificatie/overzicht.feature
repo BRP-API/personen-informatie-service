@@ -22,7 +22,6 @@ Regel: nummeraanduiding identificatie is een verplichte parameter
     | naam                | waarde    |
     | burgerservicenummer | 000000024 |
 
-  @geen-protocollering
   Scenario: Er zijn geen personen ingeschreven op het adres met de opgegeven nummeraanduiding identificatie
     Als personen wordt gezocht met de volgende parameters
     | naam                          | waarde                               |
@@ -101,7 +100,6 @@ Regel: De optionele 'gemeenteVanInschrijving' parameter kan worden toegevoegd om
     | naam                | waarde    |
     | burgerservicenummer | 000000025 |
 
-  @geen-protocollering
   Scenario: Zoek met gemeenteVanInschrijving
     Gegeven adres 'A1' heeft de volgende gegevens
     | gemeentecode (92.10) | identificatiecode nummeraanduiding (11.90) |
