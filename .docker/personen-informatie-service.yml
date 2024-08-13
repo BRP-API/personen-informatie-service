@@ -10,7 +10,7 @@ services:
       # - Ecs__FileSizeLimitBytes=1048576
       # - Ecs__RetainedFileCountLimit=5
       - Routes__0__DownstreamScheme=http
-      - Routes__0__DownstreamHostAndPorts__0__Host=haalcentraal_api
+      - Routes__0__DownstreamHostAndPorts__0__Host=personen-data-service
       - Routes__0__DownstreamHostAndPorts__0__Port=80
       # - Routes__0__DownstreamHostAndPorts__0__Host=host.docker.internal
       # - Routes__0__DownstreamHostAndPorts__0__Port=33346
