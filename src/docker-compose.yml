@@ -1,0 +1,32 @@
+services:
+  personen-informatie-service:
+    container_name: personen-informatie-service
+    image: ghcr.io/brp-api/personen-informatie-service:latest
+    build:
+      context: .
+      dockerfile: BrpProxy/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Release
+      - ASPNETCORE_URLS=http://+:5000
+    ports:
+      - "5000:5000"
+    networks:
+      - brp-api-network
+
+  personen-mock:
+    container_name: personen-mock
+    image: ghcr.io/brp-api/personen-mock:latest
+    build:
+      context: .
+      dockerfile: BrpService/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Release
+      - ASPNETCORE_URLS=http://+:5010
+    ports:
+      - "5010:5010"
+    networks:
+      - brp-api-network
+
+networks:
+  brp-api-network:
+    name: brp-api-network
