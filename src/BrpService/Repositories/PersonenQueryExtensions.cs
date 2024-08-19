@@ -91,7 +91,7 @@ public static class PersonenQueryExtensions
     public static Specification<GbaPersoonBeperkt> ToSpecification(this ZoekMetStraatHuisnummerEnGemeenteVanInschrijving query)
     {
         Specification<GbaPersoonBeperkt> specification = new StraatSpecification(query.Straat)
-            .And(new HuisnummerSpecification(query.Huisnummer))
+            .And(new HuisnummerSpecification(query.Huisnummer!.Value))
             .And(new GemeenteVanInschrijvingSpecification(query.GemeenteVanInschrijving));
 
         if (!string.IsNullOrWhiteSpace(query.Huisletter))

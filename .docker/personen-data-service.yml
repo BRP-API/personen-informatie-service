@@ -1,7 +1,7 @@
 services:
   personen-data-service:
     container_name: personen-data-service
-    image: ghcr.io/brp-api/personen-data-service:2.2.1-latest
+    image: ghcr.io/brp-api/personen-data-service:2.3.0-latest
     environment:
       - Database__Host=postgres
       - Database__Username=root
@@ -9,7 +9,7 @@ services:
       - Database__Database=rvig_haalcentraal_testdata
       - HaalcentraalApi__MaxSearchResults=10
       - ASPNETCORE_URLS=http://+;
-      - Ecs__Path=/var/log/brp-api.json
+      - Ecs__Path=/var/log/personen-data-service.json
       - Serilog__MinimumLevel__Default=Warning
       - Serilog__MinimumLevel__Override__Serilog=Information
       - WebApi__Url=http://gezagmock:5020/api/v1

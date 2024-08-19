@@ -3,7 +3,7 @@
   "defaultVariables": null,
   "documentGenerator": {
     "fromDocument": {
-      "url": "../../specificatie/genereervariant/openapi.yaml",
+      "url": "../../specificatie/informatie-service/openapi.yaml",
       "output": null,
       "newLineBehavior": "Auto"
     }
@@ -77,7 +77,15 @@
       "jsonLibrary": "NewtonsoftJson",
       "generateDefaultValues": true,
       "generateDataAnnotations": false,
-      "excludedTypeNames": [],
+      "excludedTypeNames": [
+        "AbstractGezagsrelatie",
+        "PersonenQuery",
+        "ZoekMetAdresseerbaarObjectIdentificatie",
+        "ZoekMetGeslachtsnaamEnGeboortedatum",
+        "ZoekMetNummeraanduidingIdentificatie",
+        "ZoekMetPostcodeEnHuisnummer",
+        "ZoekMetStraatHuisnummerEnGemeenteVanInschrijving"
+      ],
       "excludedParameterNames": [],
       "handleReferences": false,
       "generateImmutableArrayProperties": false,

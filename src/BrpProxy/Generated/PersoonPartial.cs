@@ -34,14 +34,18 @@ public partial class Persoon
 
     public bool ShouldSerializeVerblijfstitel() => Verblijfstitel != null && Verblijfstitel.ShouldSerialize();
 
+    public bool ShouldSerializeGeheimhoudingPersoonsgegevens() => GeheimhoudingPersoonsgegevens.HasValue && GeheimhoudingPersoonsgegevens.Value;
+
+    public bool ShouldSerializeIndicatieCurateleRegister() => IndicatieCurateleRegister.HasValue && IndicatieCurateleRegister.Value;
+
     public bool ShouldSerialize() =>
         !string.IsNullOrWhiteSpace(ANummer) ||
         !string.IsNullOrWhiteSpace(Burgerservicenummer) ||
         DatumEersteInschrijvingGBA != null ||
         DatumInschrijvingInGemeente != null ||
-        GeheimhoudingPersoonsgegevens ||
+        ShouldSerializeGeheimhoudingPersoonsgegevens() ||
         Geslacht != null ||
-        IndicatieCurateleRegister ||
+        ShouldSerializeIndicatieCurateleRegister() ||
         IndicatieGezagMinderjarige != null ||
         Leeftijd > 0 ||
         Adressering != null ||

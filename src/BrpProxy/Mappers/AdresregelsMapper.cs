@@ -10,7 +10,7 @@ public static class AdresregelsMapper
     private static bool StraatHeeftStandaardWaarde(this Gba.GbaVerblijfplaatsBeperkt verblijfplaats) =>
         string.IsNullOrWhiteSpace(verblijfplaats.Straat) || verblijfplaats.Straat == ".";
     private static bool HuisnummerHeeftStandaardWaarde(this Gba.GbaVerblijfplaatsBeperkt verblijfplaats) =>
-        verblijfplaats.Huisnummer == 0;
+        !verblijfplaats.Huisnummer.HasValue || verblijfplaats.Huisnummer.Value == 0;
     private static bool LandHeeftStandaardWaarde(this Gba.GbaVerblijfplaatsBeperkt verblijfplaats) =>
         verblijfplaats.Land == null || verblijfplaats.Land.Code == "0000";
     private static bool RegelsHebbenStandaardWaarde(this Gba.GbaVerblijfplaatsBeperkt verblijfplaats) =>
@@ -30,7 +30,7 @@ public static class AdresregelsMapper
         {
             return verblijfplaats.LocatieToAdresregel1();
         }
-        if (!string.IsNullOrWhiteSpace(verblijfplaats?.Land?.Code))
+        if (!string.IsNullOrWhiteSpace(verblijfplaats.Land?.Code))
         {
             return verblijfplaats.VerblijfplaatsBuitenlandToAdresregel1();
         }
@@ -113,7 +113,7 @@ public static class AdresregelsMapper
         {
             return verblijfplaats.LocatieToAdresregel2(gemeenteVanInschrijving);
         }
-        if (!string.IsNullOrWhiteSpace(verblijfplaats?.Land?.Code))
+        if (!string.IsNullOrWhiteSpace(verblijfplaats.Land?.Code))
         {
             return verblijfplaats.VerblijfplaatsBuitenlandToAdresregel2();
         }

@@ -3,7 +3,7 @@
   "defaultVariables": null,
   "documentGenerator": {
     "fromDocument": {
-      "url": "../../specificatie/gba-genereervariant/openapi.yaml",
+      "url": "../../specificatie/data-service/openapi.yaml",
       "output": null,
       "newLineBehavior": "Auto"
     }
@@ -51,7 +51,11 @@
       "jsonLibrary": "NewtonsoftJson",
       "generateDefaultValues": true,
       "generateDataAnnotations": false,
-      "excludedTypeNames": [],
+      "excludedTypeNames": [
+        "AbstractGezagsrelatie",
+        "ZoekMetGeslachtsnaamEnGeboortedatum",
+        "ZoekMetPostcodeEnHuisnummer"
+      ],
       "excludedParameterNames": [],
       "handleReferences": false,
       "generateImmutableArrayProperties": false,

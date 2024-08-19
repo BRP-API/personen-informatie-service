@@ -45,7 +45,7 @@ public class PersoonProfile : Profile
                         Adresregel3 = src.Verblijfplaats.Adresregel3(),
                         Land = src.Verblijfplaats.Land(),
                         InOnderzoek = src.AdresseringInOnderzoek(),
-                        IndicatieVastgesteldVerblijftNietOpAdres = src.Verblijfplaats?.InOnderzoek?.AanduidingGegevensInOnderzoek == "089999"
+                        IndicatieVastgesteldVerblijftNietOpAdres = src.Verblijfplaats.MapVastgesteldVerblijftNietOpAdres()
                     };
                 }
             })
@@ -87,7 +87,7 @@ public class PersoonProfile : Profile
                         Adresregel3 = src.Verblijfplaats.Adresregel3(),
                         Land = src.Verblijfplaats.Land(),
                         InOnderzoek = src.AdresseringInOnderzoek(),
-                        IndicatieVastgesteldVerblijftNietOpAdres = src.Verblijfplaats?.InOnderzoek?.AanduidingGegevensInOnderzoek == "089999"
+                        IndicatieVastgesteldVerblijftNietOpAdres = src.Verblijfplaats.MapVastgesteldVerblijftNietOpAdres()
                     };
                 }
             })
@@ -143,7 +143,7 @@ public class PersoonProfile : Profile
                     dest.Adressering ??= new Adressering();
 
                     dest.Adressering.InOnderzoek = src.AdresseringInOnderzoek();
-                    dest.Adressering.IndicatieVastgesteldVerblijftNietOpAdres = src.Verblijfplaats?.InOnderzoek?.AanduidingGegevensInOnderzoek == "089999";
+                    dest.Adressering.IndicatieVastgesteldVerblijftNietOpAdres = src.Verblijfplaats.MapVastgesteldVerblijftNietOpAdres();
                 }
             })
             .ForMember(dest => dest.DatumEersteInschrijvingGBA, opt => opt.MapFrom(src => src.DatumEersteInschrijvingGBA.Map()))

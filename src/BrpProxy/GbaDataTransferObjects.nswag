@@ -3,7 +3,7 @@
   "defaultVariables": null,
   "documentGenerator": {
     "fromDocument": {
-      "url": "../../specificatie/gba-genereervariant/openapi.yaml",
+      "url": "../../specificatie/data-service/openapi.yaml",
       "output": null,
       "newLineBehavior": "Auto"
     }
@@ -78,8 +78,17 @@
       "generateDefaultValues": true,
       "generateDataAnnotations": false,
       "excludedTypeNames": [
+        "AbstractGezagsrelatie",
         "AdellijkeTitelPredicaatType",
-        "AdellijkeTitelPredicaatSoort"
+        "AdellijkeTitelPredicaatSoort",
+        "PersonenQuery",
+        "RaadpleegMetBurgerservicenummer",
+        "ZoekMetAdresseerbaarObjectIdentificatie",
+        "ZoekMetGeslachtsnaamEnGeboortedatum",
+        "ZoekMetNaamEnGemeenteVanInschrijving",
+        "ZoekMetNummeraanduidingIdentificatie",
+        "ZoekMetPostcodeEnHuisnummer",
+        "ZoekMetStraatHuisnummerEnGemeenteVanInschrijving"
       ],
       "excludedParameterNames": [],
       "handleReferences": false,
