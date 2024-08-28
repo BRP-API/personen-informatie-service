@@ -156,6 +156,7 @@ public static class AdresregelsMapper
     public static Waardetabel? Land(this Gba.GbaVerblijfplaatsBeperkt? adres) =>
         adres == null ||
         adres.LandHeeftStandaardWaarde() ||
+        adres.VerblijfplaatsBuitenlandHeeftWaardeNederland() ||
         adres.RegelsHebbenStandaardWaarde()
             ? null
             : new Waardetabel
@@ -163,4 +164,7 @@ public static class AdresregelsMapper
                 Code = adres.Land.Code,
                 Omschrijving = adres.Land.Omschrijving
             };
+
+    private static bool VerblijfplaatsBuitenlandHeeftWaardeNederland(this Gba.GbaVerblijfplaatsBeperkt verblijfplaats) =>
+        verblijfplaats.Land != null && verblijfplaats.Land.Code == "6030";
 }
