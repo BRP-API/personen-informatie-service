@@ -4,7 +4,7 @@
 public partial class ZoekMetGeslachtsnaamEnGeboortedatum : PersonenQuery
 {
     [Newtonsoft.Json.JsonProperty("inclusiefOverledenPersonen", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-    public bool InclusiefOverledenPersonen { get; set; }
+    public bool? InclusiefOverledenPersonen { get; set; }
 
     /// <summary>
     /// Je kunt alleen zoeken met een volledige geboortedatum.

@@ -7,40 +7,63 @@ Functionaliteit: Zoek met postcode en huisnummer
     Gegeven adres 'A1' heeft de volgende gegevens
     | gemeentecode (92.10) | postcode (11.60) | huisnummer (11.20) |
     | 0599                 | 2628HJ           | 2                  |
-    Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
+    En de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
+    | geboortedatum (03.10) |
+    | 19900101              |
+    En de persoon is ingeschreven op adres 'A1' met de volgende gegevens
     | gemeente van inschrijving (09.10) |
     | 0599                              |
+
     En adres 'A2' heeft de volgende gegevens
     | gemeentecode (92.10) | postcode (11.60) | huisnummer (11.20) | huisletter (11.30) |
     | 0599                 | 2628HJ           | 2                  | A                  |
-    En de persoon met burgerservicenummer '000000025' is ingeschreven op adres 'A2' met de volgende gegevens
+    En de persoon met burgerservicenummer '000000025' heeft de volgende gegevens
+    | geboortedatum (03.10) |
+    | 19900102              |
+    En de persoon is ingeschreven op adres 'A2' met de volgende gegevens
     | gemeente van inschrijving (09.10) |
     | 0599                              |
+
     En adres 'A3' heeft de volgende gegevens
     | gemeentecode (92.10) | postcode (11.60) | huisnummer (11.20) | huisnummertoevoeging (11.40) |
     | 0599                 | 2628HJ           | 2                  | III                          |
-    En de persoon met burgerservicenummer '000000026' is ingeschreven op adres 'A3' met de volgende gegevens
+    En de persoon met burgerservicenummer '000000026' heeft de volgende gegevens
+    | geboortedatum (03.10) |
+    | 19900103              |
+    En de persoon is ingeschreven op adres 'A3' met de volgende gegevens
     | gemeente van inschrijving (09.10) |
     | 0599                              |
+
     En adres 'A4' heeft de volgende gegevens
     | gemeentecode (92.10) | postcode (11.60) | huisnummer (11.20) | aanduiding bij huisnummer (11.50) |
     | 0599                 | 2628HJ           | 2                  | to                                |
-    En de persoon met burgerservicenummer '000000027' is ingeschreven op adres 'A4' met de volgende gegevens
+    En de persoon met burgerservicenummer '000000027' heeft de volgende gegevens
+    | geboortedatum (03.10) |
+    | 19900104              |
+    En de persoon is ingeschreven op adres 'A4' met de volgende gegevens
     | gemeente van inschrijving (09.10) |
     | 0599                              |
+
     En adres 'A5' heeft de volgende gegevens
     | gemeentecode (92.10) | postcode (11.60) | huisnummer (11.20) |
     | 0599                 | 2629HJ           | 2                  |
-    En de persoon met burgerservicenummer '000000028' is ingeschreven op adres 'A5' met de volgende gegevens
+    En de persoon met burgerservicenummer '000000028' heeft de volgende gegevens
+    | geboortedatum (03.10) |
+    | 19900105              |
+    En de persoon is ingeschreven op adres 'A5' met de volgende gegevens
     | gemeente van inschrijving (09.10) |
     | 0599                              |
     En de persoon heeft de volgende 'inschrijving' gegevens
     | naam                                 | waarde |
     | reden opschorting bijhouding (67.20) | O      |
+
     En adres 'A6' heeft de volgende gegevens
     | gemeentecode (92.10) | postcode (11.60) | huisnummer (11.20) |
     | 0600                 | 2630HJ           | 2                  |
-    En de persoon met burgerservicenummer '000000029' is ingeschreven op adres 'A6' met de volgende gegevens
+    En de persoon met burgerservicenummer '000000029' heeft de volgende gegevens
+    | geboortedatum (03.10) |
+    | 19900106              |
+    En de persoon is ingeschreven op adres 'A6' met de volgende gegevens
     | gemeente van inschrijving (09.10) |
     | 0600                              |
 
@@ -145,3 +168,32 @@ Regel: De optionele 'inclusiefOverledenPersonen' parameter moet worden opgegeven
     | naam               | waarde     |
     | reden.code         | O          |
     | reden.omschrijving | overlijden |
+
+Regel: Optionele 'geboortedatum' parameter kan worden toegevoegd om de zoek criteria aan te scherpen.
+
+  Scenario: Zoek personen met postcode, huisnummer en geboortedatum
+    Als personen wordt gezocht met de volgende parameters
+    | naam          | waarde                      |
+    | type          | ZoekMetPostcodeEnHuisnummer |
+    | postcode      | 2628HJ                      |
+    | huisnummer    | 2                           |
+    | geboortedatum | 1990-01-01                  |
+    | fields        | burgerservicenummer         |
+    Dan heeft de response 1 persoon
+    En heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000024 |
+
+  Scenario: Zoek personen met postcode, huisnummer, huisletter en geboortedatum
+    Als personen wordt gezocht met de volgende parameters
+    | naam          | waarde                      |
+    | type          | ZoekMetPostcodeEnHuisnummer |
+    | postcode      | 2628HJ                      |
+    | huisnummer    | 2                           |
+    | huisletter    | A                           |
+    | geboortedatum | 1990-01-02                  |
+    | fields        | burgerservicenummer         |
+    Dan heeft de response 1 persoon
+    En heeft de response een persoon met de volgende gegevens
+    | naam                | waarde    |
+    | burgerservicenummer | 000000025 |

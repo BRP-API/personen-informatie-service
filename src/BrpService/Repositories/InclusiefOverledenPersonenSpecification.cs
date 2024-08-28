@@ -5,15 +5,15 @@ namespace HaalCentraal.BrpService.Repositories;
 
 public class InclusiefOverledenPersonenSpecification : Specification<GbaPersoonBeperkt>
 {
-    private readonly bool _inclusiefOverledenPersonen;
+    private readonly bool? _inclusiefOverledenPersonen;
 
-    public InclusiefOverledenPersonenSpecification(bool inclusiefOverledenPersonen)
+    public InclusiefOverledenPersonenSpecification(bool? inclusiefOverledenPersonen)
     {
         _inclusiefOverledenPersonen = inclusiefOverledenPersonen;
     }
     public override Expression<Func<GbaPersoonBeperkt, bool>> ToExpression()
     {
-        return _inclusiefOverledenPersonen
+        return _inclusiefOverledenPersonen.HasValue && _inclusiefOverledenPersonen.Value
             ? persoon => persoon != null
             : persoon => persoon != null &&
               (persoon.OpschortingBijhouding == null ||
@@ -24,15 +24,15 @@ public class InclusiefOverledenPersonenSpecification : Specification<GbaPersoonB
 
 public class InclusiefOverledenGezagPersonenSpecification : Specification<GbaGezagPersoonBeperkt>
 {
-    private readonly bool _inclusiefOverledenPersonen;
+    private readonly bool? _inclusiefOverledenPersonen;
 
-    public InclusiefOverledenGezagPersonenSpecification(bool inclusiefOverledenPersonen)
+    public InclusiefOverledenGezagPersonenSpecification(bool? inclusiefOverledenPersonen)
     {
         _inclusiefOverledenPersonen = inclusiefOverledenPersonen;
     }
     public override Expression<Func<GbaGezagPersoonBeperkt, bool>> ToExpression()
     {
-        return _inclusiefOverledenPersonen
+        return _inclusiefOverledenPersonen.HasValue && _inclusiefOverledenPersonen.Value
             ? persoon => persoon != null
             : persoon => persoon != null &&
               (persoon.OpschortingBijhouding == null ||

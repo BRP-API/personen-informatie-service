@@ -73,7 +73,7 @@ public class VerblijfplaatsProfile : Profile
             .ForMember(dest => dest.IndicatieVastgesteldVerblijftNietOpAdres, opt =>
             {
                 opt.PreCondition(src => src.InOnderzoek?.AanduidingGegevensInOnderzoek != null);
-                opt.MapFrom(src => src.InOnderzoek.AanduidingGegevensInOnderzoek == "089999");
+                opt.MapFrom(src => src.MapVastgesteldVerblijftNietOpAdres());
             })
             ;
 
@@ -84,7 +84,7 @@ public class VerblijfplaatsProfile : Profile
             .ForMember(dest => dest.IndicatieVastgesteldVerblijftNietOpAdres, opt =>
             {
                 opt.PreCondition(src => src.InOnderzoek?.AanduidingGegevensInOnderzoek != null);
-                opt.MapFrom(src => src.InOnderzoek.AanduidingGegevensInOnderzoek == "089999");
+                opt.MapFrom(src => src.MapVastgesteldVerblijftNietOpAdres());
             })
             ;
     }

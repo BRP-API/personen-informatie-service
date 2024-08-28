@@ -6,7 +6,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Release
       - ASPNETCORE_URLS=http://+:5000
-      - Ecs__Path=/var/log/brp-proxy.json
+      - Ecs__Path=/var/log/personen-informatie-service.json
       # - Ecs__FileSizeLimitBytes=1048576
       # - Ecs__RetainedFileCountLimit=5
       - Routes__0__DownstreamScheme=http

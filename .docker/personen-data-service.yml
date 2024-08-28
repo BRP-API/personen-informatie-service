@@ -9,7 +9,7 @@ services:
       - Database__Database=rvig_haalcentraal_testdata
       - HaalcentraalApi__MaxSearchResults=10
       - ASPNETCORE_URLS=http://+;
-      - Ecs__Path=/var/log/brp-api.json
+      - Ecs__Path=/var/log/personen-data-service.json
       - Serilog__MinimumLevel__Default=Warning
       - Serilog__MinimumLevel__Override__Serilog=Information
       - WebApi__Url=http://gezagmock:5020/api/v1

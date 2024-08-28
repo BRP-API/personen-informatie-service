@@ -4,9 +4,12 @@ public partial class Immigratie
 {
     public bool ShouldSerialize() =>
         DatumVestigingInNederland != null ||
-        IndicatieVestigingVanuitBuitenland ||
+        ShouldSerializeIndicatieVestigingVanuitBuitenland() ||
         InOnderzoek != null ||
         LandVanwaarIngeschreven != null ||
-        VanuitVerblijfplaatsOnbekend
+        ShouldSerializeVanuitVerblijfplaatsOnbekend()
         ;
+
+    public bool ShouldSerializeIndicatieVestigingVanuitBuitenland() => IndicatieVestigingVanuitBuitenland.HasValue && IndicatieVestigingVanuitBuitenland.Value;
+    public bool ShouldSerializeVanuitVerblijfplaatsOnbekend() => VanuitVerblijfplaatsOnbekend.HasValue && VanuitVerblijfplaatsOnbekend.Value;
 }

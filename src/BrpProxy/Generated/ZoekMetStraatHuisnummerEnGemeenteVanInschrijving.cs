@@ -4,7 +4,7 @@
 public partial class ZoekMetStraatHuisnummerEnGemeenteVanInschrijving : PersonenQuery
 {
     [Newtonsoft.Json.JsonProperty("inclusiefOverledenPersonen", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-    public bool InclusiefOverledenPersonen { get; set; }
+    public bool? InclusiefOverledenPersonen { get; set; }
 
     [Newtonsoft.Json.JsonProperty("huisletter", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
     public string? Huisletter { get; set; }

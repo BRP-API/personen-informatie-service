@@ -21,4 +21,14 @@ public static class VerblijfplaatsMapper
             ? verblijfplaats.NaamOpenbareRuimte
             : verblijfplaats.Straat;
     }
+
+    public static bool? MapVastgesteldVerblijftNietOpAdres(this GbaVerblijfplaatsBeperkt? verblijfplaats)
+    {
+        return verblijfplaats?.InOnderzoek?.AanduidingGegevensInOnderzoek == "089999" ? true : null;
+    }
+
+    public static bool? MapVastgesteldVerblijftNietOpAdres(this GbaVerblijfplaats? verblijfplaats)
+    {
+        return verblijfplaats?.InOnderzoek?.AanduidingGegevensInOnderzoek == "089999" ? true : null;
+    }
 }

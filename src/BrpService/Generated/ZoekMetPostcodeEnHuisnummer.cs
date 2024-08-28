@@ -4,7 +4,7 @@
 public partial class ZoekMetPostcodeEnHuisnummer : PersonenQuery
 {
     [Newtonsoft.Json.JsonProperty("inclusiefOverledenPersonen", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-    public bool InclusiefOverledenPersonen { get; set; }
+    public bool? InclusiefOverledenPersonen { get; set; }
 
     [Newtonsoft.Json.JsonProperty("huisletter", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
     public string? Huisletter { get; set; }
@@ -17,5 +17,12 @@ public partial class ZoekMetPostcodeEnHuisnummer : PersonenQuery
 
     [Newtonsoft.Json.JsonProperty("postcode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
     public string? Postcode { get; set; }
+
+    /// <summary>
+    /// Je kunt alleen zoeken met een volledige geboortedatum.
+    /// <br/>
+    /// </summary>
+    [Newtonsoft.Json.JsonProperty("geboortedatum", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+    public string? Geboortedatum { get; set; }
 
 }

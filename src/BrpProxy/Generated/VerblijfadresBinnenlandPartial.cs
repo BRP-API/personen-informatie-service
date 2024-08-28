@@ -42,6 +42,7 @@ public partial class VerblijfadresBinnenland
         InOnderzoek != null
         ;
 
+    public bool ShouldSerializeHuisnummer() => Huisnummer.HasValue && Huisnummer.Value > 0;
     public bool ShouldSerializeInOnderzoek() => InOnderzoek != null && InOnderzoek.ShouldSerialize();
 }
 
