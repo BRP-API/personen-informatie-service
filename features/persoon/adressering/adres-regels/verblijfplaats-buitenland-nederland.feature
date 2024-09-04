@@ -1,7 +1,7 @@
 # language: nl
 
 @proxy
-Functionaliteit: verblijfplaats categorie 13 met adres in Nederland
+Functionaliteit: verblijfplaats categorie 13 met adres in Nederland en adressering wordt gevraagd
 
     Scenario: verblijfplaats in Nederland voor persoon ingeschreven in RNI
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op een buitenlands adres met de volgende gegevens
@@ -11,10 +11,10 @@ Functionaliteit: verblijfplaats categorie 13 met adres in Nederland
       | regel 1 adres buitenland (13.30)       | Laantje 2       |
       | regel 2 adres buitenland (13.40)       | 2222CD Ons Dorp |
       Als personen wordt gezocht met de volgende parameters
-      | naam                | waarde                          |
-      | type                | RaadpleegMetBurgerservicenummer |
-      | burgerservicenummer | 000000012                       |
-      | fields              | adressering                     |
+      | naam                | waarde                                                                                   |
+      | type                | RaadpleegMetBurgerservicenummer                                                          |
+      | burgerservicenummer | 000000012                                                                                |
+      | fields              | adressering.adresregel1,adressering.adresregel2,adressering.adresregel3,adressering.land |
       Dan heeft de response een persoon met de volgende 'adressering' gegevens
       | naam        | waarde          |
       | adresregel1 | Laantje 2       |
