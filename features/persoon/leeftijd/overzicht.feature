@@ -23,6 +23,9 @@ Regel: leeftijd wordt geleverd bij een volledig bekende geboortedatum
     | vandaag - 10 jaar  | 10       |
     | gisteren - 15 jaar | 15       |
     | morgen - 20 jaar   | 19       |
+    | vandaag - 1 jaar   | 1        |
+    | morgen - 1 jaar    | 0        |
+    | gisteren           | 0        |
 
   @skip-verify
   Abstract Scenario: geboortedatum valt op 29 februari in een schrikkeljaar
