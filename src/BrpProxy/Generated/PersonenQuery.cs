@@ -27,12 +27,12 @@ public partial class PersonenQuery
     [Newtonsoft.Json.JsonProperty("gemeenteVanInschrijving", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
     public string? GemeenteVanInschrijving { get; set; }
 
-    private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
+    private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
     [Newtonsoft.Json.JsonExtensionData]
     public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
     {
-        get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+        get { return _additionalProperties; }
         set { _additionalProperties = value; }
     }
 
