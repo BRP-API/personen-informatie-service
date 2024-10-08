@@ -15,6 +15,7 @@ services:
       # - Routes__0__DownstreamHostAndPorts__0__Host=host.docker.internal
       # - Routes__0__DownstreamHostAndPorts__0__Port=33346
       # - Serilog__MinimumLevel__Override__BrpProxy=Debug
+      - FeatureToggles__ToelichtingAanleveren=false
     ports:
       - "5002:5000"
     volumes:
