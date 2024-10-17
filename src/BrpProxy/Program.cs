@@ -4,6 +4,7 @@ using Brp.Shared.Infrastructure.Utils;
 using BrpProxy.DelegatingHandlers;
 using BrpProxy.Middlewares;
 using BrpProxy.Validators;
+using HaalCentraal.BrpProxy.Generated;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using Serilog;
@@ -15,6 +16,8 @@ try
     Log.Information($"Starting {AssemblyHelpers.Name} v{AssemblyHelpers.Version}. TimeZone: {TimeZoneInfo.Local.StandardName}. Now: {DateTime.Now}");
 
     var builder = WebApplication.CreateBuilder(args);
+
+    FeatureToggleProvider.Configuration = builder.Configuration;
 
     builder.Services.AddHttpContextAccessor();
 

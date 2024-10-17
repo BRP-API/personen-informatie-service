@@ -14,7 +14,7 @@ public partial class AbstractGezagsrelatie
     private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
     [Newtonsoft.Json.JsonExtensionData]
-    public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+    public virtual System.Collections.Generic.IDictionary<string, object> AdditionalProperties
     {
         get { return _additionalProperties; }
         set { _additionalProperties = value; }
@@ -27,5 +27,37 @@ public partial class TijdelijkGeenGezag : AbstractGezagsrelatie
 
 public partial class GezagNietTeBepalen : AbstractGezagsrelatie
 {
+    public override IDictionary<string, object> AdditionalProperties
+    {
+        get
+        {
+            bool toelichtingAanleveren = FeatureToggleProvider.Configuration?.GetValue<bool>("FeatureToggles:ToelichtingAanleveren") ?? true;
+
+            if (!toelichtingAanleveren)
+            {
+                var filteredProperties = base.AdditionalProperties
+                .Where(p => !p.Key.Equals("Toelichting", StringComparison.OrdinalIgnoreCase))
+                .ToDictionary(p => p.Key, p => p.Value);
+                return filteredProperties;
+            }
+
+            return base.AdditionalProperties;
+        }
+        set
+        {
+            bool toelichtingAanleveren = FeatureToggleProvider.Configuration?.GetValue<bool>("FeatureToggles:ToelichtingAanleveren") ?? true;
+
+            if (!toelichtingAanleveren && value.ContainsKey("Toelichting"))
+            {
+                value.Remove("Toelichting");
+            }
+            base.AdditionalProperties = value;
+        }
+    }
+}
+
+public static class FeatureToggleProvider
+{
+    public static IConfiguration Configuration { get; set; }
 }
 
