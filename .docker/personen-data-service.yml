@@ -10,6 +10,7 @@ services:
       - HaalcentraalApi__MaxSearchResults=10
       - ASPNETCORE_URLS=http://+;
       - Ecs__Path=/var/log/personen-data-service.json
+      - Ecs__SecuredPath=/var/log/personen-data-service-secured.json
       - Serilog__MinimumLevel__Default=Warning
       - Serilog__MinimumLevel__Override__Serilog=Information
       - WebApi__Url=http://gezagmock:5020/api/v1
