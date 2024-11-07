@@ -22,7 +22,7 @@ Functionaliteit: leveren 'indicatie vastgesteld verblijft niet op adres' veld bi
       | naam                | waarde                          |
       | type                | RaadpleegMetBurgerservicenummer |
       | burgerservicenummer | 000000152                       |
-      | fields              | verblijfplaats.<veld>           |
+      | fields              | <groep>.<veld>           |
       Dan heeft de response een persoon met de volgende 'verblijfplaats' gegevens
       | naam                                         | waarde      |
       | type                                         | Adres       |
@@ -35,9 +35,10 @@ Functionaliteit: leveren 'indicatie vastgesteld verblijft niet op adres' veld bi
       | inOnderzoek.datumIngangOnderzoek.langFormaat | 1 juli 2002 |
 
       Voorbeelden:
-      | veld                             | waarde           |
-      | adresseerbaarObjectIdentificatie | 0599010000208579 |
-      | nummeraanduidingIdentificatie    | 0599200000219678 |
+      | groep                    | veld                             | waarde           |
+      | verblijfplaats           | adresseerbaarObjectIdentificatie | 0599010000208579 |
+      | verblijfplaats           | nummeraanduidingIdentificatie    | 0599200000219678 |
+      | verblijfplaatsBinnenland | adresseerbaarObjectIdentificatie | 0599010000208579 |
 
     Abstract Scenario: gevraagde persoon verblijft niet meer op het geregistreerde adres en één of meerdere verblijfplaats velden wordt gevraagd
       Als personen wordt gezocht met de volgende parameters
