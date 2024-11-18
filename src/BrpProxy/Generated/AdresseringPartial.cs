@@ -1,6 +1,6 @@
 ﻿namespace HaalCentraal.BrpProxy.Generated;
 
-public partial class Adressering
+public partial class Adressering : IAdressering
 {
     public bool ShouldSerializeInOnderzoek() => InOnderzoek != null && InOnderzoek.ShouldSerialize();
 
@@ -16,6 +16,14 @@ public partial class Adressering
         ;
 }
 
+public interface IAdressering
+{
+    string Adresregel1 { get; set; }
+    string Adresregel2 { get; set; }
+    string Adresregel3 { get; set; }
+    Waardetabel Land { get; set; }
+}
+
 public partial class AdresseringInOnderzoek : IAdresregelsInOnderzoek
 {
     public bool ShouldSerialize() =>
@@ -29,7 +37,7 @@ public partial class AdresseringInOnderzoek : IAdresregelsInOnderzoek
         ;
 }
 
-public partial class AdresseringBeperkt
+public partial class AdresseringBeperkt : IAdressering
 {
     public bool ShouldSerializeInOnderzoek() => InOnderzoek != null && InOnderzoek.ShouldSerialize();
 
