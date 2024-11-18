@@ -14,7 +14,7 @@ Functionaliteit: leveren 'indicatie vastgesteld verblijft niet op adres' veld bi
 
   Regel: aanduiding in onderzoek waarde '089999' wordt geleverd als indicatieVastgesteldVerblijftNietOpAdres verblijfplaats veld en alle geleverde verblijfplaats velden zijn in onderzoek
 
-    Abstract Scenario: gevraagde persoon verblijft niet meer op het geregistreerde adres en <groep> veld <veld> wordt gevraagd
+    Abstract Scenario: gevraagde persoon verblijft niet meer op het actuele geregistreerde adres en <groep> veld <veld> wordt gevraagd
       Als personen wordt gezocht met de volgende parameters
       | naam                | waarde                          |
       | type                | RaadpleegMetBurgerservicenummer |
@@ -38,7 +38,7 @@ Functionaliteit: leveren 'indicatie vastgesteld verblijft niet op adres' veld bi
       | verblijfplaatsBinnenland | adresseerbaarObjectIdentificatie | 0599010000208579 |
 
 
-    Abstract Scenario: gevraagde persoon verblijft niet meer op het geregistreerde adres en <groep> verblijfadres veld <veld> wordt gevraagd
+    Abstract Scenario: gevraagde persoon verblijft niet meer op het actuele geregistreerde adres en <groep> verblijfadres veld <veld> wordt gevraagd
       Als personen wordt gezocht met de volgende parameters
       | naam                | waarde                          |
       | type                | RaadpleegMetBurgerservicenummer |
