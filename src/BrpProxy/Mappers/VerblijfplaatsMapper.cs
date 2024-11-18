@@ -31,23 +31,4 @@ public static class VerblijfplaatsMapper
     {
         return verblijfplaats?.InOnderzoek?.AanduidingGegevensInOnderzoek == "089999" ? true : null;
     }
-
-    public static bool? MapVastgesteldVerblijftNietOpAdres(this GbaVerblijfplaatsBeperkt? verblijfplaats, AdresseringBeperkt adressering)
-    {
-        bool isInOnderzoek = (verblijfplaats?.InOnderzoek?.AanduidingGegevensInOnderzoek == "089999");
-        
-        bool heeftAdresVelden = !string.IsNullOrEmpty(adressering.Adresregel1) || !string.IsNullOrEmpty(adressering.Adresregel2) || !string.IsNullOrEmpty(adressering.Adresregel3) || adressering.Land != null;
-
-        return isInOnderzoek && heeftAdresVelden ? true : null;
-    }
-
-    public static bool? MapVastgesteldVerblijftNietOpAdres(this GbaVerblijfplaats? verblijfplaats, Adressering adressering)
-    {
-        bool isInOnderzoek = (verblijfplaats?.InOnderzoek?.AanduidingGegevensInOnderzoek == "089999");
-
-        bool heeftAdresVelden = !string.IsNullOrEmpty(adressering.Adresregel1) || !string.IsNullOrEmpty(adressering.Adresregel2) || !string.IsNullOrEmpty(adressering.Adresregel3) || adressering.Land != null;
-
-        return isInOnderzoek && heeftAdresVelden ? true : null;
-    }
-
 }
