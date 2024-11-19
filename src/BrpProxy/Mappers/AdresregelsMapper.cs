@@ -167,4 +167,13 @@ public static class AdresregelsMapper
 
     private static bool VerblijfplaatsBuitenlandHeeftWaardeNederland(this Gba.GbaVerblijfplaatsBeperkt verblijfplaats) =>
         verblijfplaats.Land != null && verblijfplaats.Land.Code == "6030";
+
+    public static bool? IndicatieVastgesteldVerblijfNietOpAdres(this Gba.GbaVerblijfplaatsBeperkt verblijfplaats, IAdressering adressering)
+    {
+        bool isInOnderzoek = (verblijfplaats.InOnderzoek.AanduidingGegevensInOnderzoek == "089999");
+
+        bool heeftAdresVelden = !string.IsNullOrEmpty(adressering.Adresregel1) || !string.IsNullOrEmpty(adressering.Adresregel2) || !string.IsNullOrEmpty(adressering.Adresregel3) || adressering.Land != null;
+
+        return isInOnderzoek && heeftAdresVelden ? true : null;
+    }
 }
