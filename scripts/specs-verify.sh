@@ -12,6 +12,7 @@ npx cucumber-js -f json:./test-reports/cucumber-js/step-definitions/test-result-
                 -f summary:./test-reports/cucumber-js/step-definitions/test-result-zonder-dependency-integratie-summary.txt \
                 -f summary \
                 features/docs \
+                --tags "not @skip-verify" \
                 --tags "not @integratie"
 
 npx cucumber-js -f json:./test-reports/cucumber-js/personen/test-result-zoeken-en-raadplegen.json \
