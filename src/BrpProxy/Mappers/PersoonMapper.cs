@@ -10,7 +10,7 @@ public static class PersoonMapper
         return persoon.GeheimhoudingPersoonsgegevens > 0;
     }
 
-    private static void InitializePersoonInOnderzoek(this IPersoonInOnderzoek retval, GbaInOnderzoek? gbaInOnderzoek)
+    private static void InitializePersoonInOnderzoek(this IPersoonInOnderzoek retval, HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? gbaInOnderzoek)
     {
         if (gbaInOnderzoek != null)
         {
@@ -120,7 +120,7 @@ public static class PersoonMapper
         return retval;
     }
 
-    private static void InitializeAdresseringMetPersoonInOnderzoek(this AdresseringInOnderzoek retval, GbaInOnderzoek? gbaInOnderzoek)
+    private static void InitializeAdresseringMetPersoonInOnderzoek(this AdresseringInOnderzoek retval, HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? gbaInOnderzoek)
     {
         if (gbaInOnderzoek != null)
         {
@@ -147,7 +147,7 @@ public static class PersoonMapper
         }
     }
 
-    private static void InitializeAdresseringMetPartnerInOnderzoek(this AdresseringInOnderzoek retval, GbaInOnderzoek? gbaInOnderzoek)
+    private static void InitializeAdresseringMetPartnerInOnderzoek(this AdresseringInOnderzoek retval, HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? gbaInOnderzoek)
     {
         if(gbaInOnderzoek != null)
         {
@@ -169,7 +169,7 @@ public static class PersoonMapper
         }
     }
 
-    private static void InitializeAdresseringMetVerblijfplaatsInOnderzoek(this IAdresregelsInOnderzoek retval, GbaInOnderzoek? gbaInOnderzoek)
+    private static void InitializeAdresseringMetVerblijfplaatsInOnderzoek(this IAdresregelsInOnderzoek retval, HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? gbaInOnderzoek)
     {
         if (gbaInOnderzoek != null)
         {

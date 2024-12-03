@@ -9,7 +9,7 @@ public class NaamProfile : Profile
 {
     public NaamProfile()
     {
-        CreateMap<GbaNaamBasis, NaamPersoonBeperkt>()
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.NaamBasis, NaamPersoonBeperkt>()
             .ForMember(dest => dest.Voorletters, opt => opt.MapFrom(src => src.Voorletters()))
             .ForMember(dest => dest.Geslachtsnaam, opt =>
             {
@@ -21,7 +21,7 @@ public class NaamProfile : Profile
             })
             ;
 
-        CreateMap<GbaNaamBasis, NaamGerelateerde>()
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.NaamBasis, NaamGerelateerde>()
             .ForMember(dest => dest.Voorletters, opt => opt.MapFrom(src => src.Voorletters()))
             .ForMember(dest => dest.Geslachtsnaam, opt =>
             {
@@ -30,7 +30,7 @@ public class NaamProfile : Profile
             })
             ;
 
-        CreateMap<GbaInOnderzoek, NaamInOnderzoek?>().ConvertUsing<NaamGerelateerdeInOnderzoekConverter>();
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, NaamInOnderzoek?>().ConvertUsing<NaamGerelateerdeInOnderzoekConverter>();
 
         CreateMap<GbaNaamPersoon, NaamPersoon>()
             .ForMember(dest => dest.Geslachtsnaam, opt =>
@@ -44,7 +44,7 @@ public class NaamProfile : Profile
             })
             ;
 
-        CreateMap<GbaInOnderzoek, NaamPersoonInOnderzoekBeperkt?>().ConvertUsing<NaamPersoonInOnderzoekBeperktConverter>();
-        CreateMap<GbaInOnderzoek, NaamPersoonInOnderzoek?>().ConvertUsing<NaamPersoonInOnderzoekConverter>();
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, NaamPersoonInOnderzoekBeperkt?>().ConvertUsing<NaamPersoonInOnderzoekBeperktConverter>();
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, NaamPersoonInOnderzoek?>().ConvertUsing<NaamPersoonInOnderzoekConverter>();
     }
 }

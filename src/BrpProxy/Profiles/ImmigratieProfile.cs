@@ -27,6 +27,6 @@ public class ImmigratieProfile : Profile
             })
             ;
 
-        CreateMap<GbaInOnderzoek, ImmigratieInOnderzoek?>().ConvertUsing<ImmigratieInOnderzoekConverter>();
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, ImmigratieInOnderzoek?>().ConvertUsing<ImmigratieInOnderzoekConverter>();
     }
 }

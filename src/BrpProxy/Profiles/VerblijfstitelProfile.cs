@@ -18,6 +18,6 @@ public class VerblijfstitelProfile : Profile
                 opt.MapFrom(src => src.Aanduiding);
             });
 
-        CreateMap<GbaInOnderzoek, VerblijfstitelInOnderzoek?>().ConvertUsing<VerblijfstitelInOnderzoekConverter>();
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, VerblijfstitelInOnderzoek?>().ConvertUsing<VerblijfstitelInOnderzoekConverter>();
     }
 }

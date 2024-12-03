@@ -1,7 +1,7 @@
 ﻿namespace HaalCentraal.BrpProxy.Generated.Gba;
 
-public partial class GbaNaamBasis : INaam
+public partial class NaamBasis : INaam
 {
     public Waardetabel? Geslacht { get; set; }
-    public GbaInOnderzoek? InOnderzoek { get; set; }
+    public InOnderzoek? InOnderzoek { get; set; }
 }

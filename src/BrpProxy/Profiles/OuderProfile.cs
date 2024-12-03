@@ -14,7 +14,7 @@ public class OuderProfile : Profile
             {
                 if (src.Naam != null || src.InOnderzoek != null)
                 {
-                    src.Naam ??= new GbaNaamBasis();
+                    src.Naam ??= new HaalCentraal.BrpProxy.Generated.Gba.NaamBasis();
                     src.Naam.InOnderzoek = src.InOnderzoek;
                 }
                 if (src.Geboorte != null || src.InOnderzoek != null)
@@ -26,6 +26,6 @@ public class OuderProfile : Profile
             .ForMember(dest => dest.DatumIngangFamilierechtelijkeBetrekking, opt => opt.MapFrom(src => src.DatumIngangFamilierechtelijkeBetrekking.Map()))
             ;
 
-        CreateMap<GbaInOnderzoek, OuderInOnderzoek?>().ConvertUsing<OuderInOnderzoekConverter>();
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, OuderInOnderzoek?>().ConvertUsing<OuderInOnderzoekConverter>();
     }
 }

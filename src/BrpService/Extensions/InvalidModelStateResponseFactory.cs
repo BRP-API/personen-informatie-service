@@ -16,7 +16,7 @@ public static class InvalidModelStateResponseFactory
     {
         var invalidParams = (from kvp in context.ModelState
                              from error in kvp.Value.Errors
-                            select new Generated.InvalidParams
+                            select new Generated.InvalidParam
                             {
                                 Name = $"{char.ToLowerInvariant(kvp.Key[0])}{kvp.Key[1..]}",
                                 Code = error.ErrorMessage.Contains("||")

@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using BrpProxy.Mappers;
 using HaalCentraal.BrpProxy.Generated;
-using HaalCentraal.BrpProxy.Generated.Gba;
 
 namespace BrpProxy.Profiles;
 
-public class OverlijdenInOnderzoekConverter : ITypeConverter<GbaInOnderzoek, OverlijdenInOnderzoek?>
+public class OverlijdenInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, OverlijdenInOnderzoek?>
 {
-    public OverlijdenInOnderzoek? Convert(GbaInOnderzoek source, OverlijdenInOnderzoek? destination, ResolutionContext context)
+    public OverlijdenInOnderzoek? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, OverlijdenInOnderzoek? destination, ResolutionContext context)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {

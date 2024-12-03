@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using BrpProxy.Mappers;
 using HaalCentraal.BrpProxy.Generated;
-using HaalCentraal.BrpProxy.Generated.Gba;
 
 namespace BrpProxy.Profiles;
 
-public class PartnerInOnderzoekConverter : ITypeConverter<GbaInOnderzoek, PartnerInOnderzoek?>
+public class PartnerInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, PartnerInOnderzoek?>
 {
-    public PartnerInOnderzoek? Convert(GbaInOnderzoek source, PartnerInOnderzoek? destination, ResolutionContext context)
+    public PartnerInOnderzoek? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, PartnerInOnderzoek? destination, ResolutionContext context)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {

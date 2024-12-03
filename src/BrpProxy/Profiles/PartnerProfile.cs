@@ -14,7 +14,7 @@ public class PartnerProfile : Profile
             {
                 if(src.Naam != null || src.InOnderzoek != null)
                 {
-                    src.Naam ??= new GbaNaamBasis();
+                    src.Naam ??= new HaalCentraal.BrpProxy.Generated.Gba.NaamBasis();
                     src.Naam.InOnderzoek = src.InOnderzoek;
                 }
                 if(src.Geboorte != null || src.InOnderzoek != null)
@@ -58,7 +58,7 @@ public class PartnerProfile : Profile
             .ForMember(dest => dest.Datum, opt => opt.MapFrom(src => src.Datum.Map()))
             ;
 
-        CreateMap<GbaInOnderzoek, PartnerInOnderzoek?>().ConvertUsing<PartnerInOnderzoekConverter>();
-        CreateMap<GbaInOnderzoek, OntbindingHuwelijkPartnerschapInOnderzoek?>().ConvertUsing<OntbondenPartnerInOnderzoekConverter>();
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, PartnerInOnderzoek?>().ConvertUsing<PartnerInOnderzoekConverter>();
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, OntbindingHuwelijkPartnerschapInOnderzoek?>().ConvertUsing<OntbondenPartnerInOnderzoekConverter>();
     }
 }

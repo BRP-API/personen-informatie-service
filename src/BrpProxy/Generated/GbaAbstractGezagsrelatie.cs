@@ -11,6 +11,9 @@
 public partial class AbstractGezagsrelatie
 {
 
+    [Newtonsoft.Json.JsonProperty("minderjarige", Required = Newtonsoft.Json.Required.Always)]
+    public Minderjarige Minderjarige { get; set; } = new Minderjarige();
+
     private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
     [Newtonsoft.Json.JsonExtensionData]
@@ -23,9 +26,5 @@ public partial class AbstractGezagsrelatie
 }
 
 public partial class TijdelijkGeenGezag : AbstractGezagsrelatie
-{
-}
-
-public partial class GezagNietTeBepalen : AbstractGezagsrelatie
 {
 }

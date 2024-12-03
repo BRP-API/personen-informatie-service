@@ -2,5 +2,5 @@
 
 public partial class GbaOntbindingHuwelijkPartnerschap
 {
-    public GbaInOnderzoek? InOnderzoek { get; set; }
+    public InOnderzoek? InOnderzoek { get; set; }
 }

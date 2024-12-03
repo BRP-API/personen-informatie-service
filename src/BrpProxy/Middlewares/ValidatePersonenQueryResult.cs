@@ -5,20 +5,20 @@ namespace BrpProxy.Middlewares
 {
     public class ValidatePersonenQueryResult
     {
-        private static InvalidParams? CreateFrom(string propertyName, string errorMessage)
+        private static InvalidParam? CreateFrom(string propertyName, string errorMessage)
         {
             var messages = errorMessage.Split("||");
             switch(messages.Length)
             {
                 case 2:
-                    return new InvalidParams
+                    return new InvalidParam
                     {
                         Name = $"{char.ToLowerInvariant(propertyName[0])}{propertyName[1..]}",
                         Code = messages[0],
                         Reason = messages[1]
                     };
                 case 3:
-                    return new InvalidParams
+                    return new InvalidParam
                     {
                         Name = messages[0],
                         Code = messages[1],
@@ -46,7 +46,7 @@ namespace BrpProxy.Middlewares
         public static ValidatePersonenQueryResult CreateFrom(ValidationResult result, HttpContext context)
         {
             var invalidParams = from error in result.Errors
-                                select new InvalidParams
+                                select new InvalidParam
                                 {
                                     Name = "type",
                                     Code = error.ErrorMessage.Split("||")[0],

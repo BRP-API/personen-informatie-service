@@ -21,7 +21,7 @@ public class PersoonProfile : Profile
             {
                 if (src.Naam != null || src.PersoonInOnderzoek != null)
                 {
-                    src.Naam ??= new GbaNaamBasis();
+                    src.Naam ??= new HaalCentraal.BrpProxy.Generated.Gba.NaamBasis();
                     if (src.Geslacht != null)
                     {
                         src.Naam.Geslacht = src.Geslacht;
@@ -30,7 +30,7 @@ public class PersoonProfile : Profile
                 }
                 if (src.Geboorte != null || src.PersoonInOnderzoek != null)
                 {
-                    src.Geboorte ??= new GbaGeboorteBeperkt();
+                    src.Geboorte ??= new HaalCentraal.BrpProxy.Generated.Gba.GeboorteBasis();
                     src.Geboorte.InOnderzoek = src.PersoonInOnderzoek;
                 }
             })
@@ -64,7 +64,7 @@ public class PersoonProfile : Profile
             {
                 if(src.Naam != null || src.PersoonInOnderzoek != null)
                 {
-                    src.Naam ??= new GbaNaamBasis();
+                    src.Naam ??= new HaalCentraal.BrpProxy.Generated.Gba.NaamBasis();
                     if (src.Geslacht != null)
                     {
                         src.Naam.Geslacht = src.Geslacht;
@@ -73,7 +73,7 @@ public class PersoonProfile : Profile
                 }
                 if(src.Geboorte != null || src.PersoonInOnderzoek != null)
                 {
-                    src.Geboorte ??= new GbaGeboorteBeperkt();
+                    src.Geboorte ??= new HaalCentraal.BrpProxy.Generated.Gba.GeboorteBasis();
                     src.Geboorte.InOnderzoek = src.PersoonInOnderzoek;
                 }
             })
