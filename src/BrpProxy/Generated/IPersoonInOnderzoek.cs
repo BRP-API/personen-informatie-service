@@ -1,4 +1,6 @@
-﻿namespace HaalCentraal.BrpProxy.Generated;
+﻿using Brp.Shared.DtoMappers.BrpApiDtos;
+
+namespace HaalCentraal.BrpProxy.Generated;
 
 public interface IPersoonInOnderzoek
 {

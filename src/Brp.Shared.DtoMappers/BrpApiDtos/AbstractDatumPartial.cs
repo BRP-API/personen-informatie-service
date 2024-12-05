@@ -1,4 +1,4 @@
-﻿namespace HaalCentraal.BrpProxy.Generated;
+﻿namespace Brp.Shared.DtoMappers.BrpApiDtos;
 
 public partial class AbstractDatum
 {
@@ -7,18 +7,18 @@ public partial class AbstractDatum
         return datum switch
         {
             VolledigeDatum v => v.Datum!.Value.DateTime,
-            JaarDatum v => new DateTime(v.Jaar, 1, 1).AddYears(1),
-            JaarMaandDatum v => new DateTime(v.Jaar, v.Maand, 1).AddMonths(1),
+            JaarDatum v => new DateTime(v.Jaar!.Value, 1, 1, 0, 0, 0, DateTimeKind.Local).AddYears(1),
+            JaarMaandDatum v => new DateTime(v.Jaar!.Value, v.Maand!.Value, 1, 0, 0, 0, DateTimeKind.Local).AddMonths(1),
             _ => null
         };
     }
 
-    public static bool operator <= (AbstractDatum d, DateTime e)
+    public static bool operator <=(AbstractDatum d, DateTime e)
     {
         var peildatum = ToDateTime(d);
         return peildatum != null && peildatum <= e;
     }
-    
+
     public static bool operator >=(AbstractDatum d, DateTime e)
     {
         var peildatum = ToDateTime(d);
@@ -30,8 +30,8 @@ public partial class AbstractDatum
         return datum switch
         {
             VolledigeDatum v => (v.Datum!.Value.Year, v.Datum!.Value.Month, v.Datum!.Value.Day),
-            JaarMaandDatum v => (v.Jaar, v.Maand, 0),
-            JaarDatum v => (v.Jaar, 0, 0),
+            JaarMaandDatum v => (v.Jaar!.Value, v.Maand!.Value, 0),
+            JaarDatum v => (v.Jaar!.Value, 0, 0),
             _ => (0, 0, 0),
         };
     }

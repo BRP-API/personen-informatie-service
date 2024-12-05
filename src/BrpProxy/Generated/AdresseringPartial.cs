@@ -1,4 +1,6 @@
-﻿namespace HaalCentraal.BrpProxy.Generated;
+﻿using Brp.Shared.DtoMappers.BrpDtos;
+
+namespace HaalCentraal.BrpProxy.Generated;
 
 public partial class Adressering : IAdressering
 {

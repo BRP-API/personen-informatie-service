@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Brp.Shared.DtoMappers.Mappers;
 using BrpProxy.Mappers;
 using HaalCentraal.BrpProxy.Generated;
 using HaalCentraal.BrpProxy.Generated.Gba;

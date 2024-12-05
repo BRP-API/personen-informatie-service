@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using HC = HaalCentraal.BrpProxy.Generated;
-using Gba = HaalCentraal.BrpProxy.Generated.Gba;
+using HC = Brp.Shared.DtoMappers.BrpDtos;
+using Gba = Brp.Shared.DtoMappers.BrpDtos;
 
 namespace BrpProxy.Profiles;
 

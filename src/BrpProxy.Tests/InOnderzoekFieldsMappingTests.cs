@@ -40,6 +40,7 @@ namespace BrpProxy.Tests
         [InlineData("geboorte", "geboorte.inOnderzoek")]
         [InlineData("geboorte.datum", "geboorte.inOnderzoek.datum")]
         [InlineData("geboorte.datum.type", "geboorte.inOnderzoek.datum")]
+        [InlineData("geboorte.datum.datum", "geboorte.inOnderzoek.datum")]
         [InlineData("indicatieGezagMinderjarige", "inOnderzoek.indicatieGezagMinderjarige")]
         [InlineData("indicatieCurateleRegister", "inOnderzoek.indicatieCurateleRegister")]
         [InlineData("kinderen", "kinderen.inOnderzoek")]

@@ -12,13 +12,14 @@ namespace BrpProxy.Validators
             return field.Contains("inOnderzoek");
         }
 
-        public static List<string> GetPropertyPaths(this Type type, string baseNamespace, string path = "")
+        public static List<string> GetPropertyPaths(this Type type, string[] baseNamespaces, string path = "")
         {
             List<string> retval = new();
 
             var attributes = type.GetCustomAttributes(false);
             foreach (var attribute in attributes)
             {
+                
                 switch (attribute)
                 {
                     case JsonConverterAttribute a:
@@ -28,8 +29,11 @@ namespace BrpProxy.Validators
                             retval.Add(prop.ToFullPath(path));
                         }
                         break;
-                    case JsonInheritanceAttribute a:
-                        retval.AddRange(a.Type.GetPropertyPaths(baseNamespace, path));
+                    case HaalCentraal.BrpProxy.Generated.JsonInheritanceAttribute a:
+                        retval.AddRange(a.Type.GetPropertyPaths(baseNamespaces, path));
+                        break;
+                    case Brp.Shared.DtoMappers.BrpApiDtos.JsonInheritanceAttribute a:
+                        retval.AddRange(a.Type.GetPropertyPaths(baseNamespaces, path));
                         break;
                     default:
                         break;
@@ -47,16 +51,16 @@ namespace BrpProxy.Validators
                 {
                     retval.Add(name.ToFullPath(path));
                 }
-                if (property.PropertyType.FullNameStartsWith(baseNamespace))
+                if (property.PropertyType.FullNameStartsWith(baseNamespaces))
                 {
-                    retval.AddRange(property.PropertyType.GetPropertyPaths(baseNamespace, name.ToFullPath(path)));
+                    retval.AddRange(property.PropertyType.GetPropertyPaths(baseNamespaces, name.ToFullPath(path)));
                 }
                 if (property.PropertyType.IsGenericType)
                 {
                     var genericType = property.PropertyType.GetGenericArguments()[0];
-                    if (genericType.FullNameStartsWith(baseNamespace))
+                    if (genericType.FullNameStartsWith(baseNamespaces))
                     {
-                        retval.AddRange(genericType.GetPropertyPaths(baseNamespace, name.ToFullPath(path)));
+                        retval.AddRange(genericType.GetPropertyPaths(baseNamespaces, name.ToFullPath(path)));
                     }
                 }
             }
@@ -75,11 +79,11 @@ namespace BrpProxy.Validators
                 : property.Name;
         }
 
-        private static bool FullNameStartsWith(this Type? type, string baseNamespace)
+        private static bool FullNameStartsWith(this Type? type, string[] baseNamespaces)
         {
             return type != null &&
                    !string.IsNullOrWhiteSpace(type.FullName) &&
-                   type.FullName.StartsWith(baseNamespace);
+                   baseNamespaces.Any(bn => type.FullName.StartsWith(bn));
         }
 
         private static string ToFullPath(this string name, string path)

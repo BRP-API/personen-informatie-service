@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Brp.Shared.DtoMappers.BrpApiDtos;
 using FluentAssertions;
 using System.Collections.Generic;
 using Xunit;
@@ -12,178 +13,178 @@ public class GezagProfile
     [Fact]
     public void ShouldMapTweehoofdigOuderlijkGezagWithoutThrowing()
     {
-        HaalCentraal.BrpProxy.Generated.Gba.TweehoofdigOuderlijkGezag input = new()
+        TweehoofdigOuderlijkGezag input = new()
         {
-            Minderjarige = new HaalCentraal.BrpProxy.Generated.Gba.Minderjarige
+            Minderjarige = new Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
-            Ouders = new List<HaalCentraal.BrpProxy.Generated.Gba.GezagOuder>
+            Ouders = new List<GezagOuder>
             {
                 new() { Burgerservicenummer = "000000013" },
                 new() { Burgerservicenummer = "000000014" },
             }
         };
 
-        HaalCentraal.BrpProxy.Generated.TweehoofdigOuderlijkGezag expected = new()
+        TweehoofdigOuderlijkGezag expected = new()
         {
-            Minderjarige = new HaalCentraal.BrpProxy.Generated.Minderjarige
+            Minderjarige = new Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
-            Ouders = new List<HaalCentraal.BrpProxy.Generated.GezagOuder>
+            Ouders = new List<GezagOuder>
             {
                 new() { Burgerservicenummer = "000000013" },
                 new() { Burgerservicenummer = "000000014" },
             }
         };
 
-        CreateSut().Map<HaalCentraal.BrpProxy.Generated.Gba.TweehoofdigOuderlijkGezag>(input).Should().BeEquivalentTo(expected);
+        CreateSut().Map<TweehoofdigOuderlijkGezag>(input).Should().BeEquivalentTo(expected);
     }
 
     [Fact]
     public void ShouldMapEenhoofdigOuderlijkGezagWithoutThrowing()
     {
-        HaalCentraal.BrpProxy.Generated.Gba.EenhoofdigOuderlijkGezag input = new()
+        EenhoofdigOuderlijkGezag input = new()
         {
-            Minderjarige = new HaalCentraal.BrpProxy.Generated.Gba.Minderjarige
+            Minderjarige = new Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
-            Ouder = new HaalCentraal.BrpProxy.Generated.Gba.GezagOuder
+            Ouder = new GezagOuder
             {
                 Burgerservicenummer = "000000013"
             }
         };
 
-        HaalCentraal.BrpProxy.Generated.EenhoofdigOuderlijkGezag expected = new()
+        EenhoofdigOuderlijkGezag expected = new()
         {
-            Minderjarige = new HaalCentraal.BrpProxy.Generated.Minderjarige
+            Minderjarige = new Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
-            Ouder = new HaalCentraal.BrpProxy.Generated.GezagOuder
+            Ouder = new GezagOuder
             {
                 Burgerservicenummer = "000000013"
             }
         };
 
-        CreateSut().Map<HaalCentraal.BrpProxy.Generated.Gba.EenhoofdigOuderlijkGezag>(input).Should().BeEquivalentTo(expected);
+        CreateSut().Map<EenhoofdigOuderlijkGezag>(input).Should().BeEquivalentTo(expected);
     }
 
     [Fact]
     public void ShouldMapGezamenlijkGezagWithoutThrowing()
     {
-        HaalCentraal.BrpProxy.Generated.Gba.GezamenlijkGezag input = new()
+        GezamenlijkGezag input = new()
         {
-            Minderjarige = new HaalCentraal.BrpProxy.Generated.Gba.Minderjarige
+            Minderjarige = new Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
-            Derde = new HaalCentraal.BrpProxy.Generated.Gba.Meerderjarige
+            Derde = new Meerderjarige
             {
                 Burgerservicenummer = "000000013"
             },
-            Ouder = new HaalCentraal.BrpProxy.Generated.Gba.GezagOuder
+            Ouder = new GezagOuder
             {
                 Burgerservicenummer = "000000014"
             }
         };
 
-        HaalCentraal.BrpProxy.Generated.GezamenlijkGezag expected = new()
+        GezamenlijkGezag expected = new()
         {
-            Minderjarige = new HaalCentraal.BrpProxy.Generated.Minderjarige
+            Minderjarige = new Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
-            Derde = new HaalCentraal.BrpProxy.Generated.Meerderjarige
+            Derde = new Meerderjarige
             {
                 Burgerservicenummer = "000000013"
             },
-            Ouder = new HaalCentraal.BrpProxy.Generated.GezagOuder
+            Ouder = new GezagOuder
             {
                 Burgerservicenummer = "000000014"
             }
         };
 
-        CreateSut().Map<HaalCentraal.BrpProxy.Generated.Gba.GezamenlijkGezag>(input).Should().BeEquivalentTo(expected);
+        CreateSut().Map<GezamenlijkGezag>(input).Should().BeEquivalentTo(expected);
     }
 
     [Fact]
     public void ShouldMapVoogdijWithoutThrowing()
     {
-        HaalCentraal.BrpProxy.Generated.Gba.Voogdij input = new()
+        Voogdij input = new()
         {
-            Minderjarige = new HaalCentraal.BrpProxy.Generated.Gba.Minderjarige
+            Minderjarige = new Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
-            Derden = new List<HaalCentraal.BrpProxy.Generated.Gba.Meerderjarige>
+            Derden = new List<Meerderjarige>
             {
                 new() { Burgerservicenummer = "000000013" },
                 new() { Burgerservicenummer = "000000014" },
             }
         };
 
-        HaalCentraal.BrpProxy.Generated.Voogdij expected = new()
+        Voogdij expected = new()
         {
-            Minderjarige = new HaalCentraal.BrpProxy.Generated.Minderjarige
+            Minderjarige = new Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
-            Derden = new List<HaalCentraal.BrpProxy.Generated.Meerderjarige>
+            Derden = new List<Meerderjarige>
             {
                 new() { Burgerservicenummer = "000000013" },
                 new() { Burgerservicenummer = "000000014" },
             }
         };
 
-        CreateSut().Map<HaalCentraal.BrpProxy.Generated.Gba.Voogdij>(input).Should().BeEquivalentTo(expected);
+        CreateSut().Map<Voogdij>(input).Should().BeEquivalentTo(expected);
     }
 
     [Fact]
     public void ShouldMapGezagNietTeBepalenWithoutThrowing()
     {
-        HaalCentraal.BrpProxy.Generated.Gba.GezagNietTeBepalen input = new()
+        GezagNietTeBepalen input = new()
         {
-            Minderjarige = new HaalCentraal.BrpProxy.Generated.Gba.Minderjarige
+            Minderjarige = new Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
             Toelichting = "Toelichting",
         };
 
-        HaalCentraal.BrpProxy.Generated.GezagNietTeBepalen expected = new()
+        GezagNietTeBepalen expected = new()
         {
-            Minderjarige = new HaalCentraal.BrpProxy.Generated.Minderjarige
+            Minderjarige = new Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
             Toelichting = "Toelichting",
         };
 
-        CreateSut().Map<HaalCentraal.BrpProxy.Generated.Gba.GezagNietTeBepalen>(input).Should().BeEquivalentTo(expected);
+        CreateSut().Map<GezagNietTeBepalen>(input).Should().BeEquivalentTo(expected);
     }
 
     [Fact]
     public void ShouldMapTijdelijkGeenGezagWithoutThrowing()
     {
-        HaalCentraal.BrpProxy.Generated.Gba.TijdelijkGeenGezag input = new()
+        TijdelijkGeenGezag input = new()
         {
-            Minderjarige = new HaalCentraal.BrpProxy.Generated.Gba.Minderjarige
+            Minderjarige = new Minderjarige
             {
                 Burgerservicenummer = "000000012"
             }
         };
 
-        HaalCentraal.BrpProxy.Generated.TijdelijkGeenGezag expected = new()
+        TijdelijkGeenGezag expected = new()
         {
-            Minderjarige = new HaalCentraal.BrpProxy.Generated.Minderjarige
+            Minderjarige = new Minderjarige
             {
                 Burgerservicenummer = "000000012"
             }
         };
 
-        CreateSut().Map<HaalCentraal.BrpProxy.Generated.Gba.TijdelijkGeenGezag>(input).Should().BeEquivalentTo(expected);
+        CreateSut().Map<TijdelijkGeenGezag>(input).Should().BeEquivalentTo(expected);
     }
 }

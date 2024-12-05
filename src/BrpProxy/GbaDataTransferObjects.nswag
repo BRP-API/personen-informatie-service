@@ -46,7 +46,10 @@
       "queryNullValue": "",
       "className": "{controller}Client",
       "operationGenerationMode": "MultipleClientsFromOperationId",
-      "additionalNamespaceUsages": [],
+      "additionalNamespaceUsages": [
+        "Brp.Shared.DtoMappers.BrpDtos",
+        "Brp.Shared.DtoMappers.BrpApiDtos"
+      ],
       "additionalContractNamespaceUsages": [],
       "generateOptionalParameters": false,
       "generateJsonMethods": false,
@@ -79,6 +82,14 @@
       "generateDataAnnotations": false,
       "excludedTypeNames": [
         "AbstractGezagsrelatie",
+        "TweehoofdigOuderlijkGezag",
+        "EenhoofdigOuderlijkGezag",
+        "GezamenlijkGezag",
+        "Voogdij",
+        "GezagNietTeBepalen",
+        "GezagOuder",
+        "Meerderjarige",
+        "Minderjarige",
         "AdellijkeTitelPredicaatType",
         "AdellijkeTitelPredicaatSoort",
         "PersonenQuery",
@@ -88,7 +99,8 @@
         "ZoekMetNaamEnGemeenteVanInschrijving",
         "ZoekMetNummeraanduidingIdentificatie",
         "ZoekMetPostcodeEnHuisnummer",
-        "ZoekMetStraatHuisnummerEnGemeenteVanInschrijving"
+        "ZoekMetStraatHuisnummerEnGemeenteVanInschrijving",
+        "Waardetabel"
       ],
       "excludedParameterNames": [],
       "handleReferences": false,

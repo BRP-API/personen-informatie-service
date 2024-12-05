@@ -2,6 +2,7 @@
 using BrpProxy.Mappers;
 using HaalCentraal.BrpProxy.Generated;
 using HaalCentraal.BrpProxy.Generated.Gba;
+using Brp.Shared.DtoMappers.Mappers;
 
 namespace BrpProxy.Profiles;
 
@@ -17,7 +18,7 @@ public class NaamProfile : Profile
             })
             .AfterMap((src, dest) =>
             {
-                dest.VolledigeNaam = dest.VolledigeNaam(dest.Geslacht);
+                dest.VolledigeNaam = src.VolledigeNaam(src.Geslacht);
             })
             ;
 

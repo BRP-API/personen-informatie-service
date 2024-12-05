@@ -1,7 +1,9 @@
-﻿namespace HaalCentraal.BrpProxy.Generated.Gba;
+﻿using Brp.Shared.DtoMappers.Interfaces;
 
-public partial class NaamBasis : INaam
+namespace HaalCentraal.BrpProxy.Generated.Gba;
+
+public partial class NaamBasis : INaamBasis
 {
-    public Waardetabel? Geslacht { get; set; }
+    public IWaardetabel? Geslacht { get; set; }
     public InOnderzoek? InOnderzoek { get; set; }
 }

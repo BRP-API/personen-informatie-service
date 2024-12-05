@@ -1,12 +1,12 @@
+using Brp.Shared.DtoMappers.BrpApiDtos;
+using Brp.Shared.DtoMappers.BrpDtos;
 using BrpProxy.Validators;
 using FluentAssertions;
 using HaalCentraal.BrpProxy.Generated;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Xunit;
 
 namespace BrpProxy.Tests;
