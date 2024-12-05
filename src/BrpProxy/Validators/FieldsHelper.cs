@@ -93,7 +93,7 @@ public class FieldsHelper
     {
         var dictionary = new Dictionary<string, string>();
 
-        var persoonFields = typeof(Persoon).GetPropertyPaths("HaalCentraal");
+        var persoonFields = typeof(Persoon).GetPropertyPaths(new[] { "HaalCentraal", "Brp.Shared.DtoMappers" });
         var persoonInOnderzoekFields = persoonFields.Where(x => x.IsInOnderzoekField()).OrderBy(x => x);
         foreach (var field in persoonFields)
         {
@@ -118,7 +118,7 @@ public class FieldsHelper
     {
         var dictionary = new Dictionary<string, string>();
 
-        var persoonFields = typeof(PersoonBeperkt).GetPropertyPaths("HaalCentraal");
+        var persoonFields = typeof(PersoonBeperkt).GetPropertyPaths(new[] { "HaalCentraal", "Brp.Shared.DtoMappers" });
         var persoonInOnderzoekFields = persoonFields.Where(x => x.IsInOnderzoekField()).OrderBy(x => x);
         foreach (var field in persoonFields)
         {
@@ -143,7 +143,7 @@ public class FieldsHelper
     {
         var dictionary = new Dictionary<string, string>();
 
-        var persoonFields = typeof(GezagPersoonBeperkt).GetPropertyPaths("HaalCentraal");
+        var persoonFields = typeof(GezagPersoonBeperkt).GetPropertyPaths(new[] { "HaalCentraal", "Brp.Shared.DtoMappers" });
         var persoonInOnderzoekFields = persoonFields.Where(x => x.IsInOnderzoekField()).OrderBy(x => x);
         foreach (var field in persoonFields)
         {

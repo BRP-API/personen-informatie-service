@@ -5,7 +5,7 @@ info:
     API voor het bevragen van personen uit de basisregistratie personen (BRP), inclusief de registratie niet-ingezeten (RNI). Met deze API kun je personen zoeken en actuele gegevens over personen, kinderen, partners en ouders raadplegen.
 
     Gegevens die er niet zijn of niet actueel zijn krijg je niet terug. Had een persoon bijvoorbeeld een verblijfstitel die nu niet meer geldig is, dan wordt die verblijfstitel niet opgenomen. In partners wordt alleen de actuele of de laatst ontbonden partner geleverd.
-  version: 2.3.0
+  version: 2.4.0
   contact:
     url: https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen
   license:
@@ -44,15 +44,6 @@ paths:
         '200':
           description: |
             Zoekactie geslaagd
-          headers:
-            warning:
-              $ref: '#/components/headers/warning'
-            X-Rate-Limit-Limit:
-              $ref: '#/components/headers/X_Rate_Limit_Limit'
-            X-Rate-Limit-Remaining:
-              $ref: '#/components/headers/X_Rate_Limit_Remaining'
-            X-Rate-Limit-Reset:
-              $ref: '#/components/headers/X_Rate_Limit_Reset'
           content:
             application/json; charset=utf-8:
               schema:
@@ -74,7 +65,7 @@ paths:
         '503':
           $ref: '#/components/responses/503'
         default:
-          $ref: '#/components/responses/default'
+          $ref: '#/components/responses/500'
       tags:
         - Personen
 components:
@@ -332,31 +323,30 @@ components:
       description: Terugmelding bij een fout. JSON representatie in lijn met [RFC7807](https://tools.ietf.org/html/rfc7807).
       properties:
         type:
+          description: Link naar meer informatie over deze fout
           type: string
           format: uri
-          description: Link naar meer informatie over deze fout
         title:
+          description: Beschrijving van de fout
           type: string
           pattern: ^[a-zA-Z0-9À-ž \.\-]{1,80}$
-          description: Beschrijving van de fout
         status:
           type: integer
           minimum: 100
           maximum: 600
           description: Http status code
         detail:
-          type: string
-          pattern: ^[a-zA-Z0-9À-ž \.\-\(\)\,]{1,200}$
           description: Details over de fout
+          type: string
+          pattern: ^[a-zA-Z0-9À-ž \.\-\(\),]{1,200}$
         instance:
+          description: Uri van de aanroep die de fout heeft veroorzaakt
           type: string
           format: uri
-          description: Uri van de aanroep die de fout heeft veroorzaakt
         code:
+          description: Systeemcode die het type fout aangeeft
           type: string
           pattern: ^[a-zA-Z0-9]{1,25}$
-          description: Systeemcode die het type fout aangeeft
-          minLength: 1
     PersonenQueryResponse:
       type: object
       required:
@@ -378,13 +368,19 @@ components:
       type: string
       pattern: ^[0-9]{8}$
       example: '20180700'
-    GbaGeboorteBeperkt:
+    GeboorteBasis:
       type: object
       properties:
         datum:
           $ref: '#/components/schemas/GbaDatum'
-    GbaGeheimhoudingPersoonsgegevens:
+          description: |
+            Datum waarop de persoon is geboren.
+    IndicatieGeheim:
+      description: |
+        Gegevens over het mogen verstrekken van persoonsgegevens aan derden / maatschappelijke instellingen.
       type: integer
+      minimum: 0
+      maximum: 7
     Waardetabel:
       type: object
       properties:
@@ -394,9 +390,15 @@ components:
           example: '6030'
         omschrijving:
           type: string
-          pattern: ^[a-zA-Z0-9À-ž \'\,\(\)\.\-]{1,200}$
+          pattern: ^[a-zA-Z0-9À-ž \'\.\-\(\),]{1,200}$
           example: Nederland
-    GbaInOnderzoek:
+    Geslachtsaanduiding:
+      allOf:
+        - $ref: '#/components/schemas/Waardetabel'
+        - example:
+            code: M
+            omschrijving: man
+    InOnderzoek:
       type: object
       required:
         - aanduidingGegevensInOnderzoek
@@ -405,14 +407,16 @@ components:
         aanduidingGegevensInOnderzoek:
           type: string
           pattern: ^[0-9]{6}$
+          example: '100000'
         datumIngangOnderzoek:
           $ref: '#/components/schemas/GbaDatum'
     Voornamen:
+      description: |
+        De verzameling namen voor de geslachtsnaam, gescheiden door spaties.
       type: string
       pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,200}$
       maxLength: 200
-      description: |
-        De verzameling namen voor de geslachtsnaam, gescheiden door spaties.
+      example: Pieter Jan
     AdellijkeTitelPredicaatSoort:
       type: string
       enum:
@@ -427,10 +431,9 @@ components:
             soort:
               $ref: '#/components/schemas/AdellijkeTitelPredicaatSoort'
           example:
-            value:
-              code: JV
-              omschrijving: jonkvrouw
-              soort: predicaat
+            code: JV
+            omschrijving: jonkvrouw
+            soort: predicaat
     Voorvoegsel:
       type: string
       pattern: ^[a-zA-Z \']{1,10}$
@@ -442,7 +445,7 @@ components:
       description: |
         De achternaam van een persoon.
       example: Vries
-    GbaNaamBasis:
+    NaamBasis:
       type: object
       properties:
         voornamen:
@@ -532,7 +535,7 @@ components:
         regel3:
           $ref: '#/components/schemas/Regel3'
         inOnderzoek:
-          $ref: '#/components/schemas/GbaInOnderzoek'
+          $ref: '#/components/schemas/InOnderzoek'
     OmschrijvingVerdrag:
       type: string
       description: |
@@ -571,15 +574,15 @@ components:
         burgerservicenummer:
           $ref: '#/components/schemas/Burgerservicenummer'
         geboorte:
-          $ref: '#/components/schemas/GbaGeboorteBeperkt'
+          $ref: '#/components/schemas/GeboorteBasis'
         geheimhoudingPersoonsgegevens:
-          $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+          $ref: '#/components/schemas/IndicatieGeheim'
         geslacht:
-          $ref: '#/components/schemas/Waardetabel'
+          $ref: '#/components/schemas/Geslachtsaanduiding'
         persoonInOnderzoek:
-          $ref: '#/components/schemas/GbaInOnderzoek'
+          $ref: '#/components/schemas/InOnderzoek'
         naam:
-          $ref: '#/components/schemas/GbaNaamBasis'
+          $ref: '#/components/schemas/NaamBasis'
         opschortingBijhouding:
           $ref: '#/components/schemas/GbaOpschortingBijhouding'
         gemeenteVanInschrijving:
@@ -634,7 +637,7 @@ components:
           $ref: '#/components/schemas/GbaDatum'
     GbaNaamPersoon:
       allOf:
-        - $ref: '#/components/schemas/GbaNaamBasis'
+        - $ref: '#/components/schemas/NaamBasis'
         - properties:
             aanduidingNaamgebruik:
               $ref: '#/components/schemas/Waardetabel'
@@ -651,10 +654,10 @@ components:
         redenOpname:
           $ref: '#/components/schemas/Waardetabel'
         inOnderzoek:
-          $ref: '#/components/schemas/GbaInOnderzoek'
+          $ref: '#/components/schemas/InOnderzoek'
     GbaGeboorte:
       allOf:
-        - $ref: '#/components/schemas/GbaGeboorteBeperkt'
+        - $ref: '#/components/schemas/GeboorteBasis'
         - type: object
           properties:
             land:
@@ -671,7 +674,7 @@ components:
         plaats:
           $ref: '#/components/schemas/Waardetabel'
         inOnderzoek:
-          $ref: '#/components/schemas/GbaInOnderzoek'
+          $ref: '#/components/schemas/InOnderzoek'
     NaamOpenbareRuimte:
       type: string
       maxLength: 80
@@ -714,9 +717,12 @@ components:
       type: object
       required:
         - type
+        - minderjarige
       properties:
         type:
           type: string
+        minderjarige:
+          $ref: '#/components/schemas/Minderjarige'
       discriminator:
         propertyName: type
         mapping:
@@ -726,14 +732,14 @@ components:
           Voogdij: '#/components/schemas/Voogdij'
           TijdelijkGeenGezag: '#/components/schemas/TijdelijkGeenGezag'
           GezagNietTeBepalen: '#/components/schemas/GezagNietTeBepalen'
+      example:
+        type: TweehoofdigOuderlijkGezag
+        ouders:
+          - burgerservicenummer: '999998870'
+          - burgerservicenummer: '999998882'
+        minderjarige:
+          burgerservicenummer: '999998894'
     GezagOuder:
-      type: object
-      properties:
-        burgerservicenummer:
-          $ref: '#/components/schemas/Burgerservicenummer'
-      required:
-        - burgerservicenummer
-    Minderjarige:
       type: object
       properties:
         burgerservicenummer:
@@ -751,8 +757,6 @@ components:
                 $ref: '#/components/schemas/GezagOuder'
               minItems: 2
               maxItems: 2
-            minderjarige:
-              $ref: '#/components/schemas/Minderjarige'
     EenhoofdigOuderlijkGezag:
       allOf:
         - $ref: '#/components/schemas/AbstractGezagsrelatie'
@@ -760,8 +764,6 @@ components:
           properties:
             ouder:
               $ref: '#/components/schemas/GezagOuder'
-            minderjarige:
-              $ref: '#/components/schemas/Minderjarige'
     Meerderjarige:
       type: object
       properties:
@@ -776,8 +778,6 @@ components:
               $ref: '#/components/schemas/GezagOuder'
             derde:
               $ref: '#/components/schemas/Meerderjarige'
-            minderjarige:
-              $ref: '#/components/schemas/Minderjarige'
     Voogdij:
       allOf:
         - $ref: '#/components/schemas/AbstractGezagsrelatie'
@@ -789,14 +789,26 @@ components:
                 $ref: '#/components/schemas/Meerderjarige'
               minItems: 0
               maxItems: 2
-            minderjarige:
-              $ref: '#/components/schemas/Minderjarige'
     TijdelijkGeenGezag:
       allOf:
         - $ref: '#/components/schemas/AbstractGezagsrelatie'
+    Toelichting:
+      type: string
+      pattern: ^[a-zA-Z0-9À-ž \/\;\:\.\-\?\(\)]{1,400}$
     GezagNietTeBepalen:
       allOf:
         - $ref: '#/components/schemas/AbstractGezagsrelatie'
+        - type: object
+          properties:
+            toelichting:
+              $ref: '#/components/schemas/Toelichting'
+    Minderjarige:
+      type: object
+      properties:
+        burgerservicenummer:
+          $ref: '#/components/schemas/Burgerservicenummer'
+      required:
+        - burgerservicenummer
     Gezag:
       type: array
       items:
@@ -817,16 +829,16 @@ components:
         datumIngang:
           $ref: '#/components/schemas/GbaDatum'
         inOnderzoek:
-          $ref: '#/components/schemas/GbaInOnderzoek'
+          $ref: '#/components/schemas/InOnderzoek'
     GbaKind:
       type: object
       properties:
         burgerservicenummer:
           $ref: '#/components/schemas/Burgerservicenummer'
         inOnderzoek:
-          $ref: '#/components/schemas/GbaInOnderzoek'
+          $ref: '#/components/schemas/InOnderzoek'
         naam:
-          $ref: '#/components/schemas/GbaNaamBasis'
+          $ref: '#/components/schemas/NaamBasis'
         geboorte:
           $ref: '#/components/schemas/GbaGeboorte'
     OuderAanduiding:
@@ -848,9 +860,9 @@ components:
         datumIngangFamilierechtelijkeBetrekking:
           $ref: '#/components/schemas/GbaDatum'
         naam:
-          $ref: '#/components/schemas/GbaNaamBasis'
+          $ref: '#/components/schemas/NaamBasis'
         inOnderzoek:
-          $ref: '#/components/schemas/GbaInOnderzoek'
+          $ref: '#/components/schemas/InOnderzoek'
         geboorte:
           $ref: '#/components/schemas/GbaGeboorte'
     GbaAangaanHuwelijkPartnerschap:
@@ -882,11 +894,11 @@ components:
         soortVerbintenis:
           $ref: '#/components/schemas/Waardetabel'
         naam:
-          $ref: '#/components/schemas/GbaNaamBasis'
+          $ref: '#/components/schemas/NaamBasis'
         geboorte:
           $ref: '#/components/schemas/GbaGeboorte'
         inOnderzoek:
-          $ref: '#/components/schemas/GbaInOnderzoek'
+          $ref: '#/components/schemas/InOnderzoek'
         aangaanHuwelijkPartnerschap:
           $ref: '#/components/schemas/GbaAangaanHuwelijkPartnerschap'
         ontbindingHuwelijkPartnerschap:
@@ -901,13 +913,13 @@ components:
         datumEersteInschrijvingGBA:
           $ref: '#/components/schemas/GbaDatum'
         geheimhoudingPersoonsgegevens:
-          $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+          $ref: '#/components/schemas/IndicatieGeheim'
         geslacht:
-          $ref: '#/components/schemas/Waardetabel'
+          $ref: '#/components/schemas/Geslachtsaanduiding'
         persoonInOnderzoek:
-          $ref: '#/components/schemas/GbaInOnderzoek'
+          $ref: '#/components/schemas/InOnderzoek'
         gezagInOnderzoek:
-          $ref: '#/components/schemas/GbaInOnderzoek'
+          $ref: '#/components/schemas/InOnderzoek'
         uitsluitingKiesrecht:
           $ref: '#/components/schemas/GbaUitsluitingKiesrecht'
         europeesKiesrecht:
@@ -1011,29 +1023,28 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/GbaGezagPersoonBeperkt'
-    InvalidParams:
+    InvalidParam:
       type: object
       description: Details over fouten in opgegeven parameters
       properties:
         type:
           type: string
           format: uri
-          example: https://www.vng.nl/realisatie/api/{major-versie}/validaties/integer
+          example: https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1
         name:
-          type: string
-          pattern: ^[a-zA-Z0-9\.,_]{1,30}$
           description: Naam van de parameter
+          type: string
+          pattern: ^[a-zA-Z0-9\._]{1,30}$
           example: huisnummer
         code:
-          type: string
-          pattern: ^[a-zA-Z0-9\.,_]{1,25}$
           description: Systeemcode die het type fout aangeeft
-          minLength: 1
+          type: string
+          pattern: ^[a-zA-Z0-9]{1,25}$
           example: integer
         reason:
-          type: string
-          pattern: ^[a-zA-Z0-9\.,_ ]{1,80}$
           description: Beschrijving van de fout op de parameterwaarde
+          type: string
+          pattern: ^[a-zA-Z0-9\., ]{1,80}$
           example: Waarde is geen geldig getal.
     BadRequestFoutbericht:
       allOf:
@@ -1041,10 +1052,11 @@ components:
         - type: object
           properties:
             invalidParams:
-              description: Foutmelding per fout in een parameter. Alle gevonden fouten worden één keer teruggemeld.
+              description: |
+                Foutmelding per fout in een parameter. Alle gevonden fouten worden één keer teruggemeld.
               type: array
               items:
-                $ref: '#/components/schemas/InvalidParams'
+                $ref: '#/components/schemas/InvalidParam'
   responses:
     '400':
       description: Bad Request
@@ -1155,25 +1167,3 @@ components:
             detail: The service is currently unable to handle the request due to a temporary overloading or maintenance of the server.
             instance: https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde
             code: notAvailable
-    default:
-      description: Er is een onverwachte fout opgetreden
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Foutbericht'
-  headers:
-    warning:
-      schema:
-        type: string
-        maxLength: 500
-        description: zie RFC 7234. In het geval een major versie wordt uitgefaseerd, gebruiken we warn-code 299 ("Miscellaneous Persistent Warning") en het API end-point (inclusief versienummer) als de warn-agent van de warning, gevolgd door de warn-text met de human-readable waarschuwing
-        example: '299 https://service.../api/.../v1 "Deze versie van de API is verouderd en zal uit dienst worden genomen op 2018-02-01. Raadpleeg voor meer informatie hier de documentatie: https://omgevingswet.../api/.../v1".'
-    X_Rate_Limit_Limit:
-      schema:
-        type: integer
-    X_Rate_Limit_Remaining:
-      schema:
-        type: integer
-    X_Rate_Limit_Reset:
-      schema:
-        type: integer

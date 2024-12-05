@@ -1,4 +1,5 @@
-﻿using HaalCentraal.BrpProxy.Generated;
+﻿using Brp.Shared.DtoMappers.BrpDtos;
+using HaalCentraal.BrpProxy.Generated;
 
 namespace BrpProxy.Mappers;
 
@@ -159,75 +160,6 @@ public static class AdellijkeTitelPredicaatHelpers
         return AanhefAdellijkeTitelPredicaat[aanhefKey];
     }
 
-    public static string MapNaarAdellijkeTitel(this IWaardetabel waardetabel, IWaardetabel? geslacht)
-    {
-        if (waardetabel == null) return string.Empty;
-
-        return waardetabel.Code switch
-        {
-            "B" => AdellijkeTitels[geslacht.IsVrouw() ? "BS" : "B"],
-            "BS" => AdellijkeTitels[geslacht.IsMan() ? "B" : "BS"],
-            "G" => AdellijkeTitels[geslacht.IsVrouw() ? "GI" : "G"],
-            "GI" => AdellijkeTitels[geslacht.IsMan() ? "G" : "GI"],
-            "H" => AdellijkeTitels[geslacht.IsVrouw() ? "HI" : "H"],
-            "HI" => AdellijkeTitels[geslacht.IsMan() ? "H" : "HI"],
-            "M" => AdellijkeTitels[geslacht.IsVrouw() ? "MI" : "M"],
-            "MI" => AdellijkeTitels[geslacht.IsMan() ? "M" : "MI"],
-            "P" => AdellijkeTitels[geslacht.IsVrouw() ? "PS" : "P"],
-            "PS" => AdellijkeTitels[geslacht.IsMan() ? "P" : "PS"],
-            "R" => AdellijkeTitels["R"],
-            _ => string.Empty,
-        };
-    }
-
-    public static string MapNaarAdellijkeTitelVoorAanschrijfwijze(this AdellijkeTitelPredicaatType waardetabel, IWaardetabel? geslacht)
-    {
-        if (waardetabel == null) return string.Empty;
-
-        if (geslacht?.Code.ToUpperInvariant() == "O") return String.Empty;
-
-        return waardetabel.Code switch
-        {
-            "B" => AdellijkeTitels[geslacht.IsVrouw() ? "BS" : "B"],
-            "BS" => AdellijkeTitels[geslacht.IsMan() ? "B" : "BS"],
-            "G" => AdellijkeTitels[geslacht.IsVrouw() ? "GI" : "G"],
-            "GI" => AdellijkeTitels[geslacht.IsMan() ? "G" : "GI"],
-            "H" => AdellijkeTitels[geslacht.IsVrouw() ? "HI" : "H"],
-            "HI" => AdellijkeTitels[geslacht.IsMan() ? "H" : "HI"],
-            "M" => AdellijkeTitels[geslacht.IsVrouw() ? "MI" : "M"],
-            "MI" => AdellijkeTitels[geslacht.IsMan() ? "M" : "MI"],
-            "P" => AdellijkeTitels[geslacht.IsVrouw() ? "PS" : "P"],
-            "PS" => AdellijkeTitels[geslacht.IsMan() ? "P" : "PS"],
-            "R" => geslacht.IsMan() ? AdellijkeTitels["R"] : String.Empty,
-            _ => string.Empty,
-        };
-    }
-
-    public static string MapNaarPredicaat(this IWaardetabel waardetabel, IWaardetabel? geslacht)
-    {
-        if (waardetabel == null) return string.Empty;
-
-        return waardetabel.Code switch
-        {
-            "JH" => geslacht.IsVrouw() ? JONKVROUW : JONKHEER,
-            "JV" => geslacht.IsMan() ? JONKHEER : JONKVROUW,
-            _ => string.Empty,
-        };
-    }
-
-    public static string MapNaarPredicaatVoorAanschrijfwijze(this AdellijkeTitelPredicaatType waardetabel, IWaardetabel? geslacht)
-    {
-        if (waardetabel == null) return string.Empty;
-
-        if (geslacht?.Code.ToUpperInvariant() == "O") return String.Empty;
-
-        return waardetabel.Code switch
-        {
-            "JH" => geslacht.IsVrouw() ? JONKVROUW : JONKHEER,
-            "JV" => geslacht.IsMan() ? JONKHEER : JONKVROUW,
-            _ => string.Empty,
-        };
-    }
 
     public static string Titel(this Partner? partner, NaamPersoon persoon, IDictionary<string, string> adellijkeTitelsEnPredicaten)
     {

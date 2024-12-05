@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
-using BrpProxy.Mappers;
+using Brp.Shared.DtoMappers.Mappers;
 using HaalCentraal.BrpProxy.Generated;
-using HaalCentraal.BrpProxy.Generated.Gba;
 
 namespace BrpProxy.Profiles;
 
-public class StaatloosInOnderzoekConverter : ITypeConverter<GbaInOnderzoek, StaatloosInOnderzoek?>
+public class StaatloosInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, StaatloosInOnderzoek?>
 {
-    public StaatloosInOnderzoek? Convert(GbaInOnderzoek source, StaatloosInOnderzoek? destination, ResolutionContext context)
+    public StaatloosInOnderzoek? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, StaatloosInOnderzoek? destination, ResolutionContext context)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {

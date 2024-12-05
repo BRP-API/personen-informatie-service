@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
-using BrpProxy.Mappers;
+using Brp.Shared.DtoMappers.Mappers;
 using HaalCentraal.BrpProxy.Generated;
-using HaalCentraal.BrpProxy.Generated.Gba;
 
 namespace BrpProxy.Profiles;
 
-public class GeboorteInOnderzoekConverter : ITypeConverter<GbaInOnderzoek, GeboorteInOnderzoek?>
+public class GeboorteInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, GeboorteInOnderzoek?>
 {
-    public GeboorteInOnderzoek? Convert(GbaInOnderzoek source, GeboorteInOnderzoek? destination, ResolutionContext context)
+    public GeboorteInOnderzoek? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, GeboorteInOnderzoek? destination, ResolutionContext context)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
@@ -59,9 +58,9 @@ public class GeboorteInOnderzoekConverter : ITypeConverter<GbaInOnderzoek, Geboo
     }
 }
 
-public class GeboorteInOnderzoekBeperktConverter : ITypeConverter<GbaInOnderzoek, GeboorteInOnderzoekBeperkt?>
+public class GeboorteInOnderzoekBeperktConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, GeboorteInOnderzoekBeperkt?>
 {
-    public GeboorteInOnderzoekBeperkt? Convert(GbaInOnderzoek source, GeboorteInOnderzoekBeperkt? destination, ResolutionContext context)
+    public GeboorteInOnderzoekBeperkt? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, GeboorteInOnderzoekBeperkt? destination, ResolutionContext context)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
