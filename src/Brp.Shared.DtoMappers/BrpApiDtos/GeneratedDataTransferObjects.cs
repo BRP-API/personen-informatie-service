@@ -23,7 +23,6 @@ namespace Brp.Shared.DtoMappers.BrpApiDtos
     using System = global::System;
 
 
-
     [Newtonsoft.Json.JsonConverter(typeof(JsonInheritanceConverter), "type")]
     [JsonInheritanceAttribute("Datum", typeof(VolledigeDatum))]
     [JsonInheritanceAttribute("DatumOnbekend", typeof(DatumOnbekend))]

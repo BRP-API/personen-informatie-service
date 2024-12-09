@@ -1,4 +1,4 @@
-﻿using Brp.Shared.DtoMappers.BrpDtos;
+using Brp.Shared.DtoMappers.BrpDtos;
 
 namespace Brp.Shared.DtoMappers.Interfaces;
 
