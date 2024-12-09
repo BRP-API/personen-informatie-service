@@ -21,10 +21,6 @@ public static class PersonenQueryExtensions
         {
             specification = specification.And(new GeslachtSpecification(query.Geslachtsaanduiding));
         }
-        if(!string.IsNullOrWhiteSpace(query.Geboorteplaats))
-        {
-            specification = specification.And(new GeboorteplaatsSpecification(query.Geboorteplaats));
-        }
         specification = specification.And(new InclusiefOverledenPersonenSpecification(query.InclusiefOverledenPersonen));
 
         return specification;

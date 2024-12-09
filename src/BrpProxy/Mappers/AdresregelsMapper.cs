@@ -2,6 +2,8 @@
 using Gba = HaalCentraal.BrpProxy.Generated.Gba;
 using System.Text;
 using System.Text.RegularExpressions;
+using Brp.Shared.DtoMappers.Interfaces;
+using Brp.Shared.DtoMappers.BrpDtos;
 
 namespace BrpProxy.Mappers;
 

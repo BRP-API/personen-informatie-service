@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BrpProxy.Mappers;
+using Brp.Shared.DtoMappers.Mappers;
 using HaalCentraal.BrpProxy.Generated;
 using HaalCentraal.BrpProxy.Generated.Gba;
 
@@ -18,6 +18,6 @@ public class VerblijfstitelProfile : Profile
                 opt.MapFrom(src => src.Aanduiding);
             });
 
-        CreateMap<GbaInOnderzoek, VerblijfstitelInOnderzoek?>().ConvertUsing<VerblijfstitelInOnderzoekConverter>();
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, VerblijfstitelInOnderzoek?>().ConvertUsing<VerblijfstitelInOnderzoekConverter>();
     }
 }

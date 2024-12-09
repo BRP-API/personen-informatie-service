@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
-using BrpProxy.Mappers;
+using Brp.Shared.DtoMappers.Mappers;
 using HaalCentraal.BrpProxy.Generated;
-using HaalCentraal.BrpProxy.Generated.Gba;
 
 namespace BrpProxy.Profiles;
 
-public class VerblijfstitelInOnderzoekConverter : ITypeConverter<GbaInOnderzoek, VerblijfstitelInOnderzoek?>
+public class VerblijfstitelInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, VerblijfstitelInOnderzoek?>
 {
-    public VerblijfstitelInOnderzoek? Convert(GbaInOnderzoek source, VerblijfstitelInOnderzoek? destination, ResolutionContext context)
+    public VerblijfstitelInOnderzoek? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, VerblijfstitelInOnderzoek? destination, ResolutionContext context)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {

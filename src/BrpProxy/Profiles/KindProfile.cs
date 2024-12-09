@@ -13,7 +13,7 @@ namespace BrpProxy.Profiles
                 {
                     if (src.Naam != null || src.InOnderzoek != null)
                     {
-                        src.Naam ??= new GbaNaamBasis();
+                        src.Naam ??= new HaalCentraal.BrpProxy.Generated.Gba.NaamBasis();
                         src.Naam.InOnderzoek = src.InOnderzoek;
                     }
                     if (src.Geboorte != null || src.InOnderzoek != null)
@@ -23,7 +23,7 @@ namespace BrpProxy.Profiles
                     }
                 });
 
-            CreateMap<GbaInOnderzoek, KindInOnderzoek?>().ConvertUsing<KindInOnderzoekConverter>();
+            CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, KindInOnderzoek?>().ConvertUsing<KindInOnderzoekConverter>();
         }
     }
 }

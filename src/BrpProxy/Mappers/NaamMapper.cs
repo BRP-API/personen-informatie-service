@@ -1,5 +1,5 @@
-﻿using HaalCentraal.BrpProxy.Generated;
-using System.Text.RegularExpressions;
+﻿using Brp.Shared.DtoMappers.Mappers;
+using HaalCentraal.BrpProxy.Generated;
 
 namespace BrpProxy.Mappers;
 
@@ -23,15 +23,6 @@ public static class NaamMapper
             _ => $"{char.ToUpperInvariant(str[0])}{str[1..]}"
         }
         : str;
-    }
-
-    public static string Achternaam(this INaam? naam)
-    {
-        return naam != null &&
-               !string.IsNullOrWhiteSpace(naam.Geslachtsnaam) &&
-               naam.Geslachtsnaam != "."
-            ? $"{naam.Voorvoegsel} {naam.Geslachtsnaam}".RemoveRedundantSpaces()
-            : string.Empty;
     }
 
     public static string Achternaam(this Partner? partner)
