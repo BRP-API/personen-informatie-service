@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Brp.Shared.DtoMappers.Mappers;
 using BrpProxy.Mappers;
 using HaalCentraal.BrpProxy.Generated;
 using HaalCentraal.BrpProxy.Generated.Gba;
@@ -9,7 +10,7 @@ public class GeboorteProfile : Profile
 {
     public GeboorteProfile()
     {
-        CreateMap<GbaGeboorteBeperkt, GeboorteBeperkt>()
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.GeboorteBasis, GeboorteBeperkt>()
             .ForMember(dest => dest.Datum, opt => opt.MapFrom(src => src.Datum.Map()))
             ;
 
@@ -27,7 +28,7 @@ public class GeboorteProfile : Profile
             })
             ;
 
-        CreateMap<GbaInOnderzoek, GeboorteInOnderzoek?>().ConvertUsing<GeboorteInOnderzoekConverter>();
-        CreateMap<GbaInOnderzoek, GeboorteInOnderzoekBeperkt?>().ConvertUsing<GeboorteInOnderzoekBeperktConverter>();
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, GeboorteInOnderzoek?>().ConvertUsing<GeboorteInOnderzoekConverter>();
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, GeboorteInOnderzoekBeperkt?>().ConvertUsing<GeboorteInOnderzoekBeperktConverter>();
     }
 }

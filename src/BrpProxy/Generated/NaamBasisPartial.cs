@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Brp.Shared.DtoMappers.Interfaces;
+using Newtonsoft.Json;
 
 namespace HaalCentraal.BrpProxy.Generated;
 
-public partial class NaamBasis : INaam
+public partial class NaamBasis : INaamBasis
 {
     [JsonIgnore]
     public IWaardetabel? Geslacht { get; set; }

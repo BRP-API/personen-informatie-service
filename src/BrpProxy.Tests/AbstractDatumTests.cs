@@ -1,5 +1,5 @@
-﻿using FluentAssertions;
-using HaalCentraal.BrpProxy.Generated;
+﻿using Brp.Shared.DtoMappers.BrpApiDtos;
+using FluentAssertions;
 using System;
 using Xunit;
 

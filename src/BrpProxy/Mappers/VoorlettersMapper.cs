@@ -1,10 +1,10 @@
-﻿using HaalCentraal.BrpProxy.Generated;
+﻿using Brp.Shared.DtoMappers.Interfaces;
 
 namespace BrpProxy.Mappers;
 
 public static class VoorlettersMapper
 {
-    public static string Voorletters(this INaam naam) => naam.Voornamen.MapNaarVoorletters();
+    public static string Voorletters(this INaamBasis naam) => naam.Voornamen.MapNaarVoorletters();
 
     private static string MapNaarVoorletters(this string voornamen)
     {

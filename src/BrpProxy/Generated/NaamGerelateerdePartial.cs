@@ -1,6 +1,8 @@
-﻿namespace HaalCentraal.BrpProxy.Generated;
+﻿using Brp.Shared.DtoMappers.Interfaces;
 
-public partial class NaamGerelateerde : INaam
+namespace HaalCentraal.BrpProxy.Generated;
+
+public partial class NaamGerelateerde : INaamBasis
 {
     public bool ShouldSerialize() =>
         AdellijkeTitelPredicaat != null ||

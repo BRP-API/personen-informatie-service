@@ -2,5 +2,5 @@
 
 public partial class GbaImmigratie
 {
-    public GbaInOnderzoek? InOnderzoek { get; set; }
+    public InOnderzoek? InOnderzoek { get; set; }
 }

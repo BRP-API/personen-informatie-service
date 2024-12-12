@@ -1,12 +1,11 @@
-﻿using BrpProxy.Middlewares;
+﻿using Brp.Shared.DtoMappers.BrpApiDtos;
+using Brp.Shared.DtoMappers.BrpDtos;
+using BrpProxy.Middlewares;
 using BrpProxy.Validators;
 using FluentAssertions;
 using HaalCentraal.BrpProxy.Generated;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace BrpProxy.Tests

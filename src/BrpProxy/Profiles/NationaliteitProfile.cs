@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BrpProxy.Mappers;
+using Brp.Shared.DtoMappers.Mappers;
 using HaalCentraal.BrpProxy.Generated;
 using HaalCentraal.BrpProxy.Generated.Gba;
 
@@ -17,7 +17,7 @@ public class NationaliteitProfile : Profile
             .ForMember(dest => dest.RedenOpname, opt => opt.PreCondition(src => src.RedenOpname?.Code != "000"))
             ;
 
-        CreateMap<GbaInOnderzoek, NationaliteitBekendInOnderzoek?>().ConvertUsing<NationaliteitInOnderzoekConverter>();
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, NationaliteitBekendInOnderzoek?>().ConvertUsing<NationaliteitInOnderzoekConverter>();
 
         CreateMap<GbaNationaliteit, BehandeldAlsNederlander>()
             .ForMember(dest => dest.DatumIngangGeldigheid, opt => opt.MapFrom(src => src.DatumIngangGeldigheid.Map()))
@@ -29,20 +29,20 @@ public class NationaliteitProfile : Profile
             .ForMember(dest => dest.RedenOpname, opt => opt.PreCondition(src => src.RedenOpname?.Code != "000"))
             ;
 
-        CreateMap<GbaInOnderzoek, BijzonderNederlanderschapInOnderzoek?>().ConvertUsing<BijzonderNederlanderschapInOnderzoekConverter>();
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, BijzonderNederlanderschapInOnderzoek?>().ConvertUsing<BijzonderNederlanderschapInOnderzoekConverter>();
 
         CreateMap<GbaNationaliteit, Staatloos>()
             .ForMember(dest => dest.DatumIngangGeldigheid, opt => opt.MapFrom(src => src.DatumIngangGeldigheid.Map()))
             .ForMember(dest => dest.RedenOpname, opt => opt.PreCondition(src => src.RedenOpname?.Code != "000"))
             ;
 
-        CreateMap<GbaInOnderzoek, StaatloosInOnderzoek?>().ConvertUsing<StaatloosInOnderzoekConverter>();
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, StaatloosInOnderzoek?>().ConvertUsing<StaatloosInOnderzoekConverter>();
 
         CreateMap<GbaNationaliteit, NationaliteitOnbekend>()
             .ForMember(dest => dest.DatumIngangGeldigheid, opt => opt.MapFrom(src => src.DatumIngangGeldigheid.Map()))
             .ForMember(dest => dest.RedenOpname, opt => opt.PreCondition(src => src.RedenOpname?.Code != "000"))
             ;
 
-        CreateMap<GbaInOnderzoek, NationaliteitOnbekendInOnderzoek?>().ConvertUsing<NationaliteitOnbekendInOnderzoekConverter>();
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, NationaliteitOnbekendInOnderzoek?>().ConvertUsing<NationaliteitOnbekendInOnderzoekConverter>();
     }
 }

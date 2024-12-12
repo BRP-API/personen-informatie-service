@@ -1,11 +1,11 @@
-﻿using HaalCentraal.BrpProxy.Generated;
-using HaalCentraal.BrpProxy.Generated.Gba;
+﻿using Brp.Shared.DtoMappers.Mappers;
+using HaalCentraal.BrpProxy.Generated;
 
 namespace BrpProxy.Mappers;
 
 public static class PartnerMapper
 {
-    public static AangaanHuwelijkPartnerschapInOnderzoek? AangaanHuwelijkPartnerschapInOnderzoek(this GbaInOnderzoek? source)
+    public static AangaanHuwelijkPartnerschapInOnderzoek? AangaanHuwelijkPartnerschapInOnderzoek(this HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? source)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {

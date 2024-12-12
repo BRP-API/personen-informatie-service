@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BrpProxy.Mappers;
+using Brp.Shared.DtoMappers.Mappers;
 using HaalCentraal.BrpProxy.Generated;
 using HaalCentraal.BrpProxy.Generated.Gba;
 
@@ -27,6 +27,6 @@ public class ImmigratieProfile : Profile
             })
             ;
 
-        CreateMap<GbaInOnderzoek, ImmigratieInOnderzoek?>().ConvertUsing<ImmigratieInOnderzoekConverter>();
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, ImmigratieInOnderzoek?>().ConvertUsing<ImmigratieInOnderzoekConverter>();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Brp.Shared.DtoMappers.Mappers;
 using BrpProxy.Mappers;
 using HaalCentraal.BrpProxy.Generated;
 using HaalCentraal.BrpProxy.Generated.Gba;
@@ -23,6 +24,6 @@ public class OverlijdenProfile : Profile
             })
             ;
 
-        CreateMap<GbaInOnderzoek, OverlijdenInOnderzoek?>().ConvertUsing<OverlijdenInOnderzoekConverter>();
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, OverlijdenInOnderzoek?>().ConvertUsing<OverlijdenInOnderzoekConverter>();
     }
 }

@@ -82,9 +82,9 @@ namespace BrpProxy.Middlewares
                 Type = new Uri(BadRequestIdentifier),
                 Code = "paramsValidation",
                 Detail = $"De foutieve parameter(s) zijn: {name}.",
-                InvalidParams = new List<InvalidParams>
+                InvalidParams = new List<InvalidParam>
                     {
-                        new InvalidParams
+                        new InvalidParam
                         {
                             Code = code,
                             Name = name,
@@ -121,9 +121,9 @@ namespace BrpProxy.Middlewares
                 !string.IsNullOrEmpty(code) ||
                 !string.IsNullOrEmpty(reason))
             {
-                retval.InvalidParams = new List<InvalidParams>
+                retval.InvalidParams = new List<InvalidParam>
                         {
-                            new InvalidParams
+                            new InvalidParam
                             {
                                 Code = code,
                                 Name = name,
@@ -134,7 +134,7 @@ namespace BrpProxy.Middlewares
             return retval;
         }
 
-        public static BadRequestFoutbericht CreateBadRequestFoutbericht(this HttpContext context, string titel, string code, IEnumerable<InvalidParams> invalidParams)
+        public static BadRequestFoutbericht CreateBadRequestFoutbericht(this HttpContext context, string titel, string code, IEnumerable<InvalidParam> invalidParams)
         {
             return new BadRequestFoutbericht
             {
@@ -144,7 +144,7 @@ namespace BrpProxy.Middlewares
                 Type = new Uri(BadRequestIdentifier),
                 Code = code,
                 Detail = $"De foutieve parameter(s) zijn: {string.Join(", ", invalidParams.Select(x => x.Name))}.",
-                InvalidParams = new List<InvalidParams>(invalidParams)
+                InvalidParams = new List<InvalidParam>(invalidParams)
             };
         }
 
