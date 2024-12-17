@@ -787,6 +787,14 @@ namespace HaalCentraal.BrpService.Generated
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class TijdelijkGeenGezag : AbstractGezagsrelatie
+    {
+        [Newtonsoft.Json.JsonProperty("toelichting", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Toelichting { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class GezagNietTeBepalen : AbstractGezagsrelatie
     {
         [Newtonsoft.Json.JsonProperty("toelichting", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
