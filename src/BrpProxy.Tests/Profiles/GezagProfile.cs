@@ -174,7 +174,8 @@ public class GezagProfile
             Minderjarige = new Minderjarige
             {
                 Burgerservicenummer = "000000012"
-            }
+            },
+            Toelichting = "Toelichting",
         };
 
         TijdelijkGeenGezag expected = new()
@@ -182,7 +183,8 @@ public class GezagProfile
             Minderjarige = new Minderjarige
             {
                 Burgerservicenummer = "000000012"
-            }
+            },
+            Toelichting = "Toelichting",
         };
 
         CreateSut().Map<TijdelijkGeenGezag>(input).Should().BeEquivalentTo(expected);
