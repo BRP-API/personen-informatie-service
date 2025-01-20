@@ -1,12 +1,14 @@
+using Brp.Shared.DtoMappers.BrpApiDtos;
+using Brp.Shared.DtoMappers.BrpDtos;
 using BrpProxy.Validators;
 using FluentAssertions;
 using HaalCentraal.BrpProxy.Generated;
-using HaalCentraal.BrpProxy.Generated.Gba;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xunit;
+using HC = HaalCentraal.BrpProxy.Generated;
 
 namespace BrpProxy.Tests;
 
@@ -109,17 +111,17 @@ public class FilterTests
                     Huisnummer = 2
                 }
             },
-            Gezag = new Collection<AbstractGezagsrelatie>
+            Gezag = new Collection<HC.AbstractGezagsrelatie>
             {
-                new TweehoofdigOuderlijkGezag
+                new HC.TweehoofdigOuderlijkGezag
                 {
-                    Minderjarige = new Minderjarige
+                    Minderjarige = new HC.Minderjarige
                     {
                         Burgerservicenummer = "12345",
                     },
-                    Ouders = new Collection<GezagOuder>
+                    Ouders = new Collection<HC.GezagOuder>
                     {
-                        new GezagOuder
+                        new HC.GezagOuder
                         {
                             Burgerservicenummer = "23456"
                         }
@@ -421,17 +423,17 @@ public class FilterTests
             .Should().Be(
             new Persoon
             {
-                Gezag = new Collection<AbstractGezagsrelatie>
+                Gezag = new Collection<HC.AbstractGezagsrelatie>
                 {
-                    new TweehoofdigOuderlijkGezag
+                    new HC.TweehoofdigOuderlijkGezag
                     {
-                        Minderjarige = new Minderjarige
+                        Minderjarige = new HC.Minderjarige
                         {
                             Burgerservicenummer = "12345",
                         },
-                        Ouders = new Collection<GezagOuder>
+                        Ouders = new Collection<HC.GezagOuder>
                         {
-                            new GezagOuder
+                            new HC.GezagOuder
                             {
                                 Burgerservicenummer = "23456"
                             }
