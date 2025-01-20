@@ -1,8 +1,7 @@
-using Brp.Shared.DtoMappers.BrpApiDtos;
-using Brp.Shared.DtoMappers.BrpDtos;
 using BrpProxy.Validators;
 using FluentAssertions;
 using HaalCentraal.BrpProxy.Generated;
+using HaalCentraal.BrpProxy.Generated.Gba;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

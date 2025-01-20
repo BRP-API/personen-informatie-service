@@ -723,6 +723,12 @@ namespace HaalCentraal.BrpService.Generated
         [Newtonsoft.Json.JsonProperty("burgerservicenummer", Required = Newtonsoft.Json.Required.Always)]
         public string Burgerservicenummer { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("naam", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NaamBasis Naam { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("geslacht", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public Geslachtsaanduiding Geslacht { get; set; }
+
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
 
         [Newtonsoft.Json.JsonExtensionData]
@@ -755,6 +761,12 @@ namespace HaalCentraal.BrpService.Generated
     {
         [Newtonsoft.Json.JsonProperty("burgerservicenummer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Burgerservicenummer { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("naam", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NaamBasis Naam { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("geslacht", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public Geslachtsaanduiding Geslacht { get; set; }
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
 
@@ -807,6 +819,15 @@ namespace HaalCentraal.BrpService.Generated
     {
         [Newtonsoft.Json.JsonProperty("burgerservicenummer", Required = Newtonsoft.Json.Required.Always)]
         public string Burgerservicenummer { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("naam", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NaamBasis Naam { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("geslacht", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public Geslachtsaanduiding Geslacht { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("geboorte", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public GeboorteBasis Geboorte { get; set; }
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
 

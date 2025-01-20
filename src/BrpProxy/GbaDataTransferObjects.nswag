@@ -8,7 +8,7 @@
       "newLineBehavior": "Auto"
     }
   },
-  "codeGenerators": {
+  "codeGenerators": {   
     "openApiToCSharpClient": {
       "clientBaseClass": null,
       "configurationClass": null,
@@ -81,16 +81,6 @@
       "generateDefaultValues": true,
       "generateDataAnnotations": false,
       "excludedTypeNames": [
-        "AbstractGezagsrelatie",
-        "TweehoofdigOuderlijkGezag",
-        "EenhoofdigOuderlijkGezag",
-        "GezamenlijkGezag",
-        "Voogdij",
-        "GezagNietTeBepalen",
-        "TijdelijkGeenGezag",
-        "GezagOuder",
-        "Meerderjarige",
-        "Minderjarige",
         "AdellijkeTitelPredicaatType",
         "AdellijkeTitelPredicaatSoort",
         "PersonenQuery",

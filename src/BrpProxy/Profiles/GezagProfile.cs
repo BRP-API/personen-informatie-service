@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
-using Hc = Brp.Shared.DtoMappers.BrpApiDtos;
-using Gba = Brp.Shared.DtoMappers.BrpApiDtos;
+using Hc = HaalCentraal.BrpProxy.Generated;
+using Gba = HaalCentraal.BrpProxy.Generated.Gba;
+using Brp.Shared.DtoMappers.Mappers;
+using BrpProxy.Mappers;
 
 namespace BrpProxy.Profiles;
 
@@ -17,9 +19,28 @@ public class GezagProfile : Profile
         CreateMap<Gba.TijdelijkGeenGezag, Hc.TijdelijkGeenGezag>();
         CreateMap<Gba.GezagNietTeBepalen, Hc.GezagNietTeBepalen>();
 
-        CreateMap<Gba.GezagOuder, Hc.GezagOuder>();
-        CreateMap<Gba.Minderjarige, Hc.Minderjarige>();
-        CreateMap<Gba.Meerderjarige, Hc.Meerderjarige>();
+        CreateMap<Gba.GezagOuder, Hc.GezagOuder>()
+            .AfterMap((src, dest) =>
+            {
+                if (src.Naam is null) return;
+                dest.Naam.VolledigeNaam = src.Naam.VolledigeNaam(src.Geslacht);
+            });
+        CreateMap<Gba.Minderjarige, Hc.Minderjarige>()
+            .AfterMap((src, dest) =>
+            {
+                if (src.Naam is null) return;
+                dest.Naam.VolledigeNaam = src.Naam.VolledigeNaam(src.Geslacht);
+            })
+            .ForMember(dest => dest.Leeftijd, opt =>
+            {
+                opt.MapFrom(src => src.Geboorte.Datum.Map().Leeftijd());
+            });
+        CreateMap<Gba.Meerderjarige, Hc.Meerderjarige>()
+            .AfterMap((src, dest) =>
+            {
+                if (src.Naam is null) return;
+                dest.Naam.VolledigeNaam = src.Naam.VolledigeNaam(src.Geslacht);
+            });
     }
 }
 

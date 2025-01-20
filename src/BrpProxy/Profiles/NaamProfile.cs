@@ -31,6 +31,8 @@ public class NaamProfile : Profile
             })
             ;
 
+        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.NaamBasis, NaamVolledigeNaam>();
+
         CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, NaamInOnderzoek?>().ConvertUsing<NaamGerelateerdeInOnderzoekConverter>();
 
         CreateMap<GbaNaamPersoon, NaamPersoon>()
