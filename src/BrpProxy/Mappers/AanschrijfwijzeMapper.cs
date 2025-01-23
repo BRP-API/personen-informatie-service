@@ -1,4 +1,4 @@
-﻿using Brp.Shared.DtoMappers.BrpDtos;
+﻿using Brp.Shared.DtoMappers.CommonDtos;
 using Brp.Shared.DtoMappers.Mappers;
 using HaalCentraal.BrpProxy.Generated;
 using System.Text.RegularExpressions;

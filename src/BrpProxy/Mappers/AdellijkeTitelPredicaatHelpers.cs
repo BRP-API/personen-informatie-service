@@ -1,4 +1,4 @@
-﻿using Brp.Shared.DtoMappers.BrpDtos;
+﻿using Brp.Shared.DtoMappers.CommonDtos;
 using HaalCentraal.BrpProxy.Generated;
 
 namespace BrpProxy.Mappers;

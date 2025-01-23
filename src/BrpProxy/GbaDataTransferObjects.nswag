@@ -47,8 +47,8 @@
       "className": "{controller}Client",
       "operationGenerationMode": "MultipleClientsFromOperationId",
       "additionalNamespaceUsages": [
-        "Brp.Shared.DtoMappers.BrpDtos",
-        "Brp.Shared.DtoMappers.BrpApiDtos"
+        "Brp.Shared.DtoMappers.CommonDtos",
+        "Brp.Shared.DtoMappers.BrpDtos"
       ],
       "additionalContractNamespaceUsages": [],
       "generateOptionalParameters": false,
@@ -101,7 +101,9 @@
         "ZoekMetNummeraanduidingIdentificatie",
         "ZoekMetPostcodeEnHuisnummer",
         "ZoekMetStraatHuisnummerEnGemeenteVanInschrijving",
-        "Waardetabel"
+        "Waardetabel",
+        "AdellijkeTitelPredicaatType",
+        "AdellijkeTitelPredicaatSoort",
       ],
       "excludedParameterNames": [],
       "handleReferences": false,

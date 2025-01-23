@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Hc = Brp.Shared.DtoMappers.BrpDtos;
-using Gba = Brp.Shared.DtoMappers.BrpDtos;
+using Hc = Brp.Shared.DtoMappers.CommonDtos;
+using Gba = Brp.Shared.DtoMappers.CommonDtos;
 
 namespace BrpProxy.Profiles;
 

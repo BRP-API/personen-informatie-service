@@ -1,5 +1,5 @@
 using Brp.Shared.DtoMappers.BrpApiDtos;
-using Brp.Shared.DtoMappers.BrpDtos;
+using Brp.Shared.DtoMappers.CommonDtos;
 using BrpProxy.Validators;
 using FluentAssertions;
 using HaalCentraal.BrpProxy.Generated;
