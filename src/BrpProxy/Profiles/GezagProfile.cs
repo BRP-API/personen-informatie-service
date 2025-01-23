@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using Hc = HaalCentraal.BrpProxy.Generated;
-using Gba = HaalCentraal.BrpProxy.Generated.Gba;
+using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
+using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
 using Brp.Shared.DtoMappers.Mappers;
-using BrpProxy.Mappers;
 
 namespace BrpProxy.Profiles;
 
@@ -10,22 +9,22 @@ public class GezagProfile : Profile
 {
     public GezagProfile()
     {
-        CreateMap<Gba.AbstractGezagsrelatie, Hc.AbstractGezagsrelatie?>().ConvertUsing<GezagConverter>();
+        CreateMap<BrpDtos.AbstractGezagsrelatie, BrpApiDtos.AbstractGezagsrelatie?>().ConvertUsing<GezagConverter>();
 
-        CreateMap<Gba.EenhoofdigOuderlijkGezag, Hc.EenhoofdigOuderlijkGezag>();
-        CreateMap<Gba.TweehoofdigOuderlijkGezag, Hc.TweehoofdigOuderlijkGezag>();
-        CreateMap<Gba.GezamenlijkGezag, Hc.GezamenlijkGezag>();
-        CreateMap<Gba.Voogdij, Hc.Voogdij>();
-        CreateMap<Gba.TijdelijkGeenGezag, Hc.TijdelijkGeenGezag>();
-        CreateMap<Gba.GezagNietTeBepalen, Hc.GezagNietTeBepalen>();
+        CreateMap<BrpDtos.EenhoofdigOuderlijkGezag, BrpApiDtos.EenhoofdigOuderlijkGezag>();
+        CreateMap<BrpDtos.TweehoofdigOuderlijkGezag, BrpApiDtos.TweehoofdigOuderlijkGezag>();
+        CreateMap<BrpDtos.GezamenlijkGezag, BrpApiDtos.GezamenlijkGezag>();
+        CreateMap<BrpDtos.Voogdij, BrpApiDtos.Voogdij>();
+        CreateMap<BrpDtos.TijdelijkGeenGezag, BrpApiDtos.TijdelijkGeenGezag>();
+        CreateMap<BrpDtos.GezagNietTeBepalen, BrpApiDtos.GezagNietTeBepalen>();
 
-        CreateMap<Gba.GezagOuder, Hc.GezagOuder>()
+        CreateMap<BrpDtos.GezagOuder, BrpApiDtos.GezagOuder>()
             .AfterMap((src, dest) =>
             {
                 if (src.Naam is null) return;
                 dest.Naam.VolledigeNaam = src.Naam.VolledigeNaam(src.Geslacht);
             });
-        CreateMap<Gba.Minderjarige, Hc.Minderjarige>()
+        CreateMap<BrpDtos.Minderjarige, BrpApiDtos.Minderjarige>()
             .AfterMap((src, dest) =>
             {
                 if (src.Naam is null) return;
@@ -35,7 +34,7 @@ public class GezagProfile : Profile
             {
                 opt.MapFrom(src => src.Geboorte.Datum.Map().Leeftijd());
             });
-        CreateMap<Gba.Meerderjarige, Hc.Meerderjarige>()
+        CreateMap<BrpDtos.Meerderjarige, BrpApiDtos.Meerderjarige>()
             .AfterMap((src, dest) =>
             {
                 if (src.Naam is null) return;
@@ -44,18 +43,18 @@ public class GezagProfile : Profile
     }
 }
 
-public class GezagConverter : ITypeConverter<Gba.AbstractGezagsrelatie, Hc.AbstractGezagsrelatie?>
+public class GezagConverter : ITypeConverter<BrpDtos.AbstractGezagsrelatie, BrpApiDtos.AbstractGezagsrelatie?>
 {
-    public Hc.AbstractGezagsrelatie? Convert(Gba.AbstractGezagsrelatie source, Hc.AbstractGezagsrelatie? destination, ResolutionContext context)
+    public BrpApiDtos.AbstractGezagsrelatie? Convert(BrpDtos.AbstractGezagsrelatie source, BrpApiDtos.AbstractGezagsrelatie? destination, ResolutionContext context)
     {
         return source switch
         {
-            Gba.EenhoofdigOuderlijkGezag => context.Mapper.Map<Hc.EenhoofdigOuderlijkGezag>(source),
-            Gba.TweehoofdigOuderlijkGezag => context.Mapper.Map<Hc.TweehoofdigOuderlijkGezag>(source),
-            Gba.GezamenlijkGezag => context.Mapper.Map<Hc.GezamenlijkGezag>(source),
-            Gba.Voogdij => context.Mapper.Map<Hc.Voogdij>(source),
-            Gba.TijdelijkGeenGezag => context.Mapper.Map<Hc.TijdelijkGeenGezag>(source),
-            Gba.GezagNietTeBepalen => context.Mapper.Map<Hc.GezagNietTeBepalen>(source),
+            BrpDtos.EenhoofdigOuderlijkGezag => context.Mapper.Map<BrpApiDtos.EenhoofdigOuderlijkGezag>(source),
+            BrpDtos.TweehoofdigOuderlijkGezag => context.Mapper.Map<BrpApiDtos.TweehoofdigOuderlijkGezag>(source),
+            BrpDtos.GezamenlijkGezag => context.Mapper.Map<BrpApiDtos.GezamenlijkGezag>(source),
+            BrpDtos.Voogdij => context.Mapper.Map<BrpApiDtos.Voogdij>(source),
+            BrpDtos.TijdelijkGeenGezag => context.Mapper.Map<BrpApiDtos.TijdelijkGeenGezag>(source),
+            BrpDtos.GezagNietTeBepalen => context.Mapper.Map<BrpApiDtos.GezagNietTeBepalen>(source),
             _ => null
         };
     }

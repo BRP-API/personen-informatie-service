@@ -47,7 +47,7 @@
       "className": "{controller}Client",
       "operationGenerationMode": "MultipleClientsFromOperationId",
       "additionalNamespaceUsages": [
-        "Brp.Shared.DtoMappers.BrpDtos",
+        "Brp.Shared.DtoMappers.CommonDtos",
         "Brp.Shared.DtoMappers.BrpApiDtos"
       ],
       "additionalContractNamespaceUsages": [],
@@ -81,6 +81,16 @@
       "generateDefaultValues": true,
       "generateDataAnnotations": false,
       "excludedTypeNames": [
+        "AbstractGezagsrelatie",
+        "TweehoofdigOuderlijkGezag",
+        "EenhoofdigOuderlijkGezag",
+        "GezamenlijkGezag",
+        "Voogdij",
+        "GezagNietTeBepalen",
+        "TijdelijkGeenGezag",
+        "GezagOuder",
+        "Meerderjarige",
+        "Minderjarige",
         "PersonenQuery",
         "ZoekMetAdresseerbaarObjectIdentificatie",
         "ZoekMetGeslachtsnaamEnGeboortedatum",
@@ -95,6 +105,7 @@
         "Waardetabel",
         "AdellijkeTitelPredicaatType",
         "AdellijkeTitelPredicaatSoort",
+        "NaamVolledigeNaam"
       ],
       "excludedParameterNames": [],
       "handleReferences": false,

@@ -1,5 +1,5 @@
 using Brp.Shared.DtoMappers.BrpApiDtos;
-using Brp.Shared.DtoMappers.BrpDtos;
+using Brp.Shared.DtoMappers.CommonDtos;
 using BrpProxy.Validators;
 using FluentAssertions;
 using HaalCentraal.BrpProxy.Generated;
@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xunit;
-using HC = HaalCentraal.BrpProxy.Generated;
 
 namespace BrpProxy.Tests;
 
@@ -24,7 +23,7 @@ public class FilterTests
 {
     private readonly IList<Persoon> personen = new List<Persoon>
     {
-        new Persoon
+        new()
         {
             Burgerservicenummer = "12345",
             Naam = new NaamPersoon
@@ -49,43 +48,31 @@ public class FilterTests
             },
             Partners = new Collection<Partner>
             {
-                new Partner
-                {
-                    Burgerservicenummer = "12345"
-                },
-                new Partner
-                {
-                    Burgerservicenummer = "23456"
-                }
+                new() { Burgerservicenummer = "12345" },
+                new() { Burgerservicenummer = "23456" }
             },
             Ouders = new Collection<Ouder>
             {
-                new Ouder
-                {
-                    Burgerservicenummer = "12345"
-                },
-                new Ouder
-                {
-                    Burgerservicenummer = "23456"
-                }
+                new() { Burgerservicenummer = "12345" },
+                new() { Burgerservicenummer = "23456" }
             },
             Nationaliteiten = new Collection<AbstractNationaliteit>
             {
                 new NationaliteitBekend
                 {
-                    Nationaliteit = new Waardetabel{ Code = "1"}
+                    Nationaliteit = new Waardetabel{ Code = "1" }
                 },
                 new NationaliteitBekend
                 {
-                    Nationaliteit = new Waardetabel { Code = "2"}
+                    Nationaliteit = new Waardetabel { Code = "2" }
                 },
                 new BehandeldAlsNederlander
                 {
-                    RedenOpname = new Waardetabel{ Code= "3"}
+                    RedenOpname = new Waardetabel { Code= "3" }
                 },
                 new VastgesteldNietNederlander
                 {
-                    RedenOpname= new Waardetabel{ Code= "4"}
+                    RedenOpname= new Waardetabel { Code= "4" }
                 }
             },
             Kinderen = new Collection<Kind>
@@ -111,17 +98,17 @@ public class FilterTests
                     Huisnummer = 2
                 }
             },
-            Gezag = new Collection<HC.AbstractGezagsrelatie>
+            Gezag = new Collection<AbstractGezagsrelatie>
             {
-                new HC.TweehoofdigOuderlijkGezag
+                new TweehoofdigOuderlijkGezag
                 {
-                    Minderjarige = new HC.Minderjarige
+                    Minderjarige = new Minderjarige
                     {
                         Burgerservicenummer = "12345",
                     },
-                    Ouders = new Collection<HC.GezagOuder>
+                    Ouders = new Collection<GezagOuder>
                     {
-                        new HC.GezagOuder
+                        new GezagOuder
                         {
                             Burgerservicenummer = "23456"
                         }
@@ -251,14 +238,8 @@ public class FilterTests
             {
                 Partners = new Collection<Partner>
                 {
-                    new Partner
-                    {
-                        Burgerservicenummer = "12345"
-                    },
-                    new Partner
-                    {
-                        Burgerservicenummer = "23456"
-                    }
+                    new() { Burgerservicenummer = "12345" },
+                    new() { Burgerservicenummer = "23456" }
                 }
             }.ToJson());
     }
@@ -272,14 +253,8 @@ public class FilterTests
             {
                 Ouders = new Collection<Ouder>
                 {
-                    new Ouder
-                    {
-                        Burgerservicenummer = "12345"
-                    },
-                    new Ouder
-                    {
-                        Burgerservicenummer = "23456"
-                    }
+                    new() { Burgerservicenummer = "12345" },
+                    new() { Burgerservicenummer = "23456" }
                 }
             }.ToJson());
     }
@@ -293,7 +268,7 @@ public class FilterTests
             {
                 Kinderen = new Collection<Kind>
                 {
-                    new Kind
+                    new()
                     {
                         Burgerservicenummer = "12345",
                         Naam = new NaamGerelateerde
@@ -301,10 +276,7 @@ public class FilterTests
                             Geslachtsnaam = "Doe"
                         }
                     },
-                    new Kind
-                    {
-                        Burgerservicenummer = "23456"
-                    }
+                    new() { Burgerservicenummer = "23456" }
                 }
             }.ToJson());
     }
@@ -318,14 +290,8 @@ public class FilterTests
             {
                 Kinderen = new Collection<Kind>
                 {
-                    new Kind
-                    {
-                        Burgerservicenummer = "12345"
-                    },
-                    new Kind
-                    {
-                        Burgerservicenummer = "23456"
-                    }
+                    new() { Burgerservicenummer = "12345" },
+                    new() { Burgerservicenummer = "23456" }
                 }
             }.ToJson());
     }
@@ -389,8 +355,8 @@ public class FilterTests
             .Should().Be(
             new Collection<Persoon>()
             {
-                new Persoon { Burgerservicenummer = "12345" },
-                new Persoon { Burgerservicenummer = "23456" }
+                new() { Burgerservicenummer = "12345" },
+                new() { Burgerservicenummer = "23456" }
             }.ToJson());
     }
 
@@ -401,15 +367,16 @@ public class FilterTests
             .Should().Be(
             new Collection<Persoon>()
             {
-                new Persoon {
+                new()
+                {
                     Burgerservicenummer = "12345",
                     Partners = new Collection<Partner>
                     {
-                        new Partner { Burgerservicenummer = "12345" },
-                        new Partner { Burgerservicenummer = "23456" }
+                        new() { Burgerservicenummer = "12345" },
+                        new() { Burgerservicenummer = "23456" }
                     }
                 },
-                new Persoon { Burgerservicenummer = "23456" }
+                new() { Burgerservicenummer = "23456" }
             }.ToJson());
     }
 
@@ -423,17 +390,17 @@ public class FilterTests
             .Should().Be(
             new Persoon
             {
-                Gezag = new Collection<HC.AbstractGezagsrelatie>
+                Gezag = new Collection<AbstractGezagsrelatie>
                 {
-                    new HC.TweehoofdigOuderlijkGezag
+                    new TweehoofdigOuderlijkGezag
                     {
-                        Minderjarige = new HC.Minderjarige
+                        Minderjarige = new Minderjarige
                         {
                             Burgerservicenummer = "12345",
                         },
-                        Ouders = new Collection<HC.GezagOuder>
+                        Ouders = new Collection<GezagOuder>
                         {
-                            new HC.GezagOuder
+                            new()
                             {
                                 Burgerservicenummer = "23456"
                             }
