@@ -6,6 +6,8 @@ namespace BrpProxy.Validators;
 public class ZoekMetPostcodeEnHuisnummerQueryValidator : PersonenQueryValidator<ZoekMetPostcodeEnHuisnummer>
 {
     const string RequiredErrorMessage = "required||Parameter is verplicht.";
+    const string GeslachtsnaamPattern = @"^[a-zA-Z0-9À-ž \.\-\']{1,200}$|^[a-zA-Z0-9À-ž \.\-\']{3,199}\*{1}$";
+    const string GeslachtsnaamPatternErrorMessage = $"pattern||Waarde voldoet niet aan patroon {GeslachtsnaamPattern}.";
     const string HuisletterPattern = @"^[a-zA-Z]{1}$";
     const string HuisletterErrorMessage = $"pattern||Waarde voldoet niet aan patroon {HuisletterPattern}.";
     const string HuisnummertoevoegingPattern = @"^[a-zA-Z0-9 \-]{1,4}$";
@@ -39,5 +41,9 @@ public class ZoekMetPostcodeEnHuisnummerQueryValidator : PersonenQueryValidator<
             .Cascade(CascadeMode.Stop)
             .Matches(HuisnummertoevoegingPattern).WithMessage(HuisnummertoevoegingErrorMessage)
             .When(x => !string.IsNullOrWhiteSpace(x.Huisnummertoevoeging));
+
+        RuleFor(x => x.Geslachtsnaam)
+           .Cascade(CascadeMode.Stop)
+           .Matches(GeslachtsnaamPattern).WithMessage(GeslachtsnaamPatternErrorMessage);
     }
 }
