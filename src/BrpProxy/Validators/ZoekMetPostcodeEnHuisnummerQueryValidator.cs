@@ -44,6 +44,7 @@ public class ZoekMetPostcodeEnHuisnummerQueryValidator : PersonenQueryValidator<
 
         RuleFor(x => x.Geslachtsnaam)
            .Cascade(CascadeMode.Stop)
-           .Matches(GeslachtsnaamPattern).WithMessage(GeslachtsnaamPatternErrorMessage);
+           .Matches(GeslachtsnaamPattern).WithMessage(GeslachtsnaamPatternErrorMessage)
+           .When(x => !string.IsNullOrWhiteSpace(x.Geslachtsnaam)); 
     }
 }
