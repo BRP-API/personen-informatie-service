@@ -6,7 +6,6 @@ using Gba = HaalCentraal.BrpProxy.Generated.Gba;
 using Newtonsoft.Json;
 using AutoMapper;
 using BrpProxy.Validators;
-using Newtonsoft.Json.Linq;
 using Serilog;
 using FluentValidation.Results;
 
@@ -69,13 +68,6 @@ namespace BrpProxy.Middlewares
                     return;
                 }
 
-                var result = personenQuery.Validate(context, requestBody, _fieldsHelper);
-                if (!result.IsValid)
-                {
-                    await context.HandleValidationErrors(result.Foutbericht!, orgBodyStream, _diagnosticContext);
-                    return;
-                }
-
                 using var newBodyStream = new MemoryStream();
                 context.Response.Body = newBodyStream;
 
@@ -96,11 +88,11 @@ namespace BrpProxy.Middlewares
                 }
 
                 var resultFields = personenQuery is RaadpleegMetBurgerservicenummer
-                            ? _fieldsHelper.AddExtraPersoonFields(result.Fields!)
-                            : _fieldsHelper.AddExtraPersoonBeperktFields(result.Fields!);
+                            ? _fieldsHelper.AddExtraPersoonFields(personenQuery.Fields!)
+                            : _fieldsHelper.AddExtraPersoonBeperktFields(personenQuery!.Fields!);
 
                 var modifiedBody = context.Response.StatusCode == StatusCodes.Status200OK
-                    ? body.Transform(_mapper, resultFields, result.Fields!, _diagnosticContext)
+                    ? body.Transform(_mapper, resultFields, personenQuery.Fields!, _diagnosticContext)
                     : body;
 
                 if (Log.IsEnabled(Serilog.Events.LogEventLevel.Debug))
@@ -133,25 +125,6 @@ namespace BrpProxy.Middlewares
 
     public static class BrpHelpers
     {
-        public static ValidatePersonenQueryResult Validate(this PersonenQuery? personenQuery, HttpContext context, string requestBody, FieldsHelper fieldsHelper)
-        {
-            var result = personenQuery switch
-            {
-                RaadpleegMetBurgerservicenummer query => new RaadpleegMetBurgerservicenummerQueryValidator(fieldsHelper).Validate(query),
-                ZoekMetAdresseerbaarObjectIdentificatie query => new ZoekMetAdresseerbaarObjectIdentificatieQueryValidator(fieldsHelper).Validate(query),
-                ZoekMetGeslachtsnaamEnGeboortedatum query => new ZoekMetGeslachtsnaamEnGeboortedatumQueryValidator(fieldsHelper).Validate(query),
-                ZoekMetPostcodeEnHuisnummer query => new ZoekMetPostcodeEnHuisnummerQueryValidator(fieldsHelper).Validate(query),
-                ZoekMetNaamEnGemeenteVanInschrijving query => new ZoekMetNaamEnGemeenteVanInschrijvingQueryValidator(fieldsHelper).Validate(query),
-                ZoekMetNummeraanduidingIdentificatie query => new ZoekMetNummeraanduidingIdentificatieQueryValidator(fieldsHelper).Validate(query),
-                ZoekMetStraatHuisnummerEnGemeenteVanInschrijving query => new ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingQueryValidator(fieldsHelper).Validate(query),
-                _ => null
-            };
-
-            return result != null
-                ? ValidatePersonenQueryResult.CreateFrom(result, personenQuery?.Fields, context)
-                : ValidatePersonenQueryResult.CreateFrom(new PersonenQueryRequestBodyValidator().Validate(JObject.Parse(requestBody)), context);
-        }
-
         private static bool IsProxyResponse(this string payload)
         {
             var proxyTokens = new List<string>
