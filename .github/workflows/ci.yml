@@ -103,6 +103,7 @@ jobs:
       - name: Voeg test summary toe aan Github Step Summary
         if: always()
         run: |
+          node ./scripts/generate-step-summary.js
           echo "### Cucumber Test Reports" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
           cat ${{ env.SPEC_VERIFY_STEP_SUMMARY_FILE_PATH }} >> $GITHUB_STEP_SUMMARY
