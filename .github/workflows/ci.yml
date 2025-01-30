@@ -27,6 +27,7 @@ env:
   MOCK_PROJECT_PATH: ./src/BrpService
   MOCK_CSPROJ_FILE_PATH: ./src/BrpService/BrpService.csproj
   MOCK_CONTAINER_IMAGE: ghcr.io/brp-api/personen-mock
+  SPEC_VERIFY_STEP_SUMMARY_FILE_PATH: ./test-reports/cucumber-js/personen/step-summary.txt
 
 jobs:
   continuous-integration:
@@ -99,6 +100,13 @@ jobs:
         run: |
           ./scripts/containers-stop.sh ci
 
+      - name: Voeg test summary toe aan Github Step Summary
+        if: always()
+        run: |
+          node ./scripts/generate-step-summary.js
+          echo "### Cucumber Test Reports" >> $GITHUB_STEP_SUMMARY
+          cat ${{ env.SPEC_VERIFY_STEP_SUMMARY_FILE_PATH }} >> $GITHUB_STEP_SUMMARY
+  
       - name: Genereer test rapportage
         if: always()
         run: |
