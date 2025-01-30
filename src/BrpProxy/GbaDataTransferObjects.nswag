@@ -8,7 +8,7 @@
       "newLineBehavior": "Auto"
     }
   },
-  "codeGenerators": {
+  "codeGenerators": {   
     "openApiToCSharpClient": {
       "clientBaseClass": null,
       "configurationClass": null,
@@ -101,9 +101,7 @@
         "ZoekMetNummeraanduidingIdentificatie",
         "ZoekMetPostcodeEnHuisnummer",
         "ZoekMetStraatHuisnummerEnGemeenteVanInschrijving",
-        "Waardetabel",
-        "AdellijkeTitelPredicaatType",
-        "AdellijkeTitelPredicaatSoort",
+        "Waardetabel"
       ],
       "excludedParameterNames": [],
       "handleReferences": false,
