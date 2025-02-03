@@ -32,25 +32,7 @@ namespace BrpProxy.Middlewares
             string requestBody = string.Empty;
             try
             {
-                if (!await context.HandleRequestMethodIsAllowed())
-                {
-                    return;
-                }
-                if (!await context.HandleRequestAcceptIsSupported())
-                {
-                    return;
-                }
-                if (!await context.HandleMediaTypeIsSupported())
-                {
-                    return;
-                }
-
                 requestBody = await context.Request.ReadBodyAsync();
-
-                if (!await context.HandleRequestBodyIsValidJson(requestBody, new DummyRequestBodyValidationService()))
-                {
-                    return;
-                }
 
                 PersonenQuery? personenQuery = null;
                 try
