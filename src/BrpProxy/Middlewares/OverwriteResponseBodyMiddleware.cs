@@ -1,14 +1,13 @@
 ﻿using Brp.Shared.Infrastructure.Http;
 using Brp.Shared.Infrastructure.Stream;
-using Brp.Shared.Infrastructure.Validatie;
 using HaalCentraal.BrpProxy.Generated;
 using Gba = HaalCentraal.BrpProxy.Generated.Gba;
 using Newtonsoft.Json;
 using AutoMapper;
 using BrpProxy.Validators;
-using Newtonsoft.Json.Linq;
 using Serilog;
 using FluentValidation.Results;
+using Brp.Shared.Validatie.Handlers;
 
 namespace BrpProxy.Middlewares
 {
