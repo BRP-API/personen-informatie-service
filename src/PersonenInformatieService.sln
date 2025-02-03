@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrpProxy.Tests", "BrpProxy.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brp.Shared.DtoMappers", "Brp.Shared.DtoMappers\Brp.Shared.DtoMappers.csproj", "{B4DA0332-4ECD-43F9-88F5-7451C53D579B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brp.Shared.Validatie", "Brp.Shared.Validatie\Brp.Shared.Validatie.csproj", "{FA09E610-AACF-481A-8A97-AD28ED7544E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{B4DA0332-4ECD-43F9-88F5-7451C53D579B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4DA0332-4ECD-43F9-88F5-7451C53D579B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4DA0332-4ECD-43F9-88F5-7451C53D579B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA09E610-AACF-481A-8A97-AD28ED7544E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA09E610-AACF-481A-8A97-AD28ED7544E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA09E610-AACF-481A-8A97-AD28ED7544E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA09E610-AACF-481A-8A97-AD28ED7544E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,5 +64,6 @@ Global
 		{D1E869D5-6757-44D6-9BB0-02B17C77D756} = {965DA68A-2FC8-4040-92DD-AD8927D55135}
 		{4410BC0F-B137-420A-941D-631C3F13E923} = {965DA68A-2FC8-4040-92DD-AD8927D55135}
 		{B4DA0332-4ECD-43F9-88F5-7451C53D579B} = {965DA68A-2FC8-4040-92DD-AD8927D55135}
+		{FA09E610-AACF-481A-8A97-AD28ED7544E2} = {965DA68A-2FC8-4040-92DD-AD8927D55135}
 	EndGlobalSection
 EndGlobal

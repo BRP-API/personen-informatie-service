@@ -20,6 +20,7 @@
     <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Brp.Shared.Validatie\Brp.Shared.Validatie.csproj" />
     <ProjectReference Include="..\BrpProxy\BrpProxy.csproj" />
   </ItemGroup>
 </Project>
