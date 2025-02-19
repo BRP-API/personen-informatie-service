@@ -8,6 +8,7 @@ using BrpProxy.Validators;
 using Serilog;
 using FluentValidation.Results;
 using Brp.Shared.Validatie.Handlers;
+using Brp.Shared.Infrastructure.ProblemDetails;
 
 namespace BrpProxy.Middlewares
 {
@@ -47,6 +48,17 @@ namespace BrpProxy.Middlewares
                 catch (JsonReaderException ex)
                 {
                     await context.HandleJsonReaderException(ex, orgBodyStream, _diagnosticContext);
+                    return;
+                }
+
+                // deze validatie check is toegevoegd tbv healthcheck
+                // tijdens de healthcheck v/d A&P zal deze een GET request sturen om te kijken of de downstream kan worden benaderd
+                if(personenQuery is null)
+                {
+                    var problemDetails = context.Request.CreateProblemDetails(StatusCodes.Status400BadRequest, "De bevraging bevat een fout.", "Request body is geen geldige JSON.");
+
+                    await context.Response.WriteProblemDetailsAsync(problemDetails);
+
                     return;
                 }
 
