@@ -1,3 +1,4 @@
+using Brp.Shared.DtoMappers;
 using Brp.Shared.Infrastructure.HealthCheck;
 using Brp.Shared.Infrastructure.Logging;
 using Brp.Shared.Infrastructure.Utils;
@@ -25,6 +26,7 @@ try
     builder.SetupPersonenRequestValidation();
 
     builder.Services.AddSingleton<FieldsHelper>();
+    SetupHelpers.AddBrpSharedDtoMappers();
     builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
     builder.Services.AddControllers()
