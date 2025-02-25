@@ -26,5 +26,8 @@ public partial class ZoekMetPostcodeEnHuisnummer : PersonenQuery
     [Newtonsoft.Json.JsonConverter(typeof(DateFormatConverter))]
     public System.DateTimeOffset? Geboortedatum { get; set; }
 
+    [Newtonsoft.Json.JsonProperty("geslachtsnaam", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+    public string? Geslachtsnaam { get; set; }
+
 }
 
