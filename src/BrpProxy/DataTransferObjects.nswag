@@ -91,6 +91,8 @@
         "GezagOuder",
         "Meerderjarige",
         "Minderjarige",
+        "Derde",
+        "BekendeDerde",
         "PersonenQuery",
         "ZoekMetAdresseerbaarObjectIdentificatie",
         "ZoekMetGeslachtsnaamEnGeboortedatum",
