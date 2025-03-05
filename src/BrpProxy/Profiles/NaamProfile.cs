@@ -16,10 +16,6 @@ public class NaamProfile : Profile
             {
                 opt.PreCondition(src => src.Geslachtsnaam != ".");
             })
-            .AfterMap((src, dest) =>
-            {
-                dest.VolledigeNaam = src.VolledigeNaam(src.Geslacht);
-            })
             ;
 
         CreateMap<HaalCentraal.BrpProxy.Generated.Gba.NaamBasis, NaamGerelateerde>()
@@ -30,8 +26,6 @@ public class NaamProfile : Profile
                 opt.MapFrom(src => src.Geslachtsnaam);
             })
             ;
-
-        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, NaamInOnderzoek?>().ConvertUsing<NaamGerelateerdeInOnderzoekConverter>();
 
         CreateMap<GbaNaamPersoon, NaamPersoon>()
             .ForMember(dest => dest.Geslachtsnaam, opt =>
@@ -44,8 +38,5 @@ public class NaamProfile : Profile
                 dest.VolledigeNaam = dest.VolledigeNaam(dest.Geslacht);
             })
             ;
-
-        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, NaamPersoonInOnderzoekBeperkt?>().ConvertUsing<NaamPersoonInOnderzoekBeperktConverter>();
-        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, NaamPersoonInOnderzoek?>().ConvertUsing<NaamPersoonInOnderzoekConverter>();
     }
 }

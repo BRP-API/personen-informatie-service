@@ -23,16 +23,10 @@ public class PersoonProfile : Profile
                 if (src.Naam != null || src.PersoonInOnderzoek != null)
                 {
                     src.Naam ??= new HaalCentraal.BrpProxy.Generated.Gba.NaamBasis();
-                    if (src.Geslacht != null)
-                    {
-                        src.Naam.Geslacht = src.Geslacht;
-                    }
-                    src.Naam.InOnderzoek = src.PersoonInOnderzoek;
                 }
                 if (src.Geboorte != null || src.PersoonInOnderzoek != null)
                 {
                     src.Geboorte ??= new HaalCentraal.BrpProxy.Generated.Gba.GeboorteBasis();
-                    src.Geboorte.InOnderzoek = src.PersoonInOnderzoek;
                 }
             })
             .AfterMap((src, dest) =>
@@ -49,6 +43,18 @@ public class PersoonProfile : Profile
                     };
 
                     dest.Adressering.IndicatieVastgesteldVerblijftNietOpAdres = src.Verblijfplaats.IndicatieVastgesteldVerblijfNietOpAdres(dest.Adressering);
+                }
+                if (dest.Naam != null)
+                {
+                    dest.Naam.VolledigeNaam = dest.Naam.VolledigeNaam(src.Geslacht);
+                }
+                if (dest.Naam != null && src.PersoonInOnderzoek != null)
+                {
+                    dest.Naam.InOnderzoek = src.PersoonInOnderzoek.MapNaamPersoonBeperktInOnderzoek();
+                }
+                if (dest.Geboorte != null && src.PersoonInOnderzoek != null)
+                {
+                    dest.Geboorte.InOnderzoek = src.PersoonInOnderzoek.MapGeboorteBeperktInOnderzoek();
                 }
             })
             ;
@@ -66,16 +72,10 @@ public class PersoonProfile : Profile
                 if(src.Naam != null || src.PersoonInOnderzoek != null)
                 {
                     src.Naam ??= new HaalCentraal.BrpProxy.Generated.Gba.NaamBasis();
-                    if (src.Geslacht != null)
-                    {
-                        src.Naam.Geslacht = src.Geslacht;
-                    }
-                    src.Naam.InOnderzoek = src.PersoonInOnderzoek;
                 }
                 if(src.Geboorte != null || src.PersoonInOnderzoek != null)
                 {
                     src.Geboorte ??= new HaalCentraal.BrpProxy.Generated.Gba.GeboorteBasis();
-                    src.Geboorte.InOnderzoek = src.PersoonInOnderzoek;
                 }
             })
             .AfterMap((src, dest) =>
@@ -93,6 +93,18 @@ public class PersoonProfile : Profile
 
                     dest.Adressering.IndicatieVastgesteldVerblijftNietOpAdres = src.Verblijfplaats.IndicatieVastgesteldVerblijfNietOpAdres(dest.Adressering);
                 }
+                if (dest.Naam != null)
+                {
+                    dest.Naam.VolledigeNaam = dest.Naam.VolledigeNaam(src.Geslacht);
+                }
+                if (dest.Naam != null && src.PersoonInOnderzoek != null)
+                {
+                    dest.Naam.InOnderzoek = src.PersoonInOnderzoek.MapNaamPersoonBeperktInOnderzoek();
+                }
+                if (dest.Geboorte != null && src.PersoonInOnderzoek != null)
+                {
+                    dest.Geboorte.InOnderzoek = src.PersoonInOnderzoek.MapGeboorteBeperktInOnderzoek();
+                }
             })
             ;
 
@@ -102,20 +114,14 @@ public class PersoonProfile : Profile
                 if(src.Naam != null || src.PersoonInOnderzoek != null)
                 {
                     src.Naam ??= new GbaNaamPersoon();
-                    if(src.Geslacht != null)
-                    {
-                        src.Naam.Geslacht = src.Geslacht;
-                    }
                     if(src.Partners != null)
                     {
                         src.Naam.Partners = src.Partners;
                     }
-                    src.Naam.InOnderzoek = src.PersoonInOnderzoek;
                 }
                 if (src.Geboorte != null || src.PersoonInOnderzoek != null)
                 {
                     src.Geboorte ??= new GbaGeboorte();
-                    src.Geboorte.InOnderzoek = src.PersoonInOnderzoek;
                 }
                 if(src.Immigratie != null || src.Verblijfplaats != null)
                 {
@@ -147,6 +153,18 @@ public class PersoonProfile : Profile
 
                     dest.Adressering.InOnderzoek = src.AdresseringInOnderzoek();
                     dest.Adressering.IndicatieVastgesteldVerblijftNietOpAdres = src.Verblijfplaats.IndicatieVastgesteldVerblijfNietOpAdres(dest.Adressering);
+                }
+                if (dest.Naam != null)
+                {
+                    dest.Naam.VolledigeNaam = dest.Naam.VolledigeNaam(src.Geslacht);
+                }
+                if (dest.Naam != null && src.PersoonInOnderzoek != null)
+                {
+                    dest.Naam.InOnderzoek = src.PersoonInOnderzoek.MapNaamPersoonInOnderzoek();
+                }
+                if (dest.Geboorte != null && src.PersoonInOnderzoek != null)
+                {
+                    dest.Geboorte.InOnderzoek = src.PersoonInOnderzoek.MapGeboorteInOnderzoek();
                 }
             })
             .ForMember(dest => dest.DatumEersteInschrijvingGBA, opt => opt.MapFrom(src => src.DatumEersteInschrijvingGBA.Map()))

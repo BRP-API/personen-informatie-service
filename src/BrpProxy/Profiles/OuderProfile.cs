@@ -15,12 +15,21 @@ public class OuderProfile : Profile
                 if (src.Naam != null || src.InOnderzoek != null)
                 {
                     src.Naam ??= new HaalCentraal.BrpProxy.Generated.Gba.NaamBasis();
-                    src.Naam.InOnderzoek = src.InOnderzoek;
                 }
                 if (src.Geboorte != null || src.InOnderzoek != null)
                 {
                     src.Geboorte ??= new GbaGeboorte();
-                    src.Geboorte.InOnderzoek = src.InOnderzoek;
+                }
+            })
+            .AfterMap((src, dest) =>
+            {
+                if (dest.Naam != null && src.InOnderzoek != null)
+                {
+                    dest.Naam.InOnderzoek = src.InOnderzoek.MapNaamGerelateerdeInOnderzoek();
+                }
+                if (dest.Geboorte != null && src.InOnderzoek != null)
+                {
+                    dest.Geboorte.InOnderzoek = src.InOnderzoek.MapGeboorteInOnderzoek();
                 }
             })
             .ForMember(dest => dest.DatumIngangFamilierechtelijkeBetrekking, opt => opt.MapFrom(src => src.DatumIngangFamilierechtelijkeBetrekking.Map()))
