@@ -33,10 +33,6 @@ public class NaamProfile : Profile
                 opt.PreCondition(src => src.Geslachtsnaam != ".");
             })
             .ForMember(dest => dest.Voorletters, opt => opt.MapFrom(src => src.Voorletters()))
-            .AfterMap((src, dest) =>
-            {
-                dest.VolledigeNaam = dest.VolledigeNaam(dest.Geslacht);
-            })
             ;
     }
 }
