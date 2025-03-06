@@ -1,12 +1,27 @@
-﻿using AutoMapper;
-using Brp.Shared.DtoMappers.Mappers;
+﻿using Brp.Shared.DtoMappers.Mappers;
 using HaalCentraal.BrpProxy.Generated;
 
 namespace BrpProxy.Profiles;
 
-public class GeboorteInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, GeboorteInOnderzoek?>
+public static class GeboorteInOnderzoekExtensions
 {
-    public GeboorteInOnderzoek? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, GeboorteInOnderzoek? destination, ResolutionContext context)
+    public static void MapInOnderzoek(this Geboorte? dest, HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? source)
+    {
+        if (dest != null && source != null)
+        {
+            dest.InOnderzoek = source.MapGeboorteInOnderzoek();
+        }
+    }
+
+    public static void MapInOnderzoek(this GeboorteBeperkt? dest, HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? source)
+    {
+        if (dest != null && source != null)
+        {
+            dest.InOnderzoek = source.MapGeboorteBeperktInOnderzoek();
+        }
+    }
+
+    private static GeboorteInOnderzoek? MapGeboorteInOnderzoek(this HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? source)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
@@ -56,11 +71,8 @@ public class GeboorteInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy
             _ => null,
         };
     }
-}
 
-public class GeboorteInOnderzoekBeperktConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, GeboorteInOnderzoekBeperkt?>
-{
-    public GeboorteInOnderzoekBeperkt? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, GeboorteInOnderzoekBeperkt? destination, ResolutionContext context)
+    private static GeboorteInOnderzoekBeperkt? MapGeboorteBeperktInOnderzoek(this HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? source)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {

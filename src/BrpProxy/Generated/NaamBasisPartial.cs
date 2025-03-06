@@ -5,6 +5,4 @@ namespace HaalCentraal.BrpProxy.Generated;
 
 public partial class NaamBasis : INaamBasis
 {
-    [JsonIgnore]
-    public IWaardetabel? Geslacht { get; set; }
 }

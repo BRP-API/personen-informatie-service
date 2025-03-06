@@ -1,5 +1,5 @@
 {
-  "runtime": "Net80",
+  "runtime": "Net90",
   "defaultVariables": null,
   "documentGenerator": {
     "fromDocument": {
@@ -52,7 +52,6 @@
       "generateDefaultValues": true,
       "generateDataAnnotations": false,
       "excludedTypeNames": [
-        "AbstractGezagsrelatie",
         "ZoekMetGeslachtsnaamEnGeboortedatum",
         "ZoekMetPostcodeEnHuisnummer"
       ],

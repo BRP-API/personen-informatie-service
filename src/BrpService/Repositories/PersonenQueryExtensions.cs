@@ -44,6 +44,14 @@ public static class PersonenQueryExtensions
         {
             specification = specification.And(new HuisnummertoevoegingSpecification(query.Huisnummertoevoeging));
         }
+        if(query.Geboortedatum.HasValue)
+        {
+            specification = specification.And(new GeboorteDatumSpecification(query.Geboortedatum.Value));
+        }
+        if (!string.IsNullOrWhiteSpace(query.Geslachtsnaam))
+        {
+            specification = specification.And(new GeslachtsnaamSpecification(query.Geslachtsnaam));
+        }
         specification = specification.And(new InclusiefOverledenPersonenSpecification(query.InclusiefOverledenPersonen));
 
         return specification;
