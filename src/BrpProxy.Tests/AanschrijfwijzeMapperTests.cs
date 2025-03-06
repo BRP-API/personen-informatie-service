@@ -23,7 +23,7 @@ namespace BrpProxy.Tests
                 }
             };
 
-            var actual = persoon.Aanschrijfwijze();
+            var actual = persoon.Aanschrijfwijze(new Waardetabel() { Code = "M" });
 
             actual.Should().NotBeNull();
             actual!.Naam.Should().BeNull();
@@ -45,7 +45,7 @@ namespace BrpProxy.Tests
                 }
             };
 
-            var actual = persoon.Aanschrijfwijze();
+            var actual = persoon.Aanschrijfwijze(new Waardetabel() { Code = "M" });
 
             actual.Should().NotBeNull();
             actual!.Naam.Should().BeNull();
@@ -67,7 +67,7 @@ namespace BrpProxy.Tests
                 }
             };
 
-            var actual = persoon.Aanschrijfwijze();
+            var actual = persoon.Aanschrijfwijze(new Waardetabel() { Code = "M" });
 
             actual.Should().NotBeNull();
             actual!.Naam.Should().BeNull();
@@ -79,7 +79,6 @@ namespace BrpProxy.Tests
             var persoon = new NaamPersoon
             {
                 Geslachtsnaam = "Jansen",
-                Geslacht = new Waardetabel { Code = "V" },
                 Partners = new[]
                 {
                     new Partner
@@ -93,7 +92,7 @@ namespace BrpProxy.Tests
                 }
             };
 
-            var actual = persoon.Aanschrijfwijze();
+            var actual = persoon.Aanschrijfwijze(new Waardetabel { Code = "V" });
 
             actual.Should().NotBeNull();
             actual!.Naam.Should().BeNull();

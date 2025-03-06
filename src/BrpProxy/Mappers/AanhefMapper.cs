@@ -1,11 +1,12 @@
-﻿using Brp.Shared.DtoMappers.Mappers;
+﻿using Brp.Shared.DtoMappers.Interfaces;
+using Brp.Shared.DtoMappers.Mappers;
 using HaalCentraal.BrpProxy.Generated;
 
 namespace BrpProxy.Mappers;
 
 public static class AanhefMapper
 {
-    private static string? BepaalAanhefZonderAdellijkeTitelOfPredicaat(this NaamPersoon persoon, Partner? partner)
+    private static string? BepaalAanhefZonderAdellijkeTitelOfPredicaat(this NaamPersoon persoon, Partner? partner, IWaardetabel? geslacht)
     {
         if (persoon.HeeftLeegOfOnbekendGeslachtsnaam() &&
             persoon.HeeftGeenPartnerNaamgebruik())
@@ -29,7 +30,7 @@ public static class AanhefMapper
             _ => persoonNaam
         };
 
-        var retval = persoon.Geslacht() switch
+        var retval = geslacht.Geslacht() switch
         {
             "M" => $"Geachte heer {geslachtsnaam.Capitalize()}",
             "V" => $"Geachte mevrouw {geslachtsnaam.Capitalize()}",
@@ -42,13 +43,13 @@ public static class AanhefMapper
         return retval.RemoveRedundantSpaces().ToNull();
     }
 
-    public static string? Aanhef(this NaamPersoon? persoon)
+    public static string? Aanhef(this NaamPersoon? persoon, IWaardetabel geslacht)
     {
         if (persoon == null) return null;
 
         var partner = persoon.Partners.ActuelePartner();
 
-        if (persoon.IsHoffelijkheidstitel(partner))
+        if (persoon.IsHoffelijkheidstitel(partner, geslacht))
         {
             return partner.BepaalHoffelijkheidstitel();
         }
@@ -57,24 +58,24 @@ public static class AanhefMapper
         {
             if (partner != null &&
                 persoon.HeeftPartnerNaamgebruik()
-                ) return persoon.BepaalAanhefZonderAdellijkeTitelOfPredicaat(partner);
+                ) return persoon.BepaalAanhefZonderAdellijkeTitelOfPredicaat(partner, geslacht);
 
             if (persoon.HeeftPredicaat() &&
-                persoon.IsVrouw() &&
+                geslacht.IsVrouw() &&
                 partner.IsActueelPartner()
-                ) return persoon.BepaalAanhefZonderAdellijkeTitelOfPredicaat(partner);
+                ) return persoon.BepaalAanhefZonderAdellijkeTitelOfPredicaat(partner, geslacht);
 
             if (persoon.HeeftPredicaat() &&
-                persoon.IsVrouw() &&
+                geslacht.IsVrouw() &&
                 partner.IsExPartner() &&
                 persoon.GebruiktNaamVanPartner()
-                ) return persoon.BepaalAanhefZonderAdellijkeTitelOfPredicaat(partner);
+                ) return persoon.BepaalAanhefZonderAdellijkeTitelOfPredicaat(partner, geslacht);
 
-            return persoon.HeeftAdellijkeTitelMetAanspreekvorm()
-                ? persoon.BepaalAanhefVoorAdellijkeTitelOfPredicaat()
-                : persoon.BepaalAanhefZonderAdellijkeTitelOfPredicaat(partner);
+            return persoon.HeeftAdellijkeTitelMetAanspreekvorm(geslacht)
+                ? persoon.BepaalAanhefVoorAdellijkeTitelOfPredicaat(geslacht)
+                : persoon.BepaalAanhefZonderAdellijkeTitelOfPredicaat(partner, geslacht);
         }
 
-        return persoon.BepaalAanhefZonderAdellijkeTitelOfPredicaat(partner);
+        return persoon.BepaalAanhefZonderAdellijkeTitelOfPredicaat(partner, geslacht);
     }
 }

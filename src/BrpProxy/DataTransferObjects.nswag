@@ -1,5 +1,5 @@
 {
-  "runtime": "Net80",
+  "runtime": "Net90",
   "defaultVariables": null,
   "documentGenerator": {
     "fromDocument": {
@@ -91,6 +91,8 @@
         "GezagOuder",
         "Meerderjarige",
         "Minderjarige",
+        "Derde",
+        "BekendeDerde",
         "PersonenQuery",
         "ZoekMetAdresseerbaarObjectIdentificatie",
         "ZoekMetGeslachtsnaamEnGeboortedatum",

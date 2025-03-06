@@ -1,4 +1,5 @@
 ﻿using Brp.Shared.DtoMappers.CommonDtos;
+using Brp.Shared.DtoMappers.Interfaces;
 using HaalCentraal.BrpProxy.Generated;
 
 namespace BrpProxy.Mappers;
@@ -121,14 +122,14 @@ public static class AdellijkeTitelPredicaatHelpers
 
     public static bool HeeftGeenAdellijkeTitelOfPredicaat(this Partner? partner) => !partner.HeeftAdellijkeTitelOfPredicaat();
 
-    public static bool HeeftAdellijkeTitelMetAanspreekvorm(this NaamPersoon persoon)
+    public static bool HeeftAdellijkeTitelMetAanspreekvorm(this NaamPersoon persoon, IWaardetabel? geslacht)
     {
         if (persoon.AdellijkeTitelPredicaat != null &&
             persoon.AdellijkeTitelPredicaat.Code != null &&
-            persoon.Geslacht != null &&
-            persoon.Geslacht.Code != null)
+            geslacht != null &&
+            geslacht?.Code != null)
         {
-            var aanhefKey = $"{persoon.AdellijkeTitelPredicaat.Code}-{persoon.Geslacht.Code}";
+            var aanhefKey = $"{persoon.AdellijkeTitelPredicaat.Code}-{geslacht.Code}";
 
             return AanhefAdellijkeTitelPredicaat.ContainsKey(aanhefKey);
         }
@@ -145,7 +146,7 @@ public static class AdellijkeTitelPredicaatHelpers
 
     public static string BepaalHoffelijkheidstitel(this Partner? partner) => HoffelijkheidsTitels[partner.AdellijkeTitelPredicaat()];
 
-    public static bool HeeftGeenAdellijkeTitelMetAanspreekvorm(this NaamPersoon persoon) => !persoon.HeeftAdellijkeTitelMetAanspreekvorm();
+    public static bool HeeftGeenAdellijkeTitelMetAanspreekvorm(this NaamPersoon persoon, IWaardetabel geslacht) => !persoon.HeeftAdellijkeTitelMetAanspreekvorm(geslacht);
 
     private static bool HeeftHoffelijkheidsTitel(this NaamPersoon naam) =>
         !string.IsNullOrWhiteSpace(naam.AdellijkeTitelPredicaat.Code) &&
@@ -153,20 +154,20 @@ public static class AdellijkeTitelPredicaatHelpers
 
     public static bool HeeftGeenHoffelijkheidsTitel(this NaamPersoon naam) => !naam.HeeftHoffelijkheidsTitel();
 
-    public static string BepaalAanhefVoorAdellijkeTitelOfPredicaat(this NaamPersoon persoon)
+    public static string BepaalAanhefVoorAdellijkeTitelOfPredicaat(this NaamPersoon persoon, IWaardetabel geslacht)
     {
-        var aanhefKey = $"{persoon.AdellijkeTitelPredicaat.Code}-{persoon.Geslacht!.Code}";
+        var aanhefKey = $"{persoon.AdellijkeTitelPredicaat.Code}-{geslacht.Code}";
 
         return AanhefAdellijkeTitelPredicaat[aanhefKey];
     }
 
 
-    public static string Titel(this Partner? partner, NaamPersoon persoon, IDictionary<string, string> adellijkeTitelsEnPredicaten)
+    public static string Titel(this Partner? partner, NaamPersoon persoon, IDictionary<string, string> adellijkeTitelsEnPredicaten, IWaardetabel? geslacht)
     {
         if (partner == null) return string.Empty;
 
         var keyPartner = partner.HeeftAdellijkeTitelOfPredicaat()
-            ? $"{partner.AdellijkeTitelPredicaat()}-{persoon.Geslacht()}"
+            ? $"{partner.AdellijkeTitelPredicaat()}-{geslacht.Geslacht()}"
             : null;
 
         return keyPartner != null && adellijkeTitelsEnPredicaten.ContainsKey(keyPartner)
@@ -174,9 +175,9 @@ public static class AdellijkeTitelPredicaatHelpers
             : string.Empty;
     }
 
-    public static string Titel(this NaamPersoon persoon, IDictionary<string, string> adellijkeTitelsEnPredicaten)
+    public static string Titel(this NaamPersoon persoon, IDictionary<string, string> adellijkeTitelsEnPredicaten, IWaardetabel? geslacht)
     {
-        var key = $"{persoon.AdellijkeTitelPredicaat()}-{persoon.Geslacht()}";
+        var key = $"{persoon.AdellijkeTitelPredicaat()}-{geslacht.Geslacht()}";
 
         return adellijkeTitelsEnPredicaten.ContainsKey(key)
             ? adellijkeTitelsEnPredicaten[key]

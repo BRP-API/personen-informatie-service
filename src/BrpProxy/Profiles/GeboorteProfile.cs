@@ -27,8 +27,5 @@ public class GeboorteProfile : Profile
                 opt.MapFrom(src => src.Plaats);
             })
             ;
-
-        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, GeboorteInOnderzoek?>().ConvertUsing<GeboorteInOnderzoekConverter>();
-        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, GeboorteInOnderzoekBeperkt?>().ConvertUsing<GeboorteInOnderzoekBeperktConverter>();
     }
 }
