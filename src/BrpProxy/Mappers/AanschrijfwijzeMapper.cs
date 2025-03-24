@@ -1,4 +1,5 @@
 ﻿using Brp.Shared.DtoMappers.CommonDtos;
+using Brp.Shared.DtoMappers.Interfaces;
 using Brp.Shared.DtoMappers.Mappers;
 using HaalCentraal.BrpProxy.Generated;
 using System.Text.RegularExpressions;
@@ -87,15 +88,15 @@ public static class AanschrijfwijzeMapper
         { "R-M", HOOGWELGEBORENHEER },
     };
 
-    public static Aanschrijfwijze? Aanschrijfwijze(this NaamPersoon? persoon)
+    public static Aanschrijfwijze? Aanschrijfwijze(this NaamPersoon? persoon, IWaardetabel geslacht)
     {
         if (persoon == null) return null;
 
         var partner = persoon.Partners.ActuelePartner();
 
-        if (persoon.IsHoffelijkheidstitel(partner))
+        if (persoon.IsHoffelijkheidstitel(partner, geslacht))
         {
-            return partner!.BepaalAanschrijfwijzeVoorHoffelijkheidstitel(persoon);
+            return partner!.BepaalAanschrijfwijzeVoorHoffelijkheidstitel(persoon, geslacht);
         }
 
         if (persoon.HeeftAdellijkeTitelOfPredicaat())
@@ -105,26 +106,26 @@ public static class AanschrijfwijzeMapper
               ) return persoon.BepaalAanschrijfwijzeZonderAdellijkeTitelOfPredicaat(partner);
 
             if (persoon.HeeftPredicaat() &&
-                persoon.IsVrouw() &&
+                geslacht.IsVrouw() &&
                 partner.IsActueelPartner()
                ) return persoon.BepaalAanschrijfwijzeZonderAdellijkeTitelOfPredicaat(partner);
 
             if (persoon.HeeftPredicaat() &&
-                persoon.IsVrouw() &&
+                geslacht.IsVrouw() &&
                 partner.IsExPartner() &&
                 persoon.GebruiktNaamVanPartner()
                 ) return persoon.BepaalAanschrijfwijzeZonderAdellijkeTitelOfPredicaat(partner);
 
-            return persoon.BepaalAanschrijfwijzeVoorAdellijkeTitelOfPredicaat(partner);
+            return persoon.BepaalAanschrijfwijzeVoorAdellijkeTitelOfPredicaat(partner, geslacht);
         }
 
         return persoon.BepaalAanschrijfwijzeZonderAdellijkeTitelOfPredicaat(partner);
     }
 
-    public static bool IsHoffelijkheidstitel(this NaamPersoon persoon, Partner? partner)
+    public static bool IsHoffelijkheidstitel(this NaamPersoon persoon, Partner? partner, IWaardetabel geslacht)
     {
         return
-            persoon.IsVrouw() &&
+            geslacht.IsVrouw() &&
             persoon.GebruiktNaamVanPartner() &&
             (persoon.HeeftGeenAdellijkeTitelOfPredicaat() || persoon.HeeftAdellijkeTitel()) &&
             partner.HeeftHoffelijkheidstitelMetAanspreekvorm();
@@ -139,25 +140,25 @@ public static class AanschrijfwijzeMapper
             : null;
     }
 
-    private static Aanschrijfwijze? BepaalAanschrijfwijzeVoorHoffelijkheidstitel(this Partner partner, NaamPersoon persoon)
+    private static Aanschrijfwijze? BepaalAanschrijfwijzeVoorHoffelijkheidstitel(this Partner partner, NaamPersoon persoon, IWaardetabel geslacht)
     {
         return new Aanschrijfwijze
         {
-            Naam = partner.AanschrijfwijzeNaamHoffelijkheidstitel(persoon),
+            Naam = partner.AanschrijfwijzeNaamHoffelijkheidstitel(persoon, geslacht),
             Aanspreekvorm = !partner.Achternaam().IsLeegOfOnbekend()
-                ? partner.AdellijkeTitelPredicaatType()!.Aanspreekvorm(persoon.Geslacht!.Code)
+                ? partner.AdellijkeTitelPredicaatType()!.Aanspreekvorm(geslacht.Code)
                 : null
         };
     }
 
-    private static Aanschrijfwijze? BepaalAanschrijfwijzeVoorAdellijkeTitelOfPredicaat(this NaamPersoon persoon, Partner? partner)
+    private static Aanschrijfwijze? BepaalAanschrijfwijzeVoorAdellijkeTitelOfPredicaat(this NaamPersoon persoon, Partner? partner, IWaardetabel? geslacht)
     {
         return new Aanschrijfwijze
         {
             Naam = persoon.HeeftAdellijkeTitel()
-                ? persoon.AanschrijfwijzeNaamAdellijkeTitel(partner, false)
-                : persoon.AanschrijfwijzeNaamPredicaat(partner),
-            Aanspreekvorm = persoon.AdellijkeTitelPredicaat.Aanspreekvorm(persoon.Geslacht?.Code)
+                ? persoon.AanschrijfwijzeNaamAdellijkeTitel(partner, geslacht, false)
+                : persoon.AanschrijfwijzeNaamPredicaat(partner, geslacht),
+            Aanspreekvorm = persoon.AdellijkeTitelPredicaat.Aanspreekvorm(geslacht?.Code)
         };
     }
 
@@ -183,11 +184,11 @@ public static class AanschrijfwijzeMapper
         return retval.Trim();
     }
 
-    private static string? AanschrijfwijzeNaamHoffelijkheidstitel(this Partner partner, NaamPersoon persoon)
+    private static string? AanschrijfwijzeNaamHoffelijkheidstitel(this Partner partner, NaamPersoon persoon, IWaardetabel geslacht)
     {
-        var achternaamPartner = $"{partner.Titel(persoon, AdellijkeTitelPredicaten)} {partner.Achternaam()}";
+        var achternaamPartner = $"{partner.Titel(persoon, AdellijkeTitelPredicaten, geslacht)} {partner.Achternaam()}";
 
-        var achternaam = $"{persoon.Titel(AdellijkeTitelPredicaten)} {persoon.Achternaam()}";
+        var achternaam = $"{persoon.Titel(AdellijkeTitelPredicaten, geslacht)} {persoon.Achternaam()}";
 
         var retval = partner.Achternaam().IsLeegOfOnbekend()
             ? $"{persoon.Voorletters} {achternaam}"
@@ -202,12 +203,12 @@ public static class AanschrijfwijzeMapper
         return retval.RemoveRedundantSpaces().ToNull();
     }
 
-    private static string? AanschrijfwijzeNaamAdellijkeTitel(this NaamPersoon persoon, Partner? partner, bool inclusiefTitelPartner = true)
+    private static string? AanschrijfwijzeNaamAdellijkeTitel(this NaamPersoon persoon, Partner? partner, IWaardetabel? geslacht, bool inclusiefTitelPartner = true)
     {
-        var titelPartner = inclusiefTitelPartner ? partner.Titel(persoon, AdellijkeTitelPredicaten) : string.Empty;
+        var titelPartner = inclusiefTitelPartner ? partner.Titel(persoon, AdellijkeTitelPredicaten, geslacht) : string.Empty;
         var achternaamPartner = $"{titelPartner} {partner.Achternaam()}";
 
-        var achternaam = $"{persoon.Titel(AdellijkeTitelPredicaten)} {persoon.Achternaam()}";
+        var achternaam = $"{persoon.Titel(AdellijkeTitelPredicaten, geslacht)} {persoon.Achternaam()}";
 
         var retval = partner.Achternaam().IsLeegOfOnbekend()
             ? $"{persoon.Voorletters} {achternaam}"
@@ -222,9 +223,9 @@ public static class AanschrijfwijzeMapper
         return retval.RemoveRedundantSpaces().ToNull();
     }
 
-    private static string? AanschrijfwijzeNaamPredicaat(this NaamPersoon persoon, Partner? partner)
+    private static string? AanschrijfwijzeNaamPredicaat(this NaamPersoon persoon, Partner? partner, IWaardetabel? geslacht)
     {
-        var titel = persoon.Titel(AdellijkeTitelPredicaten);
+        var titel = persoon.Titel(AdellijkeTitelPredicaten, geslacht);
 
         var retval = partner.Achternaam().IsLeegOfOnbekend()
             ? $"{titel} {persoon.Voorletters} {persoon.Achternaam()}"
