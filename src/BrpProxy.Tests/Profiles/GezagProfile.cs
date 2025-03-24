@@ -81,7 +81,7 @@ public class GezagProfile
             {
                 Burgerservicenummer = "000000012"
             },
-            Derde = new Meerderjarige
+            Derde = new BekendeDerde
             {
                 Burgerservicenummer = "000000013"
             },
@@ -97,7 +97,7 @@ public class GezagProfile
             {
                 Burgerservicenummer = "000000012"
             },
-            Derde = new Meerderjarige
+            Derde = new BekendeDerde
             {
                 Burgerservicenummer = "000000013"
             },
@@ -119,7 +119,7 @@ public class GezagProfile
             {
                 Burgerservicenummer = "000000012"
             },
-            Derden = new List<Meerderjarige>
+            Derden = new List<BekendeDerde>
             {
                 new() { Burgerservicenummer = "000000013" },
                 new() { Burgerservicenummer = "000000014" },
@@ -132,7 +132,7 @@ public class GezagProfile
             {
                 Burgerservicenummer = "000000012"
             },
-            Derden = new List<Meerderjarige>
+            Derden = new List<BekendeDerde>
             {
                 new() { Burgerservicenummer = "000000013" },
                 new() { Burgerservicenummer = "000000014" },

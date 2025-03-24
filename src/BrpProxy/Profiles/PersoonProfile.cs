@@ -20,19 +20,11 @@ public class PersoonProfile : Profile
             .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek()))
             .BeforeMap((src, dest) =>
             {
-                if (src.Naam != null || src.PersoonInOnderzoek != null)
+                if (src.PersoonInOnderzoek != null)
                 {
                     src.Naam ??= new HaalCentraal.BrpProxy.Generated.Gba.NaamBasis();
-                    if (src.Geslacht != null)
-                    {
-                        src.Naam.Geslacht = src.Geslacht;
-                    }
-                    src.Naam.InOnderzoek = src.PersoonInOnderzoek;
-                }
-                if (src.Geboorte != null || src.PersoonInOnderzoek != null)
-                {
+
                     src.Geboorte ??= new HaalCentraal.BrpProxy.Generated.Gba.GeboorteBasis();
-                    src.Geboorte.InOnderzoek = src.PersoonInOnderzoek;
                 }
             })
             .AfterMap((src, dest) =>
@@ -50,6 +42,14 @@ public class PersoonProfile : Profile
 
                     dest.Adressering.IndicatieVastgesteldVerblijftNietOpAdres = src.Verblijfplaats.IndicatieVastgesteldVerblijfNietOpAdres(dest.Adressering);
                 }
+                if (dest.Naam != null)
+                {
+                    dest.Naam.VolledigeNaam = dest.Naam.VolledigeNaam(src.Geslacht);
+                }
+
+                dest.Naam.MapInOnderzoek(src.PersoonInOnderzoek);
+
+                dest.Geboorte.MapInOnderzoek(src.PersoonInOnderzoek);
             })
             ;
 
@@ -63,19 +63,11 @@ public class PersoonProfile : Profile
             .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek()))
             .BeforeMap((src, dest) =>
             {
-                if(src.Naam != null || src.PersoonInOnderzoek != null)
+                if(src.PersoonInOnderzoek != null)
                 {
                     src.Naam ??= new HaalCentraal.BrpProxy.Generated.Gba.NaamBasis();
-                    if (src.Geslacht != null)
-                    {
-                        src.Naam.Geslacht = src.Geslacht;
-                    }
-                    src.Naam.InOnderzoek = src.PersoonInOnderzoek;
-                }
-                if(src.Geboorte != null || src.PersoonInOnderzoek != null)
-                {
+
                     src.Geboorte ??= new HaalCentraal.BrpProxy.Generated.Gba.GeboorteBasis();
-                    src.Geboorte.InOnderzoek = src.PersoonInOnderzoek;
                 }
             })
             .AfterMap((src, dest) =>
@@ -93,6 +85,14 @@ public class PersoonProfile : Profile
 
                     dest.Adressering.IndicatieVastgesteldVerblijftNietOpAdres = src.Verblijfplaats.IndicatieVastgesteldVerblijfNietOpAdres(dest.Adressering);
                 }
+                if (dest.Naam != null)
+                {
+                    dest.Naam.VolledigeNaam = dest.Naam.VolledigeNaam(src.Geslacht);
+                }
+
+                dest.Naam.MapInOnderzoek(src.PersoonInOnderzoek);
+
+                dest.Geboorte.MapInOnderzoek(src.PersoonInOnderzoek);
             })
             ;
 
@@ -102,20 +102,14 @@ public class PersoonProfile : Profile
                 if(src.Naam != null || src.PersoonInOnderzoek != null)
                 {
                     src.Naam ??= new GbaNaamPersoon();
-                    if(src.Geslacht != null)
-                    {
-                        src.Naam.Geslacht = src.Geslacht;
-                    }
                     if(src.Partners != null)
                     {
                         src.Naam.Partners = src.Partners;
                     }
-                    src.Naam.InOnderzoek = src.PersoonInOnderzoek;
                 }
                 if (src.Geboorte != null || src.PersoonInOnderzoek != null)
                 {
                     src.Geboorte ??= new GbaGeboorte();
-                    src.Geboorte.InOnderzoek = src.PersoonInOnderzoek;
                 }
                 if(src.Immigratie != null || src.Verblijfplaats != null)
                 {
@@ -125,13 +119,13 @@ public class PersoonProfile : Profile
             })
             .AfterMap((src, dest) =>
             {
-                if(dest.Naam != null || src.Verblijfplaats != null)
+                if (dest.Naam != null || src.Verblijfplaats != null)
                 {
                     dest.Adressering = new Adressering
                     {
-                        Aanhef = dest.Naam.Aanhef(),
-                        Aanschrijfwijze = dest.Naam.Aanschrijfwijze(),
-                        GebruikInLopendeTekst = dest.Naam.GebruikInLopendeTekst(),
+                        Aanhef = dest.Naam.Aanhef(src.Geslacht),
+                        Aanschrijfwijze = dest.Naam.Aanschrijfwijze(src.Geslacht),
+                        GebruikInLopendeTekst = dest.Naam.GebruikInLopendeTekst(src.Geslacht),
 
                         Adresregel1 = src.Verblijfplaats.Adresregel1(),
                         Adresregel2 = src.Verblijfplaats.Adresregel2(src.GemeenteVanInschrijving),
@@ -148,6 +142,14 @@ public class PersoonProfile : Profile
                     dest.Adressering.InOnderzoek = src.AdresseringInOnderzoek();
                     dest.Adressering.IndicatieVastgesteldVerblijftNietOpAdres = src.Verblijfplaats.IndicatieVastgesteldVerblijfNietOpAdres(dest.Adressering);
                 }
+
+                if (dest.Naam != null)
+                {
+                    dest.Naam.VolledigeNaam = dest.Naam.VolledigeNaam(src.Geslacht);
+                }
+                dest.Naam.MapInOnderzoek(src.PersoonInOnderzoek);
+
+                dest.Geboorte.MapInOnderzoek(src.PersoonInOnderzoek);
             })
             .ForMember(dest => dest.DatumEersteInschrijvingGBA, opt => opt.MapFrom(src => src.DatumEersteInschrijvingGBA.Map()))
             .ForMember(dest => dest.GeheimhoudingPersoonsgegevens, opt => opt.MapFrom(src => src.Geheimhouding()))

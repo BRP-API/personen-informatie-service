@@ -34,12 +34,17 @@ public class GezagProfile : Profile
             {
                 opt.MapFrom(src => src.Geboorte.Datum.Map().Leeftijd());
             });
-        CreateMap<BrpDtos.Meerderjarige, BrpApiDtos.Meerderjarige>()
+
+        CreateMap<BrpDtos.Derde, BrpApiDtos.Derde?>().ConvertUsing<DerdeConverter>();
+
+        CreateMap<BrpDtos.BekendeDerde, BrpApiDtos.BekendeDerde>()
             .AfterMap((src, dest) =>
             {
                 if (src.Naam is null) return;
                 dest.Naam.VolledigeNaam = src.Naam.VolledigeNaam(src.Geslacht);
-            });
+            })
+            ;
+        CreateMap<BrpDtos.OnbekendeDerde, BrpApiDtos.OnbekendeDerde>();
     }
 }
 
@@ -55,6 +60,19 @@ public class GezagConverter : ITypeConverter<BrpDtos.AbstractGezagsrelatie, BrpA
             BrpDtos.Voogdij => context.Mapper.Map<BrpApiDtos.Voogdij>(source),
             BrpDtos.TijdelijkGeenGezag => context.Mapper.Map<BrpApiDtos.TijdelijkGeenGezag>(source),
             BrpDtos.GezagNietTeBepalen => context.Mapper.Map<BrpApiDtos.GezagNietTeBepalen>(source),
+            _ => null
+        };
+    }
+}
+
+public class DerdeConverter : ITypeConverter<BrpDtos.Derde, BrpApiDtos.Derde?>
+{
+    public BrpApiDtos.Derde? Convert(BrpDtos.Derde source, BrpApiDtos.Derde? destination, ResolutionContext context)
+    {
+        return source switch
+        {
+            BrpDtos.BekendeDerde => context.Mapper.Map<BrpApiDtos.BekendeDerde>(source),
+            BrpDtos.OnbekendeDerde => context.Mapper.Map<BrpApiDtos.OnbekendeDerde>(source),
             _ => null
         };
     }
