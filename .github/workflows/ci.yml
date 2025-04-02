@@ -46,6 +46,7 @@ jobs:
         with:
           path-csproj-file: ${{ env.APP_CSPROJ_FILE_PATH }}
           build-run: ${{ steps.build-run-id.outputs.build-run }}
+          
       - name: Zet versie met build run in Mock csproj
         uses: ./.github/actions/zet-versie-met-build-run-in-csproj
         id: mock-version
@@ -72,6 +73,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+
       - name: Install dependencies
         run: npm ci
 
@@ -87,30 +89,24 @@ jobs:
       - name: Start containers
         run: |
           ./scripts/containers-start.sh ci
+
       - name: Wait for DB restart
         run: sleep 5s
         shell: bash
 
       - name: Valideer functionele specs
-        run: |
-          ./scripts/specs-verify.sh
+        uses: ./.github/actions/valideer-functionele-specs
 
       - name: Stop containers
         if: always()
         run: |
           ./scripts/containers-stop.sh ci
-
-      - name: Voeg test summary toe aan Github Step Summary
-        if: always()
-        run: |
-          node ./scripts/generate-step-summary.js
-          echo "### Cucumber Test Reports" >> $GITHUB_STEP_SUMMARY
-          cat ${{ env.SPEC_VERIFY_STEP_SUMMARY_FILE_PATH }} >> $GITHUB_STEP_SUMMARY
   
       - name: Genereer test rapportage
         if: always()
         run: |
           node ./scripts/generate-cucumber-reports.js
+
       - name: Upload test rapportage
         if: always()
         uses: actions/upload-artifact@v4
@@ -119,6 +115,7 @@ jobs:
           path: |
             test-reports
             test-data/logs
+
       - name: Push test rapportage naar brp-api.github.io repo
         if: false
         uses: tech-thinker/push-to-repo@main
@@ -138,11 +135,13 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Configureer container image builder voor multi-platform
         uses: docker/setup-buildx-action@v3
         with:
           platforms: linux/amd64,linux/arm64
           driver: docker-container
+
       - name: Build & push app container images naar registry
         if: always() && (steps.changed-project.outputs.app == 'true' || inputs.publishType == 'app')
         uses: docker/build-push-action@v6
@@ -155,6 +154,7 @@ jobs:
             ${{ env.APP_CONTAINER_IMAGE }}:latest
             ${{ env.APP_CONTAINER_IMAGE }}:${{ steps.app-version.outputs.version }}-latest
             ${{ env.APP_CONTAINER_IMAGE }}:${{ steps.app-version.outputs.version }}-${{ steps.build-run-id.outputs.build-run }}
+
       - name: Build & push mock container images naar registry
         if: always() && (steps.changed-project.outputs.mock == 'true' || inputs.publishType == 'mock')
         uses: docker/build-push-action@v6
