@@ -1,0 +1,13 @@
+POST http://localhost:5010/haalcentraal/api/brp/personen
+Content-Type: application/json
+
+{
+    "type": "RaadpleegMetBurgerservicenummer",
+    "burgerservicenummer": [
+        "999970264"
+    ],
+    "fields": [
+        "burgerservicenummer",
+        "gezag"
+    ]
+}

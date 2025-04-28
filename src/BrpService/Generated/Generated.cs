@@ -786,17 +786,12 @@ namespace HaalCentraal.BrpService.Generated
 
     }
 
+    [Newtonsoft.Json.JsonConverter(typeof(JsonInheritanceConverter), "type")]
+    [JsonInheritanceAttribute("BekendeDerde", typeof(BekendeDerde))]
+    [JsonInheritanceAttribute("OnbekendeDerde", typeof(OnbekendeDerde))]
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Meerderjarige
+    public partial class Derde
     {
-        [Newtonsoft.Json.JsonProperty("burgerservicenummer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Burgerservicenummer { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("naam", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public NaamBasis Naam { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("geslacht", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Geslachtsaanduiding Geslacht { get; set; }
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
 
@@ -810,13 +805,32 @@ namespace HaalCentraal.BrpService.Generated
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class BekendeDerde : Derde
+    {
+        [Newtonsoft.Json.JsonProperty("burgerservicenummer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Burgerservicenummer { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("naam", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NaamBasis Naam { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("geslacht", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public Geslachtsaanduiding Geslacht { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class OnbekendeDerde : Derde
+    {
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class GezamenlijkGezag : AbstractGezagsrelatie
     {
         [Newtonsoft.Json.JsonProperty("ouder", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public GezagOuder Ouder { get; set; }
 
         [Newtonsoft.Json.JsonProperty("derde", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Meerderjarige Derde { get; set; }
+        public Derde Derde { get; set; }
 
     }
 
@@ -824,7 +838,7 @@ namespace HaalCentraal.BrpService.Generated
     public partial class Voogdij : AbstractGezagsrelatie
     {
         [Newtonsoft.Json.JsonProperty("derden", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.List<Meerderjarige> Derden { get; set; }
+        public System.Collections.Generic.List<BekendeDerde> Derden { get; set; }
 
     }
 

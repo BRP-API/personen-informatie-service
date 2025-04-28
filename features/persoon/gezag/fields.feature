@@ -32,6 +32,7 @@ Functionaliteit: gezagsrelaties vragen met fields
       | type                             | GezamenlijkGezag |
       | minderjarige.burgerservicenummer | 000000036        |
       | ouder.burgerservicenummer        | 000000061        |
+      | derde.type                       | BekendeDerde     |
       | derde.burgerservicenummer        | 000000048        |
 
   Regel: Het vragen van één of meerdere velden van 'gezag' levert alle velden van 'gezag' die van toepassing zijn op de persoon
@@ -62,6 +63,7 @@ Functionaliteit: gezagsrelaties vragen met fields
       | type                             | GezamenlijkGezag |
       | minderjarige.burgerservicenummer | 000000036        |
       | ouder.burgerservicenummer        | 000000061        |
+      | derde.type                       | BekendeDerde     |
       | derde.burgerservicenummer        | 000000048        |
 
       Voorbeelden:
