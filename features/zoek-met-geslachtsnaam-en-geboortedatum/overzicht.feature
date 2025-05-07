@@ -118,7 +118,7 @@ Regel: Optionele 'naam' parameters (niet hooflettergevoelig) kunnen worden toege
     | MAASSEN       | pieter    | 000000024           |
     | maassen       | jan peter | 000000025           |
 
-  Abstract Scenario: Zoek met volledige voorvoegsel
+  Abstract Scenario: Zoek met volledig voorvoegsel
     Gegeven de persoon met burgerservicenummer '000000024' heeft de volgende gegevens
     | geboortedatum (03.10) | geslachtsnaam (02.40) | voornamen (02.10) |
     | 19830526              | Maassen               | Pieter            |
