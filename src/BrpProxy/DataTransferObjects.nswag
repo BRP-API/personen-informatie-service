@@ -3,7 +3,7 @@
   "defaultVariables": null,
   "documentGenerator": {
     "fromDocument": {
-      "url": "../../specificatie/informatie-service/openapi.yaml",
+      "url": "../../specificatie/informatie-service/openapi-v1.yaml",
       "output": null,
       "newLineBehavior": "Auto"
     }
