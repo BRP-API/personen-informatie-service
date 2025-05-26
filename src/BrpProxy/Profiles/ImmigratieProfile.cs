@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Brp.Shared.DtoMappers.Mappers;
-using HaalCentraal.BrpProxy.Generated;
-using HaalCentraal.BrpProxy.Generated.Gba;
+using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
+using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
 
 namespace BrpProxy.Profiles;
 
@@ -9,7 +9,7 @@ public class ImmigratieProfile : Profile
 {
     public ImmigratieProfile()
     {
-        CreateMap<GbaImmigratie, Immigratie>()
+        CreateMap<BrpDtos.GbaImmigratie, BrpApiDtos.Immigratie>()
             .ForMember(dest => dest.DatumVestigingInNederland, opt => opt.MapFrom(src => src.DatumVestigingInNederland.Map()))
             .ForMember(dest => dest.LandVanwaarIngeschreven, opt =>
             {
@@ -27,6 +27,6 @@ public class ImmigratieProfile : Profile
             })
             ;
 
-        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, ImmigratieInOnderzoek?>().ConvertUsing<ImmigratieInOnderzoekConverter>();
+        CreateMap<BrpDtos.InOnderzoek, BrpApiDtos.ImmigratieInOnderzoek?>().ConvertUsing<ImmigratieInOnderzoekConverter>();
     }
 }

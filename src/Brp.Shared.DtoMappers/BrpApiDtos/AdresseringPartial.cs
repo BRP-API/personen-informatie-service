@@ -1,6 +1,6 @@
-﻿using Brp.Shared.DtoMappers.CommonDtos;
+﻿using Brp.Shared.DtoMappers.Interfaces;
 
-namespace HaalCentraal.BrpProxy.Generated;
+namespace Brp.Shared.DtoMappers.BrpApiDtos;
 
 public partial class Adressering : IAdressering
 {
@@ -16,14 +16,6 @@ public partial class Adressering : IAdressering
         Land != null ||
         InOnderzoek != null
         ;
-}
-
-public interface IAdressering
-{
-    string Adresregel1 { get; set; }
-    string Adresregel2 { get; set; }
-    string Adresregel3 { get; set; }
-    Waardetabel Land { get; set; }
 }
 
 public partial class AdresseringInOnderzoek : IAdresregelsInOnderzoek

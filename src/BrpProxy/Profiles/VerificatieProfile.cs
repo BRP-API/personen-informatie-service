@@ -7,7 +7,7 @@ public class VerificatieProfile : Profile
 {
     public VerificatieProfile()
     {
-        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.GbaVerificatie, HaalCentraal.BrpProxy.Generated.Verificatie>()
+        CreateMap<Brp.Shared.DtoMappers.BrpDtos.GbaVerificatie, Brp.Shared.DtoMappers.BrpApiDtos.Verificatie>()
             .ForMember(dest => dest.Datum, opt => opt.MapFrom(src => src.Datum.Map()))
             ;
     }

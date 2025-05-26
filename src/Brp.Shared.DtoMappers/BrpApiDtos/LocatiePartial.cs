@@ -1,4 +1,4 @@
-﻿namespace HaalCentraal.BrpProxy.Generated;
+﻿namespace Brp.Shared.DtoMappers.BrpApiDtos;
 
 public partial class Locatie
 {

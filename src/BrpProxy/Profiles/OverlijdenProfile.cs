@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Brp.Shared.DtoMappers.Mappers;
 using BrpProxy.Mappers;
-using HaalCentraal.BrpProxy.Generated;
-using HaalCentraal.BrpProxy.Generated.Gba;
+using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
+using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
 
 namespace BrpProxy.Profiles;
 
@@ -10,7 +10,7 @@ public class OverlijdenProfile : Profile
 {
     public OverlijdenProfile()
     {
-        CreateMap<GbaOverlijden, Overlijden>()
+        CreateMap<BrpDtos.GbaOverlijden, BrpApiDtos.Overlijden>()
             .ForMember(dest => dest.Datum, opt => opt.MapFrom(src => src.Datum.Map()))
             .ForMember(dest => dest.Land, opt =>
             {
@@ -24,6 +24,6 @@ public class OverlijdenProfile : Profile
             })
             ;
 
-        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, OverlijdenInOnderzoek?>().ConvertUsing<OverlijdenInOnderzoekConverter>();
+        CreateMap<BrpDtos.InOnderzoek, BrpApiDtos.OverlijdenInOnderzoek?>().ConvertUsing<OverlijdenInOnderzoekConverter>();
     }
 }

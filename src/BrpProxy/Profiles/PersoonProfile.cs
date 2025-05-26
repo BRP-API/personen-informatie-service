@@ -3,6 +3,8 @@ using Brp.Shared.DtoMappers.Mappers;
 using BrpProxy.Mappers;
 using HaalCentraal.BrpProxy.Generated;
 using HaalCentraal.BrpProxy.Generated.Gba;
+using Adressering = Brp.Shared.DtoMappers.BrpApiDtos.Adressering;
+using AdresseringBeperkt = Brp.Shared.DtoMappers.BrpApiDtos.AdresseringBeperkt;
 
 namespace BrpProxy.Profiles;
 
@@ -22,9 +24,9 @@ public class PersoonProfile : Profile
             {
                 if (src.PersoonInOnderzoek != null)
                 {
-                    src.Naam ??= new HaalCentraal.BrpProxy.Generated.Gba.NaamBasis();
+                    src.Naam ??= new Brp.Shared.DtoMappers.CommonDtos.NaamBasis();
 
-                    src.Geboorte ??= new HaalCentraal.BrpProxy.Generated.Gba.GeboorteBasis();
+                    src.Geboorte ??= new Brp.Shared.DtoMappers.BrpDtos.GeboorteBasis();
                 }
             })
             .AfterMap((src, dest) =>
@@ -63,11 +65,11 @@ public class PersoonProfile : Profile
             .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek()))
             .BeforeMap((src, dest) =>
             {
-                if(src.PersoonInOnderzoek != null)
+                if (src.PersoonInOnderzoek != null)
                 {
-                    src.Naam ??= new HaalCentraal.BrpProxy.Generated.Gba.NaamBasis();
+                    src.Naam ??= new Brp.Shared.DtoMappers.CommonDtos.NaamBasis();
 
-                    src.Geboorte ??= new HaalCentraal.BrpProxy.Generated.Gba.GeboorteBasis();
+                    src.Geboorte ??= new Brp.Shared.DtoMappers.BrpDtos.GeboorteBasis();
                 }
             })
             .AfterMap((src, dest) =>
@@ -99,9 +101,9 @@ public class PersoonProfile : Profile
         CreateMap<GbaPersoon, Persoon>()
             .BeforeMap((src, dest) =>
             {
-                if(src.Naam != null || src.PersoonInOnderzoek != null)
+                if (src.Naam != null || src.PersoonInOnderzoek != null)
                 {
-                    src.Naam ??= new GbaNaamPersoon();
+                    src.Naam ??= new Brp.Shared.DtoMappers.BrpDtos.GbaNaamPersoon();
                     if(src.Partners != null)
                     {
                         src.Naam.Partners = src.Partners;
@@ -109,11 +111,11 @@ public class PersoonProfile : Profile
                 }
                 if (src.Geboorte != null || src.PersoonInOnderzoek != null)
                 {
-                    src.Geboorte ??= new GbaGeboorte();
+                    src.Geboorte ??= new Brp.Shared.DtoMappers.BrpDtos.GbaGeboorte();
                 }
-                if(src.Immigratie != null || src.Verblijfplaats != null)
+                if (src.Immigratie != null || src.Verblijfplaats != null)
                 {
-                    src.Immigratie ??= new GbaImmigratie();
+                    src.Immigratie ??= new Brp.Shared.DtoMappers.BrpDtos.GbaImmigratie();
                     src.Immigratie.InOnderzoek = src.Verblijfplaats?.InOnderzoek;
                 }
             })
@@ -134,7 +136,7 @@ public class PersoonProfile : Profile
                     };
                 }
                 if (src.PersoonInOnderzoek != null ||
-                    (src.Partners != null && src.Partners.Any(p => p.InOnderzoek != null))||
+                    (src.Partners != null && src.Partners.Any(p => p.InOnderzoek != null)) ||
                     src.Verblijfplaats?.InOnderzoek != null)
                 {
                     dest.Adressering ??= new Adressering();
@@ -166,7 +168,8 @@ public class PersoonProfile : Profile
             })
             .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek()))
             .ForMember(dest => dest.IndicatieGezagMinderjarige, opt => opt.MapFrom(src => src.IndicatieGezagMinderjarige))
-            .ForMember(dest => dest.Gezag, opt => {
+            .ForMember(dest => dest.Gezag, opt =>
+            {
                 opt.PreCondition(src => src.Gezag != null);
                 opt.MapFrom(src => src.Gezag);
             })

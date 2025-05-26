@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Brp.Shared.DtoMappers.Mappers;
-using HaalCentraal.BrpProxy.Generated;
-using HaalCentraal.BrpProxy.Generated.Gba;
+using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
+using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
 
 namespace BrpProxy.Profiles;
 
@@ -9,40 +9,40 @@ public class NationaliteitProfile : Profile
 {
     public NationaliteitProfile()
     {
-        CreateMap<GbaNationaliteit, AbstractNationaliteit?>().ConvertUsing<NationaliteitConverter>();
+        CreateMap<BrpDtos.GbaNationaliteit, BrpApiDtos.AbstractNationaliteit?>().ConvertUsing<NationaliteitConverter>();
 
-        CreateMap<GbaNationaliteit, NationaliteitBekend>()
+        CreateMap<BrpDtos.GbaNationaliteit, BrpApiDtos.NationaliteitBekend>()
             .ForMember(dest => dest.Nationaliteit, opt => opt.MapFrom(src => src.Nationaliteit))
             .ForMember(dest => dest.DatumIngangGeldigheid, opt => opt.MapFrom(src => src.DatumIngangGeldigheid.Map()))
             .ForMember(dest => dest.RedenOpname, opt => opt.PreCondition(src => src.RedenOpname?.Code != "000"))
             ;
 
-        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, NationaliteitBekendInOnderzoek?>().ConvertUsing<NationaliteitInOnderzoekConverter>();
+        CreateMap<BrpDtos.InOnderzoek, BrpApiDtos.NationaliteitBekendInOnderzoek?>().ConvertUsing<NationaliteitInOnderzoekConverter>();
 
-        CreateMap<GbaNationaliteit, BehandeldAlsNederlander>()
+        CreateMap<BrpDtos.GbaNationaliteit, BrpApiDtos.BehandeldAlsNederlander>()
             .ForMember(dest => dest.DatumIngangGeldigheid, opt => opt.MapFrom(src => src.DatumIngangGeldigheid.Map()))
             .ForMember(dest => dest.RedenOpname, opt => opt.PreCondition(src => src.RedenOpname?.Code != "000"))
             ;
 
-        CreateMap<GbaNationaliteit, VastgesteldNietNederlander>()
+        CreateMap<BrpDtos.GbaNationaliteit, BrpApiDtos.VastgesteldNietNederlander>()
             .ForMember(dest => dest.DatumIngangGeldigheid, opt => opt.MapFrom(src => src.DatumIngangGeldigheid.Map()))
             .ForMember(dest => dest.RedenOpname, opt => opt.PreCondition(src => src.RedenOpname?.Code != "000"))
             ;
 
-        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, BijzonderNederlanderschapInOnderzoek?>().ConvertUsing<BijzonderNederlanderschapInOnderzoekConverter>();
+        CreateMap<BrpDtos.InOnderzoek, BrpApiDtos.BijzonderNederlanderschapInOnderzoek?>().ConvertUsing<BijzonderNederlanderschapInOnderzoekConverter>();
 
-        CreateMap<GbaNationaliteit, Staatloos>()
+        CreateMap<BrpDtos.GbaNationaliteit, BrpApiDtos.Staatloos>()
             .ForMember(dest => dest.DatumIngangGeldigheid, opt => opt.MapFrom(src => src.DatumIngangGeldigheid.Map()))
             .ForMember(dest => dest.RedenOpname, opt => opt.PreCondition(src => src.RedenOpname?.Code != "000"))
             ;
 
-        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, StaatloosInOnderzoek?>().ConvertUsing<StaatloosInOnderzoekConverter>();
+        CreateMap<BrpDtos.InOnderzoek, BrpApiDtos.StaatloosInOnderzoek?>().ConvertUsing<StaatloosInOnderzoekConverter>();
 
-        CreateMap<GbaNationaliteit, NationaliteitOnbekend>()
+        CreateMap<BrpDtos.GbaNationaliteit, BrpApiDtos.NationaliteitOnbekend>()
             .ForMember(dest => dest.DatumIngangGeldigheid, opt => opt.MapFrom(src => src.DatumIngangGeldigheid.Map()))
             .ForMember(dest => dest.RedenOpname, opt => opt.PreCondition(src => src.RedenOpname?.Code != "000"))
             ;
 
-        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, NationaliteitOnbekendInOnderzoek?>().ConvertUsing<NationaliteitOnbekendInOnderzoekConverter>();
+        CreateMap<BrpDtos.InOnderzoek, BrpApiDtos.NationaliteitOnbekendInOnderzoek?>().ConvertUsing<NationaliteitOnbekendInOnderzoekConverter>();
     }
 }

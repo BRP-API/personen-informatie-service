@@ -1,4 +1,4 @@
-﻿namespace HaalCentraal.BrpProxy.Generated.Gba;
+﻿namespace Brp.Shared.DtoMappers.BrpDtos;
 
 public partial class GbaImmigratie
 {

@@ -1,6 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using Brp.Shared.DtoMappers.Interfaces;
+using Newtonsoft.Json;
 
-namespace HaalCentraal.BrpProxy.Generated;
+namespace Brp.Shared.DtoMappers.BrpApiDtos;
 
 public partial class NaamPersoon : INaam
 {

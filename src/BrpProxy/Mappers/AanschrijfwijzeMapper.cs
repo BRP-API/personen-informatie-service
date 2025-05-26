@@ -1,7 +1,7 @@
-﻿using Brp.Shared.DtoMappers.CommonDtos;
+﻿using Brp.Shared.DtoMappers.BrpApiDtos;
+using Brp.Shared.DtoMappers.CommonDtos;
 using Brp.Shared.DtoMappers.Interfaces;
 using Brp.Shared.DtoMappers.Mappers;
-using HaalCentraal.BrpProxy.Generated;
 using System.Text.RegularExpressions;
 
 namespace BrpProxy.Mappers;
@@ -193,12 +193,12 @@ public static class AanschrijfwijzeMapper
         var retval = partner.Achternaam().IsLeegOfOnbekend()
             ? $"{persoon.Voorletters} {achternaam}"
             : persoon.AanduidingNaamgebruik() switch
-        {
-            "P" => $"{persoon.Voorletters} {achternaamPartner}",
-            "V" => $"{persoon.Voorletters} {achternaamPartner}-{achternaam}",
-            "N" => $"{persoon.Voorletters} {achternaam}-{achternaamPartner}",
-            _ => string.Empty
-        };
+            {
+                "P" => $"{persoon.Voorletters} {achternaamPartner}",
+                "V" => $"{persoon.Voorletters} {achternaamPartner}-{achternaam}",
+                "N" => $"{persoon.Voorletters} {achternaam}-{achternaamPartner}",
+                _ => string.Empty
+            };
 
         return retval.RemoveRedundantSpaces().ToNull();
     }
@@ -213,12 +213,12 @@ public static class AanschrijfwijzeMapper
         var retval = partner.Achternaam().IsLeegOfOnbekend()
             ? $"{persoon.Voorletters} {achternaam}"
             : persoon.AanduidingNaamgebruik() switch
-                {
-                    "E" => $"{persoon.Voorletters} {achternaam}",
-                    "V" => $"{persoon.Voorletters} {achternaamPartner}-{achternaam}",
-                    "N" => $"{persoon.Voorletters} {achternaam}-{achternaamPartner}",
-                    _ => string.Empty
-                };
+            {
+                "E" => $"{persoon.Voorletters} {achternaam}",
+                "V" => $"{persoon.Voorletters} {achternaamPartner}-{achternaam}",
+                "N" => $"{persoon.Voorletters} {achternaam}-{achternaamPartner}",
+                _ => string.Empty
+            };
 
         return retval.RemoveRedundantSpaces().ToNull();
     }
@@ -230,12 +230,12 @@ public static class AanschrijfwijzeMapper
         var retval = partner.Achternaam().IsLeegOfOnbekend()
             ? $"{titel} {persoon.Voorletters} {persoon.Achternaam()}"
             : persoon.AanduidingNaamgebruik() switch
-                {
-                    "E" => $"{titel} {persoon.Voorletters} {persoon.Achternaam()}",
-                    "V" => $"{persoon.Voorletters} {partner.Achternaam()}-{titel} {persoon.Achternaam()}",
-                    "N" => $"{titel} {persoon.Voorletters} {persoon.Achternaam()}-{partner.Achternaam()}",
-                    _ => string.Empty
-                };
+            {
+                "E" => $"{titel} {persoon.Voorletters} {persoon.Achternaam()}",
+                "V" => $"{persoon.Voorletters} {partner.Achternaam()}-{titel} {persoon.Achternaam()}",
+                "N" => $"{titel} {persoon.Voorletters} {persoon.Achternaam()}-{partner.Achternaam()}",
+                _ => string.Empty
+            };
 
         return retval.RemoveRedundantSpaces().Capitalize().ToNull();
     }
@@ -245,13 +245,13 @@ public static class AanschrijfwijzeMapper
         var retval = partner.Achternaam().IsLeegOfOnbekend()
             ? $"{persoon.Voorletters} {persoon.Achternaam()}"
             : persoon.AanduidingNaamgebruik() switch
-                {
-                    "E" => $"{persoon.Voorletters} {persoon.Achternaam()}",
-                    "P" => $"{persoon.Voorletters} {partner.Achternaam()}",
-                    "V" => $"{persoon.Voorletters} {partner.Achternaam()}-{persoon.Achternaam()}",
-                    "N" => $"{persoon.Voorletters} {persoon.Achternaam()}-{partner.Achternaam()}",
-                    _ => string.Empty
-                };
+            {
+                "E" => $"{persoon.Voorletters} {persoon.Achternaam()}",
+                "P" => $"{persoon.Voorletters} {partner.Achternaam()}",
+                "V" => $"{persoon.Voorletters} {partner.Achternaam()}-{persoon.Achternaam()}",
+                "N" => $"{persoon.Voorletters} {persoon.Achternaam()}-{partner.Achternaam()}",
+                _ => string.Empty
+            };
 
         return retval.RemoveRedundantSpaces().Capitalize().ToNull();
     }

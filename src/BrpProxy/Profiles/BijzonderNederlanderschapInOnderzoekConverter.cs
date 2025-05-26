@@ -1,16 +1,17 @@
 ﻿using AutoMapper;
 using Brp.Shared.DtoMappers.Mappers;
-using HaalCentraal.BrpProxy.Generated;
+using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
+using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
 
 namespace BrpProxy.Profiles;
 
-public class BijzonderNederlanderschapInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, BijzonderNederlanderschapInOnderzoek?>
+public class BijzonderNederlanderschapInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.BijzonderNederlanderschapInOnderzoek?>
 {
-    public BijzonderNederlanderschapInOnderzoek? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, BijzonderNederlanderschapInOnderzoek? destination, ResolutionContext context)
+    public BrpApiDtos.BijzonderNederlanderschapInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.BijzonderNederlanderschapInOnderzoek? destination, ResolutionContext context)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
-            "040000" => new BijzonderNederlanderschapInOnderzoek
+            "040000" => new BrpApiDtos.BijzonderNederlanderschapInOnderzoek
             {
                 RedenOpname = true,
                 Type = true,
@@ -19,13 +20,13 @@ public class BijzonderNederlanderschapInOnderzoekConverter : ITypeConverter<Haal
             "040500" or
             "040510" or
             "046500" or
-            "046510" => new BijzonderNederlanderschapInOnderzoek
+            "046510" => new BrpApiDtos.BijzonderNederlanderschapInOnderzoek
             {
                 Type = true,
                 DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
 
             },
-            "046300" or "046310" => new BijzonderNederlanderschapInOnderzoek
+            "046300" or "046310" => new BrpApiDtos.BijzonderNederlanderschapInOnderzoek
             {
                 RedenOpname = true,
                 DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()

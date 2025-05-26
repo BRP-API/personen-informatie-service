@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Brp.Shared.DtoMappers.Mappers;
-using HaalCentraal.BrpProxy.Generated;
-using HaalCentraal.BrpProxy.Generated.Gba;
+using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
+using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
 
 namespace BrpProxy.Profiles;
 
@@ -9,7 +9,7 @@ public class EuropeesKiesrechtProfile : Profile
 {
     public EuropeesKiesrechtProfile()
     {
-        CreateMap<GbaEuropeesKiesrecht, EuropeesKiesrecht>()
+        CreateMap<BrpDtos.GbaEuropeesKiesrecht, BrpApiDtos.EuropeesKiesrecht>()
             .ForMember(dest => dest.EinddatumUitsluiting, opt => opt.MapFrom(src => src.EinddatumUitsluiting.Map()));
     }
 }

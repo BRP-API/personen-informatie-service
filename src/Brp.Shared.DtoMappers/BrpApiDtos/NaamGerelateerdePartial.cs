@@ -1,6 +1,6 @@
 ﻿using Brp.Shared.DtoMappers.Interfaces;
 
-namespace HaalCentraal.BrpProxy.Generated;
+namespace Brp.Shared.DtoMappers.BrpApiDtos;
 
 public partial class NaamGerelateerde : INaamBasis
 {

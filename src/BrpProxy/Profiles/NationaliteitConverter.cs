@@ -1,22 +1,22 @@
 ﻿using AutoMapper;
-using HaalCentraal.BrpProxy.Generated;
-using HaalCentraal.BrpProxy.Generated.Gba;
+using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
+using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
 
 namespace BrpProxy.Profiles;
 
-public class NationaliteitConverter : ITypeConverter<GbaNationaliteit, AbstractNationaliteit?>
+public class NationaliteitConverter : ITypeConverter<BrpDtos.GbaNationaliteit, BrpApiDtos.AbstractNationaliteit?>
 {
-    public AbstractNationaliteit? Convert(GbaNationaliteit source, AbstractNationaliteit? destination, ResolutionContext context)
+    public BrpApiDtos.AbstractNationaliteit? Convert(BrpDtos.GbaNationaliteit source, BrpApiDtos.AbstractNationaliteit? destination, ResolutionContext context)
     {
         return source switch
         {
-            { Nationaliteit.Code: var code } when code == "0002" => context.Mapper.Map<BehandeldAlsNederlander>(source),
-            { Nationaliteit.Code: var code } when code == "0500" => context.Mapper.Map<VastgesteldNietNederlander>(source),
-            { Nationaliteit.Code: var code } when code == "0499" => context.Mapper.Map<Staatloos>(source),
-            { Nationaliteit.Code: var code } when code != "0000" => context.Mapper.Map<NationaliteitBekend>(source),
-            { AanduidingBijzonderNederlanderschap: var code } when code == "B" => context.Mapper.Map<BehandeldAlsNederlander>(source),
-            { AanduidingBijzonderNederlanderschap: var code } when code == "V" => context.Mapper.Map<VastgesteldNietNederlander>(source),
-            _ => context.Mapper.Map<NationaliteitOnbekend>(source)
+            { Nationaliteit.Code: var code } when code == "0002" => context.Mapper.Map<BrpApiDtos.BehandeldAlsNederlander>(source),
+            { Nationaliteit.Code: var code } when code == "0500" => context.Mapper.Map<BrpApiDtos.VastgesteldNietNederlander>(source),
+            { Nationaliteit.Code: var code } when code == "0499" => context.Mapper.Map<BrpApiDtos.Staatloos>(source),
+            { Nationaliteit.Code: var code } when code != "0000" => context.Mapper.Map<BrpApiDtos.NationaliteitBekend>(source),
+            { AanduidingBijzonderNederlanderschap: var code } when code == "B" => context.Mapper.Map<BrpApiDtos.BehandeldAlsNederlander>(source),
+            { AanduidingBijzonderNederlanderschap: var code } when code == "V" => context.Mapper.Map<BrpApiDtos.VastgesteldNietNederlander>(source),
+            _ => context.Mapper.Map<BrpApiDtos.NationaliteitOnbekend>(source)
         };
     }
 }
