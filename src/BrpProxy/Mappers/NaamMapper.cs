@@ -1,5 +1,5 @@
-﻿using Brp.Shared.DtoMappers.Mappers;
-using HaalCentraal.BrpProxy.Generated;
+﻿using Brp.Shared.DtoMappers.BrpApiDtos;
+using Brp.Shared.DtoMappers.Mappers;
 
 namespace BrpProxy.Mappers;
 

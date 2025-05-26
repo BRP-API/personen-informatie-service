@@ -1,11 +1,12 @@
 ﻿using Brp.Shared.DtoMappers.Mappers;
-using HaalCentraal.BrpProxy.Generated;
+using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
+using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
 
 namespace BrpProxy.Profiles;
 
 public static class GeboorteInOnderzoekExtensions
 {
-    public static void MapInOnderzoek(this Geboorte? dest, HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? source)
+    public static void MapInOnderzoek(this BrpApiDtos.Geboorte? dest, BrpDtos.InOnderzoek? source)
     {
         if (dest != null && source != null)
         {
@@ -13,7 +14,7 @@ public static class GeboorteInOnderzoekExtensions
         }
     }
 
-    public static void MapInOnderzoek(this GeboorteBeperkt? dest, HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? source)
+    public static void MapInOnderzoek(this BrpApiDtos.GeboorteBeperkt? dest, BrpDtos.InOnderzoek? source)
     {
         if (dest != null && source != null)
         {
@@ -21,7 +22,7 @@ public static class GeboorteInOnderzoekExtensions
         }
     }
 
-    private static GeboorteInOnderzoek? MapGeboorteInOnderzoek(this HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? source)
+    private static BrpApiDtos.GeboorteInOnderzoek? MapGeboorteInOnderzoek(this BrpDtos.InOnderzoek? source)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
@@ -34,7 +35,7 @@ public static class GeboorteInOnderzoekExtensions
             "050000" or
             "050300" or
             "090000" or
-            "090300" => new GeboorteInOnderzoek
+            "090300" => new BrpApiDtos.GeboorteInOnderzoek
             {
                 Datum = true,
                 Land = true,
@@ -45,7 +46,7 @@ public static class GeboorteInOnderzoekExtensions
             "020310" or
             "030310" or
             "050310" or
-            "090310" => new GeboorteInOnderzoek
+            "090310" => new BrpApiDtos.GeboorteInOnderzoek
             {
                 Datum = true,
                 DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
@@ -54,7 +55,7 @@ public static class GeboorteInOnderzoekExtensions
             "020320" or
             "030320" or
             "050320" or
-            "090320" => new GeboorteInOnderzoek
+            "090320" => new BrpApiDtos.GeboorteInOnderzoek
             {
                 Plaats = true,
                 DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
@@ -63,7 +64,7 @@ public static class GeboorteInOnderzoekExtensions
             "020330" or
             "030330" or
             "050330" or
-            "090330" => new GeboorteInOnderzoek
+            "090330" => new BrpApiDtos.GeboorteInOnderzoek
             {
                 Land = true,
                 DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
@@ -72,13 +73,13 @@ public static class GeboorteInOnderzoekExtensions
         };
     }
 
-    private static GeboorteInOnderzoekBeperkt? MapGeboorteBeperktInOnderzoek(this HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? source)
+    private static BrpApiDtos.GeboorteInOnderzoekBeperkt? MapGeboorteBeperktInOnderzoek(this BrpDtos.InOnderzoek? source)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
             "010000" or
             "010300" or
-            "010310" => new GeboorteInOnderzoekBeperkt
+            "010310" => new BrpApiDtos.GeboorteInOnderzoekBeperkt
             {
                 Datum = true,
                 DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()

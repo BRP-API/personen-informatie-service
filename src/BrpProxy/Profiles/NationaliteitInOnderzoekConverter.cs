@@ -1,30 +1,31 @@
 ﻿using AutoMapper;
 using Brp.Shared.DtoMappers.Mappers;
-using HaalCentraal.BrpProxy.Generated;
+using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
+using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
 
 namespace BrpProxy.Profiles;
 
-public class NationaliteitInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, NationaliteitBekendInOnderzoek?>
+public class NationaliteitInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.NationaliteitBekendInOnderzoek?>
 {
-    public NationaliteitBekendInOnderzoek? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, NationaliteitBekendInOnderzoek? destination, ResolutionContext context)
+    public BrpApiDtos.NationaliteitBekendInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.NationaliteitBekendInOnderzoek? destination, ResolutionContext context)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
-            "040000" => new NationaliteitBekendInOnderzoek
+            "040000" => new BrpApiDtos.NationaliteitBekendInOnderzoek
             {
                 Nationaliteit = true,
                 RedenOpname = true,
                 Type = true,
                 DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
             },
-            "040500" or "040510" => new NationaliteitBekendInOnderzoek
+            "040500" or "040510" => new BrpApiDtos.NationaliteitBekendInOnderzoek
             {
                 Nationaliteit = true,
                 Type = true,
                 DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
 
             },
-            "046300" or "046310" => new NationaliteitBekendInOnderzoek
+            "046300" or "046310" => new BrpApiDtos.NationaliteitBekendInOnderzoek
             {
                 RedenOpname = true,
                 DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()

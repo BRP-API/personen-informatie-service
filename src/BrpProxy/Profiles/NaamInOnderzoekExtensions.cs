@@ -1,11 +1,13 @@
-﻿using Brp.Shared.DtoMappers.Mappers;
-using HaalCentraal.BrpProxy.Generated;
+﻿using Brp.Shared.DtoMappers.BrpApiDtos;
+using Brp.Shared.DtoMappers.Mappers;
+using NaamGerelateerde = Brp.Shared.DtoMappers.BrpApiDtos.NaamGerelateerde;
+using NaamInOnderzoek = Brp.Shared.DtoMappers.BrpApiDtos.NaamInOnderzoek;
 
 namespace BrpProxy.Profiles;
 
 public static class NaamInOnderzoekExtensions
 {
-    public static void MapInOnderzoek(this NaamGerelateerde? dest, HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? source)
+    public static void MapInOnderzoek(this NaamGerelateerde? dest, Brp.Shared.DtoMappers.BrpDtos.InOnderzoek? source)
     {
         if (dest != null && source != null)
         {
@@ -13,7 +15,7 @@ public static class NaamInOnderzoekExtensions
         }
     }
 
-    public static void MapInOnderzoek(this NaamPersoon? dest, HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? source)
+    public static void MapInOnderzoek(this NaamPersoon? dest, Brp.Shared.DtoMappers.BrpDtos.InOnderzoek? source)
     {
         if (dest != null && source != null)
         {
@@ -21,7 +23,7 @@ public static class NaamInOnderzoekExtensions
         }
     }
 
-    public static void MapInOnderzoek(this NaamPersoonBeperkt? dest, HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? source)
+    public static void MapInOnderzoek(this NaamPersoonBeperkt? dest, Brp.Shared.DtoMappers.BrpDtos.InOnderzoek? source)
     {
         if (dest != null && source != null)
         {
@@ -29,7 +31,7 @@ public static class NaamInOnderzoekExtensions
         }
     }
 
-    private static NaamPersoonInOnderzoek? MapNaamPersoonInOnderzoek(this HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? source)
+    private static NaamPersoonInOnderzoek? MapNaamPersoonInOnderzoek(this Brp.Shared.DtoMappers.BrpDtos.InOnderzoek? source)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
@@ -93,7 +95,7 @@ public static class NaamInOnderzoekExtensions
         };
     }
 
-    private static NaamPersoonInOnderzoekBeperkt? MapNaamPersoonBeperktInOnderzoek(this HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? source)
+    private static NaamPersoonInOnderzoekBeperkt? MapNaamPersoonBeperktInOnderzoek(this Brp.Shared.DtoMappers.BrpDtos.InOnderzoek? source)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
@@ -152,7 +154,7 @@ public static class NaamInOnderzoekExtensions
         };
     }
 
-    private static NaamInOnderzoek? MapNaamGerelateerdeInOnderzoek(this HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? source)
+    private static NaamInOnderzoek? MapNaamGerelateerdeInOnderzoek(this Brp.Shared.DtoMappers.BrpDtos.InOnderzoek? source)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {

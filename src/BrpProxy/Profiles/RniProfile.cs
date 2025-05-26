@@ -5,6 +5,6 @@ public class RniProfile : Profile
 {
 	public RniProfile()
 	{
-		CreateMap<HaalCentraal.BrpProxy.Generated.Gba.RniDeelnemer, HaalCentraal.BrpProxy.Generated.RniDeelnemer>();
+		CreateMap<Brp.Shared.DtoMappers.CommonDtos.RniDeelnemer, Brp.Shared.DtoMappers.CommonDtos.RniDeelnemer>();
 	}
 }

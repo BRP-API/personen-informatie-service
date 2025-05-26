@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
+using Brp.Shared.DtoMappers.BrpApiDtos;
 using Brp.Shared.DtoMappers.Mappers;
 using BrpProxy.Mappers;
-using HaalCentraal.BrpProxy.Generated;
-using HaalCentraal.BrpProxy.Generated.Gba;
 
 namespace BrpProxy.Profiles;
 
@@ -10,23 +9,23 @@ public class PartnerProfile : Profile
 {
     public PartnerProfile()
     {
-        CreateMap<GbaPartner, Partner>()
+        CreateMap<Brp.Shared.DtoMappers.BrpDtos.GbaPartner, Partner>()
             .BeforeMap((src, dest) =>
             {
                 if(src.InOnderzoek != null)
                 {
-                    src.Naam ??= new HaalCentraal.BrpProxy.Generated.Gba.NaamBasis();
+                    src.Naam ??= new Brp.Shared.DtoMappers.CommonDtos.NaamBasis();
 
-                    src.Geboorte ??= new GbaGeboorte();
+                    src.Geboorte ??= new Brp.Shared.DtoMappers.BrpDtos.GbaGeboorte();
                 }
                 if(src.AangaanHuwelijkPartnerschap != null || src.InOnderzoek != null)
                 {
-                    src.AangaanHuwelijkPartnerschap ??= new GbaAangaanHuwelijkPartnerschap();
+                    src.AangaanHuwelijkPartnerschap ??= new Brp.Shared.DtoMappers.BrpDtos.GbaAangaanHuwelijkPartnerschap();
                     src.AangaanHuwelijkPartnerschap.InOnderzoek = src.InOnderzoek;
                 }
                 if(src.OntbindingHuwelijkPartnerschap != null || src.InOnderzoek != null)
                 {
-                    src.OntbindingHuwelijkPartnerschap ??= new GbaOntbindingHuwelijkPartnerschap();
+                    src.OntbindingHuwelijkPartnerschap ??= new Brp.Shared.DtoMappers.BrpDtos.GbaOntbindingHuwelijkPartnerschap();
                     src.OntbindingHuwelijkPartnerschap.InOnderzoek = src.InOnderzoek;
                 }
             })
@@ -42,7 +41,7 @@ public class PartnerProfile : Profile
                 opt.MapFrom(src => src.SoortVerbintenis);
             });
 
-        CreateMap<GbaAangaanHuwelijkPartnerschap, AangaanHuwelijkPartnerschap>()
+        CreateMap<Brp.Shared.DtoMappers.BrpDtos.GbaAangaanHuwelijkPartnerschap, AangaanHuwelijkPartnerschap>()
             .ForMember(dest => dest.Datum, opt => opt.MapFrom(src => src.Datum.Map()))
             .ForMember(dest => dest.Land, opt =>
             {
@@ -57,11 +56,11 @@ public class PartnerProfile : Profile
            .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek.AangaanHuwelijkPartnerschapInOnderzoek()))
             ;
 
-        CreateMap<GbaOntbindingHuwelijkPartnerschap, OntbindingHuwelijkPartnerschap>()
+        CreateMap<Brp.Shared.DtoMappers.BrpDtos.GbaOntbindingHuwelijkPartnerschap, OntbindingHuwelijkPartnerschap>()
             .ForMember(dest => dest.Datum, opt => opt.MapFrom(src => src.Datum.Map()))
             ;
 
-        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, PartnerInOnderzoek?>().ConvertUsing<PartnerInOnderzoekConverter>();
-        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, OntbindingHuwelijkPartnerschapInOnderzoek?>().ConvertUsing<OntbondenPartnerInOnderzoekConverter>();
+        CreateMap<Brp.Shared.DtoMappers.BrpDtos.InOnderzoek, PartnerInOnderzoek?>().ConvertUsing<PartnerInOnderzoekConverter>();
+        CreateMap<Brp.Shared.DtoMappers.BrpDtos.InOnderzoek, OntbindingHuwelijkPartnerschapInOnderzoek?>().ConvertUsing<OntbondenPartnerInOnderzoekConverter>();
     }
 }

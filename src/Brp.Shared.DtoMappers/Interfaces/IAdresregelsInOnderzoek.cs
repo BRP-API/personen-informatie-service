@@ -1,6 +1,6 @@
 ﻿using Brp.Shared.DtoMappers.BrpApiDtos;
 
-namespace HaalCentraal.BrpProxy.Generated;
+namespace Brp.Shared.DtoMappers.Interfaces;
 
 public interface IAdresregelsInOnderzoek
 {

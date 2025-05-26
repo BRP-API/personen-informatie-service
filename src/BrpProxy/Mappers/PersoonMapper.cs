@@ -1,6 +1,9 @@
-﻿using Brp.Shared.DtoMappers.Mappers;
+﻿using Brp.Shared.DtoMappers.Interfaces;
+using Brp.Shared.DtoMappers.Mappers;
 using HaalCentraal.BrpProxy.Generated;
 using HaalCentraal.BrpProxy.Generated.Gba;
+using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
+using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
 
 namespace BrpProxy.Mappers;
 
@@ -11,7 +14,7 @@ public static class PersoonMapper
         return persoon.GeheimhoudingPersoonsgegevens > 0;
     }
 
-    private static void InitializePersoonInOnderzoek(this IPersoonInOnderzoek retval, HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? gbaInOnderzoek)
+    private static void InitializePersoonInOnderzoek(this IPersoonInOnderzoek retval, BrpDtos.InOnderzoek? gbaInOnderzoek)
     {
         if (gbaInOnderzoek != null)
         {
@@ -121,7 +124,7 @@ public static class PersoonMapper
         return retval;
     }
 
-    private static void InitializeAdresseringMetPersoonInOnderzoek(this AdresseringInOnderzoek retval, HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? gbaInOnderzoek)
+    private static void InitializeAdresseringMetPersoonInOnderzoek(this BrpApiDtos.AdresseringInOnderzoek retval, BrpDtos.InOnderzoek? gbaInOnderzoek)
     {
         if (gbaInOnderzoek != null)
         {
@@ -148,7 +151,7 @@ public static class PersoonMapper
         }
     }
 
-    private static void InitializeAdresseringMetPartnerInOnderzoek(this AdresseringInOnderzoek retval, HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? gbaInOnderzoek)
+    private static void InitializeAdresseringMetPartnerInOnderzoek(this BrpApiDtos.AdresseringInOnderzoek retval, BrpDtos.InOnderzoek? gbaInOnderzoek)
     {
         if(gbaInOnderzoek != null)
         {
@@ -170,7 +173,7 @@ public static class PersoonMapper
         }
     }
 
-    private static void InitializeAdresseringMetVerblijfplaatsInOnderzoek(this IAdresregelsInOnderzoek retval, HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek? gbaInOnderzoek)
+    private static void InitializeAdresseringMetVerblijfplaatsInOnderzoek(this IAdresregelsInOnderzoek retval, BrpDtos.InOnderzoek? gbaInOnderzoek)
     {
         if (gbaInOnderzoek != null)
         {
@@ -223,7 +226,7 @@ public static class PersoonMapper
         }
     }
 
-    public static AdresseringInOnderzoek? AdresseringInOnderzoek(this GbaPersoon persoon)
+    public static BrpApiDtos.AdresseringInOnderzoek? AdresseringInOnderzoek(this GbaPersoon persoon)
     {
         if(persoon.PersoonInOnderzoek == null &&
             (persoon.Partners == null || persoon.Partners.All(p => p.InOnderzoek == null)) &&
@@ -232,7 +235,7 @@ public static class PersoonMapper
             return null;
         }
 
-        AdresseringInOnderzoek retval = new();
+        BrpApiDtos.AdresseringInOnderzoek retval = new();
 
         retval.InitializeAdresseringMetPersoonInOnderzoek(persoon.PersoonInOnderzoek);
 
@@ -250,14 +253,14 @@ public static class PersoonMapper
         return retval;
     }
 
-    public static AdresseringInOnderzoekBeperkt? AdresseringInOnderzoek(this GbaPersoonBeperkt persoon)
+    public static BrpApiDtos.AdresseringInOnderzoekBeperkt? AdresseringInOnderzoek(this GbaPersoonBeperkt persoon)
     {
         if (persoon.Verblijfplaats?.InOnderzoek == null)
         {
             return null;
         }
 
-        AdresseringInOnderzoekBeperkt? retval = new();
+        BrpApiDtos.AdresseringInOnderzoekBeperkt? retval = new();
 
         retval.InitializeAdresseringMetVerblijfplaatsInOnderzoek(persoon?.Verblijfplaats?.InOnderzoek);
 

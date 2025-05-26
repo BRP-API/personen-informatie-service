@@ -2,6 +2,10 @@
 using Newtonsoft.Json;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using Kind = Brp.Shared.DtoMappers.BrpApiDtos.Kind;
+using Ouder = Brp.Shared.DtoMappers.BrpApiDtos.Ouder;
+using Partner = Brp.Shared.DtoMappers.BrpApiDtos.Partner;
+using AbstractNationaliteit = Brp.Shared.DtoMappers.BrpApiDtos.AbstractNationaliteit;
 
 namespace BrpProxy.Validators
 {

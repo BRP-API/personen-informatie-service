@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using Brp.Shared.DtoMappers.Mappers;
-using HaalCentraal.BrpProxy.Generated;
-using HaalCentraal.BrpProxy.Generated.Gba;
 
 namespace BrpProxy.Profiles;
 
@@ -9,7 +7,7 @@ public class UitsluitingKiesrechtProfile : Profile
 {
     public UitsluitingKiesrechtProfile()
     {
-        CreateMap<GbaUitsluitingKiesrecht, UitsluitingKiesrecht>()
+        CreateMap<Brp.Shared.DtoMappers.BrpDtos.GbaUitsluitingKiesrecht, Brp.Shared.DtoMappers.BrpApiDtos.UitsluitingKiesrecht>()
             .ForMember(dest => dest.Einddatum, opt => opt.MapFrom(src => src.Einddatum.Map()));
     }
 }

@@ -1,7 +1,7 @@
-﻿using Brp.Shared.DtoMappers.CommonDtos;
+﻿using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
+using CommonDtos = Brp.Shared.DtoMappers.CommonDtos;
 using BrpProxy.Mappers;
 using FluentAssertions;
-using HaalCentraal.BrpProxy.Generated;
 using Xunit;
 
 namespace BrpProxy.Tests
@@ -11,19 +11,19 @@ namespace BrpProxy.Tests
         [Fact]
         public void PersoonMetPartnerZonderAanduidingNaamgebruikHeeftGeenAanschrijfwijzeNaam()
         {
-            var persoon = new NaamPersoon
+            var persoon = new BrpApiDtos.NaamPersoon
             {
                 Geslachtsnaam = "Jansen",
                 Partners = new[]
                 {
-                    new Partner
+                    new BrpApiDtos.Partner
                     {
-                        Naam = new NaamGerelateerde { Geslachtsnaam = "Aedel"}
+                        Naam = new BrpApiDtos.NaamGerelateerde { Geslachtsnaam = "Aedel"}
                     }
                 }
             };
 
-            var actual = persoon.Aanschrijfwijze(new Waardetabel() { Code = "M" });
+            var actual = persoon.Aanschrijfwijze(new CommonDtos.Waardetabel() { Code = "M" });
 
             actual.Should().NotBeNull();
             actual!.Naam.Should().BeNull();
@@ -32,20 +32,20 @@ namespace BrpProxy.Tests
         [Fact]
         public void PersoonMetPartnerMetPredicaatZonderAanduidingNaamgebruikHeeftGeenAanschrijfwijzeNaam()
         {
-            var persoon = new NaamPersoon
+            var persoon = new BrpApiDtos.NaamPersoon
             {
                 Geslachtsnaam = "Jansen",
-                AdellijkeTitelPredicaat = new AdellijkeTitelPredicaatType { Code = "JH" },
+                AdellijkeTitelPredicaat = new CommonDtos.AdellijkeTitelPredicaatType { Code = "JH" },
                 Partners = new[]
                 {
-                    new Partner
+                    new BrpApiDtos.Partner
                     {
-                        Naam = new NaamGerelateerde { Geslachtsnaam = "Aedel"}
+                        Naam = new BrpApiDtos.NaamGerelateerde { Geslachtsnaam = "Aedel"}
                     }
                 }
             };
 
-            var actual = persoon.Aanschrijfwijze(new Waardetabel() { Code = "M" });
+            var actual = persoon.Aanschrijfwijze(new CommonDtos.Waardetabel() { Code = "M" });
 
             actual.Should().NotBeNull();
             actual!.Naam.Should().BeNull();
@@ -54,20 +54,20 @@ namespace BrpProxy.Tests
         [Fact]
         public void PersoonMetPartnerMetAdellijkeTitelZonderAanduidingNaamgebruikHeeftGeenAanschrijfwijzeNaam()
         {
-            var persoon = new NaamPersoon
+            var persoon = new BrpApiDtos.NaamPersoon
             {
                 Geslachtsnaam = "Jansen",
-                AdellijkeTitelPredicaat = new AdellijkeTitelPredicaatType { Code = "B" },
+                AdellijkeTitelPredicaat = new CommonDtos.AdellijkeTitelPredicaatType { Code = "B" },
                 Partners = new[]
                 {
-                    new Partner
+                    new BrpApiDtos.Partner
                     {
-                        Naam = new NaamGerelateerde { Geslachtsnaam = "Aedel"}
+                        Naam = new BrpApiDtos.NaamGerelateerde { Geslachtsnaam = "Aedel"}
                     }
                 }
             };
 
-            var actual = persoon.Aanschrijfwijze(new Waardetabel() { Code = "M" });
+            var actual = persoon.Aanschrijfwijze(new CommonDtos.Waardetabel() { Code = "M" });
 
             actual.Should().NotBeNull();
             actual!.Naam.Should().BeNull();
@@ -76,23 +76,23 @@ namespace BrpProxy.Tests
         [Fact]
         public void PersoonMetPartnerMetHoffelijkheidstitelZonderAanduidingNaamgebruikHeeftGeenAanschrijfwijzeNaam()
         {
-            var persoon = new NaamPersoon
+            var persoon = new BrpApiDtos.NaamPersoon
             {
                 Geslachtsnaam = "Jansen",
                 Partners = new[]
                 {
-                    new Partner
+                    new BrpApiDtos.Partner
                     {
-                        Naam = new NaamGerelateerde
+                        Naam = new BrpApiDtos.NaamGerelateerde
                         {
                             Geslachtsnaam = "Aedel",
-                            AdellijkeTitelPredicaat = new AdellijkeTitelPredicaatType { Code = "B" }
+                            AdellijkeTitelPredicaat = new CommonDtos.AdellijkeTitelPredicaatType { Code = "B" }
                         }
                     }
                 }
             };
 
-            var actual = persoon.Aanschrijfwijze(new Waardetabel { Code = "V" });
+            var actual = persoon.Aanschrijfwijze(new CommonDtos.Waardetabel { Code = "V" });
 
             actual.Should().NotBeNull();
             actual!.Naam.Should().BeNull();

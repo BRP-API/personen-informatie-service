@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
+using Brp.Shared.DtoMappers.BrpApiDtos;
 using Brp.Shared.DtoMappers.Mappers;
-using HaalCentraal.BrpProxy.Generated;
 
 namespace BrpProxy.Profiles;
 
-public class AdresInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, AdresInOnderzoek?>
+public class AdresInOnderzoekConverter : ITypeConverter<Brp.Shared.DtoMappers.BrpDtos.InOnderzoek, AdresInOnderzoek?>
 {
-    public AdresInOnderzoek? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, AdresInOnderzoek? destination, ResolutionContext context)
+    public AdresInOnderzoek? Convert(Brp.Shared.DtoMappers.BrpDtos.InOnderzoek source, AdresInOnderzoek? destination, ResolutionContext context)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
@@ -77,9 +77,9 @@ public class AdresInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Ge
     }
 }
 
-public class VerblijfadresBinnenlandInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, VerblijfadresBinnenlandInOnderzoek?>
+public class VerblijfadresBinnenlandInOnderzoekConverter : ITypeConverter<Brp.Shared.DtoMappers.BrpDtos.InOnderzoek, VerblijfadresBinnenlandInOnderzoek?>
 {
-    public VerblijfadresBinnenlandInOnderzoek? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, VerblijfadresBinnenlandInOnderzoek? destination, ResolutionContext context)
+    public VerblijfadresBinnenlandInOnderzoek? Convert(Brp.Shared.DtoMappers.BrpDtos.InOnderzoek source, VerblijfadresBinnenlandInOnderzoek? destination, ResolutionContext context)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
@@ -148,9 +148,9 @@ public class VerblijfadresBinnenlandInOnderzoekConverter : ITypeConverter<HaalCe
     }
 }
 
-public class VerblijfplaatsBuitenlandInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, VerblijfplaatsBuitenlandInOnderzoek?>
+public class VerblijfplaatsBuitenlandInOnderzoekConverter : ITypeConverter<Brp.Shared.DtoMappers.BrpDtos.InOnderzoek, VerblijfplaatsBuitenlandInOnderzoek?>
 {
-    public VerblijfplaatsBuitenlandInOnderzoek? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, VerblijfplaatsBuitenlandInOnderzoek? destination, ResolutionContext context)
+    public VerblijfplaatsBuitenlandInOnderzoek? Convert(Brp.Shared.DtoMappers.BrpDtos.InOnderzoek source, VerblijfplaatsBuitenlandInOnderzoek? destination, ResolutionContext context)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
@@ -188,9 +188,9 @@ public class VerblijfplaatsBuitenlandInOnderzoekConverter : ITypeConverter<HaalC
     }
 }
 
-public class VerblijfadresBuitenlandInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, VerblijfadresBuitenlandInOnderzoek?>
+public class VerblijfadresBuitenlandInOnderzoekConverter : ITypeConverter<Brp.Shared.DtoMappers.BrpDtos.InOnderzoek, VerblijfadresBuitenlandInOnderzoek?>
 {
-    public VerblijfadresBuitenlandInOnderzoek? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, VerblijfadresBuitenlandInOnderzoek? destination, ResolutionContext context)
+    public VerblijfadresBuitenlandInOnderzoek? Convert(Brp.Shared.DtoMappers.BrpDtos.InOnderzoek source, VerblijfadresBuitenlandInOnderzoek? destination, ResolutionContext context)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
@@ -228,9 +228,9 @@ public class VerblijfadresBuitenlandInOnderzoekConverter : ITypeConverter<HaalCe
     }
 }
 
-public class LocatieInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, LocatieInOnderzoek?>
+public class LocatieInOnderzoekConverter : ITypeConverter<Brp.Shared.DtoMappers.BrpDtos.InOnderzoek, LocatieInOnderzoek?>
 {
-    public LocatieInOnderzoek? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, LocatieInOnderzoek? destination, ResolutionContext context)
+    public LocatieInOnderzoek? Convert(Brp.Shared.DtoMappers.BrpDtos.InOnderzoek source, LocatieInOnderzoek? destination, ResolutionContext context)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
@@ -276,9 +276,9 @@ public class LocatieInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.
     }
 }
 
-public class VerblijfadresLocatieInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, VerblijfadresLocatieInOnderzoek?>
+public class VerblijfadresLocatieInOnderzoekConverter : ITypeConverter<Brp.Shared.DtoMappers.BrpDtos.InOnderzoek, VerblijfadresLocatieInOnderzoek?>
 {
-    public VerblijfadresLocatieInOnderzoek? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, VerblijfadresLocatieInOnderzoek? destination, ResolutionContext context)
+    public VerblijfadresLocatieInOnderzoek? Convert(Brp.Shared.DtoMappers.BrpDtos.InOnderzoek source, VerblijfadresLocatieInOnderzoek? destination, ResolutionContext context)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
@@ -295,9 +295,9 @@ public class VerblijfadresLocatieInOnderzoekConverter : ITypeConverter<HaalCentr
     }
 }
 
-public class VerblijfplaatsOnbekendInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, VerblijfplaatsOnbekendInOnderzoek?>
+public class VerblijfplaatsOnbekendInOnderzoekConverter : ITypeConverter<Brp.Shared.DtoMappers.BrpDtos.InOnderzoek, VerblijfplaatsOnbekendInOnderzoek?>
 {
-    public VerblijfplaatsOnbekendInOnderzoek? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, VerblijfplaatsOnbekendInOnderzoek? destination, ResolutionContext context)
+    public VerblijfplaatsOnbekendInOnderzoek? Convert(Brp.Shared.DtoMappers.BrpDtos.InOnderzoek source, VerblijfplaatsOnbekendInOnderzoek? destination, ResolutionContext context)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
