@@ -1015,10 +1015,6 @@ components:
         - $ref: '#/components/schemas/PartnerBasis'
         - type: object
           properties:
-            datumIngangFamilierechtelijkeBetrekking:
-              description: |
-                De datum waarop de familierechtelijke betrekking is ontstaan.
-              $ref: '#/components/schemas/GbaDatum'
             naam:
               $ref: '#/components/schemas/NaamBasis'
             geboorte:

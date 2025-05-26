@@ -3,7 +3,7 @@
   "defaultVariables": null,
   "documentGenerator": {
     "fromDocument": {
-      "url": "../../specificatie/informatie-service/openapi.yaml",
+      "url": "../../specificatie/informatie-service/openapi-v1.yaml",
       "output": null,
       "newLineBehavior": "Auto"
     }
@@ -62,7 +62,7 @@
       "wrapResponseMethods": [],
       "generateResponseClasses": true,
       "responseClass": "SwaggerResponse",
-      "namespace": "HaalCentraal.BrpProxy.Generated",
+      "namespace": "HaalCentraal.BrpProxy.Generated.Deprecated",
       "requiredPropertiesMustBeDefined": true,
       "dateType": "System.DateTimeOffset",
       "jsonConverters": null,
@@ -188,7 +188,7 @@
       "templateDirectory": null,
       "serviceHost": null,
       "serviceSchemes": null,
-      "output": "DataTransferObjects.cs",
+      "output": "DataTransferObjectsDeprecated.cs",
       "newLineBehavior": "Auto"
     }
   }
