@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using HaalCentraal.BrpProxy.Generated;
-using HaalCentraal.BrpProxy.Generated.Gba;
+using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
+using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
+using CommonDtos = Brp.Shared.DtoMappers.CommonDtos;
 
 namespace BrpProxy.Profiles;
 
@@ -8,14 +9,14 @@ public class KindProfile : Profile
 {
     public KindProfile()
     {
-        CreateMap<GbaKind, Kind>()
+        CreateMap<BrpDtos.GbaKind, BrpApiDtos.Kind>()
             .BeforeMap((src, dest) =>
             {
                 if (src.InOnderzoek != null)
                 {
-                    src.Naam ??= new HaalCentraal.BrpProxy.Generated.Gba.NaamBasis();
+                    src.Naam ??= new CommonDtos.NaamBasis();
 
-                    src.Geboorte ??= new GbaGeboorte();
+                    src.Geboorte ??= new BrpDtos.GbaGeboorte();
                 }
             })
             .AfterMap((src, dest) =>
@@ -25,6 +26,6 @@ public class KindProfile : Profile
                 dest.Geboorte.MapInOnderzoek(src.InOnderzoek);
             });
 
-        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, KindInOnderzoek?>().ConvertUsing<KindInOnderzoekConverter>();
+        CreateMap<BrpDtos.InOnderzoek, BrpApiDtos.KindInOnderzoek?>().ConvertUsing<KindInOnderzoekConverter>();
     }
 }

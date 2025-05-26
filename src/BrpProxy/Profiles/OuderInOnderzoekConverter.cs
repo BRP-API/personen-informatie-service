@@ -1,17 +1,18 @@
 ﻿using AutoMapper;
 using Brp.Shared.DtoMappers.Mappers;
-using HaalCentraal.BrpProxy.Generated;
+using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
+using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
 
 namespace BrpProxy.Profiles;
 
-public class OuderInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, OuderInOnderzoek?>
+public class OuderInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.OuderInOnderzoek?>
 {
-    public OuderInOnderzoek? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, OuderInOnderzoek? destination, ResolutionContext context)
+    public BrpApiDtos.OuderInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.OuderInOnderzoek? destination, ResolutionContext context)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
             "020000" or
-            "030000" => new OuderInOnderzoek
+            "030000" => new BrpApiDtos.OuderInOnderzoek
             {
                 Burgerservicenummer = true,
                 Geslacht = true,
@@ -21,7 +22,7 @@ public class OuderInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Ge
             "020100" or
             "020120" or
             "030100" or
-            "030120" => new OuderInOnderzoek
+            "030120" => new BrpApiDtos.OuderInOnderzoek
             {
                 Burgerservicenummer = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
@@ -29,7 +30,7 @@ public class OuderInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Ge
             "020400" or
             "020410" or
             "030400" or
-            "030410" => new OuderInOnderzoek
+            "030410" => new BrpApiDtos.OuderInOnderzoek
             {
                 Geslacht = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
@@ -37,7 +38,7 @@ public class OuderInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Ge
             "026200" or
             "026210" or
             "036200" or
-            "036210" => new OuderInOnderzoek
+            "036210" => new BrpApiDtos.OuderInOnderzoek
             {
                 DatumIngangFamilierechtelijkeBetrekking = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()

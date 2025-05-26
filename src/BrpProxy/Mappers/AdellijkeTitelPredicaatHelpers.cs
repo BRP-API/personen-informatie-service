@@ -1,6 +1,6 @@
-﻿using Brp.Shared.DtoMappers.CommonDtos;
+﻿using Brp.Shared.DtoMappers.BrpApiDtos;
+using Brp.Shared.DtoMappers.CommonDtos;
 using Brp.Shared.DtoMappers.Interfaces;
-using HaalCentraal.BrpProxy.Generated;
 
 namespace BrpProxy.Mappers;
 

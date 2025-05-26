@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Brp.Shared.DtoMappers.BrpApiDtos;
 using Brp.Shared.DtoMappers.CommonDtos;
 using BrpProxy.Profiles;
 using FluentAssertions;

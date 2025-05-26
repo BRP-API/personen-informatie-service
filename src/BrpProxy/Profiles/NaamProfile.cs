@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using BrpProxy.Mappers;
-using HaalCentraal.BrpProxy.Generated;
-using HaalCentraal.BrpProxy.Generated.Gba;
-using Brp.Shared.DtoMappers.Mappers;
+using NaamGerelateerde = Brp.Shared.DtoMappers.BrpApiDtos.NaamGerelateerde;
+using Brp.Shared.DtoMappers.BrpApiDtos;
 
 namespace BrpProxy.Profiles;
 
@@ -10,7 +9,7 @@ public class NaamProfile : Profile
 {
     public NaamProfile()
     {
-        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.NaamBasis, NaamPersoonBeperkt>()
+        CreateMap<Brp.Shared.DtoMappers.CommonDtos.NaamBasis, NaamPersoonBeperkt>()
             .ForMember(dest => dest.Voorletters, opt => opt.MapFrom(src => src.Voorletters()))
             .ForMember(dest => dest.Geslachtsnaam, opt =>
             {
@@ -18,7 +17,7 @@ public class NaamProfile : Profile
             })
             ;
 
-        CreateMap<HaalCentraal.BrpProxy.Generated.Gba.NaamBasis, NaamGerelateerde>()
+        CreateMap<Brp.Shared.DtoMappers.CommonDtos.NaamBasis, NaamGerelateerde>()
             .ForMember(dest => dest.Voorletters, opt => opt.MapFrom(src => src.Voorletters()))
             .ForMember(dest => dest.Geslachtsnaam, opt =>
             {
@@ -27,7 +26,7 @@ public class NaamProfile : Profile
             })
             ;
 
-        CreateMap<GbaNaamPersoon, NaamPersoon>()
+        CreateMap<Brp.Shared.DtoMappers.BrpDtos.GbaNaamPersoon, NaamPersoon>()
             .ForMember(dest => dest.Geslachtsnaam, opt =>
             {
                 opt.PreCondition(src => src.Geslachtsnaam != ".");

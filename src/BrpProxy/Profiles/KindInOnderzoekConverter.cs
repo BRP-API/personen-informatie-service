@@ -1,18 +1,19 @@
 ﻿using AutoMapper;
 using Brp.Shared.DtoMappers.Mappers;
-using HaalCentraal.BrpProxy.Generated;
+using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
+using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
 
 namespace BrpProxy.Profiles;
 
-public class KindInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, KindInOnderzoek?>
+public class KindInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.KindInOnderzoek?>
 {
-    public KindInOnderzoek? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, KindInOnderzoek? destination, ResolutionContext context)
+    public BrpApiDtos.KindInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.KindInOnderzoek? destination, ResolutionContext context)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
             "090000" or
             "090100" or
-            "090120" => new KindInOnderzoek
+            "090120" => new BrpApiDtos.KindInOnderzoek
             {
                 Burgerservicenummer = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()

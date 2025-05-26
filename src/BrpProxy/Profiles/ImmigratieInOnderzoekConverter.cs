@@ -1,17 +1,18 @@
 ﻿using AutoMapper;
 using Brp.Shared.DtoMappers.Mappers;
-using HaalCentraal.BrpProxy.Generated;
+using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
+using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
 
 namespace BrpProxy.Profiles
 {
-    public class ImmigratieInOnderzoekConverter : ITypeConverter<HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek, ImmigratieInOnderzoek?>
+    public class ImmigratieInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.ImmigratieInOnderzoek?>
     {
-        public ImmigratieInOnderzoek? Convert(HaalCentraal.BrpProxy.Generated.Gba.InOnderzoek source, ImmigratieInOnderzoek? destination, ResolutionContext context)
+        public BrpApiDtos.ImmigratieInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.ImmigratieInOnderzoek? destination, ResolutionContext context)
         {
             return source?.AanduidingGegevensInOnderzoek switch
             {
                 "080000" or
-                "081400" => new ImmigratieInOnderzoek
+                "081400" => new BrpApiDtos.ImmigratieInOnderzoek
                 {
                     LandVanwaarIngeschreven = true,
                     DatumVestigingInNederland = true,
@@ -19,13 +20,13 @@ namespace BrpProxy.Profiles
                     VanuitVerblijfplaatsOnbekend = true,
                     DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
                 },
-                "081410" => new ImmigratieInOnderzoek
+                "081410" => new BrpApiDtos.ImmigratieInOnderzoek
                 {
                     LandVanwaarIngeschreven = true,
                     VanuitVerblijfplaatsOnbekend = true,
                     DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
                 },
-                "081420" => new ImmigratieInOnderzoek
+                "081420" => new BrpApiDtos.ImmigratieInOnderzoek
                 {
                     DatumVestigingInNederland = true,
                     IndicatieVestigingVanuitBuitenland = true,

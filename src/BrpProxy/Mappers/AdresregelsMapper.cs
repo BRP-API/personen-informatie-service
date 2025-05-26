@@ -1,26 +1,25 @@
-﻿using HaalCentraal.BrpProxy.Generated;
-using Gba = HaalCentraal.BrpProxy.Generated.Gba;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
 using Brp.Shared.DtoMappers.Interfaces;
-using Brp.Shared.DtoMappers.CommonDtos;
+using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
+using CommonDtos = Brp.Shared.DtoMappers.CommonDtos;
 
 namespace BrpProxy.Mappers;
 
 public static class AdresregelsMapper
 {
-    private static bool StraatHeeftStandaardWaarde(this Gba.GbaVerblijfplaatsBeperkt verblijfplaats) =>
+    private static bool StraatHeeftStandaardWaarde(this BrpDtos.GbaVerblijfplaatsBeperkt verblijfplaats) =>
         string.IsNullOrWhiteSpace(verblijfplaats.Straat) || verblijfplaats.Straat == ".";
-    private static bool HuisnummerHeeftStandaardWaarde(this Gba.GbaVerblijfplaatsBeperkt verblijfplaats) =>
+    private static bool HuisnummerHeeftStandaardWaarde(this BrpDtos.GbaVerblijfplaatsBeperkt verblijfplaats) =>
         !verblijfplaats.Huisnummer.HasValue || verblijfplaats.Huisnummer.Value == 0;
-    private static bool LandHeeftStandaardWaarde(this Gba.GbaVerblijfplaatsBeperkt verblijfplaats) =>
+    private static bool LandHeeftStandaardWaarde(this BrpDtos.GbaVerblijfplaatsBeperkt verblijfplaats) =>
         verblijfplaats.Land == null || verblijfplaats.Land.Code == "0000";
-    private static bool RegelsHebbenStandaardWaarde(this Gba.GbaVerblijfplaatsBeperkt verblijfplaats) =>
+    private static bool RegelsHebbenStandaardWaarde(this BrpDtos.GbaVerblijfplaatsBeperkt verblijfplaats) =>
         string.IsNullOrWhiteSpace(verblijfplaats.Regel1) &&
         string.IsNullOrWhiteSpace(verblijfplaats.Regel2) &&
         string.IsNullOrWhiteSpace(verblijfplaats.Regel3);
 
-    public static string? Adresregel1(this Gba.GbaVerblijfplaatsBeperkt? verblijfplaats)
+    public static string? Adresregel1(this BrpDtos.GbaVerblijfplaatsBeperkt? verblijfplaats)
     {
         if (verblijfplaats == null) return null;
 
@@ -41,7 +40,7 @@ public static class AdresregelsMapper
 
     private static bool BegintMetCijfer(this string input) => Regex.Match(input, @"^\d.*$", RegexOptions.None, TimeSpan.FromMilliseconds(100)).Success;
 
-    private static string? AdresToAdresregel1(this Gba.GbaVerblijfplaatsBeperkt adres)
+    private static string? AdresToAdresregel1(this BrpDtos.GbaVerblijfplaatsBeperkt adres)
     {
         StringBuilder retval = new();
 
@@ -92,18 +91,18 @@ public static class AdresregelsMapper
         return retval.ToString();
     }
 
-    private static string? LocatieToAdresregel1(this Gba.GbaVerblijfplaatsBeperkt verblijfplaats)
+    private static string? LocatieToAdresregel1(this BrpDtos.GbaVerblijfplaatsBeperkt verblijfplaats)
     {
         return verblijfplaats.Locatiebeschrijving;
     }
 
-    private static string? VerblijfplaatsBuitenlandToAdresregel1(this Gba.GbaVerblijfplaatsBeperkt adres) =>
+    private static string? VerblijfplaatsBuitenlandToAdresregel1(this BrpDtos.GbaVerblijfplaatsBeperkt adres) =>
         adres.LandHeeftStandaardWaarde() ||
         adres.RegelsHebbenStandaardWaarde()
             ? null
             : adres.Regel1;
 
-    public static string? Adresregel2(this Gba.GbaVerblijfplaatsBeperkt? verblijfplaats, IWaardetabel gemeenteVanInschrijving)
+    public static string? Adresregel2(this BrpDtos.GbaVerblijfplaatsBeperkt? verblijfplaats, IWaardetabel gemeenteVanInschrijving)
     {
         if (verblijfplaats == null) return null;
 
@@ -122,7 +121,7 @@ public static class AdresregelsMapper
         return null;
     }
 
-    private static string? AdresToAdresregel2(this Gba.GbaVerblijfplaatsBeperkt adres, IWaardetabel? gemeenteVanInschrijving)
+    private static string? AdresToAdresregel2(this BrpDtos.GbaVerblijfplaatsBeperkt adres, IWaardetabel? gemeenteVanInschrijving)
     {
         if (string.IsNullOrWhiteSpace(adres.Postcode))
         {
@@ -137,40 +136,40 @@ public static class AdresregelsMapper
             : $"{postcodeNum} {postcodeAlfa}  {gemeenteVanInschrijving?.Omschrijving?.ToUpperInvariant()}";
     }
 
-    private static string? LocatieToAdresregel2(this Gba.GbaVerblijfplaatsBeperkt _, IWaardetabel? gemeenteVanInschrijving)
+    private static string? LocatieToAdresregel2(this BrpDtos.GbaVerblijfplaatsBeperkt _, IWaardetabel? gemeenteVanInschrijving)
     {
         return gemeenteVanInschrijving?.Omschrijving.ToUpperInvariant();
     }
 
-    private static string? VerblijfplaatsBuitenlandToAdresregel2(this Gba.GbaVerblijfplaatsBeperkt adres) =>
+    private static string? VerblijfplaatsBuitenlandToAdresregel2(this BrpDtos.GbaVerblijfplaatsBeperkt adres) =>
         adres.LandHeeftStandaardWaarde() ||
         adres.RegelsHebbenStandaardWaarde()
             ? null
             : adres.Regel2;
 
-    public static string? Adresregel3(this Gba.GbaVerblijfplaatsBeperkt? adres) =>
+    public static string? Adresregel3(this BrpDtos.GbaVerblijfplaatsBeperkt? adres) =>
         adres == null ||
         adres.LandHeeftStandaardWaarde() ||
         adres.RegelsHebbenStandaardWaarde()
             ? null
             : adres.Regel3;
 
-    public static Waardetabel? Land(this Gba.GbaVerblijfplaatsBeperkt? adres) =>
+    public static CommonDtos.Waardetabel? Land(this BrpDtos.GbaVerblijfplaatsBeperkt? adres) =>
         adres == null ||
         adres.LandHeeftStandaardWaarde() ||
         adres.VerblijfplaatsBuitenlandHeeftWaardeNederland() ||
         adres.RegelsHebbenStandaardWaarde()
             ? null
-            : new Waardetabel
+            : new CommonDtos.Waardetabel
             {
                 Code = adres.Land.Code,
                 Omschrijving = adres.Land.Omschrijving
             };
 
-    private static bool VerblijfplaatsBuitenlandHeeftWaardeNederland(this Gba.GbaVerblijfplaatsBeperkt verblijfplaats) =>
+    private static bool VerblijfplaatsBuitenlandHeeftWaardeNederland(this BrpDtos.GbaVerblijfplaatsBeperkt verblijfplaats) =>
         verblijfplaats.Land != null && verblijfplaats.Land.Code == "6030";
 
-    public static bool? IndicatieVastgesteldVerblijfNietOpAdres(this Gba.GbaVerblijfplaatsBeperkt? verblijfplaats, IAdressering adressering)
+    public static bool? IndicatieVastgesteldVerblijfNietOpAdres(this BrpDtos.GbaVerblijfplaatsBeperkt? verblijfplaats, IAdressering adressering)
     {
         bool isInOnderzoek = verblijfplaats?.InOnderzoek?.AanduidingGegevensInOnderzoek == "089999";
 
