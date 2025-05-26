@@ -1145,13 +1145,6 @@ namespace HaalCentraal.BrpService.Generated
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class GbaPartner : PartnerBasis
     {
-        /// <summary>
-        /// De datum waarop de familierechtelijke betrekking is ontstaan.
-        /// <br/>
-        /// </summary>
-        [Newtonsoft.Json.JsonProperty("datumIngangFamilierechtelijkeBetrekking", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DatumIngangFamilierechtelijkeBetrekking { get; set; }
-
         [Newtonsoft.Json.JsonProperty("naam", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public NaamBasis Naam { get; set; }
 
