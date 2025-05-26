@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
-using Brp.Shared.DtoMappers.BrpApiDtos;
-using Brp.Shared.DtoMappers.CommonDtos;
+using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
+using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
+using CommonDtos = Brp.Shared.DtoMappers.CommonDtos;
 using BrpProxy.Profiles;
 using FluentAssertions;
-using HaalCentraal.BrpProxy.Generated;
-using HaalCentraal.BrpProxy.Generated.Gba;
 using Xunit;
 
 namespace BrpProxy.Tests.Profiles;
@@ -24,32 +23,32 @@ public class OuderProfile
     [Fact]
     public void OuderMetTitel()
     {
-        var input = new GbaOuder
+        var input = new BrpDtos.GbaOuder
         {
-            Naam = new HaalCentraal.BrpProxy.Generated.Gba.NaamBasis
+            Naam = new CommonDtos.NaamBasis
             {
-                AdellijkeTitelPredicaat = new AdellijkeTitelPredicaatType
+                AdellijkeTitelPredicaat = new CommonDtos.AdellijkeTitelPredicaatType
                 {
-                    Soort = AdellijkeTitelPredicaatSoort.Titel,
+                    Soort = CommonDtos.AdellijkeTitelPredicaatSoort.Titel,
                     Code = "P",
                     Omschrijving = "prins"
                 }
             }
         };
-        var expected = new Ouder
+        var expected = new BrpApiDtos.Ouder
         {
-            Naam = new NaamGerelateerde
+            Naam = new BrpApiDtos.NaamGerelateerde
             {
-                AdellijkeTitelPredicaat = new AdellijkeTitelPredicaatType
+                AdellijkeTitelPredicaat = new CommonDtos.AdellijkeTitelPredicaatType
                 {
-                    Soort = AdellijkeTitelPredicaatSoort.Titel,
+                    Soort = CommonDtos.AdellijkeTitelPredicaatSoort.Titel,
                     Code = "P",
                     Omschrijving = "prins"
                 }
             }
         };
 
-        CreateSut().Map<Ouder>(input).Should().BeEquivalentTo(expected);
+        CreateSut().Map<BrpApiDtos.Ouder>(input).Should().BeEquivalentTo(expected);
 
     }
 }
