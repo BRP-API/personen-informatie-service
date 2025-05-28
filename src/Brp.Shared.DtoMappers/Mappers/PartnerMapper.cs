@@ -12,22 +12,22 @@ public static class PartnerMapper
                 Datum = true,
                 Land = true,
                 Plaats = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "050610" => new BrpApiDtos.AangaanHuwelijkPartnerschapInOnderzoek
             {
                 Datum = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "050620" => new BrpApiDtos.AangaanHuwelijkPartnerschapInOnderzoek
             {
                 Plaats = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "050630" => new BrpApiDtos.AangaanHuwelijkPartnerschapInOnderzoek
             {
                 Land = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             _ => null,
         };

@@ -41,7 +41,7 @@ public static class NaamInOnderzoekExtensions
                 AanduidingNaamgebruik = true,
                 Voorletters = true,
                 VolledigeNaam = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "010200" => new BrpApiDtos.NaamPersoonInOnderzoek
             {
@@ -51,42 +51,42 @@ public static class NaamInOnderzoekExtensions
                 Geslachtsnaam = true,
                 Voorletters = true,
                 VolledigeNaam = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "010210" => new BrpApiDtos.NaamPersoonInOnderzoek
             {
                 Voornamen = true,
                 Voorletters = true,
                 VolledigeNaam = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "010220" => new BrpApiDtos.NaamPersoonInOnderzoek
             {
                 AdellijkeTitelPredicaat = true,
                 VolledigeNaam = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "010230" => new BrpApiDtos.NaamPersoonInOnderzoek
             {
                 Voorvoegsel = true,
                 VolledigeNaam = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "010240" => new BrpApiDtos.NaamPersoonInOnderzoek
             {
                 Geslachtsnaam = true,
                 VolledigeNaam = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "010400" or "010410" => new BrpApiDtos.NaamPersoonInOnderzoek
             {
                 VolledigeNaam = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "016100" or "016110" => new BrpApiDtos.NaamPersoonInOnderzoek
             {
                 AanduidingNaamgebruik = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             _ => null
         };
@@ -104,7 +104,7 @@ public static class NaamInOnderzoekExtensions
                 Geslachtsnaam = true,
                 Voorletters = true,
                 VolledigeNaam = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "010200" => new BrpApiDtos.NaamPersoonInOnderzoekBeperkt
             {
@@ -114,38 +114,38 @@ public static class NaamInOnderzoekExtensions
                 Geslachtsnaam = true,
                 Voorletters = true,
                 VolledigeNaam = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "010210" => new BrpApiDtos.NaamPersoonInOnderzoekBeperkt
             {
                 Voornamen = true,
                 Voorletters = true,
                 VolledigeNaam = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "010220" => new BrpApiDtos.NaamPersoonInOnderzoekBeperkt
             {
                 AdellijkeTitelPredicaat = true,
                 VolledigeNaam = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "010230" => new BrpApiDtos.NaamPersoonInOnderzoekBeperkt
             {
                 Voorvoegsel = true,
                 VolledigeNaam = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "010240" => new BrpApiDtos.NaamPersoonInOnderzoekBeperkt
             {
                 Geslachtsnaam = true,
                 VolledigeNaam = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "010400" or
             "010410" => new BrpApiDtos.NaamPersoonInOnderzoekBeperkt
             {
                 VolledigeNaam = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             _ => null
         };
@@ -169,7 +169,7 @@ public static class NaamInOnderzoekExtensions
                 Voorvoegsel = true,
                 Geslachtsnaam = true,
                 Voorletters = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "020210" or
             "030210" or
@@ -178,7 +178,7 @@ public static class NaamInOnderzoekExtensions
             {
                 Voornamen = true,
                 Voorletters = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "020220" or
             "030220" or
@@ -186,7 +186,7 @@ public static class NaamInOnderzoekExtensions
             "090220" => new BrpApiDtos.NaamInOnderzoek
             {
                 AdellijkeTitelPredicaat = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "020230" or
             "030230" or
@@ -194,7 +194,7 @@ public static class NaamInOnderzoekExtensions
             "090230" => new BrpApiDtos.NaamInOnderzoek
             {
                 Voorvoegsel = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             "020240" or
             "030240" or
@@ -202,7 +202,7 @@ public static class NaamInOnderzoekExtensions
             "090240" => new BrpApiDtos.NaamInOnderzoek
             {
                 Geslachtsnaam = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
             },
             _ => null
         };
