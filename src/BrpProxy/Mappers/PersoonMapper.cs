@@ -9,7 +9,7 @@ namespace BrpProxy.Mappers;
 
 public static class PersoonMapper
 {
-    public static bool Geheimhouding(this GbaPersoon persoon)
+    public static bool Geheimhouding(this IGbaPersoon persoon)
     {
         return persoon.GeheimhoudingPersoonsgegevens > 0;
     }
@@ -47,7 +47,7 @@ public static class PersoonMapper
         }
     }
 
-    public static PersoonInOnderzoek? InOnderzoek(this GbaPersoon persoon)
+    public static PersoonInOnderzoek? InOnderzoek(this IGbaPersoon persoon)
     {
         if(persoon.PersoonInOnderzoek == null &&
             persoon.GezagInOnderzoek == null &&
@@ -110,7 +110,7 @@ public static class PersoonMapper
         return retval;
     }
 
-    public static PersoonInOnderzoekBeperkt? InOnderzoek(this GbaPersoonBeperkt persoon)
+    public static PersoonInOnderzoekBeperkt? InOnderzoek(this IGbaPersoonBeperkt persoon)
     {
         if (persoon.PersoonInOnderzoek == null )
         {
@@ -226,7 +226,7 @@ public static class PersoonMapper
         }
     }
 
-    public static BrpApiDtos.AdresseringInOnderzoek? AdresseringInOnderzoek(this GbaPersoon persoon)
+    public static BrpApiDtos.AdresseringInOnderzoek? AdresseringInOnderzoek(this IGbaPersoon persoon)
     {
         if(persoon.PersoonInOnderzoek == null &&
             (persoon.Partners == null || persoon.Partners.All(p => p.InOnderzoek == null)) &&
@@ -253,7 +253,7 @@ public static class PersoonMapper
         return retval;
     }
 
-    public static BrpApiDtos.AdresseringInOnderzoekBeperkt? AdresseringInOnderzoek(this GbaPersoonBeperkt persoon)
+    public static BrpApiDtos.AdresseringInOnderzoekBeperkt? AdresseringInOnderzoek(this IGbaPersoonBeperkt persoon)
     {
         if (persoon.Verblijfplaats?.InOnderzoek == null)
         {

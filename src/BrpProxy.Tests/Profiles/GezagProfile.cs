@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Brp.Shared.DtoMappers.BrpApiDtos;
+using HaalCentraal.BrpProxy.Generated;
 using FluentAssertions;
 using System.Collections.Generic;
 using Xunit;
@@ -11,9 +11,9 @@ public class GezagProfile
     private static IMapper CreateSut() => AutomapperUnderTestFactory.CreateSut<BrpProxy.Profiles.GezagProfile>();
 
     [Fact]
-    public void ShouldMapTweehoofdigOuderlijkGezagWithoutThrowing()
+    public void ShouldMapGezamenlijkOuderlijkGezagWithoutThrowing()
     {
-        TweehoofdigOuderlijkGezag input = new()
+        GezamenlijkOuderlijkGezag input = new()
         {
             Minderjarige = new Minderjarige
             {
@@ -26,7 +26,7 @@ public class GezagProfile
             }
         };
 
-        TweehoofdigOuderlijkGezag expected = new()
+        GezamenlijkOuderlijkGezag expected = new()
         {
             Minderjarige = new Minderjarige
             {
@@ -39,7 +39,7 @@ public class GezagProfile
             }
         };
 
-        CreateSut().Map<TweehoofdigOuderlijkGezag>(input).Should().BeEquivalentTo(expected);
+        CreateSut().Map<GezamenlijkOuderlijkGezag>(input).Should().BeEquivalentTo(expected);
     }
 
     [Fact]
