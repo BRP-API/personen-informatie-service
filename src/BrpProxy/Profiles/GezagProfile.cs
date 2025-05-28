@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
-using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
+using BrpApiDtos = HaalCentraal.BrpProxy.Generated;
+using BrpDtos = HaalCentraal.BrpProxy.Generated.Gba;
 using Brp.Shared.DtoMappers.Mappers;
 
 namespace BrpProxy.Profiles;
@@ -9,10 +9,10 @@ public class GezagProfile : Profile
 {
     public GezagProfile()
     {
-        CreateMap<BrpDtos.AbstractGezagsrelatie, BrpApiDtos.AbstractGezagsrelatie?>().ConvertUsing<GezagConverter>();
+        CreateMap<BrpDtos.Gezagsrelatie, BrpApiDtos.Gezagsrelatie?>().ConvertUsing<GezagConverter>();
 
         CreateMap<BrpDtos.EenhoofdigOuderlijkGezag, BrpApiDtos.EenhoofdigOuderlijkGezag>();
-        CreateMap<BrpDtos.TweehoofdigOuderlijkGezag, BrpApiDtos.TweehoofdigOuderlijkGezag>();
+        CreateMap<BrpDtos.GezamenlijkOuderlijkGezag, BrpApiDtos.GezamenlijkOuderlijkGezag>();
         CreateMap<BrpDtos.GezamenlijkGezag, BrpApiDtos.GezamenlijkGezag>();
         CreateMap<BrpDtos.Voogdij, BrpApiDtos.Voogdij>();
         CreateMap<BrpDtos.TijdelijkGeenGezag, BrpApiDtos.TijdelijkGeenGezag>();
@@ -48,14 +48,14 @@ public class GezagProfile : Profile
     }
 }
 
-public class GezagConverter : ITypeConverter<BrpDtos.AbstractGezagsrelatie, BrpApiDtos.AbstractGezagsrelatie?>
+public class GezagConverter : ITypeConverter<BrpDtos.Gezagsrelatie, BrpApiDtos.Gezagsrelatie?>
 {
-    public BrpApiDtos.AbstractGezagsrelatie? Convert(BrpDtos.AbstractGezagsrelatie source, BrpApiDtos.AbstractGezagsrelatie? destination, ResolutionContext context)
+    public BrpApiDtos.Gezagsrelatie? Convert(BrpDtos.Gezagsrelatie source, BrpApiDtos.Gezagsrelatie? destination, ResolutionContext context)
     {
         return source switch
         {
             BrpDtos.EenhoofdigOuderlijkGezag => context.Mapper.Map<BrpApiDtos.EenhoofdigOuderlijkGezag>(source),
-            BrpDtos.TweehoofdigOuderlijkGezag => context.Mapper.Map<BrpApiDtos.TweehoofdigOuderlijkGezag>(source),
+            BrpDtos.GezamenlijkOuderlijkGezag => context.Mapper.Map<BrpApiDtos.GezamenlijkOuderlijkGezag>(source),
             BrpDtos.GezamenlijkGezag => context.Mapper.Map<BrpApiDtos.GezamenlijkGezag>(source),
             BrpDtos.Voogdij => context.Mapper.Map<BrpApiDtos.Voogdij>(source),
             BrpDtos.TijdelijkGeenGezag => context.Mapper.Map<BrpApiDtos.TijdelijkGeenGezag>(source),
