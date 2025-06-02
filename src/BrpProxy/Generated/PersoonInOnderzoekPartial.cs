@@ -1,6 +1,4 @@
-﻿using static BrpProxy.Mappers.PersoonMapper;
-
-namespace HaalCentraal.BrpProxy.Generated;
+﻿namespace HaalCentraal.BrpProxy.Generated;
 
 public partial class PersoonInOnderzoek : IPersoonInOnderzoek
 {

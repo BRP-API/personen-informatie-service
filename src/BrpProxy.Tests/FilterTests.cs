@@ -13,7 +13,7 @@ namespace BrpProxy.Tests;
 
 public static class JsonConvertExtensions
 {
-    public static string? ToJson(this object obj)
+    public static string? ToJson(this object? obj)
     {
         return obj != null ? JsonConvert.SerializeObject(obj) : null;
     }
@@ -98,9 +98,9 @@ public class FilterTests
                     Huisnummer = 2
                 }
             },
-            Gezag = new Collection<AbstractGezagsrelatie>
+            Gezag = new Collection<Gezagsrelatie>
             {
-                new TweehoofdigOuderlijkGezag
+                new GezamenlijkOuderlijkGezag
                 {
                     Minderjarige = new Minderjarige
                     {
@@ -390,9 +390,9 @@ public class FilterTests
             .Should().Be(
             new Persoon
             {
-                Gezag = new Collection<AbstractGezagsrelatie>
+                Gezag = new Collection<Gezagsrelatie>
                 {
-                    new TweehoofdigOuderlijkGezag
+                    new GezamenlijkOuderlijkGezag
                     {
                         Minderjarige = new Minderjarige
                         {
