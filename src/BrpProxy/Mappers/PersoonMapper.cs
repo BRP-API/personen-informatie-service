@@ -16,34 +16,31 @@ public static class PersoonMapper
 
     private static void InitializePersoonInOnderzoek(this IPersoonInOnderzoek retval, BrpDtos.InOnderzoek? gbaInOnderzoek)
     {
-        if (gbaInOnderzoek != null)
+        switch (gbaInOnderzoek?.AanduidingGegevensInOnderzoek)
         {
-            switch (gbaInOnderzoek.AanduidingGegevensInOnderzoek)
-            {
-                case "010000":
-                    retval.Burgerservicenummer = true;
-                    retval.Geslacht = true;
-                    retval.Leeftijd = true;
-                    retval.DatumIngangOnderzoekPersoon = gbaInOnderzoek.DatumIngangOnderzoek!.Map();
-                    break;
-                case "010100":
-                case "010120":
-                    retval.Burgerservicenummer = true;
-                    retval.DatumIngangOnderzoekPersoon = gbaInOnderzoek.DatumIngangOnderzoek!.Map();
-                    break;
-                case "010300":
-                case "010310":
-                    retval.Leeftijd = true;
-                    retval.DatumIngangOnderzoekPersoon = gbaInOnderzoek.DatumIngangOnderzoek!.Map();
-                    break;
-                case "010400":
-                case "010410":
-                    retval.Geslacht = true;
-                    retval.DatumIngangOnderzoekPersoon = gbaInOnderzoek.DatumIngangOnderzoek!.Map();
-                    break;
-                default:
-                    break;
-            }
+            case "010000":
+                retval.Burgerservicenummer = true;
+                retval.Geslacht = true;
+                retval.Leeftijd = true;
+                retval.DatumIngangOnderzoekPersoon = gbaInOnderzoek.DatumIngangOnderzoek.Map()!;
+                break;
+            case "010100":
+            case "010120":
+                retval.Burgerservicenummer = true;
+                retval.DatumIngangOnderzoekPersoon = gbaInOnderzoek.DatumIngangOnderzoek.Map()!;
+                break;
+            case "010300":
+            case "010310":
+                retval.Leeftijd = true;
+                retval.DatumIngangOnderzoekPersoon = gbaInOnderzoek.DatumIngangOnderzoek.Map()!;
+                break;
+            case "010400":
+            case "010410":
+                retval.Geslacht = true;
+                retval.DatumIngangOnderzoekPersoon = gbaInOnderzoek.DatumIngangOnderzoek.Map()!;
+                break;
+            default:
+                break;
         }
     }
 
@@ -126,58 +123,50 @@ public static class PersoonMapper
 
     private static void InitializeAdresseringMetPersoonInOnderzoek(this BrpApiDtos.AdresseringInOnderzoek retval, BrpDtos.InOnderzoek? gbaInOnderzoek)
     {
-        if (gbaInOnderzoek != null)
+        switch (gbaInOnderzoek?.AanduidingGegevensInOnderzoek)
         {
-            switch (gbaInOnderzoek.AanduidingGegevensInOnderzoek)
-            {
-                case "010000":
-                case "010200":
-                case "010210":
-                case "010220":
-                case "010230":
-                case "010240":
-                case "010400":
-                case "010410":
-                case "016100":
-                case "016110":
-                    retval.Aanhef = true;
-                    retval.Aanschrijfwijze = true;
-                    retval.GebruikInLopendeTekst = true;
-                    retval.DatumIngangOnderzoekPersoon = gbaInOnderzoek.DatumIngangOnderzoek?.Map();
-                    break;
-                default:
-                    break;
-            }
+            case "010000":
+            case "010200":
+            case "010210":
+            case "010220":
+            case "010230":
+            case "010240":
+            case "010400":
+            case "010410":
+            case "016100":
+            case "016110":
+                retval.Aanhef = true;
+                retval.Aanschrijfwijze = true;
+                retval.GebruikInLopendeTekst = true;
+                retval.DatumIngangOnderzoekPersoon = gbaInOnderzoek.DatumIngangOnderzoek.Map();
+                break;
+            default:
+                break;
         }
     }
 
     private static void InitializeAdresseringMetPartnerInOnderzoek(this BrpApiDtos.AdresseringInOnderzoek retval, BrpDtos.InOnderzoek? gbaInOnderzoek)
     {
-        if(gbaInOnderzoek != null)
+        switch (gbaInOnderzoek?.AanduidingGegevensInOnderzoek)
         {
-            switch (gbaInOnderzoek.AanduidingGegevensInOnderzoek)
-            {
-                case "050000":
-                case "050200":
-                case "050220":
-                case "050230":
-                case "050240":
-                    retval.Aanhef = true;
-                    retval.Aanschrijfwijze = true;
-                    retval.GebruikInLopendeTekst = true;
-                    retval.DatumIngangOnderzoekPartner = gbaInOnderzoek.DatumIngangOnderzoek?.Map();
-                    break;
-                default:
-                    break;
-            }
+            case "050000":
+            case "050200":
+            case "050220":
+            case "050230":
+            case "050240":
+                retval.Aanhef = true;
+                retval.Aanschrijfwijze = true;
+                retval.GebruikInLopendeTekst = true;
+                retval.DatumIngangOnderzoekPartner = gbaInOnderzoek.DatumIngangOnderzoek.Map();
+                break;
+            default:
+                break;
         }
     }
 
     private static void InitializeAdresseringMetVerblijfplaatsInOnderzoek(this IAdresregelsInOnderzoek retval, BrpDtos.InOnderzoek? gbaInOnderzoek)
     {
-        if (gbaInOnderzoek != null)
-        {
-            switch (gbaInOnderzoek.AanduidingGegevensInOnderzoek)
+            switch (gbaInOnderzoek?.AanduidingGegevensInOnderzoek)
             {
                 case "080000":
                 case "081300":
@@ -186,7 +175,7 @@ public static class PersoonMapper
                     retval.Adresregel2 = true;
                     retval.Adresregel3 = true;
                     retval.Land = true;
-                    retval.DatumIngangOnderzoekVerblijfplaats = gbaInOnderzoek.DatumIngangOnderzoek!.Map();
+                    retval.DatumIngangOnderzoekVerblijfplaats = gbaInOnderzoek.DatumIngangOnderzoek.Map()!;
                     break;
                 case "080900":
                 case "080910":
@@ -194,12 +183,12 @@ public static class PersoonMapper
                 case "081170":
                 case "081340":
                     retval.Adresregel2 = true;
-                    retval.DatumIngangOnderzoekVerblijfplaats = gbaInOnderzoek.DatumIngangOnderzoek!.Map();
+                    retval.DatumIngangOnderzoekVerblijfplaats = gbaInOnderzoek.DatumIngangOnderzoek.Map()!;
                     break;
                 case "081100":
                     retval.Adresregel1 = true;
                     retval.Adresregel2 = true;
-                    retval.DatumIngangOnderzoekVerblijfplaats = gbaInOnderzoek.DatumIngangOnderzoek!.Map();
+                    retval.DatumIngangOnderzoekVerblijfplaats = gbaInOnderzoek.DatumIngangOnderzoek.Map()!;
                     break;
                 case "081110":
                 case "081120":
@@ -210,20 +199,19 @@ public static class PersoonMapper
                 case "081210":
                 case "081330":
                     retval.Adresregel1 = true;
-                    retval.DatumIngangOnderzoekVerblijfplaats = gbaInOnderzoek.DatumIngangOnderzoek!.Map();
+                    retval.DatumIngangOnderzoekVerblijfplaats = gbaInOnderzoek.DatumIngangOnderzoek.Map()!;
                     break;
                 case "081310":
                     retval.Land = true;
-                    retval.DatumIngangOnderzoekVerblijfplaats = gbaInOnderzoek.DatumIngangOnderzoek!.Map();
+                    retval.DatumIngangOnderzoekVerblijfplaats = gbaInOnderzoek.DatumIngangOnderzoek.Map()!;
                     break;
                 case "081350":
                     retval.Adresregel3 = true;
-                    retval.DatumIngangOnderzoekVerblijfplaats = gbaInOnderzoek.DatumIngangOnderzoek!.Map();
+                    retval.DatumIngangOnderzoekVerblijfplaats = gbaInOnderzoek.DatumIngangOnderzoek.Map()!;
                     break;
                 default:
                     break;
             }
-        }
     }
 
     public static BrpApiDtos.AdresseringInOnderzoek? AdresseringInOnderzoek(this IGbaPersoon persoon)

@@ -15,7 +15,7 @@ public class OuderInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, Brp
                 Burgerservicenummer = true,
                 Geslacht = true,
                 DatumIngangFamilierechtelijkeBetrekking = true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "020100" or
             "020120" or
@@ -23,7 +23,7 @@ public class OuderInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, Brp
             "030120" => new BrpApiDtos.OuderInOnderzoek
             {
                 Burgerservicenummer = true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "020400" or
             "020410" or
@@ -31,7 +31,7 @@ public class OuderInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, Brp
             "030410" => new BrpApiDtos.OuderInOnderzoek
             {
                 Geslacht = true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "026200" or
             "026210" or
@@ -39,7 +39,7 @@ public class OuderInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, Brp
             "036210" => new BrpApiDtos.OuderInOnderzoek
             {
                 DatumIngangFamilierechtelijkeBetrekking = true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             _ => null,
         };

@@ -13,7 +13,7 @@ namespace BrpProxy.Tests;
 
 public static class JsonConvertExtensions
 {
-    public static string? ToJson(this object obj)
+    public static string? ToJson(this object? obj)
     {
         return obj != null ? JsonConvert.SerializeObject(obj) : null;
     }

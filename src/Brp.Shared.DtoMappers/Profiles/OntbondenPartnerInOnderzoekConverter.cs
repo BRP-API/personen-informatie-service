@@ -14,7 +14,7 @@ public class OntbondenPartnerInOnderzoekConverter : ITypeConverter<BrpDtos.InOnd
             "050710" => new BrpApiDtos.OntbindingHuwelijkPartnerschapInOnderzoek
             {
                 Datum = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
             },
             _ => null
         };

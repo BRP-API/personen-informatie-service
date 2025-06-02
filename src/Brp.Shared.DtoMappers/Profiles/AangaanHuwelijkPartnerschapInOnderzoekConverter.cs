@@ -1,8 +1,11 @@
-﻿namespace Brp.Shared.DtoMappers.Mappers;
+﻿using AutoMapper;
+using Brp.Shared.DtoMappers.Mappers;
 
-public static class PartnerMapper
+namespace Brp.Shared.DtoMappers.Profiles;
+
+public class AangaanHuwelijkPartnerschapInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.AangaanHuwelijkPartnerschapInOnderzoek?>
 {
-    public static BrpApiDtos.AangaanHuwelijkPartnerschapInOnderzoek? AangaanHuwelijkPartnerschapInOnderzoek(this BrpDtos.InOnderzoek? source)
+    public BrpApiDtos.AangaanHuwelijkPartnerschapInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.AangaanHuwelijkPartnerschapInOnderzoek? destination, ResolutionContext context)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
@@ -12,22 +15,22 @@ public static class PartnerMapper
                 Datum = true,
                 Land = true,
                 Plaats = true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "050610" => new BrpApiDtos.AangaanHuwelijkPartnerschapInOnderzoek
             {
                 Datum = true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "050620" => new BrpApiDtos.AangaanHuwelijkPartnerschapInOnderzoek
             {
                 Plaats = true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "050630" => new BrpApiDtos.AangaanHuwelijkPartnerschapInOnderzoek
             {
                 Land = true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             _ => null,
         };

@@ -166,37 +166,37 @@ namespace BrpProxy.Middlewares
             {
                 case Gba.RaadpleegMetBurgerservicenummerResponse p:
                     var result = mapper.Map<RaadpleegMetBurgerservicenummerResponse>(p);
-                    result.Personen = result.Personen.FilterAfgevoerdePersoon().ExcludeAdresregelsEnVerblijfplaatsBuitenland(originalFields).FilterList(fields);
+                    result.Personen = result.Personen.ExcludeAdresregelsEnVerblijfplaatsBuitenland(originalFields).FilterList(fields);
                     retval = result;
                     break;
                 case Gba.ZoekMetGeslachtsnaamEnGeboortedatumResponse pb:
                     var result1 = mapper.Map<ZoekMetGeslachtsnaamEnGeboortedatumResponse>(pb);
-                    result1.Personen = result1.Personen.ExcludeAfgevoerdePersoon().FilterList(fields);
+                    result1.Personen = result1.Personen.FilterList(fields);
                     retval = result1;
                     break;
                 case Gba.ZoekMetNaamEnGemeenteVanInschrijvingResponse pb:
                     var result3 = mapper.Map<ZoekMetNaamEnGemeenteVanInschrijvingResponse>(pb);
-                    result3.Personen = result3.Personen.ExcludeAfgevoerdePersoon().FilterList(fields);
+                    result3.Personen = result3.Personen.FilterList(fields);
                     retval = result3;
                     break;
                 case Gba.ZoekMetPostcodeEnHuisnummerResponse pb:
                     var result2 = mapper.Map<ZoekMetPostcodeEnHuisnummerResponse>(pb);
-                    result2.Personen = result2.Personen.ExcludeAfgevoerdePersoon().FilterList(fields);
+                    result2.Personen = result2.Personen.FilterList(fields);
                     retval = result2;
                     break;
                 case Gba.ZoekMetNummeraanduidingIdentificatieResponse pb:
                     var result4 = mapper.Map<ZoekMetNummeraanduidingIdentificatieResponse>(pb);
-                    result4.Personen = result4.Personen.ExcludeAfgevoerdePersoon().FilterList(fields);
+                    result4.Personen = result4.Personen.FilterList(fields);
                     retval = result4;
                     break;
                 case Gba.ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponse pb:
                     var result5 = mapper.Map<ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponse>(pb);
-                    result5.Personen = result5.Personen.ExcludeAfgevoerdePersoon().FilterList(fields);
+                    result5.Personen = result5.Personen.FilterList(fields);
                     retval = result5;
                     break;
                 case Gba.ZoekMetAdresseerbaarObjectIdentificatieResponse pb:
                     var result6 = mapper.Map<ZoekMetAdresseerbaarObjectIdentificatieResponse>(pb);
-                    result6.Personen = result6.Personen.ExcludeAfgevoerdePersoon().FilterList(fields);
+                    result6.Personen = result6.Personen.FilterList(fields);
                     retval = result6;
                     break;
                 default:
@@ -225,37 +225,37 @@ namespace BrpProxy.Middlewares
             {
                 case GbaDeprecated.RaadpleegMetBurgerservicenummerResponse p:
                     var result = mapper.Map<HcDeprecated.RaadpleegMetBurgerservicenummerResponse>(p);
-                    result.Personen = result.Personen.FilterAfgevoerdePersoon().ExcludeAdresregelsEnVerblijfplaatsBuitenland(originalFields).FilterList(fields);
+                    result.Personen = result.Personen.ExcludeAdresregelsEnVerblijfplaatsBuitenland(originalFields).FilterList(fields);
                     retval = result;
                     break;
                 case GbaDeprecated.ZoekMetGeslachtsnaamEnGeboortedatumResponse pb:
                     var result1 = mapper.Map<HcDeprecated.ZoekMetGeslachtsnaamEnGeboortedatumResponse>(pb);
-                    result1.Personen = result1.Personen.ExcludeAfgevoerdePersoon().FilterList(fields);
+                    result1.Personen = result1.Personen.FilterList(fields);
                     retval = result1;
                     break;
                 case GbaDeprecated.ZoekMetNaamEnGemeenteVanInschrijvingResponse pb:
                     var result3 = mapper.Map<HcDeprecated.ZoekMetNaamEnGemeenteVanInschrijvingResponse>(pb);
-                    result3.Personen = result3.Personen.ExcludeAfgevoerdePersoon().FilterList(fields);
+                    result3.Personen = result3.Personen.FilterList(fields);
                     retval = result3;
                     break;
                 case GbaDeprecated.ZoekMetPostcodeEnHuisnummerResponse pb:
                     var result2 = mapper.Map<HcDeprecated.ZoekMetPostcodeEnHuisnummerResponse>(pb);
-                    result2.Personen = result2.Personen.ExcludeAfgevoerdePersoon().FilterList(fields);
+                    result2.Personen = result2.Personen.FilterList(fields);
                     retval = result2;
                     break;
                 case GbaDeprecated.ZoekMetNummeraanduidingIdentificatieResponse pb:
                     var result4 = mapper.Map<HcDeprecated.ZoekMetNummeraanduidingIdentificatieResponse>(pb);
-                    result4.Personen = result4.Personen.ExcludeAfgevoerdePersoon().FilterList(fields);
+                    result4.Personen = result4.Personen.FilterList(fields);
                     retval = result4;
                     break;
                 case GbaDeprecated.ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponse pb:
                     var result5 = mapper.Map<HcDeprecated.ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponse>(pb);
-                    result5.Personen = result5.Personen.ExcludeAfgevoerdePersoon().FilterList(fields);
+                    result5.Personen = result5.Personen.FilterList(fields);
                     retval = result5;
                     break;
                 case GbaDeprecated.ZoekMetAdresseerbaarObjectIdentificatieResponse pb:
                     var result6 = mapper.Map<HcDeprecated.ZoekMetAdresseerbaarObjectIdentificatieResponse>(pb);
-                    result6.Personen = result6.Personen.ExcludeAfgevoerdePersoon().FilterList(fields);
+                    result6.Personen = result6.Personen.FilterList(fields);
                     retval = result6;
                     break;
                 default:

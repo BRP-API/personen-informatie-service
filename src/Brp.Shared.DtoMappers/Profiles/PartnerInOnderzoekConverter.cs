@@ -14,22 +14,22 @@ public class PartnerInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, B
                 Burgerservicenummer = true,
                 SoortVerbintenis = true,
                 Geslacht = true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "050100" or "050120" => new BrpApiDtos.PartnerInOnderzoek
             {
                 Burgerservicenummer = true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "050400" or "050410" => new BrpApiDtos.PartnerInOnderzoek
             {
                 Geslacht = true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "051500" or "051510" => new BrpApiDtos.PartnerInOnderzoek
             {
                 SoortVerbintenis = true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             _ => null,
         };

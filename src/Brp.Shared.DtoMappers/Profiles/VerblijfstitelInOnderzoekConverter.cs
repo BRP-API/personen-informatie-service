@@ -14,22 +14,22 @@ public class VerblijfstitelInOnderzoekConverter : ITypeConverter<BrpDtos.InOnder
                 Aanduiding= true,
                 DatumIngang= true,
                 DatumEinde= true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "103910" => new BrpApiDtos.VerblijfstitelInOnderzoek
             {
                 Aanduiding= true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "103920" => new BrpApiDtos.VerblijfstitelInOnderzoek
             {
                 DatumEinde= true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "103930" => new BrpApiDtos.VerblijfstitelInOnderzoek
             {
                 DatumIngang = true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             _ => null,
         };

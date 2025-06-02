@@ -16,19 +16,19 @@ namespace Brp.Shared.DtoMappers.Profiles
                     DatumVestigingInNederland = true,
                     IndicatieVestigingVanuitBuitenland = true,
                     VanuitVerblijfplaatsOnbekend = true,
-                    DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                    DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
                 },
                 "081410" => new BrpApiDtos.ImmigratieInOnderzoek
                 {
                     LandVanwaarIngeschreven = true,
                     VanuitVerblijfplaatsOnbekend = true,
-                    DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                    DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
                 },
                 "081420" => new BrpApiDtos.ImmigratieInOnderzoek
                 {
                     DatumVestigingInNederland = true,
                     IndicatieVestigingVanuitBuitenland = true,
-                    DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                    DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
                 },
                 _ => null,
             };

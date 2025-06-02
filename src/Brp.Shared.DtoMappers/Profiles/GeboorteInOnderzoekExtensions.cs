@@ -38,7 +38,7 @@ public static class GeboorteInOnderzoekExtensions
                 Datum = true,
                 Land = true,
                 Plaats = true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "010310" or
             "020310" or
@@ -47,7 +47,7 @@ public static class GeboorteInOnderzoekExtensions
             "090310" => new BrpApiDtos.GeboorteInOnderzoek
             {
                 Datum = true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "010320" or
             "020320" or
@@ -56,7 +56,7 @@ public static class GeboorteInOnderzoekExtensions
             "090320" => new BrpApiDtos.GeboorteInOnderzoek
             {
                 Plaats = true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "010330" or
             "020330" or
@@ -65,7 +65,7 @@ public static class GeboorteInOnderzoekExtensions
             "090330" => new BrpApiDtos.GeboorteInOnderzoek
             {
                 Land = true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             _ => null,
         };
@@ -80,7 +80,7 @@ public static class GeboorteInOnderzoekExtensions
             "010310" => new BrpApiDtos.GeboorteInOnderzoekBeperkt
             {
                 Datum = true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             _ => null,
         };

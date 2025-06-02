@@ -10,12 +10,11 @@ public class OuderProfile : Profile
         CreateMap<BrpDtos.GbaOuder, BrpApiDtos.Ouder>()
             .BeforeMap((src, dest) =>
             {
-                if (src.InOnderzoek != null)
-                {
-                    src.Naam ??= new CommonDtos.NaamBasis();
+                if (src.InOnderzoek == null) return;
 
-                    src.Geboorte ??= new BrpDtos.GbaGeboorte();
-                }
+                src.Naam ??= new CommonDtos.NaamBasis();
+
+                src.Geboorte ??= new BrpDtos.GbaGeboorte();
             })
             .AfterMap((src, dest) =>
             {

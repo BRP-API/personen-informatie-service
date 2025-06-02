@@ -13,7 +13,7 @@ public class StaatloosInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek,
             {
                 RedenOpname = true,
                 Type = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
             },
             "040500" or
             "040510" or
@@ -21,13 +21,13 @@ public class StaatloosInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek,
             "046510" => new BrpApiDtos.StaatloosInOnderzoek
             {
                 Type = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
 
             },
             "046300" or "046310" => new BrpApiDtos.StaatloosInOnderzoek
             {
                 RedenOpname = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
 
             },
             _ => null

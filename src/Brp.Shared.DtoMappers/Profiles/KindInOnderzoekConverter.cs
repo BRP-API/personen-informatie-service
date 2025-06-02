@@ -14,7 +14,7 @@ public class KindInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpA
             "090120" => new BrpApiDtos.KindInOnderzoek
             {
                 Burgerservicenummer = true,
-                DatumIngangOnderzoek = source.DatumIngangOnderzoek?.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             _ => null,
         };
