@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Brp.Shared.DtoMappers.Mappers;
+using Brp.Shared.DtoMappers.Profiles;
 using BrpProxy.Mappers;
 using HaalCentraal.BrpProxy.Generated;
 using HaalCentraal.BrpProxy.Generated.Gba;
@@ -168,11 +169,6 @@ public class PersoonProfile : Profile
             })
             .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek()))
             .ForMember(dest => dest.IndicatieGezagMinderjarige, opt => opt.MapFrom(src => src.IndicatieGezagMinderjarige))
-            .ForMember(dest => dest.Gezag, opt =>
-            {
-                opt.PreCondition(src => src.Gezag != null);
-                opt.MapFrom(src => src.Gezag);
-            })
             ;
     }
 }
