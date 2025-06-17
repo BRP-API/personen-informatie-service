@@ -7,7 +7,7 @@ namespace BrpProxy.Tests.Profiles;
 
 public class AdellijkeTitelPredicaatTypeProfile
 {
-    private static IMapper CreateSut() => AutomapperUnderTestFactory.CreateSut<BrpProxy.Profiles.AdellijkeTitelPredicaatTypeProfile>();
+    private static IMapper CreateSut() => AutomapperUnderTestFactory.CreateSut<Brp.Shared.DtoMappers.Profiles.AdellijkeTitelPredicaatTypeProfile>();
 
     [Fact]
     public void Titel()

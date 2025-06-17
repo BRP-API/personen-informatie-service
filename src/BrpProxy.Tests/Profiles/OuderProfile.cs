@@ -2,9 +2,9 @@
 using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
 using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
 using CommonDtos = Brp.Shared.DtoMappers.CommonDtos;
-using BrpProxy.Profiles;
 using FluentAssertions;
 using Xunit;
+using Brp.Shared.DtoMappers.Profiles;
 
 namespace BrpProxy.Tests.Profiles;
 
@@ -14,8 +14,8 @@ public class OuderProfile
     {
         MapperConfiguration config = new(cfg =>
         {
-            cfg.AddProfile<BrpProxy.Profiles.OuderProfile>();
-            cfg.AddProfile<BrpProxy.Profiles.NaamProfile>();
+            cfg.AddProfile<Brp.Shared.DtoMappers.Profiles.OuderProfile>();
+            cfg.AddProfile<NaamProfile>();
         });
         return config.CreateMapper();
     }
