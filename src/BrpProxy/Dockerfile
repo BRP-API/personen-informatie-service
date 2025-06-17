@@ -10,8 +10,9 @@ ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false \
 RUN apk add --no-cache icu-libs
 WORKDIR /app
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
 ARG BUILD_CONFIGURATION=Release
+ARG TARGETARCH
 WORKDIR /src
 
 COPY ["BrpProxy/BrpProxy.csproj", "BrpProxy/"]
@@ -25,11 +26,12 @@ RUN dotnet restore "BrpProxy/BrpProxy.csproj"
 COPY . .
 
 WORKDIR "/src/BrpProxy"
-RUN dotnet build "./BrpProxy.csproj" -c "$BUILD_CONFIGURATION" -o /app/build
+RUN dotnet build "./BrpProxy.csproj" -c "$BUILD_CONFIGURATION" -o /app/build --arch "$TARGETARCH"
 
-FROM build AS publish
+FROM --platform=$BUILDPLATFORM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./BrpProxy.csproj" -c "$BUILD_CONFIGURATION" -o /app/publish /p:UseAppHost=false
+ARG TARGETARCH
+RUN dotnet publish "./BrpProxy.csproj" -c "$BUILD_CONFIGURATION" -o /app/publish /p:UseAppHost=false --arch "$TARGETARCH"
 
 FROM base AS final
 WORKDIR /app
