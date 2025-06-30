@@ -158,29 +158,29 @@ public class VerblijfplaatsBuitenlandInOnderzoekConverter : ITypeConverter<BrpDt
                 DatumIngangGeldigheid = true,
                 DatumVan = true,
                 Type = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081300" => new BrpApiDtos.VerblijfplaatsBuitenlandInOnderzoek
             {
                 DatumVan = true,
                 Type = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081310" => new BrpApiDtos.VerblijfplaatsBuitenlandInOnderzoek
             {
                 Type = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081320" => new BrpApiDtos.VerblijfplaatsBuitenlandInOnderzoek
             {
                 DatumVan = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "088500" or
             "088510" => new BrpApiDtos.VerblijfplaatsBuitenlandInOnderzoek
             {
                 DatumIngangGeldigheid = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             _ => null,
         };
@@ -200,27 +200,27 @@ public class VerblijfadresBuitenlandInOnderzoekConverter : ITypeConverter<BrpDto
                 Regel2 = true,
                 Regel3 = true,
                 Land = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081310" => new BrpApiDtos.VerblijfadresBuitenlandInOnderzoek
             {
                 Land = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081330" => new BrpApiDtos.VerblijfadresBuitenlandInOnderzoek
             {
                 Regel1 = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081340" => new BrpApiDtos.VerblijfadresBuitenlandInOnderzoek
             {
                 Regel2 = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081350" => new BrpApiDtos.VerblijfadresBuitenlandInOnderzoek
             {
                 Regel3 = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             _ => null,
         };
@@ -240,35 +240,35 @@ public class LocatieInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, B
                 DatumVan = true,
                 FunctieAdres = true,
                 Type = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081000" => new BrpApiDtos.LocatieInOnderzoek
             {
                 DatumVan = true,
                 FunctieAdres = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081010" => new BrpApiDtos.LocatieInOnderzoek
             {
                 FunctieAdres = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081030" => new BrpApiDtos.LocatieInOnderzoek
             {
                 DatumVan = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081200" or
             "081210" => new BrpApiDtos.LocatieInOnderzoek
             {
                 Type = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "088500" or
             "088510" => new BrpApiDtos.LocatieInOnderzoek
             {
                 DatumIngangGeldigheid = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             _ => null,
         };
@@ -287,7 +287,7 @@ public class VerblijfadresLocatieInOnderzoekConverter : ITypeConverter<BrpDtos.I
             "089999" => new BrpApiDtos.VerblijfadresLocatieInOnderzoek
             {
                 Locatiebeschrijving = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             _ => null,
         };
@@ -305,29 +305,29 @@ public class VerblijfplaatsOnbekendInOnderzoekConverter : ITypeConverter<BrpDtos
                 DatumIngangGeldigheid = true,
                 DatumVan = true,
                 Type = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081300" => new BrpApiDtos.VerblijfplaatsOnbekendInOnderzoek
             {
                 DatumVan = true,
                 Type = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081310" => new BrpApiDtos.VerblijfplaatsOnbekendInOnderzoek
             {
                 Type = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081320" => new BrpApiDtos.VerblijfplaatsOnbekendInOnderzoek
             {
                 DatumVan = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "088500" or
             "088510" => new BrpApiDtos.VerblijfplaatsOnbekendInOnderzoek
             {
                 DatumIngangGeldigheid = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             _ => null,
         };
