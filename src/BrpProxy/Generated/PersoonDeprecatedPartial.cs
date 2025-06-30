@@ -1,6 +1,6 @@
 ﻿namespace HaalCentraal.BrpProxy.Generated.Deprecated;
 
-public partial class Persoon
+public partial class Persoon : IPersoon
 {
     public bool ShouldSerializeNationaliteiten() => Nationaliteiten != null;
 

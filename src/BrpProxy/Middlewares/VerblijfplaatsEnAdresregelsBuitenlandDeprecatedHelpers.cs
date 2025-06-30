@@ -10,7 +10,7 @@ public static class VerblijfplaatsEnAdresregelsBuitenlandDeprecatedHelpers
 
         foreach(var p in personen)
         {
-            fields.ClearBuitenlandsAdresseringEnVerblijfplaatsBijBinnenlandseBevraging(p.Adressering, p.Verblijfplaats);
+            p.ClearBuitenlandsAdresseringEnVerblijfplaatsBijBinnenlandseBevraging(fields);
 
             retval.Add(p);
         }

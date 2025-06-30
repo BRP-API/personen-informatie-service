@@ -21,39 +21,8 @@ public class PersoonProfile : Profile
                 opt.MapFrom(src => src.Geboorte.Datum.Map().Leeftijd());
             })
             .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek()))
-            .BeforeMap((src, dest) =>
-            {
-                if (src.PersoonInOnderzoek != null)
-                {
-                    src.Naam ??= new Brp.Shared.DtoMappers.CommonDtos.NaamBasis();
-
-                    src.Geboorte ??= new Brp.Shared.DtoMappers.BrpDtos.GeboorteBasis();
-                }
-            })
-            .AfterMap((src, dest) =>
-            {
-                if (src.Verblijfplaats != null)
-                {
-                    dest.Adressering = new AdresseringBeperkt
-                    {
-                        Adresregel1 = src.Verblijfplaats.Adresregel1(),
-                        Adresregel2 = src.Verblijfplaats.Adresregel2(src.GemeenteVanInschrijving),
-                        Adresregel3 = src.Verblijfplaats.Adresregel3(),
-                        Land = src.Verblijfplaats.Land(),
-                        InOnderzoek = src.AdresseringInOnderzoek(),
-                    };
-
-                    dest.Adressering.IndicatieVastgesteldVerblijftNietOpAdres = src.Verblijfplaats.IndicatieVastgesteldVerblijfNietOpAdres(dest.Adressering);
-                }
-                if (dest.Naam != null)
-                {
-                    dest.Naam.VolledigeNaam = dest.Naam.VolledigeNaam(src.Geslacht);
-                }
-
-                dest.Naam.MapInOnderzoek(src.PersoonInOnderzoek);
-
-                dest.Geboorte.MapInOnderzoek(src.PersoonInOnderzoek);
-            })
+            .BeforeMap(PersoonBeperktBeforeMap)
+            .AfterMap(PersoonBeperktAfterMap)
             ;
 
         CreateMap<GbaPersoonBeperkt, PersoonBeperkt>()
@@ -64,39 +33,8 @@ public class PersoonProfile : Profile
                 opt.MapFrom(src => src.Geboorte.Datum.Map().Leeftijd());
             })
             .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek()))
-            .BeforeMap((src, dest) =>
-            {
-                if (src.PersoonInOnderzoek != null)
-                {
-                    src.Naam ??= new Brp.Shared.DtoMappers.CommonDtos.NaamBasis();
-
-                    src.Geboorte ??= new Brp.Shared.DtoMappers.BrpDtos.GeboorteBasis();
-                }
-            })
-            .AfterMap((src, dest) =>
-            {
-                if (src.Verblijfplaats != null)
-                {
-                    dest.Adressering = new AdresseringBeperkt
-                    {
-                        Adresregel1 = src.Verblijfplaats.Adresregel1(),
-                        Adresregel2 = src.Verblijfplaats.Adresregel2(src.GemeenteVanInschrijving),
-                        Adresregel3 = src.Verblijfplaats.Adresregel3(),
-                        Land = src.Verblijfplaats.Land(),
-                        InOnderzoek = src.AdresseringInOnderzoek(),
-                    };
-
-                    dest.Adressering.IndicatieVastgesteldVerblijftNietOpAdres = src.Verblijfplaats.IndicatieVastgesteldVerblijfNietOpAdres(dest.Adressering);
-                }
-                if (dest.Naam != null)
-                {
-                    dest.Naam.VolledigeNaam = dest.Naam.VolledigeNaam(src.Geslacht);
-                }
-
-                dest.Naam.MapInOnderzoek(src.PersoonInOnderzoek);
-
-                dest.Geboorte.MapInOnderzoek(src.PersoonInOnderzoek);
-            })
+            .BeforeMap(PersoonBeperktBeforeMap)
+            .AfterMap(PersoonBeperktAfterMap)
             ;
 
         CreateMap<GbaPersoon, Persoon>()
@@ -170,5 +108,57 @@ public class PersoonProfile : Profile
             .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek()))
             .ForMember(dest => dest.IndicatieGezagMinderjarige, opt => opt.MapFrom(src => src.IndicatieGezagMinderjarige))
             ;
+    }
+
+    public static void PersoonBeperktBeforeMap(IGbaPersoonBeperkt src, IPersoonBeperkt dest)
+    {
+        if (src.PersoonInOnderzoek != null)
+        {
+            src.Naam ??= new Brp.Shared.DtoMappers.CommonDtos.NaamBasis();
+
+            src.Geboorte ??= new Brp.Shared.DtoMappers.BrpDtos.GeboorteBasis();
+        }
+    }
+    
+    public static void PersoonBeperktAfterMap(IGbaPersoonBeperkt src, IPersoonBeperkt dest)
+    {
+        MapVerblijfplaatsBeperktToAdressering(src, dest);
+
+        if (dest.Naam != null)
+        {
+            dest.Naam.VolledigeNaam = dest.Naam.VolledigeNaam(src.Geslacht);
+        }
+
+        dest.Naam.MapInOnderzoek(src.PersoonInOnderzoek);
+
+        dest.Geboorte.MapInOnderzoek(src.PersoonInOnderzoek);
+    }
+    
+    public static void MapVerblijfplaatsBeperktToAdressering(IGbaPersoonBeperkt src, IPersoonBeperkt dest)
+    {
+        if (src.Verblijfplaats == null)
+        {
+            return;
+        }
+        
+        dest.Adressering = Map(src.Verblijfplaats, src.GemeenteVanInschrijving, src.AdresseringInOnderzoek());
+    }
+
+    public static AdresseringBeperkt Map(Brp.Shared.DtoMappers.BrpDtos.GbaVerblijfplaatsBeperkt src,
+                                         Brp.Shared.DtoMappers.CommonDtos.Waardetabel gemeenteVanInschrijving,
+                                         Brp.Shared.DtoMappers.BrpApiDtos.AdresseringInOnderzoekBeperkt? inOnderzoek)
+    {
+        var dest = new AdresseringBeperkt
+        {
+            Adresregel1 = src.Adresregel1(),
+            Adresregel2 = src.Adresregel2(gemeenteVanInschrijving),
+            Adresregel3 = src.Adresregel3(),
+            Land = src.Land(),
+            InOnderzoek = inOnderzoek,
+        };
+
+        dest.IndicatieVastgesteldVerblijftNietOpAdres = src.IndicatieVastgesteldVerblijfNietOpAdres(dest);
+        
+        return dest;
     }
 }

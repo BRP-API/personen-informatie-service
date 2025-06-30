@@ -11,7 +11,7 @@ public static class VerblijfplaatsEnAdresregelsBuitenlandHelpers
 
         foreach (var p in personen)
         {
-            fields.ClearBuitenlandsAdresseringEnVerblijfplaatsBijBinnenlandseBevraging(p.Adressering, p.Verblijfplaats);
+            p.ClearBuitenlandsAdresseringEnVerblijfplaatsBijBinnenlandseBevraging(fields);
 
             retval.Add(p);
         }
@@ -19,16 +19,21 @@ public static class VerblijfplaatsEnAdresregelsBuitenlandHelpers
         return retval;
     }
 
-    public static void ClearBuitenlandsAdresseringEnVerblijfplaatsBijBinnenlandseBevraging(this IList<string> fields, Adressering? adressering, AbstractVerblijfplaats? verblijfplaats)
+    public static void ClearBuitenlandsAdresseringEnVerblijfplaatsBijBinnenlandseBevraging(this IPersoon persoon, IList<string> fields)
     {
-        if (fields.AdresseringBinnenlandWordtGevraagdBijBuitenlandsVerblijfplaats(adressering, verblijfplaats))
+        if (fields.AdresseringBinnenlandWordtGevraagdBijBuitenlandsVerblijfplaats(persoon.Adressering, persoon.Verblijfplaats))
         {
-            adressering.ClearAdresProperties();
+            persoon.Adressering.ClearAdresProperties();
+
+            if (!persoon.Adressering!.ShouldSerialize())
+            {
+                persoon.Adressering = null;
+            }
         }
 
-        if (fields.VerblijfplaatsBinnenlandWordtGevraagdBijBuitenlandsVerblijfplaats(verblijfplaats))
+        if (fields.VerblijfplaatsBinnenlandWordtGevraagdBijBuitenlandsVerblijfplaats(persoon.Verblijfplaats))
         {
-            verblijfplaats = null;
+            persoon.Verblijfplaats = null;
         }
     }
     
@@ -52,10 +57,5 @@ public static class VerblijfplaatsEnAdresregelsBuitenlandHelpers
         adressering.Adresregel2 = null;
         adressering.Adresregel3 = null;
         adressering.Land = null;
-
-        if (!adressering.ShouldSerialize())
-        {
-            adressering = null;
-        }
     }
 }

@@ -5,7 +5,6 @@ using BrpProxy.Mappers;
 using HaalCentraal.BrpProxy.Generated.Deprecated;
 using HaalCentraal.BrpProxy.Generated.Gba.Deprecated;
 using Adressering = Brp.Shared.DtoMappers.BrpApiDtos.Adressering;
-using AdresseringBeperkt = Brp.Shared.DtoMappers.BrpApiDtos.AdresseringBeperkt;
 
 namespace BrpProxy.Profiles;
 
@@ -21,39 +20,8 @@ public class PersoonDeprecatedProfile : Profile
                 opt.MapFrom(src => src.Geboorte.Datum.Map().Leeftijd());
             })
             .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek()))
-            .BeforeMap((src, dest) =>
-            {
-                if (src.PersoonInOnderzoek != null)
-                {
-                    src.Naam ??= new Brp.Shared.DtoMappers.CommonDtos.NaamBasis();
-
-                    src.Geboorte ??= new Brp.Shared.DtoMappers.BrpDtos.GeboorteBasis();
-                }
-            })
-            .AfterMap((src, dest) =>
-            {
-                if (src.Verblijfplaats != null)
-                {
-                    dest.Adressering = new AdresseringBeperkt
-                    {
-                        Adresregel1 = src.Verblijfplaats.Adresregel1(),
-                        Adresregel2 = src.Verblijfplaats.Adresregel2(src.GemeenteVanInschrijving),
-                        Adresregel3 = src.Verblijfplaats.Adresregel3(),
-                        Land = src.Verblijfplaats.Land(),
-                        InOnderzoek = src.AdresseringInOnderzoek(),
-                    };
-
-                    dest.Adressering.IndicatieVastgesteldVerblijftNietOpAdres = src.Verblijfplaats.IndicatieVastgesteldVerblijfNietOpAdres(dest.Adressering);
-                }
-                if (dest.Naam != null)
-                {
-                    dest.Naam.VolledigeNaam = dest.Naam.VolledigeNaam(src.Geslacht);
-                }
-
-                dest.Naam.MapInOnderzoek(src.PersoonInOnderzoek);
-
-                dest.Geboorte.MapInOnderzoek(src.PersoonInOnderzoek);
-            })
+            .BeforeMap(PersoonProfile.PersoonBeperktBeforeMap)
+            .AfterMap(PersoonProfile.PersoonBeperktAfterMap)
             ;
 
         CreateMap<GbaPersoonBeperkt, PersoonBeperkt>()
@@ -64,39 +32,8 @@ public class PersoonDeprecatedProfile : Profile
                 opt.MapFrom(src => src.Geboorte.Datum.Map().Leeftijd());
             })
             .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek()))
-            .BeforeMap((src, dest) =>
-            {
-                if (src.PersoonInOnderzoek != null)
-                {
-                    src.Naam ??= new Brp.Shared.DtoMappers.CommonDtos.NaamBasis();
-
-                    src.Geboorte ??= new Brp.Shared.DtoMappers.BrpDtos.GeboorteBasis();
-                }
-            })
-            .AfterMap((src, dest) =>
-            {
-                if (src.Verblijfplaats != null)
-                {
-                    dest.Adressering = new AdresseringBeperkt
-                    {
-                        Adresregel1 = src.Verblijfplaats.Adresregel1(),
-                        Adresregel2 = src.Verblijfplaats.Adresregel2(src.GemeenteVanInschrijving),
-                        Adresregel3 = src.Verblijfplaats.Adresregel3(),
-                        Land = src.Verblijfplaats.Land(),
-                        InOnderzoek = src.AdresseringInOnderzoek(),
-                    };
-
-                    dest.Adressering.IndicatieVastgesteldVerblijftNietOpAdres = src.Verblijfplaats.IndicatieVastgesteldVerblijfNietOpAdres(dest.Adressering);
-                }
-                if (dest.Naam != null)
-                {
-                    dest.Naam.VolledigeNaam = dest.Naam.VolledigeNaam(src.Geslacht);
-                }
-
-                dest.Naam.MapInOnderzoek(src.PersoonInOnderzoek);
-
-                dest.Geboorte.MapInOnderzoek(src.PersoonInOnderzoek);
-            })
+            .BeforeMap(PersoonProfile.PersoonBeperktBeforeMap)
+            .AfterMap(PersoonProfile.PersoonBeperktAfterMap)
             ;
 
         CreateMap<GbaPersoon, Persoon>()
