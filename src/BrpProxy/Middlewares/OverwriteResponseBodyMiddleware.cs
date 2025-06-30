@@ -166,7 +166,7 @@ namespace BrpProxy.Middlewares
             {
                 case Gba.RaadpleegMetBurgerservicenummerResponse p:
                     var result = mapper.Map<RaadpleegMetBurgerservicenummerResponse>(p);
-                    result.Personen = result.Personen.ExcludeAdresregelsEnVerblijfplaatsBuitenland(originalFields).FilterList(fields);
+                    result.Personen = result.Personen.ExcludeAdresregelsEnVerblijfplaatsBuitenland(originalFields.ToList()).FilterList(fields);
                     retval = result;
                     break;
                 case Gba.ZoekMetGeslachtsnaamEnGeboortedatumResponse pb:
@@ -225,7 +225,7 @@ namespace BrpProxy.Middlewares
             {
                 case GbaDeprecated.RaadpleegMetBurgerservicenummerResponse p:
                     var result = mapper.Map<HcDeprecated.RaadpleegMetBurgerservicenummerResponse>(p);
-                    result.Personen = result.Personen.ExcludeAdresregelsEnVerblijfplaatsBuitenland(originalFields).FilterList(fields);
+                    result.Personen = result.Personen.ExcludeAdresregelsEnVerblijfplaatsBuitenland(originalFields.ToList()).FilterList(fields);
                     retval = result;
                     break;
                 case GbaDeprecated.ZoekMetGeslachtsnaamEnGeboortedatumResponse pb:
