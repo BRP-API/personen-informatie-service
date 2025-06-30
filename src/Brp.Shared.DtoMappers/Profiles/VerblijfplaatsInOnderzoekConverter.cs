@@ -18,58 +18,58 @@ public class AdresInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, Brp
                 FunctieAdres = true,
                 NummeraanduidingIdentificatie = true,
                 Type = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081000" => new BrpApiDtos.AdresInOnderzoek
             {
                 DatumVan = true,
                 FunctieAdres = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081010" => new BrpApiDtos.AdresInOnderzoek
             {
                 FunctieAdres = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081030" or
             "081320" => new BrpApiDtos.AdresInOnderzoek
             {
                 DatumVan = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081100" => new BrpApiDtos.AdresInOnderzoek
             {
                 AdresseerbaarObjectIdentificatie = true,
                 NummeraanduidingIdentificatie = true,
                 Type = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081110" => new BrpApiDtos.AdresInOnderzoek
             {
                 Type = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081180" => new BrpApiDtos.AdresInOnderzoek
             {
                 AdresseerbaarObjectIdentificatie = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081190" => new BrpApiDtos.AdresInOnderzoek
             {
                 NummeraanduidingIdentificatie = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081300" => new BrpApiDtos.AdresInOnderzoek
             {
                 DatumVan = true,
                 Type = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "088500" or
             "088510" => new BrpApiDtos.AdresInOnderzoek
             {
                 DatumIngangGeldigheid = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             _ => null,
         };
@@ -94,53 +94,53 @@ public class VerblijfadresBinnenlandInOnderzoekConverter : ITypeConverter<BrpDto
                 Postcode = true,
                 OfficieleStraatnaam = true,
                 Woonplaats = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "080900" or
             "080910" => new BrpApiDtos.VerblijfadresBinnenlandInOnderzoek
             {
                 Woonplaats = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081110" => new BrpApiDtos.VerblijfadresBinnenlandInOnderzoek
             {
                 KorteStraatnaam = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081115" => new BrpApiDtos.VerblijfadresBinnenlandInOnderzoek
             {
                 OfficieleStraatnaam = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081120" => new BrpApiDtos.VerblijfadresBinnenlandInOnderzoek
             {
                 Huisnummer = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081130" => new BrpApiDtos.VerblijfadresBinnenlandInOnderzoek
             {
                 Huisletter = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081140" => new BrpApiDtos.VerblijfadresBinnenlandInOnderzoek
             {
                 Huisnummertoevoeging = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081150" => new BrpApiDtos.VerblijfadresBinnenlandInOnderzoek
             {
                 AanduidingBijHuisnummer = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081160" => new BrpApiDtos.VerblijfadresBinnenlandInOnderzoek
             {
                 Postcode = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "081170" => new BrpApiDtos.VerblijfadresBinnenlandInOnderzoek
             {
                 Woonplaats = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             _ => null,
         };

@@ -13,17 +13,17 @@ public class NationaliteitOnbekendInOnderzoekConverter : ITypeConverter<BrpDtos.
             {
                 RedenOpname = true,
                 Type = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "040500" or "040510" => new BrpApiDtos.NationaliteitOnbekendInOnderzoek
             {
                 Type = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "046300" or "046310" => new BrpApiDtos.NationaliteitOnbekendInOnderzoek
             {
                 RedenOpname = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             _ => null
         };

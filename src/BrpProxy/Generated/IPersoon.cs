@@ -6,4 +6,7 @@ public interface IPersoon
 {
     Adressering? Adressering { get; set; }
     AbstractVerblijfplaats? Verblijfplaats { get; set; }
+    
+    NaamPersoon? Naam  { get; set; }
+    Geboorte? Geboorte { get; set; }
 }

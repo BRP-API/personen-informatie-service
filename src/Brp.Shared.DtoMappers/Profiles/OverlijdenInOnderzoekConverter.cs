@@ -15,22 +15,22 @@ public class OverlijdenInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek
                 Datum = true,
                 Land = true,
                 Plaats = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "060810" => new BrpApiDtos.OverlijdenInOnderzoek
             {
                 Datum = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "060820" => new BrpApiDtos.OverlijdenInOnderzoek
             {
                 Plaats = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             "060830" => new BrpApiDtos.OverlijdenInOnderzoek
             {
                 Land = true,
-                DatumIngangOnderzoek = source?.DatumIngangOnderzoek.Map()
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
             _ => null,
         };
