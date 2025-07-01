@@ -119,5 +119,126 @@
       }
     ],
     "partners": []
+  },
+  {
+    "aNummer": "5348068307",
+    "burgerservicenummer": "000009831",
+    "datumEersteInschrijvingGBA": "19940930",
+    "geslacht": {
+      "code": "M",
+      "omschrijving": "man"
+    },
+    "naam": {
+      "aanduidingNaamgebruik": {
+        "code": "E",
+        "omschrijving": "eigen geslachtsnaam"
+      },
+      "voornamen": "Theodoor-Christiaan R. Philip ",
+      "adellijkeTitelPredicaat": {
+        "soort": "titel",
+        "code": "G",
+        "omschrijving": "graaf"
+      },
+      "voorvoegsel": "van der",
+      "geslachtsnaam": "Ven-Van Roedelrode tot Broekzucht"
+    },
+    "nationaliteiten": [
+      {
+        "datumIngangGeldigheid": "19750707",
+        "nationaliteit": {
+          "code": "0001",
+          "omschrijving": "Nederlandse"
+        },
+        "redenOpname": {
+          "code": "001",
+          "omschrijving": "Wet op het Nederlanderschap 1892, art.1, lid 1a"
+        }
+      }
+    ],
+    "geboorte": {
+      "land": {
+        "code": "6030",
+        "omschrijving": "Nederland"
+      },
+      "plaats": {
+        "code": "0153",
+        "omschrijving": "Enschede"
+      },
+      "datum": "19750707"
+    },
+    "verblijfplaats": {
+      "functieAdres": {
+        "code": "W",
+        "omschrijving": "woonadres"
+      },
+      "datumIngangGeldigheid": "19750707",
+      "inOnderzoek": {
+        "aanduidingGegevensInOnderzoek": "080000",
+        "datumIngangOnderzoek": "19940930"
+      },
+      "datumAanvangAdreshouding": "19750707",
+      "straat": "Boulevard 1945",
+      "huisnummer": "144",
+      "postcode": "7511AG"
+    },
+    "immigratie": {},
+    "gemeenteVanInschrijving": {
+      "code": "0153",
+      "omschrijving": "Enschede"
+    },
+    "datumInschrijvingInGemeente": "19750707",
+    "gezag": [
+        {
+            "type": "GezamenlijkOuderlijkGezag",
+            "minderjarige": {
+                "burgerservicenummer": "999995273",
+                "naam": {
+                    "voornamen": "Zach",
+                    "geslachtsnaam": "Precise"
+                },
+                "geslacht": {
+                    "code": "M",
+                    "omschrijving": "man"
+                },
+                "geboorte": {
+                    "datum": "20100501"
+                }
+            },
+            "ouders": []
+        }
+    ],
+    "kinderen": [],
+    "ouders": [
+      {
+        "geslacht": {
+          "code": "V",
+          "omschrijving": "vrouw"
+        },
+        "ouderAanduiding": "1",
+        "datumIngangFamilierechtelijkeBetrekking": "19750707",
+        "naam": {
+          "voornamen": "Pieternella Marina",
+          "adellijkeTitelPredicaat": {
+            "soort": "titel",
+            "code": "GI",
+            "omschrijving": "gravin"
+          },
+          "voorvoegsel": "van der",
+          "geslachtsnaam": "Ven-Van Roedelrode tot Broekzucht"
+        },
+        "geboorte": {
+          "land": {
+            "code": "6030",
+            "omschrijving": "Nederland"
+          },
+          "plaats": {
+            "code": "0153",
+            "omschrijving": "Enschede"
+          },
+          "datum": "19570707"
+        }
+      }
+    ],
+    "partners": []
   }
 ]

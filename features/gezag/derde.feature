@@ -1,5 +1,6 @@
 #language: nl
 
+@skip-verify
 Functionaliteit: derde
 
   Scenario: gezamenlijk gezag met onbekende derde
