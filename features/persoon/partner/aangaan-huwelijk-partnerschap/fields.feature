@@ -19,14 +19,15 @@ Functionaliteit: Persoon: partner aangaan huwelijk/geregistreerd partnerschap ve
     | datum.langFormaat | 8 augustus 2018 |
 
     Voorbeelden:
-    | fields                                                 |
-    | partners.aangaanHuwelijkPartnerschap.datum             |
-    | partners.aangaanHuwelijkPartnerschap.datum.type        |
-    | partners.aangaanHuwelijkPartnerschap.datum.datum       |
-    | partners.aangaanHuwelijkPartnerschap.datum.langFormaat |
-    | partners.aangaanHuwelijkPartnerschap.datum.jaar        |
-    | partners.aangaanHuwelijkPartnerschap.datum.maand       |
-    | partners.aangaanHuwelijkPartnerschap.datum.onbekend    |
+    | fields                                                  |
+    | partners.aangaanHuwelijkPartnerschap.datum              |
+    | partners.aangaanHuwelijkPartnerschap.datum.type         |
+    | partners.aangaanHuwelijkPartnerschap.datum.datum        |
+    | partners.aangaanHuwelijkPartnerschap.datum.langFormaat  |
+    | partners.aangaanHuwelijkPartnerschap.datum.jaar         |
+    | partners.aangaanHuwelijkPartnerschap.datum.maand        |
+    | partners.aangaanHuwelijkPartnerschap.datum.onbekend     |
+    | partners.aangaanHuwelijkPartnerschap.datum.nietBestaand |
 
   Abstract Scenario: 'datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)' van het type '<type>' wordt gevraagd met field pad 'partners.aangaanHuwelijkPartnerschap.datum'
     Gegeven de persoon met burgerservicenummer '000000012' heeft een 'partner' met de volgende gegevens
@@ -72,6 +73,7 @@ Functionaliteit: Persoon: partner aangaan huwelijk/geregistreerd partnerschap ve
     | partners.aangaanHuwelijkPartnerschap.plaats              |
     | partners.aangaanHuwelijkPartnerschap.plaats.code         |
     | partners.aangaanHuwelijkPartnerschap.plaats.omschrijving |
+    | partners.aangaanHuwelijkPartnerschap.plaats.nietBestaand |
 
   Abstract Scenario: 'plaats huwelijkssluiting/aangaan geregistreerd partnerschap (06.20)' met standaardwaarde wordt gevraagd met field pad '<fields>'
     Gegeven de persoon met burgerservicenummer '000000012' heeft een 'partner' met de volgende gegevens
@@ -107,6 +109,7 @@ Functionaliteit: Persoon: partner aangaan huwelijk/geregistreerd partnerschap ve
     | partners.aangaanHuwelijkPartnerschap.land              |
     | partners.aangaanHuwelijkPartnerschap.land.code         |
     | partners.aangaanHuwelijkPartnerschap.land.omschrijving |
+    | partners.aangaanHuwelijkPartnerschap.land.nietBestaand |
 
   Abstract Scenario: 'land huwelijkssluiting/aangaan geregistreerd partnerschap (06.30)' met standaardwaarde wordt gevraagd met field pad '<fields>'
     Gegeven de persoon met burgerservicenummer '000000012' heeft een 'partner' met de volgende gegevens

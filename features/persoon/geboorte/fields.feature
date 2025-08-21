@@ -19,14 +19,15 @@ Functionaliteit: Persoon: geboorte velden vragen met fields
     | datum.langFormaat | 1 juli 2002 |
 
     Voorbeelden:
-    | fields                     |
-    | geboorte.datum             |
-    | geboorte.datum.type        |
-    | geboorte.datum.datum       |
-    | geboorte.datum.langFormaat |
-    | geboorte.datum.jaar        |
-    | geboorte.datum.maand       |
-    | geboorte.datum.onbekend    |
+    | fields                      |
+    | geboorte.datum              |
+    | geboorte.datum.type         |
+    | geboorte.datum.datum        |
+    | geboorte.datum.langFormaat  |
+    | geboorte.datum.jaar         |
+    | geboorte.datum.maand        |
+    | geboorte.datum.onbekend     |
+    | geboorte.datum.nietBestaand |
 
   Abstract Scenario: 'geboortedatum (03.10)' van het type '<type>' wordt gevraagd met field pad 'geboorte.datum'
     Gegeven de persoon met burgerservicenummer '000000140' heeft de volgende gegevens
@@ -72,6 +73,7 @@ Functionaliteit: Persoon: geboorte velden vragen met fields
     | geboorte.plaats              |
     | geboorte.plaats.code         |
     | geboorte.plaats.omschrijving |
+    | geboorte.plaats.nietBestaand |
 
   Abstract Scenario: 'geboorteplaats (03.20)' met standaardwaarde wordt gevraagd met field pad '<fields>'
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens
@@ -107,6 +109,7 @@ Functionaliteit: Persoon: geboorte velden vragen met fields
     | geboorte.land              |
     | geboorte.land.code         |
     | geboorte.land.omschrijving |
+    | geboorte.land.nietBestaand |
 
   Abstract Scenario: 'geboorteland (03.30)' met standaardwaarde wordt gevraagd met field pad '<fields>'
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende gegevens

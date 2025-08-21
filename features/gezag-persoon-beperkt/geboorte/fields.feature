@@ -25,8 +25,9 @@ Functionaliteit: Gezag Persoon beperkt: geboorte velden vragen met fields
       | datum.langFormaat | 26 mei 1983 |
 
       Voorbeelden:
-      | fields                     |
-      | geboorte.datum             |
-      | geboorte.datum.type        |
-      | geboorte.datum.datum       |
-      | geboorte.datum.langFormaat |
+      | fields                      |
+      | geboorte.datum              |
+      | geboorte.datum.type         |
+      | geboorte.datum.datum        |
+      | geboorte.datum.langFormaat  |
+      | geboorte.datum.nietBestaand |

@@ -19,14 +19,15 @@ Functionaliteit: Persoon: overlijden velden vragen met fields
     | datum.langFormaat  | 1 juli 2002 |
 
     Voorbeelden:
-    | fields                       |
-    | overlijden.datum             |
-    | overlijden.datum.type        |
-    | overlijden.datum.datum       |
-    | overlijden.datum.langFormaat |
-    | overlijden.datum.jaar        |
-    | overlijden.datum.maand       |
-    | overlijden.datum.onbekend    |
+    | fields                        |
+    | overlijden.datum              |
+    | overlijden.datum.type         |
+    | overlijden.datum.datum        |
+    | overlijden.datum.langFormaat  |
+    | overlijden.datum.jaar         |
+    | overlijden.datum.maand        |
+    | overlijden.datum.onbekend     |
+    | overlijden.datum.nietBestaand |
 
   Abstract Scenario: 'datum overlijden (08.10)' van het type '<type>' wordt gevraagd met field pad 'overlijden.datum'
     Gegeven de persoon met burgerservicenummer '000000152' heeft de volgende 'overlijden' gegevens
@@ -72,6 +73,7 @@ Functionaliteit: Persoon: overlijden velden vragen met fields
     | overlijden.plaats              |
     | overlijden.plaats.code         |
     | overlijden.plaats.omschrijving |
+    | overlijden.plaats.nietBestaand |
 
   Abstract Scenario: 'plaats overlijden (08.20)' met standaardwaarde wordt gevraagd met field pad '<fields>'
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende 'overlijden' gegevens
@@ -107,6 +109,7 @@ Functionaliteit: Persoon: overlijden velden vragen met fields
     | overlijden.land              |
     | overlijden.land.code         |
     | overlijden.land.omschrijving |
+    | overlijden.land.nietBestaand |
 
   Abstract Scenario: 'land overlijden (08.30)' met standaardwaarde wordt gevraagd met field pad '<fields>'
     Gegeven de persoon met burgerservicenummer '000000012' heeft de volgende 'overlijden' gegevens

@@ -58,6 +58,7 @@ Functionaliteit: Persoon: ouder naam velden vragen met fields
     | 2                | ouders.naam.adellijkeTitelPredicaat.code         | JV   | jonkvrouw    | predicaat |
     | 1                | ouders.naam.adellijkeTitelPredicaat.soort        | BS   | barones      | titel     |
     | 2                | ouders.naam.adellijkeTitelPredicaat.omschrijving | R    | ridder       | titel     |
+    | 1                | ouders.naam.adellijkeTitelPredicaat.nietBestaand | G    | graaf        | titel     |
 
   Scenario: 'voorletters' wordt gevraagd met field pad 'ouders.naam.voorletters'
     Gegeven de persoon met burgerservicenummer '000000012' heeft een ouder '1' met de volgende gegevens

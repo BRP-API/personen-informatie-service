@@ -74,6 +74,7 @@ Functionaliteit: Persoon beperkt: naam velden vragen met fields
     | naam.adellijkeTitelPredicaat.code         |
     | naam.adellijkeTitelPredicaat.omschrijving |
     | naam.adellijkeTitelPredicaat.soort        |
+    | naam.adellijkeTitelPredicaat.nietBestaand |
 
   Scenario: 'voorletters' wordt gevraagd met field pad 'naam.voorletters'
     Gegeven de persoon met burgerservicenummer '000000152' heeft de volgende gegevens

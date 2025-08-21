@@ -173,6 +173,7 @@ Functionaliteit: Persoon velden vragen met fields
     | gemeenteVanInschrijving              |
     | gemeenteVanInschrijving.code         |
     | gemeenteVanInschrijving.omschrijving |
+    | gemeenteVanInschrijving.nietBestaand |
 
   Abstract Scenario: 'gemeente van inschrijving (09.10)' met standaardwaarde wordt gevraagd met field pad '<fields>'
     Gegeven adres 'A1' heeft de volgende gegevens

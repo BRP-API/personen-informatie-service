@@ -19,14 +19,15 @@ Functionaliteit: Persoon: kind geboorte velden vragen met fields
     | datum.langFormaat | 1 juli 2002 |
 
     Voorbeelden:
-    | fields                              |
-    | kinderen.geboorte.datum             |
-    | kinderen.geboorte.datum.type        |
-    | kinderen.geboorte.datum.datum       |
-    | kinderen.geboorte.datum.langFormaat |
-    | kinderen.geboorte.datum.jaar        |
-    | kinderen.geboorte.datum.maand       |
-    | kinderen.geboorte.datum.onbekend    |
+    | fields                               |
+    | kinderen.geboorte.datum              |
+    | kinderen.geboorte.datum.type         |
+    | kinderen.geboorte.datum.datum        |
+    | kinderen.geboorte.datum.langFormaat  |
+    | kinderen.geboorte.datum.jaar         |
+    | kinderen.geboorte.datum.maand        |
+    | kinderen.geboorte.datum.onbekend     |
+    | kinderen.geboorte.datum.nietBestaand |
 
   Abstract Scenario: 'geboortedatum (03.10)' van het type '<type>' wordt gevraagd met field pad 'kinderen.geboorte.datum'
     Gegeven de persoon met burgerservicenummer '000000012' heeft een 'kind' met de volgende gegevens
@@ -72,6 +73,7 @@ Functionaliteit: Persoon: kind geboorte velden vragen met fields
     | kinderen.geboorte.plaats              |
     | kinderen.geboorte.plaats.code         |
     | kinderen.geboorte.plaats.omschrijving |
+    | kinderen.geboorte.plaats.nietBestaand |
 
   Abstract Scenario: 'geboorteplaats (03.20)' met standaardwaarde wordt gevraagd met field pad '<fields>'
     Gegeven de persoon met burgerservicenummer '000000012' heeft een 'kind' met de volgende gegevens
@@ -107,6 +109,7 @@ Functionaliteit: Persoon: kind geboorte velden vragen met fields
     | kinderen.geboorte.land              |
     | kinderen.geboorte.land.code         |
     | kinderen.geboorte.land.omschrijving |
+    | kinderen.geboorte.land.nietBestaand |
 
   Abstract Scenario: 'geboorteland (03.30)' met standaardwaarde wordt gevraagd met field pad '<fields>'
     Gegeven de persoon met burgerservicenummer '000000012' heeft een 'kind' met de volgende gegevens
