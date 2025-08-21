@@ -1,5 +1,6 @@
 #language: nl
 
+@info-api
 Functionaliteit: doorgeven van indicatie in onderzoek
 
   Regel: wanneer de Gezag API een gezagsrelatie levert waarvan het inOnderzoek veld is gevuld, dan wordt dit veld doorgegeven

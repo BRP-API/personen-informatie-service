@@ -1,5 +1,6 @@
 #language: nl
 
+@info-api
 Functionaliteit: gezagsrelaties vragen met fields
 
   Scenario: geleverde persoon heeft eenhoofdig ouderlijk gezag
