@@ -36,6 +36,7 @@ Functionaliteit: Persoon: verblijfplaats binnenland (adres) - verblijfadres veld
     | verblijfplaats.verblijfadres.aanduidingBijHuisnummer              |
     | verblijfplaats.verblijfadres.aanduidingBijHuisnummer.code         |
     | verblijfplaats.verblijfadres.aanduidingBijHuisnummer.omschrijving |
+    | verblijfplaats.verblijfadres.aanduidingBijHuisnummer.nietBestaand |
 
   Scenario: 'huisletter (11.30)' wordt gevraagd met field pad 'verblijfplaats.verblijfadres.huisletter'
     Als personen wordt gezocht met de volgende parameters

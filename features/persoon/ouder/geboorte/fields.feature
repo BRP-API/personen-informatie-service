@@ -19,14 +19,15 @@ Functionaliteit: Persoon: ouder geboorte velden vragen met fields
     | datum.langFormaat | 1 juli 2002 |
 
     Voorbeelden:
-    | fields                            |
-    | ouders.geboorte.datum             |
-    | ouders.geboorte.datum.type        |
-    | ouders.geboorte.datum.datum       |
-    | ouders.geboorte.datum.langFormaat |
-    | ouders.geboorte.datum.jaar        |
-    | ouders.geboorte.datum.maand       |
-    | ouders.geboorte.datum.onbekend    |
+    | fields                             |
+    | ouders.geboorte.datum              |
+    | ouders.geboorte.datum.type         |
+    | ouders.geboorte.datum.datum        |
+    | ouders.geboorte.datum.langFormaat  |
+    | ouders.geboorte.datum.jaar         |
+    | ouders.geboorte.datum.maand        |
+    | ouders.geboorte.datum.onbekend     |
+    | ouders.geboorte.datum.nietBestaand |
 
   Abstract Scenario: 'geboortedatum (03.10)' van het type '<type>' wordt gevraagd met field pad 'ouders.geboorte.datum'
     Gegeven de persoon met burgerservicenummer '000000012' heeft een ouder '1' met de volgende gegevens
@@ -76,6 +77,7 @@ Functionaliteit: Persoon: ouder geboorte velden vragen met fields
     | ouders.geboorte.plaats              |
     | ouders.geboorte.plaats.code         |
     | ouders.geboorte.plaats.omschrijving |
+    | ouders.geboorte.plaats.nietBestaand |
 
   Abstract Scenario: 'geboorteplaats (03.20)' met standaardwaarde wordt gevraagd met field pad '<fields>'
     Gegeven de persoon met burgerservicenummer '000000012' heeft een ouder '1' met de volgende gegevens
@@ -114,6 +116,7 @@ Functionaliteit: Persoon: ouder geboorte velden vragen met fields
     | ouders.geboorte.land              |
     | ouders.geboorte.land.code         |
     | ouders.geboorte.land.omschrijving |
+    | ouders.geboorte.land.nietBestaand |
 
   Abstract Scenario: 'geboorteland (03.30)' met standaardwaarde wordt gevraagd met field pad '<fields>'
     Gegeven de persoon met burgerservicenummer '000000012' heeft een ouder '1' met de volgende gegevens

@@ -22,6 +22,7 @@ Functionaliteit: Persoon: Europees kiesrecht velden vragen met fields
     | europeesKiesrecht.aanduiding              |
     | europeesKiesrecht.aanduiding.code         |
     | europeesKiesrecht.aanduiding.omschrijving |
+    | europeesKiesrecht.aanduiding.nietBestaand |
 
   Abstract Scenario: 'einddatum uitsluiting Europees kiesrecht (31.30)' wordt gevraagd met field pad '<fields>'
     Gegeven de persoon met burgerservicenummer '000000152' heeft de volgende 'inschrijving' gegevens
@@ -40,14 +41,15 @@ Functionaliteit: Persoon: Europees kiesrecht velden vragen met fields
     | einddatumUitsluiting.langFormaat | 1 januari 2027 |
 
     Voorbeelden:
-    | fields                                             |
-    | europeesKiesrecht.einddatumUitsluiting             |
-    | europeesKiesrecht.einddatumUitsluiting.type        |
-    | europeesKiesrecht.einddatumUitsluiting.datum       |
-    | europeesKiesrecht.einddatumUitsluiting.langFormaat |
-    | europeesKiesrecht.einddatumUitsluiting.jaar        |
-    | europeesKiesrecht.einddatumUitsluiting.maand       |
-    | europeesKiesrecht.einddatumUitsluiting.onbekend    |
+    | fields                                              |
+    | europeesKiesrecht.einddatumUitsluiting              |
+    | europeesKiesrecht.einddatumUitsluiting.type         |
+    | europeesKiesrecht.einddatumUitsluiting.datum        |
+    | europeesKiesrecht.einddatumUitsluiting.langFormaat  |
+    | europeesKiesrecht.einddatumUitsluiting.jaar         |
+    | europeesKiesrecht.einddatumUitsluiting.maand        |
+    | europeesKiesrecht.einddatumUitsluiting.onbekend     |
+    | europeesKiesrecht.einddatumUitsluiting.nietBestaand |
 
   Abstract Scenario: 'einddatum uitsluiting Europees kiesrecht (31.30)' van het type '<type>' wordt gevraagd met field pad 'europeesKiesrecht.einddatumUitsluiting'
     Gegeven de persoon met burgerservicenummer '000000152' heeft de volgende 'inschrijving' gegevens

@@ -22,6 +22,7 @@ Functionaliteit: Persoon: gezagsverhouding velden vragen met fields
     | indicatieGezagMinderjarige              |
     | indicatieGezagMinderjarige.code         |
     | indicatieGezagMinderjarige.omschrijving |
+    | indicatieGezagMinderjarige.nietBestaand |
 
   Scenario: 'indicatie curateleregister (33.10)' wordt gevraagd met field pad 'indicatieCurateleRegister'
     Gegeven de persoon met burgerservicenummer '000000152' heeft de volgende 'gezagsverhouding' gegevens

@@ -20,6 +20,7 @@ namespace BrpProxy.Tests
         [Theory]
         [InlineData(new string[] { "geboorte.datum" }, new string[] { "geboorte.datum" })]
         [InlineData(new string[] { "geboorte.datum.datum" }, new string[] { "geboorte.datum" })]
+        [InlineData(new string[] { "geboorte.datum.nietBestaand" }, new string[] { "geboorte.datum" })]
         public void Geboorte(IEnumerable<string> input, IEnumerable<string> expected)
         {
             input.ReplaceDatumWaardeTabelVerblijfplaatsBinnenlandPropertyFieldPaths().Should().BeEquivalentTo(expected);
@@ -28,6 +29,7 @@ namespace BrpProxy.Tests
         [Theory]
         [InlineData(new string[] { "kinderen.geboorte.datum" }, new string[] { "kinderen.geboorte.datum" })]
         [InlineData(new string[] { "kinderen.geboorte.datum.datum" }, new string[] { "kinderen.geboorte.datum" })]
+        [InlineData(new string[] { "kinderen.geboorte.datum.nietBestaand" }, new string[] { "kinderen.geboorte.datum" })]
         public void Kind(IEnumerable<string> input, IEnumerable<string> expected)
         {
             input.ReplaceDatumWaardeTabelVerblijfplaatsBinnenlandPropertyFieldPaths().Should().BeEquivalentTo(expected);
@@ -36,6 +38,7 @@ namespace BrpProxy.Tests
         [Theory]
         [InlineData(new string[] { "overlijden.datum" }, new string[] { "overlijden.datum" })]
         [InlineData(new string[] { "overlijden.datum.datum" }, new string[] { "overlijden.datum" })]
+        [InlineData(new string[] { "overlijden.datum.nietBestaand" }, new string[] { "overlijden.datum" })]
         public void Overlijden(IEnumerable<string> input, IEnumerable<string> expected)
         {
             input.ReplaceDatumWaardeTabelVerblijfplaatsBinnenlandPropertyFieldPaths().Should().BeEquivalentTo(expected);
@@ -47,6 +50,7 @@ namespace BrpProxy.Tests
         [InlineData(new string[] { "partners.geboorte.datum" }, new string[] { "partners.geboorte.datum" })]
         [InlineData(new string[] { "partners.geboorte.datum.datum" }, new string[] { "partners.geboorte.datum" })]
         [InlineData(new string[] { "partners.naam.adellijkeTitelPredicaat.soort" }, new string[] { "partners.naam.adellijkeTitelPredicaat" })]
+        [InlineData(new string[] { "partners.naam.adellijkeTitelPredicaat.nietBestaand" }, new string[] { "partners.naam.adellijkeTitelPredicaat" })]
         public void Partner(IEnumerable<string> input, IEnumerable<string> expected)
         {
             input.ReplaceDatumWaardeTabelVerblijfplaatsBinnenlandPropertyFieldPaths().Should().BeEquivalentTo(expected);

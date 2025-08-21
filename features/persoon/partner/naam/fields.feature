@@ -58,6 +58,7 @@ Functionaliteit: Persoon: partner naam velden vragen met fields
     | partners.naam.adellijkeTitelPredicaat.code         |
     | partners.naam.adellijkeTitelPredicaat.soort        |
     | partners.naam.adellijkeTitelPredicaat.omschrijving |
+    | partners.naam.adellijkeTitelPredicaat.nietBestaand |
 
   Scenario: 'voorletters' wordt gevraagd met field pad 'partners.naam.voorletters'
     Gegeven de persoon met burgerservicenummer '000000012' heeft een 'partner' met de volgende gegevens

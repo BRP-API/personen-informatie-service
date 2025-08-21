@@ -7,6 +7,7 @@ using Brp.Shared.Validatie.Middleware;
 using BrpProxy.Middlewares;
 using BrpProxy.Validators;
 using HaalCentraal.BrpService.Extensions;
+using HaalCentraal.BrpService.Middlewares;
 using HaalCentraal.BrpService.Repositories;
 using Serilog;
 
@@ -45,6 +46,8 @@ try
 
     app.UseMiddleware<RequestValidatieMiddleware>();
 
+    app.UseMiddleware<AddAcceptGezagVersionHeaderMiddleware>();
+    
     app.UseMiddleware<OverwriteResponseBodyMiddleware>();
 
     app.MapControllers();

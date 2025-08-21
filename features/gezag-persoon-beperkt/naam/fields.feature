@@ -66,6 +66,7 @@ Functionaliteit: Gezag Persoon beperkt: naam velden vragen met fields
       | naam.adellijkeTitelPredicaat.code         |
       | naam.adellijkeTitelPredicaat.omschrijving |
       | naam.adellijkeTitelPredicaat.soort        |
+      | naam.adellijkeTitelPredicaat.nietBestaand |
 
     Scenario: 'voorletters' wordt gevraagd met field pad 'naam.voorletters'
       Als personen wordt gezocht met de volgende parameters

@@ -58,6 +58,7 @@ Functionaliteit: Persoon: kind naam velden vragen met fields
     | kinderen.naam.adellijkeTitelPredicaat.code         |
     | kinderen.naam.adellijkeTitelPredicaat.soort        |
     | kinderen.naam.adellijkeTitelPredicaat.omschrijving |
+    | kinderen.naam.adellijkeTitelPredicaat.nietBestaand |
 
   Scenario: 'voorletters' wordt gevraagd met field pad 'kinderen.naam.voorletters'
     Gegeven de persoon met burgerservicenummer '000000012' heeft een 'kind' met de volgende gegevens

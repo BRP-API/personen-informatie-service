@@ -19,14 +19,15 @@ Functionaliteit: Persoon: partner ontbinding huwelijk/geregistreerd partnerschap
     | datum.langFormaat | 1 oktober 2020 |
 
     Voorbeelden:
-    | fields                                                    |
-    | partners.ontbindingHuwelijkPartnerschap.datum             |
-    | partners.ontbindingHuwelijkPartnerschap.datum.type        |
-    | partners.ontbindingHuwelijkPartnerschap.datum.datum       |
-    | partners.ontbindingHuwelijkPartnerschap.datum.langFormaat |
-    | partners.ontbindingHuwelijkPartnerschap.datum.jaar        |
-    | partners.ontbindingHuwelijkPartnerschap.datum.maand       |
-    | partners.ontbindingHuwelijkPartnerschap.datum.onbekend    |
+    | fields                                                     |
+    | partners.ontbindingHuwelijkPartnerschap.datum              |
+    | partners.ontbindingHuwelijkPartnerschap.datum.type         |
+    | partners.ontbindingHuwelijkPartnerschap.datum.datum        |
+    | partners.ontbindingHuwelijkPartnerschap.datum.langFormaat  |
+    | partners.ontbindingHuwelijkPartnerschap.datum.jaar         |
+    | partners.ontbindingHuwelijkPartnerschap.datum.maand        |
+    | partners.ontbindingHuwelijkPartnerschap.datum.onbekend     |
+    | partners.ontbindingHuwelijkPartnerschap.datum.nietBestaand |
 
   Abstract Scenario: 'datum ontbinding huwelijk/geregistreerd partnerschap (07.10)' van het type '<type>' wordt gevraagd met field pad 'partners.ontbindingHuwelijkPartnerschap.datum'
     Gegeven de persoon met burgerservicenummer '000000012' heeft een 'partner' met de volgende gegevens

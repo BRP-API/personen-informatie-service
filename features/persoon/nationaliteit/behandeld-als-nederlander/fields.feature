@@ -24,6 +24,7 @@ Functionaliteit: Persoon: 'behandeld als Nederlander' nationaliteit velden vrage
     | nationaliteiten.redenOpname              |
     | nationaliteiten.redenOpname.code         |
     | nationaliteiten.redenOpname.omschrijving |
+    | nationaliteiten.redenOpname.nietBestaand |
 
   Abstract Scenario: 'reden opname (63.10)' met standaardwaarde wordt gevraagd met field pad '<fields>'
     Gegeven de persoon met burgerservicenummer '000000012' heeft een 'nationaliteit' met de volgende gegevens
@@ -61,14 +62,15 @@ Functionaliteit: Persoon: 'behandeld als Nederlander' nationaliteit velden vrage
     | datumIngangGeldigheid.langFormaat | 1 juli 2002             |
 
     Voorbeelden:
-    | fields                                            |
-    | nationaliteiten.datumIngangGeldigheid             |
-    | nationaliteiten.datumIngangGeldigheid.type        |
-    | nationaliteiten.datumIngangGeldigheid.datum       |
-    | nationaliteiten.datumIngangGeldigheid.langFormaat |
-    | nationaliteiten.datumIngangGeldigheid.jaar        |
-    | nationaliteiten.datumIngangGeldigheid.maand       |
-    | nationaliteiten.datumIngangGeldigheid.onbekend    |
+    | fields                                             |
+    | nationaliteiten.datumIngangGeldigheid              |
+    | nationaliteiten.datumIngangGeldigheid.type         |
+    | nationaliteiten.datumIngangGeldigheid.datum        |
+    | nationaliteiten.datumIngangGeldigheid.langFormaat  |
+    | nationaliteiten.datumIngangGeldigheid.jaar         |
+    | nationaliteiten.datumIngangGeldigheid.maand        |
+    | nationaliteiten.datumIngangGeldigheid.onbekend     |
+    | nationaliteiten.datumIngangGeldigheid.nietBestaand |
 
   Abstract Scenario: 'datum ingang geldigheid (85.10)' van het type '<type>' wordt gevraagd met field pad 'nationaliteiten.datumIngangGeldigheid'
     Gegeven de persoon met burgerservicenummer '000000012' heeft een 'nationaliteit' met de volgende gegevens

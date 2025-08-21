@@ -35,6 +35,7 @@ Functionaliteit: Persoon: partner velden vragen met fields
     | partners.geslacht              |
     | partners.geslacht.code         |
     | partners.geslacht.omschrijving |
+    | partners.geslacht.nietBestaand |
 
   Abstract Scenario: 'soort verbintenis (15.10)' wordt gevraagd met field pad '<fields>'
     Gegeven de persoon met burgerservicenummer '000000012' heeft een 'partner' met de volgende gegevens
@@ -55,6 +56,7 @@ Functionaliteit: Persoon: partner velden vragen met fields
     | partners.soortVerbintenis              |
     | partners.soortVerbintenis.code         |
     | partners.soortVerbintenis.omschrijving |
+    | partners.soortVerbintenis.nietBestaand |
 
   Abstract Scenario: 'soort verbintenis (15.10)' met standaardwaarde wordt gevraagd met field pad '<fields>'
     Gegeven de persoon met burgerservicenummer '000000012' heeft een 'partner' met de volgende gegevens

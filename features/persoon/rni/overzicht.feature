@@ -119,6 +119,7 @@ Regel: RNI-deelnemer gegevens die horen bij categorie 01 (Persoon), 04 (National
     | verblijfplaats.verblijfadres.land              |
     | verblijfplaats.verblijfadres.land.code         |
     | verblijfplaats.verblijfadres.land.omschrijving |
+    | verblijfplaats.verblijfadres.land.nietBestaand |
 
   Abstract Scenario: persoon heeft RNI-deelnemer gegevens voor categorie 08 (verblijfplaats onbekend) en één of meerdere velden uit die categorie wordt gevraagd
     Gegeven de persoon met burgerservicenummer '000000036' is ingeschreven op een buitenlands adres met de volgende gegevens

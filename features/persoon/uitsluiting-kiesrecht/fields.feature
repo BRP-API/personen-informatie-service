@@ -33,14 +33,15 @@ Functionaliteit: Persoon: uitsluiting kiesrecht velden vragen met fields
     | einddatum.langFormaat | 1 januari 2027 |
 
     Voorbeelden:
-    | fields                                     |
-    | uitsluitingKiesrecht.einddatum             |
-    | uitsluitingKiesrecht.einddatum.type        |
-    | uitsluitingKiesrecht.einddatum.datum       |
-    | uitsluitingKiesrecht.einddatum.langFormaat |
-    | uitsluitingKiesrecht.einddatum.jaar        |
-    | uitsluitingKiesrecht.einddatum.maand       |
-    | uitsluitingKiesrecht.einddatum.onbekend    |
+    | fields                                      |
+    | uitsluitingKiesrecht.einddatum              |
+    | uitsluitingKiesrecht.einddatum.type         |
+    | uitsluitingKiesrecht.einddatum.datum        |
+    | uitsluitingKiesrecht.einddatum.langFormaat  |
+    | uitsluitingKiesrecht.einddatum.jaar         |
+    | uitsluitingKiesrecht.einddatum.maand        |
+    | uitsluitingKiesrecht.einddatum.onbekend     |
+    | uitsluitingKiesrecht.einddatum.nietBestaand |
 
   Abstract Scenario: 'einddatum uitsluiting kiesrecht (38.20)' van het type '<type>' wordt gevraagd met field pad 'uitsluitingKiesrecht.einddatum'
     Gegeven de persoon met burgerservicenummer '000000152' heeft de volgende 'inschrijving' gegevens

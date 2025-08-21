@@ -40,6 +40,7 @@ Functionaliteit: Persoon: ouder velden vragen met fields
     | 1                | ouders.geslacht              |
     | 1                | ouders.geslacht.code         |
     | 2                | ouders.geslacht.omschrijving |
+    | 2                | ouders.geslacht.nietBestaand |
 
   Abstract Scenario: 'ouder aanduiding' wordt gevraagd met field pad 'ouders.ouderAanduiding'
     Gegeven de persoon met burgerservicenummer '000000012' heeft een ouder '<ouder aanduiding>' met de volgende gegevens
@@ -75,14 +76,15 @@ Functionaliteit: Persoon: ouder velden vragen met fields
     | datumIngangFamilierechtelijkeBetrekking.langFormaat | 1 juli 2002 |
 
     Voorbeelden:
-    | fields                                                     |
-    | ouders.datumIngangFamilierechtelijkeBetrekking             |
-    | ouders.datumIngangFamilierechtelijkeBetrekking.type        |
-    | ouders.datumIngangFamilierechtelijkeBetrekking.datum       |
-    | ouders.datumIngangFamilierechtelijkeBetrekking.langFormaat |
-    | ouders.datumIngangFamilierechtelijkeBetrekking.jaar        |
-    | ouders.datumIngangFamilierechtelijkeBetrekking.maand       |
-    | ouders.datumIngangFamilierechtelijkeBetrekking.onbekend    |
+    | fields                                                      |
+    | ouders.datumIngangFamilierechtelijkeBetrekking              |
+    | ouders.datumIngangFamilierechtelijkeBetrekking.type         |
+    | ouders.datumIngangFamilierechtelijkeBetrekking.datum        |
+    | ouders.datumIngangFamilierechtelijkeBetrekking.langFormaat  |
+    | ouders.datumIngangFamilierechtelijkeBetrekking.jaar         |
+    | ouders.datumIngangFamilierechtelijkeBetrekking.maand        |
+    | ouders.datumIngangFamilierechtelijkeBetrekking.onbekend     |
+    | ouders.datumIngangFamilierechtelijkeBetrekking.nietBestaand |
 
   Abstract Scenario: 'datum ingang familierechtelijke betrekking (62.10)' van het type '<type>' wordt gevraagd met field pad 'ouders.datumIngangFamilierechtelijkeBetrekking'
     Gegeven de persoon met burgerservicenummer '000000218' heeft een ouder '1' met de volgende gegevens
