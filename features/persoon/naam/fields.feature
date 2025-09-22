@@ -74,6 +74,7 @@ Functionaliteit: naam velden vragen met fields
     | naam.adellijkeTitelPredicaat.code         |
     | naam.adellijkeTitelPredicaat.omschrijving |
     | naam.adellijkeTitelPredicaat.soort        |
+    | naam.adellijkeTitelPredicaat.nietBestaand |
 
   Abstract Scenario: 'aanduiding naamgebruik (61.10)' wordt gevraagd met field pad '<fields>'
     Gegeven de persoon met burgerservicenummer '000000152' heeft de volgende gegevens
@@ -94,3 +95,4 @@ Functionaliteit: naam velden vragen met fields
     | naam.aanduidingNaamgebruik              |
     | naam.aanduidingNaamgebruik.code         |
     | naam.aanduidingNaamgebruik.omschrijving |
+    | naam.aanduidingNaamgebruik.nietBestaand |

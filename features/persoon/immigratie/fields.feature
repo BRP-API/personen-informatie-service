@@ -22,6 +22,7 @@ Functionaliteit: Persoon: immigratie velden vragen met fields
     | immigratie.landVanwaarIngeschreven              |
     | immigratie.landVanwaarIngeschreven.code         |
     | immigratie.landVanwaarIngeschreven.omschrijving |
+    | immigratie.landVanwaarIngeschreven.nietBestaand |
 
   Scenario: 'land vanwaar ingeschreven (14.10)' met standaardwaarde wordt gevraagd met field pad '<fields>'
     Gegeven de persoon met burgerservicenummer '000000152' is ingeschreven op een buitenlands adres met de volgende gegevens
@@ -54,14 +55,15 @@ Functionaliteit: Persoon: immigratie velden vragen met fields
     | datumVestigingInNederland.langFormaat | 1 juli 2002 |
 
     Voorbeelden:
-    | fields                                           |
-    | immigratie.datumVestigingInNederland             |
-    | immigratie.datumVestigingInNederland.type        |
-    | immigratie.datumVestigingInNederland.datum       |
-    | immigratie.datumVestigingInNederland.langFormaat |
-    | immigratie.datumVestigingInNederland.jaar        |
-    | immigratie.datumVestigingInNederland.maand       |
-    | immigratie.datumVestigingInNederland.onbekend    |
+    | fields                                            |
+    | immigratie.datumVestigingInNederland              |
+    | immigratie.datumVestigingInNederland.type         |
+    | immigratie.datumVestigingInNederland.datum        |
+    | immigratie.datumVestigingInNederland.langFormaat  |
+    | immigratie.datumVestigingInNederland.jaar         |
+    | immigratie.datumVestigingInNederland.maand        |
+    | immigratie.datumVestigingInNederland.onbekend     |
+    | immigratie.datumVestigingInNederland.nietBestaand |
 
   Abstract Scenario: 'datum vestiging in nederland (14.20)' van het type '<type>' wordt gevraagd met field pad 'immigratie.datumVestigingInNederland'
     Gegeven de persoon met burgerservicenummer '000000140' is ingeschreven op een buitenlands adres met de volgende gegevens

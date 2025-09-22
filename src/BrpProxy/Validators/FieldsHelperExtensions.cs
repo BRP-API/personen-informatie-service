@@ -252,30 +252,69 @@ namespace BrpProxy.Validators
                 switch (field)
                 {
                     case "adresseringBinnenland":
-                        retval.AddRange(new[] { "adressering.aanhef", "adressering.aanschrijfwijze", "adressering.gebruikInLopendeTekst", "adressering.adresregel1", "adressering.adresregel2" });
-                        break;
-                    case "geboorte.datum":
-                    case "kinderen.geboorte.datum":
-                    case "ouders.geboorte.datum":
-                    case "overlijden.datum":
-                    case "partners.aangaanHuwelijkPartnerschap.datum":
-                    case "partners.geboorte.datum":
-                    case "verblijfplaats.type":
-                    case "nationaliteiten.type":
-                        retval.Add(field);
-                        break;
-                    case "verblijfplaatsBinnenland.type":
-                        retval.Add("verblijfplaats.type");
+                        retval.AddRange(["adressering.aanhef", "adressering.aanschrijfwijze", "adressering.gebruikInLopendeTekst", "adressering.adresregel1", "adressering.adresregel2"]);
                         break;
                     default:
-                        retval.Add(
-                            Regex.Replace(field,
-                                @"(\.type|\.datum|\.langFormaat|\.jaar|\.maand|\.onbekend|\.code|\.soort|\.omschrijving)$|(Binnenland)", "", RegexOptions.None, TimeSpan.FromMilliseconds(100)));
+                        retval.Add(field.RewriteDatumEnTabelwaardeFieldwaarden().RewriteBinnenlandFieldwaarden());
                         break;
                 }
             }
 
             return retval;
+        }
+
+        private static readonly List<string> DatumEnTabelwaardeVeldnamen =
+            [
+                "aanduiding",
+                "aanduidingBijHuisnummer",
+                "aanduidingNaamgebruik",
+                "adellijkeTitelPredicaat",
+                "datum",
+                "datumEersteInschrijvingGBA",
+                "datumEinde",
+                "datumIngangFamilierechtelijkeBetrekking",
+                "datumIngang",
+                "datumIngangGeldigheid",
+                "datumInschrijvingInGemeente",
+                "datumVan",
+                "datumVestigingInNederland",
+                "einddatum",
+                "einddatumUitsluiting",
+                "functieAdres",
+                "gemeenteVanInschrijving",
+                "geslacht",
+                "indicatieGezagMinderjarige",
+                "land",
+                "landVanwaarIngeschreven",
+                "nationaliteit",
+                "plaats",
+                "redenOpname",
+                "soortVerbintenis"
+            ];
+
+	    /// <summary>
+	    /// rewrite veldwaarden die verwijzen naar een (niet-bestaand) sub-velden van datum of tabelwaarde velden
+	    /// naar een verwijzing van het datum of tabelwaarde veld
+	    /// voorbeeld: geboorte.datum.jaar of geboorte.datum.nietBestaand wordt gewijzigd naar geboorte.datum 
+	    /// </summary>
+	    /// <param name="veld"></param>
+	    /// <returns></returns>
+	    private static string RewriteDatumEnTabelwaardeFieldwaarden(this string veld)
+	    {
+		    var subvelden = veld.Split('.');
+		    if (subvelden.Length == 1)
+		    {
+			    return veld;
+		    }
+
+		    return DatumEnTabelwaardeVeldnamen.Contains(subvelden[^2])
+			    ? string.Join('.', subvelden.Take(subvelden.Length - 1))
+			    : veld;
+	    }
+        
+        private static string RewriteBinnenlandFieldwaarden(this string field)
+        {
+            return Regex.Replace(field,@"(Binnenland)", "", RegexOptions.None, TimeSpan.FromMilliseconds(100));
         }
 
         private static bool HeeftGeenInOnderzoekField(this string field)

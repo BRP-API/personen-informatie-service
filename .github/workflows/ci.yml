@@ -6,6 +6,7 @@ on:
       - src/**
       - features/**
       - .github/workflows/ci.yml
+      - .docker/**
   pull_request:
     types:
       - opened

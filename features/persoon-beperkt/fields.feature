@@ -42,6 +42,7 @@ Functionaliteit: Persoon beperkt velden vragen met fields
     | geslacht              |
     | geslacht.code         |
     | geslacht.omschrijving |
+    | geslacht.nietBestaand |
 
   Scenario: 'indicatie geheim (70.10)' wordt automatisch geleverd bij waarde groter dan 0
     En de persoon heeft de volgende 'inschrijving' gegevens
