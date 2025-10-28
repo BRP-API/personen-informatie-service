@@ -34,7 +34,7 @@ public static class AdellijkeTitelPredicaatHelpers
         { "R", RIDDER }
     };
 
-    public static string MapNaarAdellijkeTitel(this IAdellijkeTitelPredicaatType? adellijkeTitel, IWaardetabel? geslacht)
+    public static string MapNaarAdellijkeTitel(this IAdellijkeTitelPredicaatType adellijkeTitel, IWaardetabel? geslacht)
     {
         if (adellijkeTitel == null) return string.Empty;
 
@@ -55,7 +55,7 @@ public static class AdellijkeTitelPredicaatHelpers
         };
     }
 
-    public static string MapNaarPredicaat(this IAdellijkeTitelPredicaatType? predicaat, IWaardetabel? geslacht)
+    public static string MapNaarPredicaat(this IAdellijkeTitelPredicaatType predicaat, IWaardetabel? geslacht)
     {
         if (predicaat == null) return string.Empty;
 
