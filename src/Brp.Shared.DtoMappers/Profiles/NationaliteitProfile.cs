@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using Brp.Shared.DtoMappers.Mappers;
-using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
-using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
 
 namespace Brp.Shared.DtoMappers.Profiles;
 
