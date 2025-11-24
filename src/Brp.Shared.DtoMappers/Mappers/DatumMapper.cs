@@ -23,52 +23,42 @@ public static class DatumMapper
         {12, "december" }
     };
 
-    public static AbstractDatum? Map(this string? datum)
+    private static DatumOnbekend CreateDatumOnbekend() => new() { Onbekend = true, LangFormaat = "onbekend" };
+    private static VolledigeDatum CreateVolledigeDatum(int jaar, int maand, int dag) => new()
     {
-        if (string.IsNullOrWhiteSpace(datum))
+        Datum = new DateTime(jaar, maand, dag, 0, 0, 0, DateTimeKind.Local),
+        LangFormaat = $"{dag} {MaandDictionary[maand]} {jaar}"
+    };
+    private static JaarMaandDatum CreateJaarMaandDatum(int jaar, int maand) => new()
+    {
+        Jaar = jaar,
+        Maand = maand,
+        LangFormaat = $"{MaandDictionary[maand]} {jaar}"
+    };
+    private static JaarDatum CreateJaarDatum(int jaar) => new()
+    {
+        Jaar = jaar,
+        LangFormaat = $"{jaar}"
+    };
+
+    public static AbstractDatum Map(this string datum)
+    {
+        if (!GbaDatumRegex.IsMatch(datum))
         {
-            return null;
+            return CreateDatumOnbekend();
         }
-
-        AbstractDatum retval = new DatumOnbekend
-        {
-            Onbekend = true,
-            LangFormaat = "onbekend"
-        };
-
-        if (!GbaDatumRegex.IsMatch(datum)) return retval;
 
         var match = GbaDatumRegex.Match(datum);
         var jaar = int.Parse(match.Groups["jaar"].Value, CultureInfo.InvariantCulture);
         var maand = int.Parse(match.Groups["maand"].Value, CultureInfo.InvariantCulture);
         var dag = int.Parse(match.Groups["dag"].Value, CultureInfo.InvariantCulture);
 
-        if (jaar != 0 && maand != 0 && dag != 0)
+        return (jaar, maand, dag) switch
         {
-            retval = new VolledigeDatum()
-            {
-                Datum = new DateTime(jaar, maand, dag, 0, 0, 0, DateTimeKind.Local),
-                LangFormaat = $"{dag} {MaandDictionary[maand]} {jaar}"
-            };
-        }
-        if (jaar != 0 && maand != 0 && dag == 0)
-        {
-            retval = new JaarMaandDatum()
-            {
-                Jaar = jaar,
-                Maand = maand,
-                LangFormaat = $"{MaandDictionary[maand]} {jaar}"
-            };
-        }
-        if (jaar != 0 && maand == 0 && dag == 0)
-        {
-            retval = new JaarDatum
-            {
-                Jaar = jaar,
-                LangFormaat = $"{jaar}"
-            };
-        }
-
-        return retval;
+            (0, 0, 0) => CreateDatumOnbekend(),
+            (_, 0, 0) => CreateJaarDatum(jaar),
+            (_, _, 0) => CreateJaarMaandDatum(jaar, maand),
+            _ => CreateVolledigeDatum(jaar, maand, dag),
+        };
     }
 }
