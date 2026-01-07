@@ -86,7 +86,7 @@ Functionaliteit: verblijfstitel velden vragen met fields
     | naam                                | waarde   |
     | aanduiding verblijfstitel (39.10)   | 09       |
     | datum ingang verblijfstitel (39.30) | 19980201 |
-    | datum einde verblijfstitel (39.20)  | 20251231 |
+    | datum einde verblijfstitel (39.20)  | 20301231 |
     Als personen wordt gezocht met de volgende parameters
     | naam                | waarde                          |
     | type                | RaadpleegMetBurgerservicenummer |
@@ -95,8 +95,8 @@ Functionaliteit: verblijfstitel velden vragen met fields
     Dan heeft de response een persoon met de volgende 'verblijfstitel' gegevens
     | naam                   | waarde           |
     | datumEinde.type        | Datum            |
-    | datumEinde.datum       | 2025-12-31       |
-    | datumEinde.langFormaat | 31 december 2025 |
+    | datumEinde.datum       | 2030-12-31       |
+    | datumEinde.langFormaat | 31 december 2030 |
 
     Voorbeelden:
     | fields                                 |
