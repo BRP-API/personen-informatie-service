@@ -28,7 +28,7 @@ try
 
     builder.Services.AddSingleton<FieldsHelper>();
     SetupHelpers.AddBrpSharedDtoMappers();
-    builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+    builder.Services.AddAutoMapper(config => { }, AppDomain.CurrentDomain.GetAssemblies());
 
     builder.Services.AddControllers()
                     .ConfigureInvalidModelStateHandling()
