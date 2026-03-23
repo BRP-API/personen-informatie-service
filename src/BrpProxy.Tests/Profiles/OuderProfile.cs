@@ -5,6 +5,7 @@ using CommonDtos = Brp.Shared.DtoMappers.CommonDtos;
 using FluentAssertions;
 using Xunit;
 using Brp.Shared.DtoMappers.Profiles;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace BrpProxy.Tests.Profiles;
 
@@ -16,7 +17,7 @@ public class OuderProfile
         {
             cfg.AddProfile<Brp.Shared.DtoMappers.Profiles.OuderProfile>();
             cfg.AddProfile<NaamProfile>();
-        });
+        }, NullLoggerFactory.Instance);
         return config.CreateMapper();
     }
 
