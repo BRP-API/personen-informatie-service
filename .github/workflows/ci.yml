@@ -24,9 +24,17 @@ on:
           - app
           - mock
 
+permissions:
+  contents: read
+  actions: write
+  packages: write
+
 env:
   NODE_VERSION: '20'
   DOTNET_SOLUTION_FILE_PATH: src/PersonenInformatieService.sln
+  INFRA_PROJECT_PATH: ./src/Brp.Shared.Infrastructure
+  DTO_PROJECT_PATH: ./src/Brp.Shared.DtoMappers
+  VALIDATIE_PROJECT_PATH: ./src/Brp.Shared.Validatie
   APP_PROJECT_PATH: ./src/BrpProxy
   APP_CSPROJ_FILE_PATH: ./src/BrpProxy/BrpProxy.csproj
   APP_CONTAINER_IMAGE: ghcr.io/brp-api/personen-informatie-service
@@ -66,8 +74,15 @@ jobs:
           filters: |
             app:
               - '${{ env.APP_PROJECT_PATH }}/**'
+              - '${{ env.INFRA_PROJECT_PATH }}/**'
+              - '${{ env.DTO_PROJECT_PATH }}/**'
+              - '${{ env.VALIDATIE_PROJECT_PATH }}/**'
             mock:
               - '${{ env.MOCK_PROJECT_PATH }}/**'
+              - '${{ env.APP_PROJECT_PATH }}/**'
+              - '${{ env.INFRA_PROJECT_PATH }}/**'
+              - '${{ env.DTO_PROJECT_PATH }}/**'
+              - '${{ env.VALIDATIE_PROJECT_PATH }}/**'
 
       - name: Valideer .NET solution
         uses: ./.github/actions/valideer-dotnet-solution
