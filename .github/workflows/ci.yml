@@ -165,7 +165,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           driver: docker-container
       - name: Build & push app container images naar registry
-        if: always() && (steps.changed-project.outputs.app == 'true' || inputs.publishType == 'app')
+        if: always() && (steps.changed-project.outputs.app == 'true' || inputs.publishType == 'app' || github.ref == 'refs/heads/main')
         uses: docker/build-push-action@v6
         with:
           file: ${{ env.APP_PROJECT_PATH }}/Dockerfile
@@ -177,7 +177,7 @@ jobs:
             ${{ env.APP_CONTAINER_IMAGE }}:${{ steps.app-version.outputs.version }}-latest
             ${{ env.APP_CONTAINER_IMAGE }}:${{ steps.app-version.outputs.version }}-${{ steps.build-run-id.outputs.build-run }}
       - name: Build & push mock container images naar registry
-        if: always() && (steps.changed-project.outputs.mock == 'true' || inputs.publishType == 'mock')
+        if: always() && (steps.changed-project.outputs.mock == 'true' || inputs.publishType == 'mock' || github.ref == 'refs/heads/main')
         uses: docker/build-push-action@v6
         with:
           file: ${{ env.MOCK_PROJECT_PATH }}/Dockerfile
