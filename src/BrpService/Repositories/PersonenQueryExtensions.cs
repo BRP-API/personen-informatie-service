@@ -21,6 +21,10 @@ public static class PersonenQueryExtensions
         {
             specification = specification.And(new GeslachtSpecification(query.Geslachtsaanduiding));
         }
+        if (!string.IsNullOrWhiteSpace(query.GemeenteVanInschrijving))
+        {
+            specification = specification.And(new GemeenteVanInschrijvingSpecification(query.GemeenteVanInschrijving));
+        }
         specification = specification.And(new InclusiefOverledenPersonenSpecification(query.InclusiefOverledenPersonen));
 
         return specification;
@@ -28,7 +32,14 @@ public static class PersonenQueryExtensions
 
     public static Specification<GbaPersoon> ToSpecification(this RaadpleegMetBurgerservicenummer query)
     {
-        return new BsnSpecification(query.Burgerservicenummer);
+        Specification<GbaPersoon> specification = new BsnSpecification(query.Burgerservicenummer);
+
+        if (!string.IsNullOrWhiteSpace(query.GemeenteVanInschrijving))
+        {
+            specification = specification.And(new GemeenteVanInschrijvingGbaPersoonSpecification(query.GemeenteVanInschrijving));
+        }
+
+        return specification;
     }
 
     public static Specification<GbaPersoonBeperkt> ToSpecification(this ZoekMetPostcodeEnHuisnummerFilter query)
@@ -51,6 +62,10 @@ public static class PersonenQueryExtensions
         if (!string.IsNullOrWhiteSpace(query.Geslachtsnaam))
         {
             specification = specification.And(new GeslachtsnaamSpecification(query.Geslachtsnaam));
+        }
+        if (!string.IsNullOrWhiteSpace(query.GemeenteVanInschrijving))
+        {
+            specification = specification.And(new GemeenteVanInschrijvingSpecification(query.GemeenteVanInschrijving));
         }
         specification = specification.And(new InclusiefOverledenPersonenSpecification(query.InclusiefOverledenPersonen));
 
@@ -80,6 +95,10 @@ public static class PersonenQueryExtensions
     {
         Specification<GbaPersoonBeperkt> specification = new NummeraanduidingIdentificatieSpecification(query.NummeraanduidingIdentificatie);
         specification = specification.And(new InclusiefOverledenPersonenSpecification(query.InclusiefOverledenPersonen));
+        if (!string.IsNullOrWhiteSpace(query.GemeenteVanInschrijving))
+        {
+            specification = specification.And(new GemeenteVanInschrijvingSpecification(query.GemeenteVanInschrijving));
+        }
 
         return specification;
     }
@@ -88,7 +107,10 @@ public static class PersonenQueryExtensions
     {
         Specification<GbaGezagPersoonBeperkt> specification = new AdresseerbaarObjectIdentificatieSpecification(query.AdresseerbaarObjectIdentificatie);
         specification = specification.And(new InclusiefOverledenGezagPersonenSpecification(query.InclusiefOverledenPersonen));
-
+        if (!string.IsNullOrWhiteSpace(query.GemeenteVanInschrijving))
+        {
+            specification = specification.And(new GemeenteVanInschrijvingGezagPersoonSpecification(query.GemeenteVanInschrijving));
+        }
         return specification;
     }
 

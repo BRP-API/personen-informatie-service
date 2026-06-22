@@ -9,4 +9,5 @@ public class ZoekMetPostcodeEnHuisnummerFilter
     public string Postcode { get; set; } = string.Empty;
     public DateTimeOffset? Geboortedatum { get; set; }
     public string? Geslachtsnaam { get; set; }
+    public string? GemeenteVanInschrijving { get; set; }
 }
