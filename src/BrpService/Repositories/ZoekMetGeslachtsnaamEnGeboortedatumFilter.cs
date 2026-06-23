@@ -8,4 +8,5 @@ public class ZoekMetGeslachtsnaamEnGeboortedatumFilter
     public string? Geslachtsaanduiding { get; set; }
     public string? Voorvoegsel { get; set; }
     public string? Voornamen { get; set; }
+    public string? GemeenteVanInschrijving { get; set; }
 }

@@ -3,19 +3,13 @@ using System.Linq.Expressions;
 
 namespace HaalCentraal.BrpService.Repositories;
 
-public class GemeenteVanInschrijvingSpecification : Specification<GbaPersoonBeperkt>
+public class GemeenteVanInschrijvingSpecification<T>(string gemeenteVanInschrijving)
+    : Specification<T> where T : IPersonenQueryParameters
 {
-    private readonly string _gemeenteVanInschrijving;
-
-    public GemeenteVanInschrijvingSpecification(string gemeenteVanInschrijving)
+    public override Expression<Func<T, bool>> ToExpression()
     {
-        _gemeenteVanInschrijving = gemeenteVanInschrijving;
-    }
-
-    public override Expression<Func<GbaPersoonBeperkt, bool>> ToExpression()
-    {
-        return persoon => persoon != null &&
+        return persoon => !object.Equals(persoon, default(T)) &&
                persoon.GemeenteVanInschrijving != null &&
-               persoon.GemeenteVanInschrijving.Code == _gemeenteVanInschrijving;
+               persoon.GemeenteVanInschrijving.Code == gemeenteVanInschrijving;
     }
 }
