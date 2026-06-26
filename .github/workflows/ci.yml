@@ -127,11 +127,7 @@ jobs:
           node ./scripts/generate-step-summary.js
           echo "### Cucumber Test Reports" >> $GITHUB_STEP_SUMMARY
           cat ${{ env.SPEC_VERIFY_STEP_SUMMARY_FILE_PATH }} >> $GITHUB_STEP_SUMMARY
-  
-      - name: Genereer test rapportage
-        if: always()
-        run: |
-          node ./scripts/generate-cucumber-reports.js
+
       - name: Upload test rapportage
         if: always()
         uses: actions/upload-artifact@v4
@@ -140,17 +136,6 @@ jobs:
           path: |
             test-reports
             test-data/logs
-      - name: Push test rapportage naar brp-api.github.io repo
-        if: false
-        uses: tech-thinker/push-to-repo@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.GIT_PAT_TOKEN }}
-        with:
-          source-directory: test-reports/cucumber-js/reports
-          destination-repository-name: brp-api.github.io
-          destination-github-username: BRP-API
-          target-branch: test-reports/personen
-          commit-message: "test rapporten van build: ${{ steps.build-run-id.outputs.build-run }}"
 
       - name: Login to GitHub Container Registry
         if: always()
