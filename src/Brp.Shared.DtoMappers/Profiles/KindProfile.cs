@@ -21,8 +21,8 @@ public class KindProfile : Profile
                 dest.Naam.MapInOnderzoek(src.InOnderzoek);
 
                 dest.Geboorte.MapInOnderzoek(src.InOnderzoek);
-            });
-
-        CreateMap<BrpDtos.InOnderzoek, BrpApiDtos.KindInOnderzoek?>().ConvertUsing<KindInOnderzoekConverter>();
+            })
+            .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek.KindInOnderzoek()))
+            ;
     }
 }

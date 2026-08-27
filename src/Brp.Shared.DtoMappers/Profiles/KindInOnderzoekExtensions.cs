@@ -1,12 +1,16 @@
-﻿using AutoMapper;
-using Brp.Shared.DtoMappers.Mappers;
+﻿using Brp.Shared.DtoMappers.Mappers;
 
 namespace Brp.Shared.DtoMappers.Profiles;
 
-public class KindInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.KindInOnderzoek?>
+public static class KindInOnderzoekExtensions
 {
-    public BrpApiDtos.KindInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.KindInOnderzoek? destination, ResolutionContext context)
+    public static BrpApiDtos.KindInOnderzoek? KindInOnderzoek(this BrpDtos.InOnderzoek? source)
     {
+        if(source == null)
+        {
+            return null;
+        }
+
         return source?.AanduidingGegevensInOnderzoek switch
         {
             "090000" or

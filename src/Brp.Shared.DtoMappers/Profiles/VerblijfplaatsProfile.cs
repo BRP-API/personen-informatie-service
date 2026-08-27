@@ -14,6 +14,7 @@ public class VerblijfplaatsProfile : Profile
             {
                 opt.PreCondition(src => src.Land?.Code != "0000");
             })
+            .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek.VerblijfadresBuitenlandInOnderzoek()))
             ;
 
         CreateMap<BrpDtos.GbaVerblijfplaats, BrpApiDtos.VerblijfadresBinnenland>()
@@ -31,27 +32,24 @@ public class VerblijfplaatsProfile : Profile
                 opt.PreCondition(src => src.Woonplaats != ".");
                 opt.MapFrom(src => src.Woonplaats);
             })
+            .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek.VerblijfadresBinnenlandInOnderzoek()))
             ;
 
-        CreateMap<BrpDtos.GbaVerblijfplaats, BrpApiDtos.VerblijfadresLocatie>();
+        CreateMap<BrpDtos.GbaVerblijfplaats, BrpApiDtos.VerblijfadresLocatie>()
+            .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek.VerblijfadresLocatieInOnderzoek()))
+            ;
 
         CreateMap<BrpDtos.GbaVerblijfplaats, BrpApiDtos.VerblijfplaatsOnbekend>()
             .ForMember(dest => dest.DatumVan, opt => opt.MapFrom(src => src.MapDatumVan()))
             .ForMember(dest => dest.DatumIngangGeldigheid, opt => opt.MapFrom(src => src.DatumIngangGeldigheid.Map()))
+            .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek.VerblijfplaatsOnbekendInOnderzoek()))
             ;
-
-        CreateMap<BrpDtos.InOnderzoek, BrpApiDtos.AdresInOnderzoek?>().ConvertUsing<AdresInOnderzoekConverter>();
-        CreateMap<BrpDtos.InOnderzoek, BrpApiDtos.VerblijfadresBinnenlandInOnderzoek?>().ConvertUsing<VerblijfadresBinnenlandInOnderzoekConverter>();
-        CreateMap<BrpDtos.InOnderzoek, BrpApiDtos.VerblijfplaatsBuitenlandInOnderzoek?>().ConvertUsing<VerblijfplaatsBuitenlandInOnderzoekConverter>();
-        CreateMap<BrpDtos.InOnderzoek, BrpApiDtos.VerblijfadresBuitenlandInOnderzoek?>().ConvertUsing<VerblijfadresBuitenlandInOnderzoekConverter>();
-        CreateMap<BrpDtos.InOnderzoek, BrpApiDtos.LocatieInOnderzoek?>().ConvertUsing<LocatieInOnderzoekConverter>();
-        CreateMap<BrpDtos.InOnderzoek, BrpApiDtos.VerblijfadresLocatieInOnderzoek?>().ConvertUsing<VerblijfadresLocatieInOnderzoekConverter>();
-        CreateMap<BrpDtos.InOnderzoek, BrpApiDtos.VerblijfplaatsOnbekendInOnderzoek?>().ConvertUsing<VerblijfplaatsOnbekendInOnderzoekConverter>();
 
         CreateMap<BrpDtos.GbaVerblijfplaats, BrpApiDtos.VerblijfplaatsBuitenland>()
             .ForMember(dest => dest.DatumVan, opt => opt.MapFrom(src => src.DatumAanvangAdresBuitenland.Map()))
             .ForMember(dest => dest.DatumIngangGeldigheid, opt => opt.MapFrom(src => src.DatumIngangGeldigheid.Map()))
             .ForMember(dest => dest.Verblijfadres, opt => opt.MapFrom(src => src))
+            .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek.VerblijfplaatsBuitenlandInOnderzoek()))
             ;
 
         CreateMap<BrpDtos.GbaVerblijfplaats, BrpApiDtos.Adres>()
@@ -73,6 +71,7 @@ public class VerblijfplaatsProfile : Profile
                 opt.PreCondition(src => src.InOnderzoek?.AanduidingGegevensInOnderzoek != null);
                 opt.MapFrom(src => src.MapVastgesteldVerblijftNietOpAdres());
             })
+            .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek.AdresOnderzoek()))
             ;
 
         CreateMap<BrpDtos.GbaVerblijfplaats, BrpApiDtos.Locatie>()
@@ -84,6 +83,7 @@ public class VerblijfplaatsProfile : Profile
                 opt.PreCondition(src => src.InOnderzoek?.AanduidingGegevensInOnderzoek != null);
                 opt.MapFrom(src => src.MapVastgesteldVerblijftNietOpAdres());
             })
+            .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek.LocatieInOnderzoek()))
             ;
     }
 }

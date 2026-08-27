@@ -4,7 +4,7 @@ namespace Brp.Shared.DtoMappers.Profiles;
 
 public static class VerblijfstitelInOnderzoekExtensions
 {
-    public static BrpApiDtos.VerblijfstitelInOnderzoek? InOnderzoek(this BrpDtos.InOnderzoek? source)
+    public static BrpApiDtos.VerblijfstitelInOnderzoek? VerblijfstitelInOnderzoek(this BrpDtos.InOnderzoek? source)
     {
         if (source == null)
         {

@@ -1,33 +1,37 @@
-﻿using AutoMapper;
-using Brp.Shared.DtoMappers.Mappers;
+﻿using Brp.Shared.DtoMappers.Mappers;
 
 namespace Brp.Shared.DtoMappers.Profiles;
 
-public class OverlijdenInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.OverlijdenInOnderzoek?>
+public static class AangaanHuwelijkPartnerschapInOnderzoekExtensions
 {
-    public BrpApiDtos.OverlijdenInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.OverlijdenInOnderzoek? destination, ResolutionContext context)
+    public static BrpApiDtos.AangaanHuwelijkPartnerschapInOnderzoek? AangaanHuwelijkPartnerschapInOnderzoek(this BrpDtos.InOnderzoek? source)
     {
+        if(source == null)
+        {
+            return null;
+        }
+
         return source?.AanduidingGegevensInOnderzoek switch
         {
-            "060000" or
-            "060800" => new BrpApiDtos.OverlijdenInOnderzoek
+            "050000" or
+            "050600" => new BrpApiDtos.AangaanHuwelijkPartnerschapInOnderzoek
             {
                 Datum = true,
                 Land = true,
                 Plaats = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
-            "060810" => new BrpApiDtos.OverlijdenInOnderzoek
+            "050610" => new BrpApiDtos.AangaanHuwelijkPartnerschapInOnderzoek
             {
                 Datum = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
-            "060820" => new BrpApiDtos.OverlijdenInOnderzoek
+            "050620" => new BrpApiDtos.AangaanHuwelijkPartnerschapInOnderzoek
             {
                 Plaats = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
-            "060830" => new BrpApiDtos.OverlijdenInOnderzoek
+            "050630" => new BrpApiDtos.AangaanHuwelijkPartnerschapInOnderzoek
             {
                 Land = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()

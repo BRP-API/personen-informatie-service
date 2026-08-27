@@ -1,12 +1,16 @@
-﻿using AutoMapper;
-using Brp.Shared.DtoMappers.Mappers;
+﻿using Brp.Shared.DtoMappers.Mappers;
 
 namespace Brp.Shared.DtoMappers.Profiles;
 
-public class StaatloosInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.StaatloosInOnderzoek?>
+public static class StaatloosInOnderzoekExtensions
 {
-    public BrpApiDtos.StaatloosInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.StaatloosInOnderzoek? destination, ResolutionContext context)
+    public static BrpApiDtos.StaatloosInOnderzoek? StaatloosInOnderzoek(this BrpDtos.InOnderzoek? source)
     {
+        if (source == null)
+        {
+            return null;
+        }
+
         return source?.AanduidingGegevensInOnderzoek switch
         {
             "040000" => new BrpApiDtos.StaatloosInOnderzoek

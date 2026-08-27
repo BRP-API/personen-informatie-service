@@ -9,8 +9,7 @@ public class OntbindingHuwelijkPartnerschapProfile : Profile
     {
         CreateMap<BrpDtos.GbaOntbindingHuwelijkPartnerschap, BrpApiDtos.OntbindingHuwelijkPartnerschap>()
             .ForMember(dest => dest.Datum, opt => opt.MapFrom(src => src.Datum.Map()))
+            .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek.OntbondenPartnerInOnderzoek()))
             ;
-
-        CreateMap<BrpDtos.InOnderzoek, BrpApiDtos.OntbindingHuwelijkPartnerschapInOnderzoek?>().ConvertUsing<OntbondenPartnerInOnderzoekConverter>();
     }
 }

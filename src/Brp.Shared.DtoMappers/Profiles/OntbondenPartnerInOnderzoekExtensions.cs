@@ -1,12 +1,16 @@
-﻿using AutoMapper;
-using Brp.Shared.DtoMappers.Mappers;
+﻿using Brp.Shared.DtoMappers.Mappers;
 
 namespace Brp.Shared.DtoMappers.Profiles;
 
-public class OntbondenPartnerInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.OntbindingHuwelijkPartnerschapInOnderzoek?>
+public static class OntbondenPartnerInOnderzoekExtensions
 {
-    public BrpApiDtos.OntbindingHuwelijkPartnerschapInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.OntbindingHuwelijkPartnerschapInOnderzoek? destination, ResolutionContext context)
+    public static BrpApiDtos.OntbindingHuwelijkPartnerschapInOnderzoek? OntbondenPartnerInOnderzoek(this BrpDtos.InOnderzoek? source)
     {
+        if(source == null)
+        {
+            return null;
+        }
+
         return source?.AanduidingGegevensInOnderzoek switch
         {
             "050000" or

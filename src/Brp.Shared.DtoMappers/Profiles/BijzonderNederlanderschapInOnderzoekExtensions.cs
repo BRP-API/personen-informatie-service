@@ -1,12 +1,16 @@
-﻿using AutoMapper;
-using Brp.Shared.DtoMappers.Mappers;
+﻿using Brp.Shared.DtoMappers.Mappers;
 
 namespace Brp.Shared.DtoMappers.Profiles;
 
-public class BijzonderNederlanderschapInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.BijzonderNederlanderschapInOnderzoek?>
+public static class BijzonderNederlanderschapInOnderzoekExtensions
 {
-    public BrpApiDtos.BijzonderNederlanderschapInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.BijzonderNederlanderschapInOnderzoek? destination, ResolutionContext context)
+    public static BrpApiDtos.BijzonderNederlanderschapInOnderzoek? BijzonderNederlanderschapInOnderzoek(this BrpDtos.InOnderzoek? source)
     {
+        if (source == null)
+        {
+            return null;
+        }
+
         return source?.AanduidingGegevensInOnderzoek switch
         {
             "040000" => new BrpApiDtos.BijzonderNederlanderschapInOnderzoek

@@ -23,8 +23,7 @@ public class OuderProfile : Profile
                 dest.Geboorte.MapInOnderzoek(src.InOnderzoek);
             })
             .ForMember(dest => dest.DatumIngangFamilierechtelijkeBetrekking, opt => opt.MapFrom(src => src.DatumIngangFamilierechtelijkeBetrekking.Map()))
+            .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek.OuderInOnderzoek()))
             ;
-
-        CreateMap<BrpDtos.InOnderzoek, BrpApiDtos.OuderInOnderzoek?>().ConvertUsing<OuderInOnderzoekConverter>();
     }
 }

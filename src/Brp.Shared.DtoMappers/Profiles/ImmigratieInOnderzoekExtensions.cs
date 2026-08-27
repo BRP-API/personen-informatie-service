@@ -1,12 +1,16 @@
-﻿using AutoMapper;
-using Brp.Shared.DtoMappers.Mappers;
+﻿using Brp.Shared.DtoMappers.Mappers;
 
 namespace Brp.Shared.DtoMappers.Profiles
 {
-    public class ImmigratieInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.ImmigratieInOnderzoek?>
+    public static class ImmigratieInOnderzoekExtensions
     {
-        public BrpApiDtos.ImmigratieInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.ImmigratieInOnderzoek? destination, ResolutionContext context)
+        public static BrpApiDtos.ImmigratieInOnderzoek? ImmigratieInOnderzoek(this BrpDtos.InOnderzoek? source)
         {
+            if(source == null)
+            {
+                return null;
+            }
+
             return source?.AanduidingGegevensInOnderzoek switch
             {
                 "080000" or

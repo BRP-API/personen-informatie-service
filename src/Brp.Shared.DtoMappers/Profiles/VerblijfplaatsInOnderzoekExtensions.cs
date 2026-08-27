@@ -1,12 +1,16 @@
-﻿using AutoMapper;
-using Brp.Shared.DtoMappers.Mappers;
+﻿using Brp.Shared.DtoMappers.Mappers;
 
 namespace Brp.Shared.DtoMappers.Profiles;
 
-public class AdresInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.AdresInOnderzoek?>
+public static class AdresInOnderzoekExtensions
 {
-    public BrpApiDtos.AdresInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.AdresInOnderzoek? destination, ResolutionContext context)
+    public static BrpApiDtos.AdresInOnderzoek? AdresOnderzoek(this BrpDtos.InOnderzoek? source)
     {
+        if(source == null)
+        {
+            return null;
+        }
+
         return source?.AanduidingGegevensInOnderzoek switch
         {
             "080000" or
@@ -76,10 +80,15 @@ public class AdresInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, Brp
     }
 }
 
-public class VerblijfadresBinnenlandInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.VerblijfadresBinnenlandInOnderzoek?>
+public static class VerblijfadresBinnenlandInOnderzoekExtensions
 {
-    public BrpApiDtos.VerblijfadresBinnenlandInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.VerblijfadresBinnenlandInOnderzoek? destination, ResolutionContext context)
+    public static BrpApiDtos.VerblijfadresBinnenlandInOnderzoek? VerblijfadresBinnenlandInOnderzoek(this BrpDtos.InOnderzoek? source)
     {
+        if (source == null)
+        {
+            return null;
+        }
+
         return source?.AanduidingGegevensInOnderzoek switch
         {
             "080000" or
@@ -147,10 +156,15 @@ public class VerblijfadresBinnenlandInOnderzoekConverter : ITypeConverter<BrpDto
     }
 }
 
-public class VerblijfplaatsBuitenlandInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.VerblijfplaatsBuitenlandInOnderzoek?>
+public static class VerblijfplaatsBuitenlandInOnderzoekExtensions
 {
-    public BrpApiDtos.VerblijfplaatsBuitenlandInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.VerblijfplaatsBuitenlandInOnderzoek? destination, ResolutionContext context)
+    public static BrpApiDtos.VerblijfplaatsBuitenlandInOnderzoek? VerblijfplaatsBuitenlandInOnderzoek(this BrpDtos.InOnderzoek? source)
     {
+        if (source == null)
+        {
+            return null;
+        }
+
         return source?.AanduidingGegevensInOnderzoek switch
         {
             "080000" => new BrpApiDtos.VerblijfplaatsBuitenlandInOnderzoek
@@ -187,10 +201,15 @@ public class VerblijfplaatsBuitenlandInOnderzoekConverter : ITypeConverter<BrpDt
     }
 }
 
-public class VerblijfadresBuitenlandInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.VerblijfadresBuitenlandInOnderzoek?>
+public static class VerblijfadresBuitenlandInOnderzoekExtensions
 {
-    public BrpApiDtos.VerblijfadresBuitenlandInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.VerblijfadresBuitenlandInOnderzoek? destination, ResolutionContext context)
+    public static BrpApiDtos.VerblijfadresBuitenlandInOnderzoek? VerblijfadresBuitenlandInOnderzoek(this BrpDtos.InOnderzoek? source)
     {
+        if (source == null)
+        {
+            return null;
+        }
+
         return source?.AanduidingGegevensInOnderzoek switch
         {
             "080000" or 
@@ -227,10 +246,15 @@ public class VerblijfadresBuitenlandInOnderzoekConverter : ITypeConverter<BrpDto
     }
 }
 
-public class LocatieInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.LocatieInOnderzoek?>
+public static class LocatieInOnderzoekExtensions
 {
-    public BrpApiDtos.LocatieInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.LocatieInOnderzoek? destination, ResolutionContext context)
+    public static BrpApiDtos.LocatieInOnderzoek? LocatieInOnderzoek(this BrpDtos.InOnderzoek? source)
     {
+        if (source == null)
+        {
+            return null;
+        }
+
         return source?.AanduidingGegevensInOnderzoek switch
         {
             "080000" or
@@ -275,10 +299,15 @@ public class LocatieInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, B
     }
 }
 
-public class VerblijfadresLocatieInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.VerblijfadresLocatieInOnderzoek?>
+public static class VerblijfadresLocatieInOnderzoekExtensions
 {
-    public BrpApiDtos.VerblijfadresLocatieInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.VerblijfadresLocatieInOnderzoek? destination, ResolutionContext context)
+    public static BrpApiDtos.VerblijfadresLocatieInOnderzoek? VerblijfadresLocatieInOnderzoek(this BrpDtos.InOnderzoek? source)
     {
+        if (source == null)
+        {
+            return null;
+        }
+
         return source?.AanduidingGegevensInOnderzoek switch
         {
             "080000" or
@@ -294,10 +323,15 @@ public class VerblijfadresLocatieInOnderzoekConverter : ITypeConverter<BrpDtos.I
     }
 }
 
-public class VerblijfplaatsOnbekendInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.VerblijfplaatsOnbekendInOnderzoek?>
+public static class VerblijfplaatsOnbekendInOnderzoekExtensions
 {
-    public BrpApiDtos.VerblijfplaatsOnbekendInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.VerblijfplaatsOnbekendInOnderzoek? destination, ResolutionContext context)
+    public static BrpApiDtos.VerblijfplaatsOnbekendInOnderzoek? VerblijfplaatsOnbekendInOnderzoek(this BrpDtos.InOnderzoek? source)
     {
+        if (source == null)
+        {
+            return null;
+        }
+
         return source?.AanduidingGegevensInOnderzoek switch
         {
             "080000" => new BrpApiDtos.VerblijfplaatsOnbekendInOnderzoek

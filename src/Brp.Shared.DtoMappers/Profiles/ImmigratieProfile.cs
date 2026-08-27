@@ -23,8 +23,7 @@ public class ImmigratieProfile : Profile
                 opt.Condition(src => src.LandVanwaarIngeschreven?.Code == "0000");
                 opt.MapFrom(src => true);
             })
+            .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek.ImmigratieInOnderzoek()))
             ;
-
-        CreateMap<BrpDtos.InOnderzoek, BrpApiDtos.ImmigratieInOnderzoek?>().ConvertUsing<ImmigratieInOnderzoekConverter>();
     }
 }

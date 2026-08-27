@@ -17,6 +17,6 @@ public class VerblijfstitelProfile : Profile
                 opt.PreCondition(src => src.Aanduiding?.Code != "98");
                 opt.MapFrom(src => src.Aanduiding);
             })
-            .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek.InOnderzoek()));
+            .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek.VerblijfstitelInOnderzoek()));
     }
 }

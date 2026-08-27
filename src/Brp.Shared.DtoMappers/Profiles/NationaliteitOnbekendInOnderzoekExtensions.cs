@@ -1,12 +1,16 @@
-﻿using AutoMapper;
-using Brp.Shared.DtoMappers.Mappers;
+﻿using Brp.Shared.DtoMappers.Mappers;
 
 namespace Brp.Shared.DtoMappers.Profiles;
 
-public class NationaliteitOnbekendInOnderzoekConverter : ITypeConverter<BrpDtos.InOnderzoek, BrpApiDtos.NationaliteitOnbekendInOnderzoek?>
+public static class NationaliteitOnbekendInOnderzoekExtensions
 {
-    public BrpApiDtos.NationaliteitOnbekendInOnderzoek? Convert(BrpDtos.InOnderzoek source, BrpApiDtos.NationaliteitOnbekendInOnderzoek? destination, ResolutionContext context)
+    public static BrpApiDtos.NationaliteitOnbekendInOnderzoek? NationaliteitOnbekendInOnderzoek(this BrpDtos.InOnderzoek? source)
     {
+        if (source == null)
+        {
+            return null;
+        }
+
         return source?.AanduidingGegevensInOnderzoek switch
         {
             "040000" => new BrpApiDtos.NationaliteitOnbekendInOnderzoek
