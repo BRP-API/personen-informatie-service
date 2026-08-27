@@ -4,17 +4,22 @@ public static class VerblijfstitelMapper
 {
     public static BrpApiDtos.Verblijfstitel? Map(this BrpDtos.GbaVerblijfstitel? verblijfstitel)
     {
-        if (verblijfstitel == null)
-        {
-            return null;
-        }
-        return new BrpApiDtos.Verblijfstitel
-        {
-            Aanduiding = verblijfstitel.Aanduiding?.Code == "98" ? null : verblijfstitel.Aanduiding,
-            DatumEinde = verblijfstitel.DatumEinde.Map(),
-            DatumIngang = verblijfstitel.DatumIngang.Map(),
-            InOnderzoek = verblijfstitel.InOnderzoek.VerblijfstitelInOnderzoek()
-        };
+        return verblijfstitel == null
+            ? null
+            : new BrpApiDtos.Verblijfstitel
+            {
+                Aanduiding = verblijfstitel.Aanduiding == null
+                 || verblijfstitel.Aanduiding.Code == "98"
+                 ? null
+                 : verblijfstitel.Aanduiding = new CommonDtos.Waardetabel
+                {
+                    Code = verblijfstitel.Aanduiding.Code,
+                    Omschrijving = verblijfstitel.Aanduiding.Omschrijving
+                },
+                DatumEinde = verblijfstitel.DatumEinde?.Map(),
+                DatumIngang = verblijfstitel.DatumIngang?.Map(),
+                InOnderzoek = verblijfstitel.InOnderzoek.VerblijfstitelInOnderzoek()
+            };
     }
 
     private static BrpApiDtos.VerblijfstitelInOnderzoek? VerblijfstitelInOnderzoek(this BrpDtos.InOnderzoek? source)

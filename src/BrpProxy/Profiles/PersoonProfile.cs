@@ -21,6 +21,7 @@ public class PersoonProfile : Profile
                 opt.MapFrom(src => src.Geboorte.Datum.Map().Leeftijd());
             })
             .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek()))
+            .ForMember(dest => dest.Verificatie, opt => opt.MapFrom(src => src.Verificatie.Map()))
             .ForMember(dest => dest.Rni, opt => opt.MapFrom(src => src.Rni.Map()))
             .BeforeMap(PersoonBeperktBeforeMap)
             .AfterMap(PersoonBeperktAfterMap)
@@ -61,6 +62,7 @@ public class PersoonProfile : Profile
             .ForMember(dest => dest.Verificatie, opt => opt.MapFrom(src => src.Verificatie.Map()))
             .ForMember(dest => dest.Rni, opt => opt.MapFrom(src => src.Rni.Map()))
             .ForMember(dest => dest.Verblijfstitel, opt => opt.MapFrom(src => src.Verblijfstitel.Map()))
+            .ForMember(dest => dest.UitsluitingKiesrecht, opt => opt.MapFrom(src => src.UitsluitingKiesrecht.Map()))
             ;
     }
 

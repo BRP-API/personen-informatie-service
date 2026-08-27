@@ -128,4 +128,23 @@ public class PersoonProfile
         };
         CreateSut().Map<Persoon>(input).Verblijfstitel.Should().BeEquivalentTo(expected);
     }
+
+    [Fact]
+    public void ShouldMapUitsluitingKiesrechtForPersoon()
+    {
+        GbaPersoon input = new()
+        {
+            UitsluitingKiesrecht = new Brp.Shared.DtoMappers.BrpDtos.GbaUitsluitingKiesrecht
+            {
+                UitgeslotenVanKiesrecht = true,
+                Einddatum = "20240103"
+            }
+        };
+        Brp.Shared.DtoMappers.BrpApiDtos.UitsluitingKiesrecht expected = new()
+        {
+            UitgeslotenVanKiesrecht = true,
+            Einddatum = "20240103".Map()
+        };
+        CreateSut().Map<Persoon>(input).UitsluitingKiesrecht.Should().BeEquivalentTo(expected);
+    }
 }
