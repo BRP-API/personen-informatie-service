@@ -32,6 +32,7 @@ public class PersoonDeprecatedProfile : Profile
                 opt.MapFrom(src => src.Geboorte.Datum.Map().Leeftijd());
             })
             .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek()))
+            .ForMember(dest => dest.Verificatie, opt => opt.MapFrom(src => src.Verificatie.Map()))
             .BeforeMap(PersoonProfile.PersoonBeperktBeforeMap)
             .AfterMap(PersoonProfile.PersoonBeperktAfterMap)
             ;
@@ -54,6 +55,7 @@ public class PersoonDeprecatedProfile : Profile
             })
             .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek()))
             .ForMember(dest => dest.IndicatieGezagMinderjarige, opt => opt.MapFrom(src => src.IndicatieGezagMinderjarige))
+            .ForMember(dest => dest.Verificatie, opt => opt.MapFrom(src => src.Verificatie.Map()))
             ;
     }
 }
