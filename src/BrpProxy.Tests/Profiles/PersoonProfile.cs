@@ -53,4 +53,50 @@ public class PersoonProfile
 
         CreateSut().Map<Persoon>(input).Verificatie.Should().BeEquivalentTo(expected);
     }
+
+    [Fact]
+    public void ShouldMapRniForPersoonBeperkt()
+    {
+        GbaPersoonBeperkt input = new()
+        {
+            Rni =
+            [
+                new Brp.Shared.DtoMappers.CommonDtos.RniDeelnemer
+                {
+                    Categorie = "cat-01",
+                    OmschrijvingVerdrag = "verdrag",
+                    Deelnemer = new Brp.Shared.DtoMappers.CommonDtos.Waardetabel
+                    {
+                        Code = "0001",
+                        Omschrijving = "deelnemer"
+                    }
+                }
+            ]
+        };
+
+        CreateSut().Map<PersoonBeperkt>(input).Rni.Should().BeEquivalentTo(input.Rni);
+    }
+
+    [Fact]
+    public void ShouldMapRniForPersoon()
+    {
+        GbaPersoon input = new()
+        {
+            Rni =
+            [
+                new Brp.Shared.DtoMappers.CommonDtos.RniDeelnemer
+                {
+                    Categorie = "cat-01",
+                    OmschrijvingVerdrag = "verdrag",
+                    Deelnemer = new Brp.Shared.DtoMappers.CommonDtos.Waardetabel
+                    {
+                        Code = "0001",
+                        Omschrijving = "deelnemer"
+                    }
+                }
+            ]
+        };
+
+        CreateSut().Map<Persoon>(input).Rni.Should().BeEquivalentTo(input.Rni);
+    }
 }
