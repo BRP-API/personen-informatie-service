@@ -99,4 +99,33 @@ public class PersoonProfile
 
         CreateSut().Map<Persoon>(input).Rni.Should().BeEquivalentTo(input.Rni);
     }
+
+    [Fact]
+    public void ShouldMapVerblijfstitelForPersoon()
+    {
+        GbaPersoon input = new()
+        {
+            Verblijfstitel = new Brp.Shared.DtoMappers.BrpDtos.GbaVerblijfstitel
+            {
+                Aanduiding = new Brp.Shared.DtoMappers.CommonDtos.Waardetabel
+                {
+                    Code = "01",
+                    Omschrijving = "verblijfstitel"
+                },
+                DatumIngang = "20240102",
+                DatumEinde = "20240103",
+            }
+        };
+        Brp.Shared.DtoMappers.BrpApiDtos.Verblijfstitel expected = new()
+        {
+            Aanduiding = new Brp.Shared.DtoMappers.CommonDtos.Waardetabel
+            {
+                Code = "01",
+                Omschrijving = "verblijfstitel"
+            },
+            DatumIngang = "20240102".Map(),
+            DatumEinde = "20240103".Map()
+        };
+        CreateSut().Map<Persoon>(input).Verblijfstitel.Should().BeEquivalentTo(expected);
+    }
 }
