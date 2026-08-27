@@ -16,8 +16,7 @@ public class VerblijfstitelProfile : Profile
             {
                 opt.PreCondition(src => src.Aanduiding?.Code != "98");
                 opt.MapFrom(src => src.Aanduiding);
-            });
-
-        CreateMap<BrpDtos.InOnderzoek, VerblijfstitelInOnderzoek?>().ConvertUsing<VerblijfstitelInOnderzoekConverter>();
+            })
+            .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek.InOnderzoek()));
     }
 }
