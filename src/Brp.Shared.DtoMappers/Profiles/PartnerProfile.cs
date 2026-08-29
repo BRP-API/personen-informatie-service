@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Brp.Shared.DtoMappers.Mappers;
 
 namespace Brp.Shared.DtoMappers.Profiles;
 
@@ -37,6 +38,7 @@ public class PartnerProfile : Profile
                 opt.PreCondition(src => src.SoortVerbintenis?.Code != ".");
                 opt.MapFrom(src => src.SoortVerbintenis);
             })
+            .ForMember(dest => dest.Geboorte, opt => opt.MapFrom(src => src.Geboorte.Map()))
             .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek.PartnerInOnderzoek()))
             ;
     }

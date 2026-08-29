@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Brp.Shared.DtoMappers.Mappers;
 
 namespace Brp.Shared.DtoMappers.Profiles;
 
@@ -22,6 +23,7 @@ public class KindProfile : Profile
 
                 dest.Geboorte.MapInOnderzoek(src.InOnderzoek);
             })
+            .ForMember(dest => dest.Geboorte, opt => opt.MapFrom(src => src.Geboorte.Map()))
             .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek.KindInOnderzoek()))
             ;
     }

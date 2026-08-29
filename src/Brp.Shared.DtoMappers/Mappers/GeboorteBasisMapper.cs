@@ -4,13 +4,13 @@ namespace Brp.Shared.DtoMappers.Mappers;
 
 public static class GeboorteBasisMapper
 {
-    public static GeboorteBasis? Map(this BrpDtos.GeboorteBasis? geboorteBasis)
+    public static GeboorteBeperkt? Map(this BrpDtos.GeboorteBasis? geboorteBasis)
     {
         return geboorteBasis == null
             ? null
-            : new GeboorteBasis
+            : new GeboorteBeperkt
             {
-                Datum = geboorteBasis.Datum.Map()
+                Datum = geboorteBasis.Datum?.Map()
             };
     }
 }
