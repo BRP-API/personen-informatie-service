@@ -174,4 +174,32 @@ public class PersoonProfile
         };
         CreateSut().Map<Persoon>(input).EuropeesKiesrecht.Should().BeEquivalentTo(expected);
     }
+
+    [Fact]
+    public void ShouldMapImmigratieForPersoon()
+    {
+        GbaPersoon input = new()
+        {
+            Immigratie = new Brp.Shared.DtoMappers.BrpDtos.GbaImmigratie
+            {
+                DatumVestigingInNederland = "20240102",
+                LandVanwaarIngeschreven = new Brp.Shared.DtoMappers.CommonDtos.Waardetabel
+                {
+                    Code = "6014",
+                    Omschrijving = "Verenigde Staten van Amerika"
+                }
+            }
+        };
+        Brp.Shared.DtoMappers.BrpApiDtos.Immigratie expected = new()
+        {
+            DatumVestigingInNederland = "20240102".Map(),
+            LandVanwaarIngeschreven = new Brp.Shared.DtoMappers.CommonDtos.Waardetabel
+            {
+                Code = "6014",
+                Omschrijving = "Verenigde Staten van Amerika"
+            },
+            IndicatieVestigingVanuitBuitenland = true
+        };
+        CreateSut().Map<Persoon>(input).Immigratie.Should().BeEquivalentTo(expected);
+    }
 }
