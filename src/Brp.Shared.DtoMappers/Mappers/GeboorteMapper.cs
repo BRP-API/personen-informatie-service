@@ -19,15 +19,4 @@ public static class GeboorteMapper
                     : geboorte.Land?.Map()
             };
     }
-
-    private static Brp.Shared.DtoMappers.CommonDtos.Waardetabel? Map(this CommonDtos.Waardetabel? waardetabel)
-    {
-        return waardetabel == null
-            ? null
-            : new CommonDtos.Waardetabel
-            {
-                Code = waardetabel.Code,
-                Omschrijving = waardetabel.Omschrijving
-            };
-    }
 }

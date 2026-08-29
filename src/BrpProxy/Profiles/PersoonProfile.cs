@@ -68,7 +68,8 @@ public class PersoonProfile : Profile
             .ForMember(dest => dest.UitsluitingKiesrecht, opt => opt.MapFrom(src => src.UitsluitingKiesrecht.Map()))
             .ForMember(dest => dest.EuropeesKiesrecht, opt => opt.MapFrom(src => src.EuropeesKiesrecht.Map()))
             .ForMember(dest => dest.Immigratie, opt => opt.MapFrom(src => src.Immigratie.Map()))
-            .ForMember(dest => dest.Geboorte, opt => opt.MapFrom(src =>src.Geboorte.Map()))
+            .ForMember(dest => dest.Geboorte, opt => opt.MapFrom(src => src.Geboorte.Map()))
+            .ForMember(dest => dest.Overlijden, opt => opt.MapFrom(src => src.Overlijden.Map()))
             ;
     }
 
