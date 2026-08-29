@@ -147,4 +147,31 @@ public class PersoonProfile
         };
         CreateSut().Map<Persoon>(input).UitsluitingKiesrecht.Should().BeEquivalentTo(expected);
     }
+
+    [Fact]
+    public void ShouldMapEuropeesKiesrechtForPersoon()
+    {
+        GbaPersoon input = new()
+        {
+            EuropeesKiesrecht = new Brp.Shared.DtoMappers.BrpDtos.GbaEuropeesKiesrecht
+            {
+                Aanduiding = new Brp.Shared.DtoMappers.CommonDtos.Waardetabel
+                {
+                    Code = "01",
+                    Omschrijving = "europees kiesrecht"
+                },
+                EinddatumUitsluiting = "20240103"
+            }
+        };
+        Brp.Shared.DtoMappers.BrpApiDtos.EuropeesKiesrecht expected = new()
+        {
+            Aanduiding = new Brp.Shared.DtoMappers.CommonDtos.Waardetabel
+            {
+                Code = "01",
+                Omschrijving = "europees kiesrecht"
+            },
+            EinddatumUitsluiting = "20240103".Map()
+        };
+        CreateSut().Map<Persoon>(input).EuropeesKiesrecht.Should().BeEquivalentTo(expected);
+    }
 }
