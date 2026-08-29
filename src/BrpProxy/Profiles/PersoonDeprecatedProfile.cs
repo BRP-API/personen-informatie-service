@@ -23,6 +23,7 @@ public class PersoonDeprecatedProfile : Profile
             .ForMember(dest => dest.Verificatie, opt => opt.MapFrom(src => src.Verificatie.Map()))
             .ForMember(dest => dest.Rni, opt => opt.MapFrom(src => src.Rni.Map()))
             .ForMember(dest => dest.Geboorte, opt => opt.MapFrom(src => src.Geboorte.Map()))
+            .ForMember(dest => dest.OpschortingBijhouding, opt => opt.MapFrom(src => src.OpschortingBijhouding.Map()))
             .BeforeMap(PersoonProfile.PersoonBeperktBeforeMap)
             .AfterMap(PersoonProfile.PersoonBeperktAfterMap)
             ;
@@ -38,6 +39,7 @@ public class PersoonDeprecatedProfile : Profile
             .ForMember(dest => dest.Verificatie, opt => opt.MapFrom(src => src.Verificatie.Map()))
             .ForMember(dest => dest.Rni, opt => opt.MapFrom(src => src.Rni.Map()))
             .ForMember(dest => dest.Geboorte, opt => opt.MapFrom(src => src.Geboorte.Map()))
+            .ForMember(dest => dest.OpschortingBijhouding, opt => opt.MapFrom(src => src.OpschortingBijhouding.Map()))
             .BeforeMap(PersoonProfile.PersoonBeperktBeforeMap)
             .AfterMap(PersoonProfile.PersoonBeperktAfterMap)
             ;
@@ -68,6 +70,7 @@ public class PersoonDeprecatedProfile : Profile
             .ForMember(dest => dest.Immigratie, opt => opt.MapFrom(src => src.Immigratie.Map()))
             .ForMember(dest => dest.Geboorte, opt => opt.MapFrom(src => src.Geboorte.Map()))
             .ForMember(dest => dest.Overlijden, opt => opt.MapFrom(src => src.Overlijden.Map()))
+            .ForMember(dest => dest.OpschortingBijhouding, opt => opt.MapFrom(src => src.OpschortingBijhouding.Map()))
             ;
     }
 }
