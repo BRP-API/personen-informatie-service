@@ -16,7 +16,6 @@ public class OuderProfile
         MapperConfiguration config = new(cfg =>
         {
             cfg.AddProfile<Brp.Shared.DtoMappers.Profiles.OuderProfile>();
-            cfg.AddProfile<NaamProfile>();
         }, NullLoggerFactory.Instance);
         return config.CreateMapper();
     }

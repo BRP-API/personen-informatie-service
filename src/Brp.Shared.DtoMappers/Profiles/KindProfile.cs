@@ -25,6 +25,7 @@ public class KindProfile : Profile
             })
             .ForMember(dest => dest.Geboorte, opt => opt.MapFrom(src => src.Geboorte.Map()))
             .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek.KindInOnderzoek()))
+            .ForMember(dest => dest.Naam, opt => opt.MapFrom(src => src.Naam.MapNaamGerelateerde()))
             ;
     }
 }

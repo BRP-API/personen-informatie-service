@@ -26,6 +26,7 @@ public class PersoonProfile : Profile
             .ForMember(dest => dest.Rni, opt => opt.MapFrom(src => src.Rni.Map()))
             .ForMember(dest => dest.Geboorte, opt => opt.MapFrom(src => src.Geboorte.Map()))
             .ForMember(dest => dest.OpschortingBijhouding, opt => opt.MapFrom(src => src.OpschortingBijhouding.Map()))
+            .ForMember(dest => dest.Naam, opt => opt.MapFrom(src =>src.Naam.Map(src.Geslacht)))
             .BeforeMap(PersoonBeperktBeforeMap)
             .AfterMap(PersoonBeperktAfterMap)
             ;
@@ -42,6 +43,7 @@ public class PersoonProfile : Profile
             .ForMember(dest => dest.Rni, opt => opt.MapFrom(src => src.Rni.Map()))
             .ForMember(dest => dest.Geboorte, opt => opt.MapFrom(src => src.Geboorte.Map()))
             .ForMember(dest => dest.OpschortingBijhouding, opt => opt.MapFrom(src => src.OpschortingBijhouding.Map()))
+            .ForMember(dest => dest.Naam, opt => opt.MapFrom(src => src.Naam.Map(src.Geslacht)))
             .BeforeMap(PersoonBeperktBeforeMap)
             .AfterMap(PersoonBeperktAfterMap)
             ;
@@ -73,6 +75,7 @@ public class PersoonProfile : Profile
             .ForMember(dest => dest.Geboorte, opt => opt.MapFrom(src => src.Geboorte.Map()))
             .ForMember(dest => dest.Overlijden, opt => opt.MapFrom(src => src.Overlijden.Map()))
             .ForMember(dest => dest.OpschortingBijhouding, opt => opt.MapFrom(src => src.OpschortingBijhouding.Map()))
+            .ForMember(dest => dest.Naam, opt => opt.MapFrom(src => src.Naam.Map()))
             ;
     }
 

@@ -1,14 +1,12 @@
-﻿using AutoMapper;
-using Brp.Shared.DtoMappers.CommonDtos;
+﻿using Brp.Shared.DtoMappers.CommonDtos;
+using Brp.Shared.DtoMappers.Mappers;
 using FluentAssertions;
 using Xunit;
 
 namespace BrpProxy.Tests.Profiles;
 
-public class AdellijkeTitelPredicaatTypeProfile
+public class AdellijkeTitelPredicaatTypeMapperTests
 {
-    private static IMapper CreateSut() => AutomapperUnderTestFactory.CreateSut<Brp.Shared.DtoMappers.Profiles.AdellijkeTitelPredicaatTypeProfile>();
-
     [Fact]
     public void Titel()
     {
@@ -24,7 +22,7 @@ public class AdellijkeTitelPredicaatTypeProfile
             Code = "P",
             Omschrijving = "prins"
         };
-        CreateSut().Map<AdellijkeTitelPredicaatType>(input).Should().BeEquivalentTo(expected);
+        input.Map().Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -42,6 +40,6 @@ public class AdellijkeTitelPredicaatTypeProfile
             Code = "JH",
             Omschrijving = "jonkheer"
         };
-        CreateSut().Map<AdellijkeTitelPredicaatType>(input).Should().BeEquivalentTo(expected);
+        input.Map().Should().BeEquivalentTo(expected);
     }
 }

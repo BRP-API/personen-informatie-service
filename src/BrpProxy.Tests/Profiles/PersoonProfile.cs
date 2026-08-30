@@ -1,16 +1,18 @@
 using AutoMapper;
 using Brp.Shared.DtoMappers.BrpApiDtos;
+using Brp.Shared.DtoMappers.BrpDtos;
 using Brp.Shared.DtoMappers.Mappers;
 using FluentAssertions;
 using HaalCentraal.BrpProxy.Generated;
 using HaalCentraal.BrpProxy.Generated.Gba;
+using System.Collections.ObjectModel;
 using Xunit;
 
 namespace BrpProxy.Tests.Profiles;
 
 public class PersoonProfile
 {
-    private static IMapper CreateSut() => AutomapperUnderTestFactory.CreateSut<BrpProxy.Profiles.PersoonProfile>();
+    private static IMapper CreateSut() => AutomapperUnderTestFactory.CreateSut<BrpProxy.Profiles.PersoonProfile, Brp.Shared.DtoMappers.Profiles.PartnerProfile>();
 
     [Fact]
     public void ShouldMapVerificatieForPersoonBeperkt()
@@ -201,5 +203,44 @@ public class PersoonProfile
             IndicatieVestigingVanuitBuitenland = true
         };
         CreateSut().Map<Persoon>(input).Immigratie.Should().BeEquivalentTo(expected);
+    }
+
+    [Fact]
+    public void ShouldMapAanhef()
+    {
+        GbaPersoon input = new()
+        {
+            Geslacht = new Brp.Shared.DtoMappers.CommonDtos.Geslachtsaanduiding
+            {
+                Code = "M"
+            },
+            Naam = new()
+            {
+                Voornamen = "Pieter",
+                AdellijkeTitelPredicaat = new()
+                {
+                    Code = "G",
+                    Soort = Brp.Shared.DtoMappers.CommonDtos.AdellijkeTitelPredicaatSoort.Titel
+                },
+                Voorvoegsel = "van den",
+                Geslachtsnaam = "Aedel",
+                AanduidingNaamgebruik = new()
+                {
+                    Code = "P"
+                }
+            },
+            Partners = new Collection<Brp.Shared.DtoMappers.BrpDtos.GbaPartner>
+            {
+                new GbaPartner
+                {
+                    Naam = new()
+                    {
+                        Voorvoegsel = "de",
+                        Geslachtsnaam = "Boer"
+                    }
+                }
+            }
+        };
+        CreateSut().Map<Persoon>(input).Adressering.Aanhef.Should().Be("Geachte heer De Boer");
     }
 }

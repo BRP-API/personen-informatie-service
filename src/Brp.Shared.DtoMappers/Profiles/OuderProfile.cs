@@ -25,6 +25,7 @@ public class OuderProfile : Profile
             .ForMember(dest => dest.Geboorte, opt => opt.MapFrom(src => src.Geboorte.Map()))
             .ForMember(dest => dest.DatumIngangFamilierechtelijkeBetrekking, opt => opt.MapFrom(src => src.DatumIngangFamilierechtelijkeBetrekking.Map()))
             .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek.OuderInOnderzoek()))
+            .ForMember(dest => dest.Naam, opt => opt.MapFrom(src => src.Naam.MapNaamGerelateerde()))
             ;
     }
 }

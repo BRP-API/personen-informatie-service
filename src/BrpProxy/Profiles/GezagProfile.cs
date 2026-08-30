@@ -19,12 +19,14 @@ public class GezagProfile : Profile
         CreateMap<BrpDtos.GezagNietTeBepalen, BrpApiDtos.GezagNietTeBepalen>();
 
         CreateMap<BrpDtos.GezagOuder, BrpApiDtos.GezagOuder>()
+            .ForMember(dest => dest.Naam, opt => opt.MapFrom(src => src.Naam.MapNaamVolledigeNaam(src.Geslacht)))
             .AfterMap((src, dest) =>
             {
                 if (src.Naam is null) return;
                 dest.Naam.VolledigeNaam = src.Naam.VolledigeNaam(src.Geslacht);
             });
         CreateMap<BrpDtos.Minderjarige, BrpApiDtos.Minderjarige>()
+            .ForMember(dest => dest.Naam, opt => opt.MapFrom(src => src.Naam.MapNaamVolledigeNaam(src.Geslacht)))
             .AfterMap((src, dest) =>
             {
                 if (src.Naam is null) return;
@@ -38,6 +40,7 @@ public class GezagProfile : Profile
         CreateMap<BrpDtos.Derde, BrpApiDtos.Derde?>().ConvertUsing<DerdeConverter>();
 
         CreateMap<BrpDtos.BekendeDerde, BrpApiDtos.BekendeDerde>()
+            .ForMember(dest => dest.Naam, opt => opt.MapFrom(src => src.Naam.MapNaamVolledigeNaam(src.Geslacht)))
             .AfterMap((src, dest) =>
             {
                 if (src.Naam is null) return;
