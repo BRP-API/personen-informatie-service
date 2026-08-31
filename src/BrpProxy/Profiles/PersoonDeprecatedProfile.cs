@@ -76,6 +76,7 @@ public class PersoonDeprecatedProfile : Profile
             .ForMember(dest => dest.Naam, opt => opt.MapFrom(src => src.Naam.Map()))
             .ForMember(dest => dest.Partners, opt => opt.MapFrom(src => src.Partners.Map()))
             .ForMember(dest => dest.Ouders, opt => opt.MapFrom(src => src.Ouders.Map()))
+            .ForMember(dest => dest.Kinderen, opt => opt.MapFrom(src => src.Kinderen.Map()))
             ;
     }
 }
