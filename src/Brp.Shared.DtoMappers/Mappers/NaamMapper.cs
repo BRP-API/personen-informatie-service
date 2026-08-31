@@ -1,5 +1,6 @@
 ﻿using Brp.Shared.DtoMappers.BrpApiDtos;
 using Brp.Shared.DtoMappers.Interfaces;
+//using Brp.Shared.DtoMappers.Profiles;
 using System.Collections.ObjectModel;
 
 namespace Brp.Shared.DtoMappers.Mappers;
@@ -32,22 +33,6 @@ public static class NaamMapper
             };
     }
 
-    public static NaamGerelateerde? MapNaamGerelateerde(this CommonDtos.NaamBasis? naam)
-    {
-        return naam == null
-            ? null
-            : new NaamGerelateerde
-            {
-                AdellijkeTitelPredicaat = naam.AdellijkeTitelPredicaat.Map(),
-                Voorletters = naam.Voorletters(),
-                Voornamen = naam.Voornamen,
-                Voorvoegsel = naam.Voorvoegsel,
-                Geslachtsnaam = naam.Geslachtsnaam == "."
-                ? null
-                : naam.Geslachtsnaam
-            };
-    }
-
     public static NaamPersoon? Map(this BrpDtos.GbaNaamPersoon? naam)
     {
         return naam == null
@@ -67,7 +52,7 @@ public static class NaamMapper
             };
     }
 
-    private static Collection<Partner>? Map(this ICollection<BrpDtos.GbaPartner> partners)
+    public static Collection<Partner>? Map(this ICollection<BrpDtos.GbaPartner> partners)
     {
         var retval = new Collection<Partner>();
         foreach(var partner in partners)

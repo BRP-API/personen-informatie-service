@@ -8,20 +8,30 @@ public static class PartnerMapper
             ? null
             : new BrpApiDtos.Partner
             {
-                Naam = partner.Naam?.MapNaamGerelateerde(),
-                AangaanHuwelijkPartnerschap = partner.AangaanHuwelijkPartnerschap.Map(),
-                OntbindingHuwelijkPartnerschap = partner.OntbindingHuwelijkPartnerschap.Map(),
+                Naam = partner.Naam.MapNaamGerelateerde(partner.InOnderzoek),
+                SoortVerbintenis = partner.SoortVerbintenis?.Code == "."
+                    ? null
+                    : partner.SoortVerbintenis?.Map(),
+                Geboorte = partner.Geboorte.Map(partner.InOnderzoek),
+                Burgerservicenummer = partner.Burgerservicenummer,
+                Geslacht = partner.Geslacht?.Map(),
+                AangaanHuwelijkPartnerschap = partner.AangaanHuwelijkPartnerschap.Map(partner.InOnderzoek),
+                OntbindingHuwelijkPartnerschap = partner.OntbindingHuwelijkPartnerschap.Map(partner.InOnderzoek),
                 InOnderzoek = partner.InOnderzoek.PartnerInOnderzoek()
             };
     }
 
-    public static BrpApiDtos.AangaanHuwelijkPartnerschap? Map(this BrpDtos.GbaAangaanHuwelijkPartnerschap? aangaanHuwelijkPartnerschap)
+    public static BrpApiDtos.AangaanHuwelijkPartnerschap? Map(this BrpDtos.GbaAangaanHuwelijkPartnerschap? aangaanHuwelijkPartnerschap, BrpDtos.InOnderzoek inOnderzoek)
     {
+        if(aangaanHuwelijkPartnerschap == null && inOnderzoek != null)
+        {
+            aangaanHuwelijkPartnerschap = new BrpDtos.GbaAangaanHuwelijkPartnerschap { InOnderzoek = inOnderzoek };
+        }
         return aangaanHuwelijkPartnerschap == null
             ? null
             : new BrpApiDtos.AangaanHuwelijkPartnerschap
             {
-                Datum = aangaanHuwelijkPartnerschap.Datum.Map(),
+                Datum = aangaanHuwelijkPartnerschap.Datum?.Map(),
                 Land = aangaanHuwelijkPartnerschap.Land?.Code == "0000"
                     ? null
                     : aangaanHuwelijkPartnerschap.Land?.Map(),
@@ -68,13 +78,17 @@ public static class PartnerMapper
         };
     }
 
-    public static BrpApiDtos.OntbindingHuwelijkPartnerschap? Map(this BrpDtos.GbaOntbindingHuwelijkPartnerschap? ontbindingHuwelijkPartnerschap)
+    public static BrpApiDtos.OntbindingHuwelijkPartnerschap? Map(this BrpDtos.GbaOntbindingHuwelijkPartnerschap? ontbindingHuwelijkPartnerschap, BrpDtos.InOnderzoek inOnderzoek)
     {
+        if(ontbindingHuwelijkPartnerschap == null && inOnderzoek != null)
+        {
+            ontbindingHuwelijkPartnerschap = new BrpDtos.GbaOntbindingHuwelijkPartnerschap { InOnderzoek = inOnderzoek };
+        }
         return ontbindingHuwelijkPartnerschap == null
             ? null
             : new BrpApiDtos.OntbindingHuwelijkPartnerschap
             {
-                Datum = ontbindingHuwelijkPartnerschap.Datum.Map(),
+                Datum = ontbindingHuwelijkPartnerschap.Datum?.Map(),
                 InOnderzoek = ontbindingHuwelijkPartnerschap.InOnderzoek.OntbondenPartnerInOnderzoek()
             };
     }

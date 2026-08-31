@@ -12,7 +12,7 @@ namespace BrpProxy.Tests.Profiles;
 
 public class PersoonProfile
 {
-    private static IMapper CreateSut() => AutomapperUnderTestFactory.CreateSut<BrpProxy.Profiles.PersoonProfile, Brp.Shared.DtoMappers.Profiles.PartnerProfile>();
+    private static IMapper CreateSut() => AutomapperUnderTestFactory.CreateSut<BrpProxy.Profiles.PersoonProfile>();
 
     [Fact]
     public void ShouldMapVerificatieForPersoonBeperkt()
