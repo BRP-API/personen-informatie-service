@@ -77,6 +77,7 @@ public class PersoonProfile : Profile
             .ForMember(dest => dest.OpschortingBijhouding, opt => opt.MapFrom(src => src.OpschortingBijhouding.Map()))
             .ForMember(dest => dest.Naam, opt => opt.MapFrom(src => src.Naam.Map()))
             .ForMember(dest => dest.Partners, opt => opt.MapFrom(src => src.Partners.Map()))
+            .ForMember(dest => dest.Ouders, opt => opt.MapFrom(src => src.Ouders.Map()))
             ;
     }
 

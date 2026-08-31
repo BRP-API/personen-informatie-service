@@ -1,7 +1,23 @@
-﻿namespace Brp.Shared.DtoMappers.Mappers;
+﻿using Brp.Shared.DtoMappers.BrpApiDtos;
+using System.Collections.ObjectModel;
+
+namespace Brp.Shared.DtoMappers.Mappers;
 
 public static class PartnerMapper
 {
+    public static Collection<Partner>? Map(this ICollection<BrpDtos.GbaPartner> partners)
+    {
+        var retval = new Collection<Partner>();
+        foreach (var partner in partners)
+        {
+            if (partner != null)
+            {
+                retval.Add(partner.Map()!);
+            }
+        }
+        return retval;
+    }
+
     public static BrpApiDtos.Partner? Map(this BrpDtos.GbaPartner? partner)
     {
         return partner == null

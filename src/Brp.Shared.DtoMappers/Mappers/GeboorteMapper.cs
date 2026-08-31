@@ -22,7 +22,7 @@ public static class GeboorteMapper
             };
     }
 
-    private static BrpApiDtos.GeboorteInOnderzoek? MapGeboorteInOnderzoek(this BrpDtos.InOnderzoek? source)
+    public static GeboorteInOnderzoek? MapGeboorteInOnderzoek(this BrpDtos.InOnderzoek? source)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {
@@ -35,7 +35,7 @@ public static class GeboorteMapper
             "050000" or
             "050300" or
             "090000" or
-            "090300" => new BrpApiDtos.GeboorteInOnderzoek
+            "090300" => new GeboorteInOnderzoek
             {
                 Datum = true,
                 Land = true,
@@ -46,7 +46,7 @@ public static class GeboorteMapper
             "020310" or
             "030310" or
             "050310" or
-            "090310" => new BrpApiDtos.GeboorteInOnderzoek
+            "090310" => new GeboorteInOnderzoek
             {
                 Datum = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
@@ -55,7 +55,7 @@ public static class GeboorteMapper
             "020320" or
             "030320" or
             "050320" or
-            "090320" => new BrpApiDtos.GeboorteInOnderzoek
+            "090320" => new GeboorteInOnderzoek
             {
                 Plaats = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
@@ -64,7 +64,7 @@ public static class GeboorteMapper
             "020330" or
             "030330" or
             "050330" or
-            "090330" => new BrpApiDtos.GeboorteInOnderzoek
+            "090330" => new GeboorteInOnderzoek
             {
                 Land = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()

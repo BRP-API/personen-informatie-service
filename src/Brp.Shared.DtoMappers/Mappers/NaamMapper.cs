@@ -1,7 +1,5 @@
 ﻿using Brp.Shared.DtoMappers.BrpApiDtos;
 using Brp.Shared.DtoMappers.Interfaces;
-//using Brp.Shared.DtoMappers.Profiles;
-using System.Collections.ObjectModel;
 
 namespace Brp.Shared.DtoMappers.Mappers;
 
@@ -50,19 +48,6 @@ public static class NaamMapper
                 : naam.Geslachtsnaam,
                 Partners = naam.Partners?.Map()
             };
-    }
-
-    public static Collection<Partner>? Map(this ICollection<BrpDtos.GbaPartner> partners)
-    {
-        var retval = new Collection<Partner>();
-        foreach(var partner in partners)
-        {
-            if (partner != null)
-            {
-                retval.Add(partner.Map()!);
-            }
-        }
-        return retval;
     }
 
     public static NaamVolledigeNaam? MapNaamVolledigeNaam(this CommonDtos.NaamBasis? naam, CommonDtos.Waardetabel geslacht)
