@@ -79,6 +79,7 @@ public class PersoonProfile : Profile
             .ForMember(dest => dest.Partners, opt => opt.MapFrom(src => src.Partners.Map()))
             .ForMember(dest => dest.Ouders, opt => opt.MapFrom(src => src.Ouders.Map()))
             .ForMember(dest => dest.Kinderen, opt => opt.MapFrom(src => src.Kinderen.Map()))
+            .ForMember(dest => dest.Nationaliteiten, opt => opt.MapFrom(src => src.Nationaliteiten.Map()))
             ;
     }
 
