@@ -1,7 +1,4 @@
-﻿
-using Brp.Shared.DtoMappers.Profiles;
-
-namespace Brp.Shared.DtoMappers.Mappers;
+﻿namespace Brp.Shared.DtoMappers.Mappers;
 
 public static class VerblijfplaatsMapper
 {

@@ -4,7 +4,7 @@ namespace Brp.Shared.DtoMappers.Mappers;
 
 public static class GeboorteMapper
 {
-    public static Geboorte? Map(this BrpDtos.GbaGeboorte? geboorte, BrpDtos.InOnderzoek inOnderzoek)
+    public static Geboorte? Map(this BrpDtos.GbaGeboorte? geboorte, BrpDtos.InOnderzoek? inOnderzoek)
     {
         return geboorte == null && inOnderzoek == null
             ? null
@@ -22,7 +22,7 @@ public static class GeboorteMapper
             };
     }
 
-    public static GeboorteInOnderzoek? MapGeboorteInOnderzoek(this BrpDtos.InOnderzoek? source)
+    private static GeboorteInOnderzoek? MapGeboorteInOnderzoek(this BrpDtos.InOnderzoek? source)
     {
         return source?.AanduidingGegevensInOnderzoek switch
         {

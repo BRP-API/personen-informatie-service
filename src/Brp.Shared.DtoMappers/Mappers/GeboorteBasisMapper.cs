@@ -4,29 +4,29 @@ namespace Brp.Shared.DtoMappers.Mappers;
 
 public static class GeboorteBasisMapper
 {
-    public static GeboorteBeperkt? Map(this BrpDtos.GeboorteBasis? geboorteBasis)
+    public static GeboorteBeperkt? Map(this BrpDtos.GeboorteBasis? geboorteBasis, BrpDtos.InOnderzoek? inOnderzoek)
     {
         return geboorteBasis == null
             ? null
             : new GeboorteBeperkt
             {
-                Datum = geboorteBasis.Datum?.Map()
+                Datum = geboorteBasis?.Datum?.Map(),
+                InOnderzoek = inOnderzoek.MapGeboorteBeperktInOnderzoek()
             };
     }
 
-    public static Geboorte? Map(this BrpDtos.GbaGeboorte? geboorte)
+    public static GeboorteInOnderzoekBeperkt? MapGeboorteBeperktInOnderzoek(this BrpDtos.InOnderzoek? source)
     {
-        return geboorte == null
-            ? null
-            : new Geboorte
+        return source?.AanduidingGegevensInOnderzoek switch
+        {
+            "010000" or
+            "010300" or
+            "010310" => new BrpApiDtos.GeboorteInOnderzoekBeperkt
             {
-                Datum = geboorte.Datum?.Map(),
-                Plaats = geboorte.Plaats?.Code == "0000"
-                    ? null
-                    : geboorte.Plaats?.Map(),
-                Land = geboorte.Land?.Code == "0000"
-                    ? null
-                    : geboorte.Land?.Map()
-            };
+                Datum = true,
+                DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
+            },
+            _ => null,
+        };
     }
 }
