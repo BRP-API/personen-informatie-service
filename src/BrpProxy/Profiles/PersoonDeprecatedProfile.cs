@@ -12,12 +12,7 @@ public class PersoonDeprecatedProfile : Profile
     public PersoonDeprecatedProfile()
     {
         CreateMap<GbaGezagPersoonBeperkt, GezagPersoonBeperkt>()
-            .ForMember(dest => dest.Leeftijd, opt =>
-            {
-                opt.PreCondition(src => src.OpschortingBijhouding == null ||
-                                        src.OpschortingBijhouding.Reden?.Code != "O");
-                opt.MapFrom(src => src.Geboorte.Datum.Map().Leeftijd());
-            })
+            .ForMember(dest => dest.Leeftijd, opt => opt.MapFrom(src => src.Geboorte.Datum.Map().Leeftijd(src.OpschortingBijhouding)))
             .ForMember(dest => dest.InOnderzoek, opt => opt.MapFrom(src => src.InOnderzoek()))
             .ForMember(dest => dest.Verificatie, opt => opt.MapFrom(src => src.Verificatie.Map()))
             .ForMember(dest => dest.Rni, opt => opt.MapFrom(src => src.Rni.Map()))
@@ -25,7 +20,7 @@ public class PersoonDeprecatedProfile : Profile
             .ForMember(dest => dest.OpschortingBijhouding, opt => opt.MapFrom(src => src.OpschortingBijhouding.Map()))
             .ForMember(dest => dest.Naam, opt => opt.MapFrom(src => src.Naam.Map(src.Geslacht, src.PersoonInOnderzoek)))
             .ForMember(dest => dest.Gezag, opt => opt.MapFrom(src => src.Gezag.Map()))
-            .AfterMap(PersoonProfile.PersoonBeperktAfterMap)
+            .ForMember(dest => dest.Adressering, opt => opt.MapFrom(src => src.Map()))
             ;
 
         CreateMap<GbaPersoonBeperkt, PersoonBeperkt>()
@@ -36,20 +31,14 @@ public class PersoonDeprecatedProfile : Profile
             .ForMember(dest => dest.Geboorte, opt => opt.MapFrom(src => src.Geboorte.Map(src.PersoonInOnderzoek)))
             .ForMember(dest => dest.OpschortingBijhouding, opt => opt.MapFrom(src => src.OpschortingBijhouding.Map()))
             .ForMember(dest => dest.Naam, opt => opt.MapFrom(src => src.Naam.Map(src.Geslacht, src.PersoonInOnderzoek)))
-            .AfterMap(PersoonProfile.PersoonBeperktAfterMap)
+            .ForMember(dest => dest.Adressering, opt => opt.MapFrom(src => src.Map()))
             ;
 
         CreateMap<GbaPersoon, Persoon>()
             .BeforeMap(PersoonProfile.PersoonBeforeMap)
-            .AfterMap(PersoonProfile.PersoonAfterMap)
             .ForMember(dest => dest.DatumEersteInschrijvingGBA, opt => opt.MapFrom(src => src.DatumEersteInschrijvingGBA.Map()))
             .ForMember(dest => dest.GeheimhoudingPersoonsgegevens, opt => opt.MapFrom(src => src.Geheimhouding()))
-            .ForMember(dest => dest.Leeftijd, opt =>
-            {
-                opt.PreCondition(src => src.OpschortingBijhouding == null ||
-                                        src.OpschortingBijhouding.Reden?.Code != "O");
-                opt.MapFrom(src => src.Geboorte.Datum.Map().Leeftijd());
-            })
+            .ForMember(dest => dest.Leeftijd, opt =>opt.MapFrom(src => src.Geboorte.Datum.Map().Leeftijd(src.OpschortingBijhouding)))
             .ForMember(dest => dest.DatumInschrijvingInGemeente, opt => opt.MapFrom(src => src.DatumInschrijvingInGemeente.Map()))
             .ForMember(dest => dest.GemeenteVanInschrijving, opt =>
             {
@@ -73,6 +62,7 @@ public class PersoonDeprecatedProfile : Profile
             .ForMember(dest => dest.Nationaliteiten, opt => opt.MapFrom(src => src.Nationaliteiten.Map()))
             .ForMember(dest => dest.Verblijfplaats, opt => opt.MapFrom(src => src.Verblijfplaats.Map()))
             .ForMember(dest => dest.Gezag, opt => opt.MapFrom(src => src.Gezag.Map()))
+            .ForMember(dest => dest.Adressering, opt => opt.MapFrom(src => src.Map()))
             ;
     }
 }
