@@ -18,6 +18,6 @@ public class GeboorteBasisMapperTests
             Datum = DateTime.Today.ToString("yyyyMMdd").Map()
         };
 
-        input.Map().Should().BeEquivalentTo(expected);
+        input.Map(null).Should().BeEquivalentTo(expected);
     }
 }

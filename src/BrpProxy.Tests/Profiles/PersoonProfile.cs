@@ -15,6 +15,103 @@ public class PersoonProfile
     private static IMapper CreateSut() => AutomapperUnderTestFactory.CreateSut<BrpProxy.Profiles.PersoonProfile>();
 
     [Fact]
+    public void ShouldMapPersoonBeperkt()
+    {
+        GbaPersoonBeperkt input = new()
+        {
+            Burgerservicenummer = "123456789"
+        };
+        PersoonBeperkt expected = new()
+        {
+            Burgerservicenummer = "123456789",
+            Rni = [],
+        };
+
+        var actual = CreateSut().Map<PersoonBeperkt>(input);
+        actual.Should().BeEquivalentTo(expected);
+    }
+
+    [Fact]
+    public void ShouldMapNaamForPersoonBeperkt()
+    {
+        GbaPersoonBeperkt input = new()
+        {
+            Naam = new Brp.Shared.DtoMappers.CommonDtos.NaamBasis
+            {
+                Voornamen = "Pieter",
+                Voorvoegsel = "van den",
+                Geslachtsnaam = "Aedel"
+            }
+        };
+        PersoonBeperkt expected = new()
+        {
+            Naam = new()
+            {
+                Voornamen = "Pieter",
+                Voorvoegsel = "van den",
+                Geslachtsnaam = "Aedel",
+                Voorletters = "P.",
+                VolledigeNaam = "Pieter van den Aedel"
+            },
+            Rni = []
+        };
+        var actual = CreateSut().Map<PersoonBeperkt>(input);
+        actual.Should().BeEquivalentTo(expected);
+    }
+
+    [Fact]
+    public void ShouldMapGeboorteForPersoonBeperkt()
+    {
+        GbaPersoonBeperkt input = new()
+        {
+            Geboorte = new Brp.Shared.DtoMappers.BrpDtos.GeboorteBasis
+            {
+                Datum = "20240102"
+            }
+        };
+        PersoonBeperkt expected = new()
+        {
+            Geboorte = new()
+            {
+                Datum = "20240102".Map()
+            },
+            Leeftijd = 2,
+            Rni = []
+        };
+        var actual = CreateSut().Map<PersoonBeperkt>(input);
+        actual.Should().BeEquivalentTo(expected);
+    }
+
+    [Fact]
+    public void ShouldMapGeboorteForPersoon()
+    {
+        GbaPersoon input = new()
+        {
+            Geboorte = new Brp.Shared.DtoMappers.BrpDtos.GbaGeboorte
+            {
+                Datum = "20240102"
+            }
+        };
+        Persoon expected = new()
+        {
+            GeheimhoudingPersoonsgegevens = false,
+            Geboorte = new()
+            {
+                Datum = "20240102".Map()
+            },
+            Gezag = [],
+            Leeftijd = 2,
+            Nationaliteiten = [],
+            Kinderen = [],
+            Ouders = [],
+            Partners= [],
+            Rni = []
+        };
+        var actual = CreateSut().Map<Persoon>(input);
+        actual.Should().BeEquivalentTo(expected);
+    }
+
+    [Fact]
     public void ShouldMapVerificatieForPersoonBeperkt()
     {
         GbaPersoonBeperkt input = new()

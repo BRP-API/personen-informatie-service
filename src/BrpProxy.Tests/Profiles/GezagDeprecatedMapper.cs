@@ -1,192 +1,190 @@
-﻿using AutoMapper;
-using HaalCentraal.BrpProxy.Generated;
+﻿using BrpApiDtos = HaalCentraal.BrpProxy.Generated.Deprecated;
+using BrpDtos = HaalCentraal.BrpProxy.Generated.Gba.Deprecated;
+using BrpProxy.Mappers;
 using FluentAssertions;
-using System.Collections.Generic;
 using Xunit;
 
 namespace BrpProxy.Tests.Profiles;
 
-public class GezagProfile
+public class GezagDeprecatedMapper
 {
-    private static IMapper CreateSut() => AutomapperUnderTestFactory.CreateSut<BrpProxy.Profiles.GezagProfile>();
-
     [Fact]
-    public void ShouldMapGezamenlijkOuderlijkGezagWithoutThrowing()
+    public void ShouldMapTweehoofdigOuderlijkGezagWithoutThrowing()
     {
-        GezamenlijkOuderlijkGezag input = new()
+        BrpDtos.AbstractGezagsrelatie input = new BrpDtos.TweehoofdigOuderlijkGezag()
         {
-            Minderjarige = new Minderjarige
+            Minderjarige = new BrpDtos.Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
-            Ouders = new List<GezagOuder>
-            {
+            Ouders =
+            [
                 new() { Burgerservicenummer = "000000013" },
                 new() { Burgerservicenummer = "000000014" },
-            }
+            ]
         };
 
-        GezamenlijkOuderlijkGezag expected = new()
+        BrpApiDtos.TweehoofdigOuderlijkGezag expected = new()
         {
-            Minderjarige = new Minderjarige
+            Minderjarige = new BrpApiDtos.Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
-            Ouders = new List<GezagOuder>
-            {
+            Ouders =
+            [
                 new() { Burgerservicenummer = "000000013" },
                 new() { Burgerservicenummer = "000000014" },
-            }
+            ]
         };
 
-        CreateSut().Map<GezamenlijkOuderlijkGezag>(input).Should().BeEquivalentTo(expected);
+        input.Map().Should().BeEquivalentTo(expected);
     }
 
     [Fact]
     public void ShouldMapEenhoofdigOuderlijkGezagWithoutThrowing()
     {
-        EenhoofdigOuderlijkGezag input = new()
+        BrpDtos.AbstractGezagsrelatie input = new BrpDtos.EenhoofdigOuderlijkGezag()
         {
-            Minderjarige = new Minderjarige
+            Minderjarige = new BrpDtos.Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
-            Ouder = new GezagOuder
+            Ouder = new BrpDtos.GezagOuder
             {
                 Burgerservicenummer = "000000013"
             }
         };
 
-        EenhoofdigOuderlijkGezag expected = new()
+        BrpApiDtos.EenhoofdigOuderlijkGezag expected = new()
         {
-            Minderjarige = new Minderjarige
+            Minderjarige = new BrpApiDtos.Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
-            Ouder = new GezagOuder
+            Ouder = new BrpApiDtos.GezagOuder
             {
                 Burgerservicenummer = "000000013"
             }
         };
 
-        CreateSut().Map<EenhoofdigOuderlijkGezag>(input).Should().BeEquivalentTo(expected);
+        input.Map().Should().BeEquivalentTo(expected);
     }
 
     [Fact]
     public void ShouldMapGezamenlijkGezagWithoutThrowing()
     {
-        GezamenlijkGezag input = new()
+        BrpDtos.AbstractGezagsrelatie input = new BrpDtos.GezamenlijkGezag()
         {
-            Minderjarige = new Minderjarige
+            Minderjarige = new BrpDtos.Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
-            Derde = new BekendeDerde
+            Derde = new BrpDtos.BekendeDerde
             {
                 Burgerservicenummer = "000000013"
             },
-            Ouder = new GezagOuder
+            Ouder = new BrpDtos.GezagOuder
             {
                 Burgerservicenummer = "000000014"
             }
         };
 
-        GezamenlijkGezag expected = new()
+        BrpApiDtos.GezamenlijkGezag expected = new()
         {
-            Minderjarige = new Minderjarige
+            Minderjarige = new BrpApiDtos.Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
-            Derde = new BekendeDerde
+            Derde = new BrpApiDtos.BekendeDerde
             {
                 Burgerservicenummer = "000000013"
             },
-            Ouder = new GezagOuder
+            Ouder = new BrpApiDtos.GezagOuder
             {
                 Burgerservicenummer = "000000014"
             }
         };
 
-        CreateSut().Map<GezamenlijkGezag>(input).Should().BeEquivalentTo(expected);
+        input.Map().Should().BeEquivalentTo(expected);
     }
 
     [Fact]
     public void ShouldMapVoogdijWithoutThrowing()
     {
-        Voogdij input = new()
+        BrpDtos.AbstractGezagsrelatie input = new BrpDtos.Voogdij()
         {
-            Minderjarige = new Minderjarige
+            Minderjarige = new BrpDtos.Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
-            Derden = new List<BekendeDerde>
-            {
+            Derden =
+            [
                 new() { Burgerservicenummer = "000000013" },
                 new() { Burgerservicenummer = "000000014" },
-            }
+            ]
         };
 
-        Voogdij expected = new()
+        BrpApiDtos.Voogdij expected = new()
         {
-            Minderjarige = new Minderjarige
+            Minderjarige = new BrpApiDtos.Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
-            Derden = new List<BekendeDerde>
-            {
+            Derden =
+            [
                 new() { Burgerservicenummer = "000000013" },
                 new() { Burgerservicenummer = "000000014" },
-            }
+            ]
         };
 
-        CreateSut().Map<Voogdij>(input).Should().BeEquivalentTo(expected);
+        input.Map().Should().BeEquivalentTo(expected);
     }
 
     [Fact]
     public void ShouldMapGezagNietTeBepalenWithoutThrowing()
     {
-        GezagNietTeBepalen input = new()
+        BrpDtos.AbstractGezagsrelatie input = new BrpDtos.GezagNietTeBepalen()
         {
-            Minderjarige = new Minderjarige
+            Minderjarige = new BrpDtos.Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
             Toelichting = "Toelichting",
         };
 
-        GezagNietTeBepalen expected = new()
+        BrpApiDtos.GezagNietTeBepalen expected = new()
         {
-            Minderjarige = new Minderjarige
+            Minderjarige = new BrpApiDtos.Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
             Toelichting = "Toelichting",
         };
 
-        CreateSut().Map<GezagNietTeBepalen>(input).Should().BeEquivalentTo(expected);
+        input.Map().Should().BeEquivalentTo(expected);
     }
 
     [Fact]
     public void ShouldMapTijdelijkGeenGezagWithoutThrowing()
     {
-        TijdelijkGeenGezag input = new()
+        BrpDtos.AbstractGezagsrelatie input = new BrpDtos.TijdelijkGeenGezag()
         {
-            Minderjarige = new Minderjarige
+            Minderjarige = new BrpDtos.Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
             Toelichting = "Toelichting",
         };
 
-        TijdelijkGeenGezag expected = new()
+        BrpApiDtos.TijdelijkGeenGezag expected = new()
         {
-            Minderjarige = new Minderjarige
+            Minderjarige = new BrpApiDtos.Minderjarige
             {
                 Burgerservicenummer = "000000012"
             },
             Toelichting = "Toelichting",
         };
 
-        CreateSut().Map<TijdelijkGeenGezag>(input).Should().BeEquivalentTo(expected);
+        input.Map().Should().BeEquivalentTo(expected);
     }
 }

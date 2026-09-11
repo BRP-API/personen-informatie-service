@@ -2,24 +2,24 @@
 
 public static class ImmigratieMapper
 {
-    public static BrpApiDtos.Immigratie? Map(this BrpDtos.GbaImmigratie? immigratie)
+    public static BrpApiDtos.Immigratie? Map(this BrpDtos.GbaImmigratie? immigratie, BrpDtos.GbaVerblijfplaats verblijfplaats)
     {
-        return immigratie == null
-            ? null
-            : new BrpApiDtos.Immigratie
+        return immigratie != null || verblijfplaats.InOnderzoek != null
+            ? new BrpApiDtos.Immigratie
             {
-                DatumVestigingInNederland = immigratie.DatumVestigingInNederland?.Map(),
-                LandVanwaarIngeschreven = immigratie.LandVanwaarIngeschreven == null || immigratie.LandVanwaarIngeschreven.Code == "0000"
+                DatumVestigingInNederland = immigratie?.DatumVestigingInNederland?.Map(),
+                LandVanwaarIngeschreven = immigratie?.LandVanwaarIngeschreven == null || immigratie.LandVanwaarIngeschreven.Code == "0000"
                     ? null
                     : new CommonDtos.Waardetabel
                     {
                         Code = immigratie.LandVanwaarIngeschreven.Code,
                         Omschrijving = immigratie.LandVanwaarIngeschreven.Omschrijving
                     },
-                IndicatieVestigingVanuitBuitenland = !string.IsNullOrWhiteSpace(immigratie.DatumVestigingInNederland) ? true : null,
-                VanuitVerblijfplaatsOnbekend = immigratie.LandVanwaarIngeschreven?.Code == "0000" ? true : null,
-                InOnderzoek = immigratie.InOnderzoek.ImmigratieInOnderzoek()
-            };
+                IndicatieVestigingVanuitBuitenland = !string.IsNullOrWhiteSpace(immigratie?.DatumVestigingInNederland) ? true : null,
+                VanuitVerblijfplaatsOnbekend = immigratie?.LandVanwaarIngeschreven?.Code == "0000" ? true : null,
+                InOnderzoek = verblijfplaats?.InOnderzoek?.ImmigratieInOnderzoek()
+            }
+            : null;
     }
 
     private static BrpApiDtos.ImmigratieInOnderzoek? ImmigratieInOnderzoek(this BrpDtos.InOnderzoek? source)
