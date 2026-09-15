@@ -1,6 +1,6 @@
-﻿using BrpApiDtos = HaalCentraal.BrpProxy.Generated;
+﻿using Brp.Shared.DtoMappers.Mappers;
+using BrpApiDtos = HaalCentraal.BrpProxy.Generated;
 using BrpDtos = HaalCentraal.BrpProxy.Generated.Gba;
-using Brp.Shared.DtoMappers.Mappers;
 
 namespace BrpProxy.Mappers;
 

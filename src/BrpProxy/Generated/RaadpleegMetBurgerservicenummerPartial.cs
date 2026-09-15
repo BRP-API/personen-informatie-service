@@ -12,7 +12,7 @@ public partial class RaadpleegMetBurgerservicenummer : IRedactCloneable
             clone.Add(new string('*', bsn.Length));
         }
         retval.Burgerservicenummer = clone;
-        
+
         return retval;
     }
 }

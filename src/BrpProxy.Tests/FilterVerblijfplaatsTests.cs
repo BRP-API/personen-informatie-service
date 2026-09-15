@@ -65,22 +65,22 @@ namespace BrpProxy.Tests
                 .ToJsonWithoutNullAndDefaultValues()
                 .Should()
                 .Be(new Persoon
+                {
+                    Verblijfplaats = new Adres
                     {
-                        Verblijfplaats = new Adres
+                        DatumIngangGeldigheid = new VolledigeDatum
                         {
-                            DatumIngangGeldigheid = new VolledigeDatum
-                            {
-                                Datum = new DateTimeOffset(2022, 12, 1, 0, 0, 0, TimeSpan.Zero)
-                            }
+                            Datum = new DateTimeOffset(2022, 12, 1, 0, 0, 0, TimeSpan.Zero)
                         }
                     }
+                }
                 .ToJsonWithoutNullAndDefaultValues());
         }
 
         [Fact]
         public void FilterTypeOfVerblijfplaatsShouldReturnEmptyAdres()
         {
-            personen[0].Filter(new[] { "verblijfplaats.type"})
+            personen[0].Filter(new[] { "verblijfplaats.type" })
                 .ToJsonWithoutNullAndDefaultValues()
                 .Should()
                 .Be(new Persoon

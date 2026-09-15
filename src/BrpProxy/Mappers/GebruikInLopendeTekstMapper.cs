@@ -152,7 +152,7 @@ public static class GebruikInLopendeTekstMapper
 
     public static string? GebruikInLopendeTekst(this NaamPersoon? persoon, IWaardetabel geslacht)
     {
-        if(persoon == null) return null;
+        if (persoon == null) return null;
 
         var partner = persoon.Partners.ActuelePartner();
 

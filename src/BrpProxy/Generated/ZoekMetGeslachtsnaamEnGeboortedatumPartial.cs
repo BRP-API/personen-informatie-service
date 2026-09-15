@@ -12,7 +12,7 @@ public partial class ZoekMetGeslachtsnaamEnGeboortedatum : IRedactCloneable
         retval.Geslachtsnaam = retval.Geslachtsnaam != null
             ? new string('*', retval.Geslachtsnaam.Length)
             : null;
-        retval.Voornamen= retval.Voornamen != null
+        retval.Voornamen = retval.Voornamen != null
             ? new string('*', retval.Voornamen.Length)
             : null;
         retval.Voorvoegsel = retval.Voorvoegsel != null

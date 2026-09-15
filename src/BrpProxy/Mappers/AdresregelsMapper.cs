@@ -1,6 +1,6 @@
-﻿using System.Text;
+﻿using Brp.Shared.DtoMappers.Interfaces;
+using System.Text;
 using System.Text.RegularExpressions;
-using Brp.Shared.DtoMappers.Interfaces;
 using BrpDtos = Brp.Shared.DtoMappers.BrpDtos;
 using CommonDtos = Brp.Shared.DtoMappers.CommonDtos;
 

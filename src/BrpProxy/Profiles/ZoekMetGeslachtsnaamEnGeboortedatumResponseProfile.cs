@@ -1,16 +1,25 @@
-﻿using AutoMapper;
-using HC = HaalCentraal.BrpProxy.Generated;
-using Gba = HaalCentraal.BrpProxy.Generated.Gba;
-using HcDeprecated = HaalCentraal.BrpProxy.Generated.Deprecated;
+﻿using Gba = HaalCentraal.BrpProxy.Generated.Gba;
 using GbaDeprecated = HaalCentraal.BrpProxy.Generated.Gba.Deprecated;
+using HC = HaalCentraal.BrpProxy.Generated;
+using HcDeprecated = HaalCentraal.BrpProxy.Generated.Deprecated;
 
 namespace BrpProxy.Profiles;
 
-public class ZoekMetGeslachtsnaamEnGeboortedatumResponseProfile : Profile
+public static class ZoekMetGeslachtsnaamEnGeboortedatumResponseMapper
 {
-    public ZoekMetGeslachtsnaamEnGeboortedatumResponseProfile()
+    public static HC.ZoekMetGeslachtsnaamEnGeboortedatumResponse Map(this Gba.ZoekMetGeslachtsnaamEnGeboortedatumResponse src)
     {
-        CreateMap<Gba.ZoekMetGeslachtsnaamEnGeboortedatumResponse, HC.ZoekMetGeslachtsnaamEnGeboortedatumResponse>();
-        CreateMap<GbaDeprecated.ZoekMetGeslachtsnaamEnGeboortedatumResponse, HcDeprecated.ZoekMetGeslachtsnaamEnGeboortedatumResponse>();
+        return new HC.ZoekMetGeslachtsnaamEnGeboortedatumResponse
+        {
+            Personen = src.Personen.Map()
+        };
+    }
+
+    public static HcDeprecated.ZoekMetGeslachtsnaamEnGeboortedatumResponse Map(this GbaDeprecated.ZoekMetGeslachtsnaamEnGeboortedatumResponse src)
+    {
+        return new HcDeprecated.ZoekMetGeslachtsnaamEnGeboortedatumResponse
+        {
+            Personen = src.Personen.Map()
+        };
     }
 }

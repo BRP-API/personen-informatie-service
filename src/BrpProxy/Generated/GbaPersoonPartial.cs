@@ -14,11 +14,11 @@ public interface IGbaPersoon
     GbaVerblijfplaats Verblijfplaats { get; }
     System.Collections.Generic.ICollection<GbaPartner> Partners { get; }
     GbaNaamPersoon Naam { get; set; }
-    
+
     GbaGeboorte Geboorte { get; set; }
-    
+
     GbaImmigratie Immigratie { get; set; }
-    
+
     Brp.Shared.DtoMappers.CommonDtos.Geslachtsaanduiding Geslacht { get; }
     Brp.Shared.DtoMappers.CommonDtos.Waardetabel GemeenteVanInschrijving { get; }
 }

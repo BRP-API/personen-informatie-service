@@ -1,8 +1,8 @@
-﻿using BrpDtos = HaalCentraal.BrpProxy.Generated.Gba;
-using BrpApiDtos = HaalCentraal.BrpProxy.Generated;
-using BrpProxy.Mappers;
+﻿using BrpProxy.Mappers;
 using FluentAssertions;
 using Xunit;
+using BrpApiDtos = HaalCentraal.BrpProxy.Generated;
+using BrpDtos = HaalCentraal.BrpProxy.Generated.Gba;
 
 namespace BrpProxy.Tests.Profiles;
 
@@ -130,7 +130,7 @@ public class GezagMapper
             {
                 Burgerservicenummer = "000000012"
             },
-            Derden = 
+            Derden =
             [
                 new() { Burgerservicenummer = "000000013" },
                 new() { Burgerservicenummer = "000000014" },

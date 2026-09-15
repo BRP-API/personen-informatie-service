@@ -12,10 +12,10 @@ public static class VerblijfstitelMapper
                  || verblijfstitel.Aanduiding.Code == "98"
                  ? null
                  : verblijfstitel.Aanduiding = new CommonDtos.Waardetabel
-                {
-                    Code = verblijfstitel.Aanduiding.Code,
-                    Omschrijving = verblijfstitel.Aanduiding.Omschrijving
-                },
+                 {
+                     Code = verblijfstitel.Aanduiding.Code,
+                     Omschrijving = verblijfstitel.Aanduiding.Omschrijving
+                 },
                 DatumEinde = verblijfstitel.DatumEinde?.Map(),
                 DatumIngang = verblijfstitel.DatumIngang?.Map(),
                 InOnderzoek = verblijfstitel.InOnderzoek.VerblijfstitelInOnderzoek()

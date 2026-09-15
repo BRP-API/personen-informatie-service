@@ -1,7 +1,8 @@
-using AutoMapper;
 using Brp.Shared.DtoMappers.BrpApiDtos;
 using Brp.Shared.DtoMappers.BrpDtos;
 using Brp.Shared.DtoMappers.Mappers;
+using BrpProxy.Mappers;
+using BrpProxy.Profiles;
 using FluentAssertions;
 using HaalCentraal.BrpProxy.Generated;
 using HaalCentraal.BrpProxy.Generated.Gba;
@@ -12,8 +13,6 @@ namespace BrpProxy.Tests.Profiles;
 
 public class PersoonProfile
 {
-    private static IMapper CreateSut() => AutomapperUnderTestFactory.CreateSut<BrpProxy.Profiles.PersoonProfile>();
-
     [Fact]
     public void ShouldMapPersoonBeperkt()
     {
@@ -23,11 +22,10 @@ public class PersoonProfile
         };
         PersoonBeperkt expected = new()
         {
-            Burgerservicenummer = "123456789",
-            Rni = [],
+            Burgerservicenummer = "123456789"
         };
 
-        var actual = CreateSut().Map<PersoonBeperkt>(input);
+        var actual = input.MapPersoonBeperkt();
         actual.Should().BeEquivalentTo(expected);
     }
 
@@ -52,10 +50,9 @@ public class PersoonProfile
                 Geslachtsnaam = "Aedel",
                 Voorletters = "P.",
                 VolledigeNaam = "Pieter van den Aedel"
-            },
-            Rni = []
+            }
         };
-        var actual = CreateSut().Map<PersoonBeperkt>(input);
+        var actual = input.MapPersoonBeperkt();
         actual.Should().BeEquivalentTo(expected);
     }
 
@@ -75,10 +72,9 @@ public class PersoonProfile
             {
                 Datum = "20240102".Map()
             },
-            Leeftijd = 2,
-            Rni = []
+            Leeftijd = 2
         };
-        var actual = CreateSut().Map<PersoonBeperkt>(input);
+        var actual = input.MapPersoonBeperkt();
         actual.Should().BeEquivalentTo(expected);
     }
 
@@ -94,20 +90,13 @@ public class PersoonProfile
         };
         Persoon expected = new()
         {
-            GeheimhoudingPersoonsgegevens = false,
             Geboorte = new()
             {
                 Datum = "20240102".Map()
             },
-            Gezag = [],
-            Leeftijd = 2,
-            Nationaliteiten = [],
-            Kinderen = [],
-            Ouders = [],
-            Partners= [],
-            Rni = []
+            Leeftijd = "20240102".Map().Leeftijd(),
         };
-        var actual = CreateSut().Map<Persoon>(input);
+        var actual = input.MapPersoon();
         actual.Should().BeEquivalentTo(expected);
     }
 
@@ -129,7 +118,7 @@ public class PersoonProfile
             Omschrijving = "geverifieerd"
         };
 
-        CreateSut().Map<PersoonBeperkt>(input).Verificatie.Should().BeEquivalentTo(expected);
+        input.MapPersoonBeperkt().Verificatie.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -150,7 +139,7 @@ public class PersoonProfile
             Omschrijving = "geverifieerd"
         };
 
-        CreateSut().Map<Persoon>(input).Verificatie.Should().BeEquivalentTo(expected);
+        input.MapPersoon().Verificatie.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -173,7 +162,7 @@ public class PersoonProfile
             ]
         };
 
-        CreateSut().Map<PersoonBeperkt>(input).Rni.Should().BeEquivalentTo(input.Rni);
+        input.MapPersoonBeperkt().Rni.Should().BeEquivalentTo(input.Rni);
     }
 
     [Fact]
@@ -196,7 +185,7 @@ public class PersoonProfile
             ]
         };
 
-        CreateSut().Map<Persoon>(input).Rni.Should().BeEquivalentTo(input.Rni);
+        input.MapPersoon().Rni.Should().BeEquivalentTo(input.Rni);
     }
 
     [Fact]
@@ -225,7 +214,7 @@ public class PersoonProfile
             DatumIngang = "20240102".Map(),
             DatumEinde = "20240103".Map()
         };
-        CreateSut().Map<Persoon>(input).Verblijfstitel.Should().BeEquivalentTo(expected);
+        input.MapPersoon().Verblijfstitel.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -244,7 +233,7 @@ public class PersoonProfile
             UitgeslotenVanKiesrecht = true,
             Einddatum = "20240103".Map()
         };
-        CreateSut().Map<Persoon>(input).UitsluitingKiesrecht.Should().BeEquivalentTo(expected);
+        input.MapPersoon().UitsluitingKiesrecht.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -271,7 +260,7 @@ public class PersoonProfile
             },
             EinddatumUitsluiting = "20240103".Map()
         };
-        CreateSut().Map<Persoon>(input).EuropeesKiesrecht.Should().BeEquivalentTo(expected);
+        input.MapPersoon().EuropeesKiesrecht.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -299,7 +288,7 @@ public class PersoonProfile
             },
             IndicatieVestigingVanuitBuitenland = true
         };
-        CreateSut().Map<Persoon>(input).Immigratie.Should().BeEquivalentTo(expected);
+        input.MapPersoon().Immigratie.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -338,6 +327,6 @@ public class PersoonProfile
                 }
             }
         };
-        CreateSut().Map<Persoon>(input).Adressering.Aanhef.Should().Be("Geachte heer De Boer");
+        input.MapPersoon().Adressering.Aanhef.Should().Be("Geachte heer De Boer");
     }
 }

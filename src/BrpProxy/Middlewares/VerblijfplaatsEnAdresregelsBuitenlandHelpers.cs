@@ -36,7 +36,7 @@ public static class VerblijfplaatsEnAdresregelsBuitenlandHelpers
             persoon.Verblijfplaats = null;
         }
     }
-    
+
     private static bool AdresseringBinnenlandWordtGevraagdBijBuitenlandsVerblijfplaats(this IList<string> fields, Adressering? adressering, AbstractVerblijfplaats? verblijfplaats) =>
         adressering != null &&
         verblijfplaats is VerblijfplaatsBuitenland &&
@@ -45,14 +45,14 @@ public static class VerblijfplaatsEnAdresregelsBuitenlandHelpers
     private static bool VerblijfplaatsBinnenlandWordtGevraagdBijBuitenlandsVerblijfplaats(this IList<string> fields, AbstractVerblijfplaats? verblijfplaats) =>
         verblijfplaats is VerblijfplaatsBuitenland &&
         fields.Any(f => f.StartsWith("verblijfplaatsBinnenland"));
-    
+
     private static void ClearAdresProperties(this Adressering? adressering)
     {
         if (adressering == null)
         {
             return;
         }
-        
+
         adressering.Adresregel1 = null;
         adressering.Adresregel2 = null;
         adressering.Adresregel3 = null;

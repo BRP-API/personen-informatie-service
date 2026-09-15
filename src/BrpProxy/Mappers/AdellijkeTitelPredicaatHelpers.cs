@@ -89,7 +89,7 @@ public static class AdellijkeTitelPredicaatHelpers
         { "R-V", HOOGWELGEBORENVROUWE },
     };
 
-    public static string AdellijkeTitelPredicaat(this NaamPersoon naam) => 
+    public static string AdellijkeTitelPredicaat(this NaamPersoon naam) =>
         naam.AdellijkeTitelPredicaat != null
             ? naam.AdellijkeTitelPredicaat.Code
             : string.Empty;

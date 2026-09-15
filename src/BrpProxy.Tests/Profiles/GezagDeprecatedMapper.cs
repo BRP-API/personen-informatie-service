@@ -1,8 +1,8 @@
-﻿using BrpApiDtos = HaalCentraal.BrpProxy.Generated.Deprecated;
-using BrpDtos = HaalCentraal.BrpProxy.Generated.Gba.Deprecated;
-using BrpProxy.Mappers;
+﻿using BrpProxy.Mappers;
 using FluentAssertions;
 using Xunit;
+using BrpApiDtos = HaalCentraal.BrpProxy.Generated.Deprecated;
+using BrpDtos = HaalCentraal.BrpProxy.Generated.Gba.Deprecated;
 
 namespace BrpProxy.Tests.Profiles;
 

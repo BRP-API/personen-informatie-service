@@ -39,7 +39,7 @@ public static class PartnerMapper
 
     public static BrpApiDtos.AangaanHuwelijkPartnerschap? Map(this BrpDtos.GbaAangaanHuwelijkPartnerschap? aangaanHuwelijkPartnerschap, BrpDtos.InOnderzoek inOnderzoek)
     {
-        if(aangaanHuwelijkPartnerschap == null && inOnderzoek != null)
+        if (aangaanHuwelijkPartnerschap == null && inOnderzoek != null)
         {
             aangaanHuwelijkPartnerschap = new BrpDtos.GbaAangaanHuwelijkPartnerschap { InOnderzoek = inOnderzoek };
         }
@@ -96,7 +96,7 @@ public static class PartnerMapper
 
     public static BrpApiDtos.OntbindingHuwelijkPartnerschap? Map(this BrpDtos.GbaOntbindingHuwelijkPartnerschap? ontbindingHuwelijkPartnerschap, BrpDtos.InOnderzoek inOnderzoek)
     {
-        if(ontbindingHuwelijkPartnerschap == null && inOnderzoek != null)
+        if (ontbindingHuwelijkPartnerschap == null && inOnderzoek != null)
         {
             ontbindingHuwelijkPartnerschap = new BrpDtos.GbaOntbindingHuwelijkPartnerschap { InOnderzoek = inOnderzoek };
         }

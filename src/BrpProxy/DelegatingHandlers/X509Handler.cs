@@ -28,11 +28,11 @@ public class X509Handler : DelegatingHandler
             if (File.Exists(path))
             {
                 var innerHandler = this.InnerHandler;
-                while(innerHandler is DelegatingHandler handler)
+                while (innerHandler is DelegatingHandler handler)
                 {
                     innerHandler = handler.InnerHandler;
                 }
-                if(innerHandler is HttpClientHandler httpClientHandler)
+                if (innerHandler is HttpClientHandler httpClientHandler)
                 {
                     try
                     {
@@ -42,7 +42,7 @@ public class X509Handler : DelegatingHandler
 
                         _diagnosticContext.Set("X509Handler", $"Certificate '{path}' added for mTLS authentication");
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         _diagnosticContext.SetException(ex);
                     }

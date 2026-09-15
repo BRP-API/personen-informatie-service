@@ -41,7 +41,7 @@ public static class NationaliteitMapper
         return new BehandeldAlsNederlander
         {
             DatumIngangGeldigheid = source.DatumIngangGeldigheid?.Map(),
-            RedenOpname = source.RedenOpname?.Code == "000" ? null :source.RedenOpname.Map(),
+            RedenOpname = source.RedenOpname?.Code == "000" ? null : source.RedenOpname.Map(),
             InOnderzoek = source.InOnderzoek.BijzonderNederlanderschapInOnderzoek()
         };
     }

@@ -94,22 +94,22 @@ public static class NaamMapper
 
     public static NaamPersoon? Map(this BrpDtos.GbaNaamPersoon? naam, CommonDtos.Waardetabel geslacht, BrpDtos.InOnderzoek? inOnderzoek)
     {
-        return naam == null
-            ? null
-            : new NaamPersoon
+        return naam != null || inOnderzoek != null
+            ? new NaamPersoon
             {
-                AanduidingNaamgebruik = naam.AanduidingNaamgebruik.Map(),
-                AdellijkeTitelPredicaat = naam.AdellijkeTitelPredicaat.Map(),
-                Voorletters = naam.Voorletters(),
-                Voornamen = naam.Voornamen,
-                VolledigeNaam = naam.VolledigeNaam(geslacht),
-                Voorvoegsel = naam.Voorvoegsel,
-                Geslachtsnaam = naam.Geslachtsnaam == "."
+                AanduidingNaamgebruik = naam?.AanduidingNaamgebruik.Map(),
+                AdellijkeTitelPredicaat = naam?.AdellijkeTitelPredicaat.Map(),
+                Voorletters = naam?.Voorletters(),
+                Voornamen = naam?.Voornamen,
+                VolledigeNaam = naam?.VolledigeNaam(geslacht),
+                Voorvoegsel = naam?.Voorvoegsel,
+                Geslachtsnaam = naam?.Geslachtsnaam == "."
                 ? null
-                : naam.Geslachtsnaam,
-                Partners = naam.Partners?.Map(),
+                : naam?.Geslachtsnaam,
+                Partners = naam?.Partners?.Map(),
                 InOnderzoek = inOnderzoek?.MapNaamPersoonInOnderzoek()
-            };
+            }
+            : null;
     }
 
     private static BrpApiDtos.NaamPersoonInOnderzoek? MapNaamPersoonInOnderzoek(this BrpDtos.InOnderzoek? source)

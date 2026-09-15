@@ -1,4 +1,3 @@
-using Brp.Shared.DtoMappers;
 using Brp.Shared.Infrastructure.HealthCheck;
 using Brp.Shared.Infrastructure.Logging;
 using Brp.Shared.Infrastructure.Utils;
@@ -27,8 +26,6 @@ try
     builder.SetupPersonenRequestValidation();
 
     builder.Services.AddSingleton<FieldsHelper>();
-    SetupHelpers.AddBrpSharedDtoMappers();
-    builder.Services.AddAutoMapper(config => { }, AppDomain.CurrentDomain.GetAssemblies());
 
     builder.Services.AddControllers()
                     .ConfigureInvalidModelStateHandling()
@@ -47,7 +44,7 @@ try
     app.UseMiddleware<RequestValidatieMiddleware>();
 
     app.UseMiddleware<AddAcceptGezagVersionHeaderMiddleware>();
-    
+
     app.UseMiddleware<OverwriteResponseBodyMiddleware>();
 
     app.MapControllers();

@@ -22,11 +22,11 @@ public static class PersonenQueryExtensions
         {
             specification = specification.And(new VoornamenSpecification(query.Voornamen));
         }
-        if(!string.IsNullOrWhiteSpace(query.Voorvoegsel))
+        if (!string.IsNullOrWhiteSpace(query.Voorvoegsel))
         {
             specification = specification.And(new VoorvoegselSpecification(query.Voorvoegsel));
         }
-        if(!string.IsNullOrWhiteSpace(query.Geslachtsaanduiding))
+        if (!string.IsNullOrWhiteSpace(query.Geslachtsaanduiding))
         {
             specification = specification.And(new GeslachtSpecification(query.Geslachtsaanduiding));
         }
@@ -55,7 +55,7 @@ public static class PersonenQueryExtensions
         {
             specification = specification.And(new HuisnummertoevoegingSpecification(query.Huisnummertoevoeging));
         }
-        if(query.Geboortedatum.HasValue)
+        if (query.Geboortedatum.HasValue)
         {
             specification = specification.And(new GeboorteDatumSpecification(query.Geboortedatum.Value));
         }

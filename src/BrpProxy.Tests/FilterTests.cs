@@ -126,7 +126,7 @@ public class FilterTests
             },
         }
     };
-    
+
     [Fact]
     public void FilterSimpleProperty()
     {

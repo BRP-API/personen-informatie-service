@@ -2,9 +2,9 @@
 
 public static class ImmigratieMapper
 {
-    public static BrpApiDtos.Immigratie? Map(this BrpDtos.GbaImmigratie? immigratie, BrpDtos.GbaVerblijfplaats verblijfplaats)
+    public static BrpApiDtos.Immigratie? Map(this BrpDtos.GbaImmigratie? immigratie, BrpDtos.GbaVerblijfplaats? verblijfplaats)
     {
-        return immigratie != null || verblijfplaats.InOnderzoek != null
+        return immigratie != null || verblijfplaats?.InOnderzoek != null
             ? new BrpApiDtos.Immigratie
             {
                 DatumVestigingInNederland = immigratie?.DatumVestigingInNederland?.Map(),

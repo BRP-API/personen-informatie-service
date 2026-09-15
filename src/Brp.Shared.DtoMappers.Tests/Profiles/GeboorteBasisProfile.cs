@@ -8,12 +8,12 @@ public class GeboorteBasisMapperTests
     [Fact]
     public void ShouldMapWithoutThrowing()
     {
-        BrpDtos.GeboorteBasis input = new ()
+        BrpDtos.GeboorteBasis input = new()
         {
             Datum = DateTime.Today.ToString("yyyyMMdd"),
         };
 
-        BrpApiDtos.GeboorteBasis expected = new ()
+        BrpApiDtos.GeboorteBasis expected = new()
         {
             Datum = DateTime.Today.ToString("yyyyMMdd").Map()
         };

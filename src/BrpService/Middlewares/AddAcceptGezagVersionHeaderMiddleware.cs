@@ -12,7 +12,7 @@ public class AddAcceptGezagVersionHeaderMiddleware
     public async Task Invoke(HttpContext context)
     {
         context.Request.Headers.Append("accept-gezag-version", "2");
-        
+
         await _next(context);
     }
 }

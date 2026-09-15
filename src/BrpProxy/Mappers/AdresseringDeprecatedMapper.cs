@@ -33,6 +33,10 @@ public static class AdresseringDeprecatedMapper
             src.Verblijfplaats?.InOnderzoek != null)
         {
             var naam = src.Naam?.Map(src.Geslacht, src.PersoonInOnderzoek);
+            if (naam != null && src.Partners != null)
+            {
+                naam.Partners = src.Partners.Map();
+            }
             var dest = new Adressering
             {
                 Aanhef = naam?.Aanhef(src.Geslacht),
