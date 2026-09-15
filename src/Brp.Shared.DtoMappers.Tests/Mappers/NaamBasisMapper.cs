@@ -2,9 +2,9 @@
 using Brp.Shared.DtoMappers.Mappers;
 using FluentAssertions;
 
-namespace Brp.Shared.DtoMappers.Tests.Profiles;
+namespace Brp.Shared.DtoMappers.Tests.Mappers;
 
-public class NaamProfile
+public class NaamBasisMapper
 {
     [Fact]
     public void ShouldMapNaamBasisToNaamPersoonBeperktWithoutThrowing()

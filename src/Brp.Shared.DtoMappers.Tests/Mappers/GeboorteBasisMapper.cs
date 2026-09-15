@@ -1,7 +1,7 @@
 ﻿using Brp.Shared.DtoMappers.Mappers;
 using FluentAssertions;
 
-namespace Brp.Shared.DtoMappers.Tests.Profiles;
+namespace Brp.Shared.DtoMappers.Tests.Mappers;
 
 public class GeboorteBasisMapperTests
 {
