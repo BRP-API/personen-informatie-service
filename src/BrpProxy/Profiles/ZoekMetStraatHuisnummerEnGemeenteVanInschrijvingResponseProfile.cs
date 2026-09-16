@@ -1,16 +1,25 @@
-﻿using AutoMapper;
-using HC = HaalCentraal.BrpProxy.Generated;
-using Gba = HaalCentraal.BrpProxy.Generated.Gba;
-using HcDeprecated = HaalCentraal.BrpProxy.Generated.Deprecated;
+﻿using Gba = HaalCentraal.BrpProxy.Generated.Gba;
 using GbaDeprecated = HaalCentraal.BrpProxy.Generated.Gba.Deprecated;
+using HC = HaalCentraal.BrpProxy.Generated;
+using HcDeprecated = HaalCentraal.BrpProxy.Generated.Deprecated;
 
 namespace BrpProxy.Profiles;
 
-public class ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponseProfile : Profile
+public static class ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponseMapper
 {
-    public ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponseProfile()
+    public static HC.ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponse Map(this Gba.ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponse src)
     {
-        CreateMap<Gba.ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponse, HC.ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponse>();
-        CreateMap<GbaDeprecated.ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponse, HcDeprecated.ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponse>();
+        return new HC.ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponse
+        {
+            Personen = src.Personen.Map()
+        };
+    }
+
+    public static HcDeprecated.ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponse Map(this GbaDeprecated.ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponse src)
+    {
+        return new HcDeprecated.ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponse
+        {
+            Personen = src.Personen.Map()
+        };
     }
 }

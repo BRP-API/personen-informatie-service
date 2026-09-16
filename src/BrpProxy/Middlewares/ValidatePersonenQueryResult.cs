@@ -1,5 +1,5 @@
-﻿using HaalCentraal.BrpProxy.Generated;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
+using HaalCentraal.BrpProxy.Generated;
 
 namespace BrpProxy.Middlewares
 {
@@ -8,7 +8,7 @@ namespace BrpProxy.Middlewares
         private static InvalidParam? CreateFrom(string propertyName, string errorMessage)
         {
             var messages = errorMessage.Split("||");
-            switch(messages.Length)
+            switch (messages.Length)
             {
                 case 2:
                     return new InvalidParam

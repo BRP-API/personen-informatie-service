@@ -849,8 +849,8 @@ internal static class Constanten
      .Concat(FieldsVerificatie)
      .ToArray();
 
-     internal static readonly string[] NotAllowedPersoonFields = new[]
-    {
+    internal static readonly string[] NotAllowedPersoonFields = new[]
+   {
         "opschortingBijhouding",
         "geheimhoudingPersoonsgegevens",
         "inOnderzoek",

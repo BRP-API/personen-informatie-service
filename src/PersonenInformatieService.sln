@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31903.59
+# Visual Studio Version 18
+VisualStudioVersion = 18.9.12120.119 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{965DA68A-2FC8-4040-92DD-AD8927D55135}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brp.Shared.DtoMappers", "Brp.Shared.DtoMappers\Brp.Shared.DtoMappers.csproj", "{B4DA0332-4ECD-43F9-88F5-7451C53D579B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brp.Shared.Validatie", "Brp.Shared.Validatie\Brp.Shared.Validatie.csproj", "{FA09E610-AACF-481A-8A97-AD28ED7544E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brp.Shared.DtoMappers.Tests", "Brp.Shared.DtoMappers.Tests\Brp.Shared.DtoMappers.Tests.csproj", "{B7AC6EC5-72C8-C8AA-348F-2E9A8ADFFEFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{FA09E610-AACF-481A-8A97-AD28ED7544E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA09E610-AACF-481A-8A97-AD28ED7544E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA09E610-AACF-481A-8A97-AD28ED7544E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7AC6EC5-72C8-C8AA-348F-2E9A8ADFFEFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7AC6EC5-72C8-C8AA-348F-2E9A8ADFFEFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7AC6EC5-72C8-C8AA-348F-2E9A8ADFFEFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7AC6EC5-72C8-C8AA-348F-2E9A8ADFFEFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,5 +71,6 @@ Global
 		{4410BC0F-B137-420A-941D-631C3F13E923} = {965DA68A-2FC8-4040-92DD-AD8927D55135}
 		{B4DA0332-4ECD-43F9-88F5-7451C53D579B} = {965DA68A-2FC8-4040-92DD-AD8927D55135}
 		{FA09E610-AACF-481A-8A97-AD28ED7544E2} = {965DA68A-2FC8-4040-92DD-AD8927D55135}
+		{B7AC6EC5-72C8-C8AA-348F-2E9A8ADFFEFF} = {965DA68A-2FC8-4040-92DD-AD8927D55135}
 	EndGlobalSection
 EndGlobal

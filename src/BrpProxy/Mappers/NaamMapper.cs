@@ -18,10 +18,10 @@ public static class NaamMapper
     {
         return !string.IsNullOrWhiteSpace(str)
             ? str.Length switch
-        {
-            1 => str.ToUpperInvariant(),
-            _ => $"{char.ToUpperInvariant(str[0])}{str[1..]}"
-        }
+            {
+                1 => str.ToUpperInvariant(),
+                _ => $"{char.ToUpperInvariant(str[0])}{str[1..]}"
+            }
         : str;
     }
 

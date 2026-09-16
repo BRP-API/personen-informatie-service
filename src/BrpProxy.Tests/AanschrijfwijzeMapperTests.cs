@@ -1,8 +1,8 @@
-﻿using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
-using CommonDtos = Brp.Shared.DtoMappers.CommonDtos;
-using BrpProxy.Mappers;
+﻿using BrpProxy.Mappers;
 using FluentAssertions;
 using Xunit;
+using BrpApiDtos = Brp.Shared.DtoMappers.BrpApiDtos;
+using CommonDtos = Brp.Shared.DtoMappers.CommonDtos;
 
 namespace BrpProxy.Tests
 {

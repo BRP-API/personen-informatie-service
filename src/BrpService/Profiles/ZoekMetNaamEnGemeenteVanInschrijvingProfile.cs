@@ -1,14 +1,20 @@
-﻿using AutoMapper;
-using HaalCentraal.BrpService.Generated;
+﻿using HaalCentraal.BrpService.Generated;
 using HaalCentraal.BrpService.Repositories;
 
 namespace HaalCentraal.BrpService.Profiles;
 
-public class ZoekMetNaamEnGemeenteVanInschrijvingProfile : Profile
+public static class ZoekMetNaamEnGemeenteVanInschrijvingMapper
 {
-    public ZoekMetNaamEnGemeenteVanInschrijvingProfile()
+    public static ZoekMetNaamEnGemeenteVanInschrijvingFilter Map(this ZoekMetNaamEnGemeenteVanInschrijving src)
     {
-        CreateMap<ZoekMetNaamEnGemeenteVanInschrijving, ZoekMetNaamEnGemeenteVanInschrijvingFilter>()
-            .ForMember(dest => dest.Geslachtsaanduiding, opt => opt.MapFrom(src => src.Geslacht));
+        return new ZoekMetNaamEnGemeenteVanInschrijvingFilter
+        {
+            InclusiefOverledenPersonen = src.InclusiefOverledenPersonen ?? false,
+            Geslachtsaanduiding = src.Geslacht,
+            Geslachtsnaam = src.Geslachtsnaam,
+            Voorvoegsel = src.Voorvoegsel,
+            Voornamen = src.Voornamen,
+            GemeenteVanInschrijving = src.GemeenteVanInschrijving,
+        };
     }
 }

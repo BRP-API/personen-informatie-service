@@ -1,16 +1,25 @@
-﻿using AutoMapper;
-using HC = HaalCentraal.BrpProxy.Generated;
-using Gba = HaalCentraal.BrpProxy.Generated.Gba;
-using HcDeprecated = HaalCentraal.BrpProxy.Generated.Deprecated;
+﻿using Gba = HaalCentraal.BrpProxy.Generated.Gba;
 using GbaDeprecated = HaalCentraal.BrpProxy.Generated.Gba.Deprecated;
+using HC = HaalCentraal.BrpProxy.Generated;
+using HcDeprecated = HaalCentraal.BrpProxy.Generated.Deprecated;
 
 namespace BrpProxy.Profiles;
 
-public class ZoekMetAdresseerbaarObjectIdentificatieResponseProfile : Profile
+public static class ZoekMetAdresseerbaarObjectIdentificatieResponseMapper
 {
-    public ZoekMetAdresseerbaarObjectIdentificatieResponseProfile()
+    public static HC.ZoekMetAdresseerbaarObjectIdentificatieResponse Map(this Gba.ZoekMetAdresseerbaarObjectIdentificatieResponse src)
     {
-        CreateMap<Gba.ZoekMetAdresseerbaarObjectIdentificatieResponse, HC.ZoekMetAdresseerbaarObjectIdentificatieResponse>();
-        CreateMap<GbaDeprecated.ZoekMetAdresseerbaarObjectIdentificatieResponse, HcDeprecated.ZoekMetAdresseerbaarObjectIdentificatieResponse>();
+        return new HC.ZoekMetAdresseerbaarObjectIdentificatieResponse
+        {
+            Personen = src.Personen.Map()
+        };
+    }
+
+    public static HcDeprecated.ZoekMetAdresseerbaarObjectIdentificatieResponse Map(this GbaDeprecated.ZoekMetAdresseerbaarObjectIdentificatieResponse src)
+    {
+        return new HcDeprecated.ZoekMetAdresseerbaarObjectIdentificatieResponse
+        {
+            Personen = src.Personen.Map()
+        };
     }
 }

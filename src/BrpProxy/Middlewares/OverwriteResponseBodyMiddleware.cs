@@ -1,16 +1,16 @@
 ﻿using Brp.Shared.Infrastructure.Http;
-using Brp.Shared.Infrastructure.Stream;
-using HaalCentraal.BrpProxy.Generated;
-using Gba = HaalCentraal.BrpProxy.Generated.Gba;
-using HcDeprecated = HaalCentraal.BrpProxy.Generated.Deprecated;
-using GbaDeprecated = HaalCentraal.BrpProxy.Generated.Gba.Deprecated;
-using Newtonsoft.Json;
-using AutoMapper;
-using BrpProxy.Validators;
-using Serilog;
-using FluentValidation.Results;
-using Brp.Shared.Validatie.Handlers;
 using Brp.Shared.Infrastructure.ProblemDetails;
+using Brp.Shared.Infrastructure.Stream;
+using Brp.Shared.Validatie.Handlers;
+using BrpProxy.Profiles;
+using BrpProxy.Validators;
+using FluentValidation.Results;
+using HaalCentraal.BrpProxy.Generated;
+using Newtonsoft.Json;
+using Serilog;
+using Gba = HaalCentraal.BrpProxy.Generated.Gba;
+using GbaDeprecated = HaalCentraal.BrpProxy.Generated.Gba.Deprecated;
+using HcDeprecated = HaalCentraal.BrpProxy.Generated.Deprecated;
 
 namespace BrpProxy.Middlewares
 {
@@ -18,14 +18,12 @@ namespace BrpProxy.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly IDiagnosticContext _diagnosticContext;
-        private readonly IMapper _mapper;
         private readonly FieldsHelper _fieldsHelper;
 
-        public OverwriteResponseBodyMiddleware(RequestDelegate next, IDiagnosticContext diagnosticContext, IMapper mapper, FieldsHelper fieldsHelper)
+        public OverwriteResponseBodyMiddleware(RequestDelegate next, IDiagnosticContext diagnosticContext, FieldsHelper fieldsHelper)
         {
             _next = next;
             _diagnosticContext = diagnosticContext;
-            _mapper = mapper;
             _fieldsHelper = fieldsHelper;
         }
 
@@ -57,7 +55,7 @@ namespace BrpProxy.Middlewares
 
                 // deze validatie check is toegevoegd tbv healthcheck
                 // tijdens de healthcheck v/d A&P zal deze een GET request sturen om te kijken of de downstream kan worden benaderd
-                if(personenQuery is null)
+                if (personenQuery is null)
                 {
                     var problemDetails = context.Request.CreateProblemDetails(StatusCodes.Status400BadRequest, "De bevraging bevat een fout.", "Request body is geen geldige JSON.");
 
@@ -91,8 +89,8 @@ namespace BrpProxy.Middlewares
 
                 var modifiedBody = context.Response.StatusCode == StatusCodes.Status200OK
                     ? acceptNewGezag
-                        ? body.Transform(_mapper, resultFields, personenQuery.Fields!, _diagnosticContext)
-                        : body.TransformDeprecated(_mapper, resultFields, personenQuery.Fields!, _diagnosticContext)
+                        ? body.Transform(resultFields, personenQuery.Fields!, _diagnosticContext)
+                        : body.TransformDeprecated(resultFields, personenQuery.Fields!, _diagnosticContext)
                     : body;
 
                 if (Log.IsEnabled(Serilog.Events.LogEventLevel.Debug))
@@ -151,9 +149,9 @@ namespace BrpProxy.Middlewares
             return proxyTokens.Exists(t => payload.Contains(t));
         }
 
-        public static string Transform(this string payload, IMapper mapper, ICollection<string> fields, ICollection<string> originalFields, IDiagnosticContext diagnosticContext)
+        public static string Transform(this string payload, ICollection<string> fields, ICollection<string> originalFields, IDiagnosticContext diagnosticContext)
         {
-            if(payload.IsProxyResponse())
+            if (payload.IsProxyResponse())
             {
                 diagnosticContext.Set("proxy2proxy aanroep", true);
                 return payload;
@@ -165,37 +163,37 @@ namespace BrpProxy.Middlewares
             switch (response)
             {
                 case Gba.RaadpleegMetBurgerservicenummerResponse p:
-                    var result = mapper.Map<RaadpleegMetBurgerservicenummerResponse>(p);
+                    var result = p.Map();
                     result.Personen = result.Personen.ExcludeAdresregelsEnVerblijfplaatsBuitenland(originalFields.ToList()).FilterList(fields);
                     retval = result;
                     break;
                 case Gba.ZoekMetGeslachtsnaamEnGeboortedatumResponse pb:
-                    var result1 = mapper.Map<ZoekMetGeslachtsnaamEnGeboortedatumResponse>(pb);
+                    var result1 = pb.Map();
                     result1.Personen = result1.Personen.FilterList(fields);
                     retval = result1;
                     break;
                 case Gba.ZoekMetNaamEnGemeenteVanInschrijvingResponse pb:
-                    var result3 = mapper.Map<ZoekMetNaamEnGemeenteVanInschrijvingResponse>(pb);
+                    var result3 = pb.Map();
                     result3.Personen = result3.Personen.FilterList(fields);
                     retval = result3;
                     break;
                 case Gba.ZoekMetPostcodeEnHuisnummerResponse pb:
-                    var result2 = mapper.Map<ZoekMetPostcodeEnHuisnummerResponse>(pb);
+                    var result2 = pb.Map();
                     result2.Personen = result2.Personen.FilterList(fields);
                     retval = result2;
                     break;
                 case Gba.ZoekMetNummeraanduidingIdentificatieResponse pb:
-                    var result4 = mapper.Map<ZoekMetNummeraanduidingIdentificatieResponse>(pb);
+                    var result4 = pb.Map();
                     result4.Personen = result4.Personen.FilterList(fields);
                     retval = result4;
                     break;
                 case Gba.ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponse pb:
-                    var result5 = mapper.Map<ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponse>(pb);
+                    var result5 = pb.Map();
                     result5.Personen = result5.Personen.FilterList(fields);
                     retval = result5;
                     break;
                 case Gba.ZoekMetAdresseerbaarObjectIdentificatieResponse pb:
-                    var result6 = mapper.Map<ZoekMetAdresseerbaarObjectIdentificatieResponse>(pb);
+                    var result6 = pb.Map();
                     result6.Personen = result6.Personen.FilterList(fields);
                     retval = result6;
                     break;
@@ -210,7 +208,7 @@ namespace BrpProxy.Middlewares
             });
         }
 
-        public static string TransformDeprecated(this string payload, IMapper mapper, ICollection<string> fields, ICollection<string> originalFields, IDiagnosticContext diagnosticContext)
+        public static string TransformDeprecated(this string payload, ICollection<string> fields, ICollection<string> originalFields, IDiagnosticContext diagnosticContext)
         {
             if (payload.IsProxyResponse())
             {
@@ -224,37 +222,37 @@ namespace BrpProxy.Middlewares
             switch (response)
             {
                 case GbaDeprecated.RaadpleegMetBurgerservicenummerResponse p:
-                    var result = mapper.Map<HcDeprecated.RaadpleegMetBurgerservicenummerResponse>(p);
+                    var result = p.Map();
                     result.Personen = result.Personen.ExcludeAdresregelsEnVerblijfplaatsBuitenland(originalFields.ToList()).FilterList(fields);
                     retval = result;
                     break;
                 case GbaDeprecated.ZoekMetGeslachtsnaamEnGeboortedatumResponse pb:
-                    var result1 = mapper.Map<HcDeprecated.ZoekMetGeslachtsnaamEnGeboortedatumResponse>(pb);
+                    var result1 = pb.Map();
                     result1.Personen = result1.Personen.FilterList(fields);
                     retval = result1;
                     break;
                 case GbaDeprecated.ZoekMetNaamEnGemeenteVanInschrijvingResponse pb:
-                    var result3 = mapper.Map<HcDeprecated.ZoekMetNaamEnGemeenteVanInschrijvingResponse>(pb);
+                    var result3 = pb.Map();
                     result3.Personen = result3.Personen.FilterList(fields);
                     retval = result3;
                     break;
                 case GbaDeprecated.ZoekMetPostcodeEnHuisnummerResponse pb:
-                    var result2 = mapper.Map<HcDeprecated.ZoekMetPostcodeEnHuisnummerResponse>(pb);
+                    var result2 = pb.Map();
                     result2.Personen = result2.Personen.FilterList(fields);
                     retval = result2;
                     break;
                 case GbaDeprecated.ZoekMetNummeraanduidingIdentificatieResponse pb:
-                    var result4 = mapper.Map<HcDeprecated.ZoekMetNummeraanduidingIdentificatieResponse>(pb);
+                    var result4 = pb.Map();
                     result4.Personen = result4.Personen.FilterList(fields);
                     retval = result4;
                     break;
                 case GbaDeprecated.ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponse pb:
-                    var result5 = mapper.Map<HcDeprecated.ZoekMetStraatHuisnummerEnGemeenteVanInschrijvingResponse>(pb);
+                    var result5 = pb.Map();
                     result5.Personen = result5.Personen.FilterList(fields);
                     retval = result5;
                     break;
                 case GbaDeprecated.ZoekMetAdresseerbaarObjectIdentificatieResponse pb:
-                    var result6 = mapper.Map<HcDeprecated.ZoekMetAdresseerbaarObjectIdentificatieResponse>(pb);
+                    var result6 = pb.Map();
                     result6.Personen = result6.Personen.FilterList(fields);
                     retval = result6;
                     break;

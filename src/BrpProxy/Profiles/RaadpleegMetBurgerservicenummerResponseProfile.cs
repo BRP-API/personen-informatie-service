@@ -1,16 +1,24 @@
-﻿using AutoMapper;
-using HC = HaalCentraal.BrpProxy.Generated;
-using Gba = HaalCentraal.BrpProxy.Generated.Gba;
-using HcDeprecated = HaalCentraal.BrpProxy.Generated.Deprecated;
+﻿using Gba = HaalCentraal.BrpProxy.Generated.Gba;
 using GbaDeprecated = HaalCentraal.BrpProxy.Generated.Gba.Deprecated;
+using HC = HaalCentraal.BrpProxy.Generated;
+using HcDeprecated = HaalCentraal.BrpProxy.Generated.Deprecated;
 
 namespace BrpProxy.Profiles;
 
-public class RaadpleegMetBurgerservicenummerResponseProfile : Profile
+public static class RaadpleegMetBurgerservicenummerResponseMapper
 {
-    public RaadpleegMetBurgerservicenummerResponseProfile()
+    public static HC.RaadpleegMetBurgerservicenummerResponse Map(this Gba.RaadpleegMetBurgerservicenummerResponse src)
     {
-        CreateMap<Gba.RaadpleegMetBurgerservicenummerResponse, HC.RaadpleegMetBurgerservicenummerResponse>();
-        CreateMap<GbaDeprecated.RaadpleegMetBurgerservicenummerResponse, HcDeprecated.RaadpleegMetBurgerservicenummerResponse>();
+        return new HC.RaadpleegMetBurgerservicenummerResponse
+        {
+            Personen = src.Personen.Map()
+        };
+    }
+    public static HcDeprecated.RaadpleegMetBurgerservicenummerResponse Map(this GbaDeprecated.RaadpleegMetBurgerservicenummerResponse src)
+    {
+        return new HcDeprecated.RaadpleegMetBurgerservicenummerResponse
+        {
+            Personen = src.Personen.Map()
+        };
     }
 }

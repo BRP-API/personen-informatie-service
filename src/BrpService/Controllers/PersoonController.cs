@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using HaalCentraal.BrpService.Generated;
+﻿using HaalCentraal.BrpService.Generated;
+using HaalCentraal.BrpService.Profiles;
 using HaalCentraal.BrpService.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
@@ -11,13 +11,11 @@ namespace HaalCentraal.BrpService.Controllers;
 public class PersoonController : Generated.ControllerBase
 {
     private readonly IDiagnosticContext _diagnosticContext;
-    private readonly IMapper _mapper;
     private readonly PersoonRepository _repository;
 
-    public PersoonController(IDiagnosticContext diagnosticContext, IMapper mapper, PersoonRepository repository)
+    public PersoonController(IDiagnosticContext diagnosticContext, PersoonRepository repository)
     {
         _diagnosticContext = diagnosticContext;
-        _mapper = mapper;
         _repository = repository;
     }
 
@@ -53,7 +51,7 @@ public class PersoonController : Generated.ControllerBase
     {
         Activity.Current?.AddEvent(new ActivityEvent("ZoekMetPostcodeEnHuisnummer"));
 
-        var filter = _mapper.Map<ZoekMetPostcodeEnHuisnummerFilter>(query);
+        var filter = query.Map();
 
         Activity.Current?.AddEvent(new ActivityEvent("ZoekMetPostcodeEnHuisnummer filter created"));
 
@@ -68,7 +66,7 @@ public class PersoonController : Generated.ControllerBase
     {
         Activity.Current?.AddEvent(new ActivityEvent("ZoekMetNaamEnGemeenteVanInschrijving"));
 
-        var filter = _mapper.Map<ZoekMetNaamEnGemeenteVanInschrijvingFilter>(query);
+        var filter = query.Map();
 
         Activity.Current?.AddEvent(new ActivityEvent("ZoekMetNaamEnGemeenteVanInschrijving filter created"));
 
@@ -83,7 +81,7 @@ public class PersoonController : Generated.ControllerBase
     {
         Activity.Current?.AddEvent(new ActivityEvent("ZoekMetGeslachtsnaamEnGeboortedatum"));
 
-        var filter = _mapper.Map<ZoekMetGeslachtsnaamEnGeboortedatumFilter>(query);
+        var filter = query.Map();
 
         Activity.Current?.AddEvent(new ActivityEvent("ZoekMetGeslachtsnaamEnGeboortedatum filter created"));
 

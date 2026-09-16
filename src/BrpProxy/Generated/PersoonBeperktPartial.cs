@@ -7,9 +7,9 @@ public interface IPersoonBeperkt
     Brp.Shared.DtoMappers.BrpApiDtos.AdresseringBeperkt Adressering { get; set; }
     int? Leeftijd { get; set; }
     PersoonInOnderzoekBeperkt InOnderzoek { get; set; }
-    
+
     NaamPersoonBeperkt Naam { get; set; }
-    
+
     GeboorteBeperkt Geboorte { get; set; }
 }
 

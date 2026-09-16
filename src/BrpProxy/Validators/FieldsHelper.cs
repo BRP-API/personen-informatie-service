@@ -8,18 +8,18 @@ public class FieldsHelper
 {
     private readonly IDiagnosticContext _diagnosticContext;
 
-    public ReadOnlyDictionary<string,string> PersoonFieldShortcuts { get; private set; }
+    public ReadOnlyDictionary<string, string> PersoonFieldShortcuts { get; private set; }
     public ReadOnlyDictionary<string, string> PersoonBeperktFieldShortcuts { get; }
     public ReadOnlyDictionary<string, string> GezagPersoonBeperktFieldShortcuts { get; }
-    public ReadOnlyDictionary<string,string> PersoonFieldPaths { get; }
-    public ReadOnlyDictionary<string,string> BeperktPersoonFieldPaths { get; }
+    public ReadOnlyDictionary<string, string> PersoonFieldPaths { get; }
+    public ReadOnlyDictionary<string, string> BeperktPersoonFieldPaths { get; }
     public ReadOnlyDictionary<string, string> BeperktGezagPersoonFieldPaths { get; }
 
     private IDictionary<string, string> SetupFieldShortcuts()
     {
         var dictionary = new Dictionary<string, string>();
 
-        foreach(var kvp in PersoonFieldPaths)
+        foreach (var kvp in PersoonFieldPaths)
         {
             if (kvp.Key.StartsWith("verblijfplaats") &&
                 !new[]
@@ -255,7 +255,7 @@ public class FieldsHelper
             return inOnderzoekPath;
         }
 
-        if(pathParts.Length - 2 > 0)
+        if (pathParts.Length - 2 > 0)
         {
             s1 = pathParts[pathParts.Length - 2];
             s2 = string.Join('.', pathParts.Take(pathParts.Length - 2));

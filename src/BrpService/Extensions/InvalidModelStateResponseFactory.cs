@@ -16,16 +16,16 @@ public static class InvalidModelStateResponseFactory
     {
         var invalidParams = (from kvp in context.ModelState
                              from error in kvp.Value.Errors
-                            select new Generated.InvalidParam
-                            {
-                                Name = $"{char.ToLowerInvariant(kvp.Key[0])}{kvp.Key[1..]}",
-                                Code = error.ErrorMessage.Contains("||")
-                                    ? error.ErrorMessage.Split("||")[0]
-                                    : null,
-                                Reason = error.ErrorMessage.Contains("||")
-                                    ? error.ErrorMessage.Split("||")[1]
-                                    : error.ErrorMessage
-                            }).ToList();
+                             select new Generated.InvalidParam
+                             {
+                                 Name = $"{char.ToLowerInvariant(kvp.Key[0])}{kvp.Key[1..]}",
+                                 Code = error.ErrorMessage.Contains("||")
+                                     ? error.ErrorMessage.Split("||")[0]
+                                     : null,
+                                 Reason = error.ErrorMessage.Contains("||")
+                                     ? error.ErrorMessage.Split("||")[1]
+                                     : error.ErrorMessage
+                             }).ToList();
         var titel = invalidParams.Any(x => x.Code == "required")
             ? "Minimale combinatie van parameters moet worden opgegeven."
             : "Een of meerdere parameters zijn niet correct.";

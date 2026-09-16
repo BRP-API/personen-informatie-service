@@ -8,7 +8,7 @@ public static class VerblijfplaatsEnAdresregelsBuitenlandDeprecatedHelpers
     {
         var retval = new List<Persoon>();
 
-        foreach(var p in personen)
+        foreach (var p in personen)
         {
             p.ClearBuitenlandsAdresseringEnVerblijfplaatsBijBinnenlandseBevraging(fields);
 

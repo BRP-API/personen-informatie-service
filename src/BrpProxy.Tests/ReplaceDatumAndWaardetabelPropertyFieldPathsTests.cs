@@ -71,7 +71,7 @@ namespace BrpProxy.Tests
         [InlineData(new string[] { "verblijfplaats.datumVan" }, new string[] { "verblijfplaats.datumVan" })]
         [InlineData(new string[] { "verblijfplaats.datumVan.type" }, new string[] { "verblijfplaats.datumVan" })]
         [InlineData(new string[] { "verblijfplaats.datumVan.datum" }, new string[] { "verblijfplaats.datumVan" })]
-        [InlineData(new string[] { "verblijfplaats.datumVan.langFormaat" }, new string[] { "verblijfplaats.datumVan" } )]
+        [InlineData(new string[] { "verblijfplaats.datumVan.langFormaat" }, new string[] { "verblijfplaats.datumVan" })]
         [InlineData(new string[] { "verblijfplaats.datumVan.jaar" }, new string[] { "verblijfplaats.datumVan" })]
         [InlineData(new string[] { "verblijfplaats.datumVan.maand" }, new string[] { "verblijfplaats.datumVan" })]
         [InlineData(new string[] { "verblijfplaats.datumVan.onbekend" }, new string[] { "verblijfplaats.datumVan" })]

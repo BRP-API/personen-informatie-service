@@ -1,11 +1,10 @@
-﻿using HaalCentraal.BrpProxy.Generated;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using AbstractNationaliteit = Brp.Shared.DtoMappers.BrpApiDtos.AbstractNationaliteit;
 using Kind = Brp.Shared.DtoMappers.BrpApiDtos.Kind;
 using Ouder = Brp.Shared.DtoMappers.BrpApiDtos.Ouder;
 using Partner = Brp.Shared.DtoMappers.BrpApiDtos.Partner;
-using AbstractNationaliteit = Brp.Shared.DtoMappers.BrpApiDtos.AbstractNationaliteit;
 
 namespace BrpProxy.Validators
 {
@@ -23,7 +22,7 @@ namespace BrpProxy.Validators
             var attributes = type.GetCustomAttributes(false);
             foreach (var attribute in attributes)
             {
-                
+
                 switch (attribute)
                 {
                     case JsonConverterAttribute a:
@@ -165,7 +164,7 @@ namespace BrpProxy.Validators
                 }
             }
 
-            foreach(var relatieNaam in new[] { "kinderen", "nationaliteiten", "ouders", "partners", "gezag" })
+            foreach (var relatieNaam in new[] { "kinderen", "nationaliteiten", "ouders", "partners", "gezag" })
             {
                 (var pi, var srcValue) = entity.GetValue(relatieNaam);
                 if (pi == null || srcValue == null)
@@ -174,8 +173,8 @@ namespace BrpProxy.Validators
                 }
 
                 var relatieFields = from field in fields
-                                   where field.StartsWith(relatieNaam)
-                                   select field.Replace($"{relatieNaam}.", "");
+                                    where field.StartsWith(relatieNaam)
+                                    select field.Replace($"{relatieNaam}.", "");
 
                 if (relatieFields.Any(x => x == relatieNaam))
                 {
@@ -225,7 +224,7 @@ namespace BrpProxy.Validators
             return (pi, val);
         }
 
-        public static (PropertyInfo? pi, TResult? value) GetValue<T,TResult>(this T entity, string field)
+        public static (PropertyInfo? pi, TResult? value) GetValue<T, TResult>(this T entity, string field)
         {
             if (entity == null) return (null, default);
 
@@ -242,7 +241,7 @@ namespace BrpProxy.Validators
         {
             var retval = new List<string>();
 
-            if(fields == null)
+            if (fields == null)
             {
                 return retval;
             }
@@ -292,29 +291,29 @@ namespace BrpProxy.Validators
                 "soortVerbintenis"
             ];
 
-	    /// <summary>
-	    /// rewrite veldwaarden die verwijzen naar een (niet-bestaand) sub-velden van datum of tabelwaarde velden
-	    /// naar een verwijzing van het datum of tabelwaarde veld
-	    /// voorbeeld: geboorte.datum.jaar of geboorte.datum.nietBestaand wordt gewijzigd naar geboorte.datum 
-	    /// </summary>
-	    /// <param name="veld"></param>
-	    /// <returns></returns>
-	    private static string RewriteDatumEnTabelwaardeFieldwaarden(this string veld)
-	    {
-		    var subvelden = veld.Split('.');
-		    if (subvelden.Length == 1)
-		    {
-			    return veld;
-		    }
+        /// <summary>
+        /// rewrite veldwaarden die verwijzen naar een (niet-bestaand) sub-velden van datum of tabelwaarde velden
+        /// naar een verwijzing van het datum of tabelwaarde veld
+        /// voorbeeld: geboorte.datum.jaar of geboorte.datum.nietBestaand wordt gewijzigd naar geboorte.datum 
+        /// </summary>
+        /// <param name="veld"></param>
+        /// <returns></returns>
+        private static string RewriteDatumEnTabelwaardeFieldwaarden(this string veld)
+        {
+            var subvelden = veld.Split('.');
+            if (subvelden.Length == 1)
+            {
+                return veld;
+            }
 
-		    return DatumEnTabelwaardeVeldnamen.Contains(subvelden[^2])
-			    ? string.Join('.', subvelden.Take(subvelden.Length - 1))
-			    : veld;
-	    }
-        
+            return DatumEnTabelwaardeVeldnamen.Contains(subvelden[^2])
+                ? string.Join('.', subvelden.Take(subvelden.Length - 1))
+                : veld;
+        }
+
         private static string RewriteBinnenlandFieldwaarden(this string field)
         {
-            return Regex.Replace(field,@"(Binnenland)", "", RegexOptions.None, TimeSpan.FromMilliseconds(100));
+            return Regex.Replace(field, @"(Binnenland)", "", RegexOptions.None, TimeSpan.FromMilliseconds(100));
         }
 
         private static bool HeeftGeenInOnderzoekField(this string field)
@@ -565,11 +564,11 @@ namespace BrpProxy.Validators
                 "rni",
                 "verificatie"
             });
-            if(fields.Any(f => f.StartsWith("verblijfplaats")))
+            if (fields.Any(f => f.StartsWith("verblijfplaats")))
             {
                 retval.Add("verblijfplaats.IndicatieVastgesteldVerblijftNietOpAdres");
             }
-            if(fields.Any(f => f.StartsWith("adressering")))
+            if (fields.Any(f => f.StartsWith("adressering")))
             {
                 retval.Add("adressering.IndicatieVastgesteldVerblijftNietOpAdres");
             }

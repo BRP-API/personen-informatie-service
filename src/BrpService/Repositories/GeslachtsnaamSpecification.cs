@@ -14,13 +14,13 @@ public class GeslachtsnaamSpecification : Specification<GbaPersoonBeperkt>
 
     public override Expression<Func<GbaPersoonBeperkt, bool>> ToExpression()
     {
-        if(!_geslachtsnaam.Contains('*'))
+        if (!_geslachtsnaam.Contains('*'))
         {
             return persoon => persoon != null &&
                    persoon.Naam != null &&
                    string.Compare(persoon.Naam.Geslachtsnaam, _geslachtsnaam, true) == 0;
         }
-        else if(_geslachtsnaam.EndsWith('*'))
+        else if (_geslachtsnaam.EndsWith('*'))
         {
             return persoon => persoon != null &&
                    persoon.Naam != null &&

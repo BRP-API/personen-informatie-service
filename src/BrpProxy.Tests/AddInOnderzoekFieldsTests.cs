@@ -115,7 +115,7 @@ namespace BrpProxy.Tests
                             "kinderen.geboorte.inOnderzoek.datumIngangOnderzoek"})]
 
         [InlineData(new[] { "naam" },
-                    new[] { "naam", "naam.inOnderzoek"})]
+                    new[] { "naam", "naam.inOnderzoek" })]
         [InlineData(new[] { "naam.geslachtsnaam" },
                     new[] { "naam.geslachtsnaam",
                             "naam.inOnderzoek.geslachtsnaam",
@@ -151,8 +151,8 @@ namespace BrpProxy.Tests
                             "ouders.geboorte.inOnderzoek.datum",
                             "ouders.geboorte.inOnderzoek.datumIngangOnderzoek"})]
 
-        [InlineData(new[] { "overlijden"},
-                    new[] { "overlijden", "overlijden.inOnderzoek"})]
+        [InlineData(new[] { "overlijden" },
+                    new[] { "overlijden", "overlijden.inOnderzoek" })]
         [InlineData(new[] { "overlijden.datum" },
                     new[] { "overlijden.datum",
                             "overlijden.inOnderzoek.datum",
@@ -169,9 +169,9 @@ namespace BrpProxy.Tests
         [InlineData(new[] { "partners.ontbindingHuwelijkPartnerschap" },
                     new[] { "partners.ontbindingHuwelijkPartnerschap", "partners.ontbindingHuwelijkPartnerschap.inOnderzoek" })]
 
-        [InlineData(new[] { "verblijfplaats"},
-                    new[] { "verblijfplaats", "verblijfplaats.inOnderzoek"})]
-        [InlineData(new[] { "verblijfplaats", "verblijfplaats.indicatieVastgesteldVerblijftNietOpAdres"},
+        [InlineData(new[] { "verblijfplaats" },
+                    new[] { "verblijfplaats", "verblijfplaats.inOnderzoek" })]
+        [InlineData(new[] { "verblijfplaats", "verblijfplaats.indicatieVastgesteldVerblijftNietOpAdres" },
                     new[] { "verblijfplaats", "verblijfplaats.indicatieVastgesteldVerblijftNietOpAdres", "verblijfplaats.inOnderzoek" })]
         [InlineData(new[] { "verblijfplaats.datumVan" },
                     new[] {
