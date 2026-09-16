@@ -1,4 +1,4 @@
-﻿using Brp.Shared.DtoMappers.BrpApiDtos;
+using Brp.Shared.DtoMappers.BrpApiDtos;
 using System.Collections.ObjectModel;
 
 namespace Brp.Shared.DtoMappers.Mappers;
@@ -8,12 +8,11 @@ public static class PartnerMapper
     public static Collection<Partner>? Map(this ICollection<BrpDtos.GbaPartner> partners)
     {
         var retval = new Collection<Partner>();
-        foreach (var partner in partners)
+        foreach (var partner in from partner in partners
+                                where partner != null
+                                select partner)
         {
-            if (partner != null)
-            {
-                retval.Add(partner.Map()!);
-            }
+            retval.Add(partner.Map()!);
         }
         return retval;
     }
@@ -25,9 +24,7 @@ public static class PartnerMapper
             : new BrpApiDtos.Partner
             {
                 Naam = partner.Naam.MapNaamGerelateerde(partner.InOnderzoek),
-                SoortVerbintenis = partner.SoortVerbintenis?.Code == "."
-                    ? null
-                    : partner.SoortVerbintenis?.Map(),
+                SoortVerbintenis = partner.SoortVerbintenis.MapSoortVerbintenis(),
                 Geboorte = partner.Geboorte.Map(partner.InOnderzoek),
                 Burgerservicenummer = partner.Burgerservicenummer,
                 Geslacht = partner.Geslacht?.Map(),
@@ -36,6 +33,26 @@ public static class PartnerMapper
                 InOnderzoek = partner.InOnderzoek.PartnerInOnderzoek()
             };
     }
+
+    public static BrpApiDtos.OntbindingHuwelijkPartnerschap? Map(this BrpDtos.GbaOntbindingHuwelijkPartnerschap? ontbindingHuwelijkPartnerschap, BrpDtos.InOnderzoek inOnderzoek)
+    {
+        if (ontbindingHuwelijkPartnerschap == null && inOnderzoek != null)
+        {
+          ontbindingHuwelijkPartnerschap = new BrpDtos.GbaOntbindingHuwelijkPartnerschap { InOnderzoek = inOnderzoek };
+        }
+        return ontbindingHuwelijkPartnerschap == null
+            ? null
+            : new BrpApiDtos.OntbindingHuwelijkPartnerschap
+            {
+              Datum = ontbindingHuwelijkPartnerschap.Datum?.Map(),
+              InOnderzoek = ontbindingHuwelijkPartnerschap.InOnderzoek.OntbondenPartnerInOnderzoek()
+            };
+    }
+
+  private static CommonDtos.Waardetabel? MapSoortVerbintenis(this CommonDtos.Waardetabel? soortVerbintenis) =>
+      soortVerbintenis?.Code == "."
+        ? null
+        : soortVerbintenis?.Map();
 
     public static BrpApiDtos.AangaanHuwelijkPartnerschap? Map(this BrpDtos.GbaAangaanHuwelijkPartnerschap? aangaanHuwelijkPartnerschap, BrpDtos.InOnderzoek inOnderzoek)
     {
@@ -48,12 +65,8 @@ public static class PartnerMapper
             : new BrpApiDtos.AangaanHuwelijkPartnerschap
             {
                 Datum = aangaanHuwelijkPartnerschap.Datum?.Map(),
-                Land = aangaanHuwelijkPartnerschap.Land?.Code == "0000"
-                    ? null
-                    : aangaanHuwelijkPartnerschap.Land?.Map(),
-                Plaats = aangaanHuwelijkPartnerschap.Plaats?.Code == "0000"
-                    ? null
-                    : aangaanHuwelijkPartnerschap.Plaats?.Map(),
+                Land = aangaanHuwelijkPartnerschap.Land.MapLand(),
+                Plaats = aangaanHuwelijkPartnerschap.Plaats.MapPlaats(),
                 InOnderzoek = aangaanHuwelijkPartnerschap.InOnderzoek.AangaanHuwelijkPartnerschapInOnderzoek()
             };
     }
@@ -65,7 +78,7 @@ public static class PartnerMapper
             return null;
         }
 
-        return source?.AanduidingGegevensInOnderzoek switch
+        return source.AanduidingGegevensInOnderzoek switch
         {
             "050000" or
             "050600" => new BrpApiDtos.AangaanHuwelijkPartnerschapInOnderzoek
@@ -94,21 +107,6 @@ public static class PartnerMapper
         };
     }
 
-    public static BrpApiDtos.OntbindingHuwelijkPartnerschap? Map(this BrpDtos.GbaOntbindingHuwelijkPartnerschap? ontbindingHuwelijkPartnerschap, BrpDtos.InOnderzoek inOnderzoek)
-    {
-        if (ontbindingHuwelijkPartnerschap == null && inOnderzoek != null)
-        {
-            ontbindingHuwelijkPartnerschap = new BrpDtos.GbaOntbindingHuwelijkPartnerschap { InOnderzoek = inOnderzoek };
-        }
-        return ontbindingHuwelijkPartnerschap == null
-            ? null
-            : new BrpApiDtos.OntbindingHuwelijkPartnerschap
-            {
-                Datum = ontbindingHuwelijkPartnerschap.Datum?.Map(),
-                InOnderzoek = ontbindingHuwelijkPartnerschap.InOnderzoek.OntbondenPartnerInOnderzoek()
-            };
-    }
-
     public static BrpApiDtos.PartnerInOnderzoek? PartnerInOnderzoek(this BrpDtos.InOnderzoek? source)
     {
         if (source == null)
@@ -116,7 +114,7 @@ public static class PartnerMapper
             return null;
         }
 
-        return source?.AanduidingGegevensInOnderzoek switch
+        return source.AanduidingGegevensInOnderzoek switch
         {
             "050000" => new BrpApiDtos.PartnerInOnderzoek
             {
@@ -151,7 +149,7 @@ public static class PartnerMapper
             return null;
         }
 
-        return source?.AanduidingGegevensInOnderzoek switch
+        return source.AanduidingGegevensInOnderzoek switch
         {
             "050000" or
             "050700" or

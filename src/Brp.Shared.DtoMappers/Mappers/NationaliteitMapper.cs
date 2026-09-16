@@ -1,20 +1,26 @@
-﻿using Brp.Shared.DtoMappers.BrpApiDtos;
+using Brp.Shared.DtoMappers.BrpApiDtos;
 using System.Collections.ObjectModel;
 
 namespace Brp.Shared.DtoMappers.Mappers;
 
 public static class NationaliteitMapper
 {
-    public static Collection<AbstractNationaliteit>? Map(this ICollection<BrpDtos.GbaNationaliteit> nationaliteiten)
+    private const string CategorieNationaliteit = "040000";
+    private const string GroepNationaliteit = "040500";
+    private const string Nationaliteit = "040510";
+    private const string GroepOpnemenNationaliteit = "046300";
+    private const string RedenOpnameNationaliteit = "046310";
+
+  public static Collection<AbstractNationaliteit>? Map(this ICollection<BrpDtos.GbaNationaliteit> nationaliteiten)
     {
         var retval = new Collection<AbstractNationaliteit>();
-        foreach (var nationaliteit in nationaliteiten)
+        foreach (var nationaliteit in from nationaliteit in nationaliteiten
+                                      where nationaliteit != null
+                                      select nationaliteit)
         {
-            if (nationaliteit != null)
-            {
-                retval.Add(nationaliteit.Map()!);
-            }
+          retval.Add(nationaliteit.Map()!);
         }
+
         return retval;
     }
 
@@ -53,16 +59,16 @@ public static class NationaliteitMapper
             return null;
         }
 
-        return source?.AanduidingGegevensInOnderzoek switch
+        return source.AanduidingGegevensInOnderzoek switch
         {
-            "040000" => new BrpApiDtos.BijzonderNederlanderschapInOnderzoek
+            CategorieNationaliteit => new BrpApiDtos.BijzonderNederlanderschapInOnderzoek
             {
                 RedenOpname = true,
                 Type = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
-            "040500" or
-            "040510" or
+            GroepNationaliteit or
+            Nationaliteit or
             "046500" or
             "046510" => new BrpApiDtos.BijzonderNederlanderschapInOnderzoek
             {
@@ -70,7 +76,8 @@ public static class NationaliteitMapper
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
 
             },
-            "046300" or "046310" => new BrpApiDtos.BijzonderNederlanderschapInOnderzoek
+            GroepOpnemenNationaliteit or
+            RedenOpnameNationaliteit => new BrpApiDtos.BijzonderNederlanderschapInOnderzoek
             {
                 RedenOpname = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
@@ -107,16 +114,16 @@ public static class NationaliteitMapper
             return null;
         }
 
-        return source?.AanduidingGegevensInOnderzoek switch
+        return source.AanduidingGegevensInOnderzoek switch
         {
-            "040000" => new StaatloosInOnderzoek
+            CategorieNationaliteit => new StaatloosInOnderzoek
             {
                 RedenOpname = true,
                 Type = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
-            "040500" or
-            "040510" or
+            GroepNationaliteit or
+            Nationaliteit or
             "046500" or
             "046510" => new StaatloosInOnderzoek
             {
@@ -124,7 +131,8 @@ public static class NationaliteitMapper
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
 
             },
-            "046300" or "046310" => new StaatloosInOnderzoek
+            GroepOpnemenNationaliteit or
+            RedenOpnameNationaliteit => new StaatloosInOnderzoek
             {
                 RedenOpname = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
@@ -152,23 +160,24 @@ public static class NationaliteitMapper
             return null;
         }
 
-        return source?.AanduidingGegevensInOnderzoek switch
+        return source.AanduidingGegevensInOnderzoek switch
         {
-            "040000" => new NationaliteitBekendInOnderzoek
+            CategorieNationaliteit => new NationaliteitBekendInOnderzoek
             {
                 Nationaliteit = true,
                 RedenOpname = true,
                 Type = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
-            "040500" or "040510" => new NationaliteitBekendInOnderzoek
+            GroepNationaliteit or Nationaliteit => new NationaliteitBekendInOnderzoek
             {
                 Nationaliteit = true,
                 Type = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
 
             },
-            "046300" or "046310" => new NationaliteitBekendInOnderzoek
+            GroepOpnemenNationaliteit or
+            RedenOpnameNationaliteit => new NationaliteitBekendInOnderzoek
             {
                 RedenOpname = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
@@ -195,20 +204,21 @@ public static class NationaliteitMapper
             return null;
         }
 
-        return source?.AanduidingGegevensInOnderzoek switch
+        return source.AanduidingGegevensInOnderzoek switch
         {
-            "040000" => new NationaliteitOnbekendInOnderzoek
+            CategorieNationaliteit => new NationaliteitOnbekendInOnderzoek
             {
                 RedenOpname = true,
                 Type = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
-            "040500" or "040510" => new NationaliteitOnbekendInOnderzoek
+            GroepNationaliteit or Nationaliteit => new NationaliteitOnbekendInOnderzoek
             {
                 Type = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()
             },
-            "046300" or "046310" => new NationaliteitOnbekendInOnderzoek
+            GroepOpnemenNationaliteit or
+            RedenOpnameNationaliteit => new NationaliteitOnbekendInOnderzoek
             {
                 RedenOpname = true,
                 DatumIngangOnderzoek = source.DatumIngangOnderzoek.Map()

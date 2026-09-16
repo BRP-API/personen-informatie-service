@@ -1,4 +1,4 @@
-﻿using Brp.Shared.DtoMappers.BrpApiDtos;
+using Brp.Shared.DtoMappers.BrpApiDtos;
 using System.Collections.ObjectModel;
 
 namespace Brp.Shared.DtoMappers.Mappers;
@@ -8,13 +8,13 @@ public static class KindMapper
     public static Collection<Kind>? Map(this ICollection<BrpDtos.GbaKind> kinderen)
     {
         var retval = new Collection<Kind>();
-        foreach (var kind in kinderen)
+        foreach (var kind in from kind in kinderen
+                             where kind != null
+                             select kind)
         {
-            if (kind != null)
-            {
-                retval.Add(kind.Map()!);
-            }
+          retval.Add(kind.Map()!);
         }
+
         return retval;
     }
 
@@ -37,7 +37,7 @@ public static class KindMapper
             return null;
         }
 
-        return source?.AanduidingGegevensInOnderzoek switch
+        return source.AanduidingGegevensInOnderzoek switch
         {
             "090000" or
             "090100" or
