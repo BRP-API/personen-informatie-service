@@ -20,7 +20,7 @@ public class GeslachtsnaamValidator : AbstractValidator<JObject>
         {
             rule.NotEmpty().WithMessage(RequiredErrorMessage);
         }
-
+            
         rule.Matches(GeslachtsnaamPattern).WithMessage(GeslachtsnaamPatternErrorMessage)
             .OverridePropertyName(ParameterNaam);
     }

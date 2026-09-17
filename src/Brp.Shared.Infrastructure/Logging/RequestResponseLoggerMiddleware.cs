@@ -1,8 +1,10 @@
 ﻿using Brp.Shared.Infrastructure.Http;
+using Brp.Shared.Infrastructure.Json;
 using Brp.Shared.Infrastructure.ProblemDetails;
 using Brp.Shared.Infrastructure.Stream;
 using Microsoft.AspNetCore.Http;
 using Serilog;
+using Serilog.Context;
 
 namespace Brp.Shared.Infrastructure.Logging;
 
@@ -41,7 +43,7 @@ internal class RequestResponseLoggerMiddleware
         {
             await _next(context);
         }
-        catch (Exception ex)
+        catch(Exception ex)
         {
             if (ex.GetType().Name == "AutoMapperMappingException")
             {
@@ -65,7 +67,7 @@ internal class RequestResponseLoggerMiddleware
 
         context.Items.Add(LogConstants.ResponseHeaders, context.Response.Headers);
 
-        if (context.Response.StatusCode >= StatusCodes.Status400BadRequest)
+        if(context.Response.StatusCode >= StatusCodes.Status400BadRequest)
         {
             context.Items.Add(MapToEcsKeys.EcsResponseBody, responseBody);
         }
