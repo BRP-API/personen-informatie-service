@@ -39,9 +39,10 @@ try
 
     app.UseRouting();
 
+    // short-circuit gemapte endpoints zoals de healthcheck endpoints, zodat deze niet door de OverwriteResponseBodyMiddleware en Ocelot worden afgehandeld
     app.SetupHealthCheckEndpoints(builder.Configuration, Log.Logger);
 
-    app.UseEndpoints(e => e.MapControllers());
+    app.UseEndpoints(e => { });
 
     app.UseMiddleware<OverwriteResponseBodyMiddleware>();
 
