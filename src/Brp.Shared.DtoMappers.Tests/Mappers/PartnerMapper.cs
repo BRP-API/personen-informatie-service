@@ -6,7 +6,7 @@ namespace Brp.Shared.DtoMappers.Tests.Mappers;
 public class PartnerMapper
 {
     [Fact]
-    public void ShouldMapAangaanHuwelijkPartnerschapInOnderzoek()
+    public void ShouldMapAangaanHuwelijkPartnerschapInOnderzoekForPartnerZonderAangaanHuwelijkPartnerschap()
     {
         BrpDtos.GbaPartner input = new()
         {
@@ -24,6 +24,73 @@ public class PartnerMapper
             DatumIngangOnderzoek = "20200101".Map()
         };
         input.Map()?.AangaanHuwelijkPartnerschap.InOnderzoek.Should().BeEquivalentTo(expected);
+    }
+
+    [Fact]
+    public void ShouldMapAangaanHuwelijkPartnerschapInOnderzoekForPartnerMetAangaanHuwelijkPartnerschap()
+    {
+        BrpDtos.GbaPartner input = new()
+        {
+            AangaanHuwelijkPartnerschap = new BrpDtos.GbaAangaanHuwelijkPartnerschap
+            {
+                Datum = "20200101"
+            },
+            InOnderzoek = new BrpDtos.InOnderzoek
+            {
+                AanduidingGegevensInOnderzoek = "050000",
+                DatumIngangOnderzoek = "20200101"
+            }
+        };
+        BrpApiDtos.AangaanHuwelijkPartnerschapInOnderzoek expected = new()
+        {
+            Datum = true,
+            Land = true,
+            Plaats = true,
+            DatumIngangOnderzoek = "20200101".Map()
+        };
+        input.Map()?.AangaanHuwelijkPartnerschap.InOnderzoek.Should().BeEquivalentTo(expected);
+    }
+
+    [Fact]
+    public void ShouldMapOntbindingHuwelijkPartnerschapInOnderzoekForPartnerZonderOntbindingHuwelijkPartnerschap()
+    {
+        BrpDtos.GbaPartner input = new()
+        {
+            InOnderzoek = new BrpDtos.InOnderzoek
+            {
+                AanduidingGegevensInOnderzoek = "050000",
+                DatumIngangOnderzoek = "20200101"
+            }
+        };
+        BrpApiDtos.OntbindingHuwelijkPartnerschapInOnderzoek expected = new()
+        {
+            Datum = true,
+            DatumIngangOnderzoek = "20200101".Map()
+        };
+        input.Map()?.OntbindingHuwelijkPartnerschap.InOnderzoek.Should().BeEquivalentTo(expected);
+    }
+
+    [Fact]
+    public void ShouldMapOntbindingHuwelijkPartnerschapInOnderzoekForPartnerMetOntbindingHuwelijkPartnerschap()
+    {
+        BrpDtos.GbaPartner input = new()
+        {
+            OntbindingHuwelijkPartnerschap = new BrpDtos.GbaOntbindingHuwelijkPartnerschap
+            {
+                Datum = "20200101"
+            },
+            InOnderzoek = new BrpDtos.InOnderzoek
+            {
+                AanduidingGegevensInOnderzoek = "050000",
+                DatumIngangOnderzoek = "20200101"
+            }
+        };
+        BrpApiDtos.OntbindingHuwelijkPartnerschapInOnderzoek expected = new()
+        {
+            Datum = true,
+            DatumIngangOnderzoek = "20200101".Map()
+        };
+        input.Map()?.OntbindingHuwelijkPartnerschap.InOnderzoek.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
