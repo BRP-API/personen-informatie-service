@@ -61,3 +61,22 @@ Functionaliteit: Persoon: partner ontbinding huwelijk/geregistreerd partnerschap
     Voorbeelden:
     | aanduiding in onderzoek | type                                                 | veld naam                              | gevraagde fields             |
     | 050710                  | datum ontbinding huwelijk/geregistreerd partnerschap | datum ontbinding huwelijk/partnerschap | partners.burgerservicenummer |
+
+  Scenario: persoon met 'datum ontbinding huwelijk/geregistreerd partnerschap (07.10)' en hele categorie 'ontbinding huwelijk/geregistreerd partnerschap' is in onderzoek en alle 'ontbinding huwelijk/geregistreerd partnerschap' velden wordt gevraagd
+    Gegeven de persoon met burgerservicenummer '000000012' heeft een 'partner' met de volgende gegevens
+    | datum ontbinding huwelijk/geregistreerd partnerschap (07.10) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) |
+    | 20180808                                                     | 050000                          | 20020701                       |
+    Als personen wordt gezocht met de volgende parameters
+    | naam                | waarde                                  |
+    | type                | RaadpleegMetBurgerservicenummer         |
+    | burgerservicenummer | 000000012                               |
+    | fields              | partners.ontbindingHuwelijkPartnerschap |
+    Dan heeft de response een persoon met een 'partner' met alleen de volgende 'ontbindingHuwelijkPartnerschap' gegevens
+    | naam                                         | waarde          |
+    | datum.type                                   | Datum           |
+    | datum.datum                                  | 2018-08-08      |
+    | datum.langFormaat                            | 8 augustus 2018 |
+    | inOnderzoek.datum                            | true            |
+    | inOnderzoek.datumIngangOnderzoek.type        | Datum           |
+    | inOnderzoek.datumIngangOnderzoek.datum       | 2002-07-01      |
+    | inOnderzoek.datumIngangOnderzoek.langFormaat | 1 juli 2002     |

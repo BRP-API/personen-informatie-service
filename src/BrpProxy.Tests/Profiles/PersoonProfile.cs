@@ -7,6 +7,7 @@ using FluentAssertions;
 using HaalCentraal.BrpProxy.Generated;
 using HaalCentraal.BrpProxy.Generated.Gba;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Xunit;
 
 namespace BrpProxy.Tests.Profiles;
@@ -328,5 +329,46 @@ public class PersoonProfile
             }
         };
         input.MapPersoon().Adressering.Aanhef.Should().Be("Geachte heer De Boer");
+    }
+
+    [Fact]
+    public void ShouldMapPartnerAangaanHuwelijkInOnderzoek()
+    {
+        GbaPersoon input = new()
+        {
+            Partners =
+            [
+                new GbaPartner
+                {
+                    AangaanHuwelijkPartnerschap = new Brp.Shared.DtoMappers.BrpDtos.GbaAangaanHuwelijkPartnerschap
+                    {
+                        Datum = "19360000"
+                    },
+                    InOnderzoek = new Brp.Shared.DtoMappers.BrpDtos.InOnderzoek
+                    {
+                        AanduidingGegevensInOnderzoek = "050000",
+                        DatumIngangOnderzoek = "20240102"
+                    },
+                }
+            ]
+        };
+        Brp.Shared.DtoMappers.BrpApiDtos.AangaanHuwelijkPartnerschap expected = new()
+        {
+            Datum = "19360000".Map(),
+            InOnderzoek = new Brp.Shared.DtoMappers.BrpApiDtos.AangaanHuwelijkPartnerschapInOnderzoek
+            {
+                Datum = true,
+                Plaats = true,
+                Land = true,
+                DatumIngangOnderzoek = "20240102".Map()
+            }
+        };
+        var actual = input.MapPersoon();
+        actual.Should().NotBeNull();
+        actual.Partners.Should().NotBeNull();
+
+        var partner = actual.Partners.FirstOrDefault();
+        partner.Should().NotBeNull();
+        partner.AangaanHuwelijkPartnerschap.Should().BeEquivalentTo(expected);
     }
 }

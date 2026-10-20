@@ -73,3 +73,24 @@ Functionaliteit: Persoon: partner aangaan huwelijk/geregistreerd partnerschap ve
     | 050610                  | datum huwelijksluiting/aangaan geregistreerd partnerschap  | datum aangaan huwelijk/partnerschap  | partners.aangaanHuwelijkPartnerschap.plaats |
     | 050620                  | plaats huwelijksluiting/aangaan geregistreerd partnerschap | plaats aangaan huwelijk/partnerschap | partners.aangaanHuwelijkPartnerschap.land   |
     | 050630                  | land huwelijksluiting/aangaan geregistreerd partnerschap   | land aangaan huwelijk/partnerschap   | partners.aangaanHuwelijkPartnerschap.datum  |
+
+  Scenario: persoon met 'datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)' en hele categorie 'aangaan huwelijk/geregistreerd partnerschap' is in onderzoek en alle 'aangaan huwelijk/geregistreerd partnerschap' velden wordt gevraagd
+    Gegeven de persoon met burgerservicenummer '000000012' heeft een 'partner' met de volgende gegevens
+    | datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) |
+    | 20180808                                                           | 050000                          | 20020701                       |
+    Als personen wordt gezocht met de volgende parameters
+    | naam                | waarde                               |
+    | type                | RaadpleegMetBurgerservicenummer      |
+    | burgerservicenummer | 000000012                            |
+    | fields              | partners.aangaanHuwelijkPartnerschap |
+    Dan heeft de response een persoon met een 'partner' met alleen de volgende 'aangaanHuwelijkPartnerschap' gegevens
+    | naam                                         | waarde          |
+    | datum.type                                   | Datum           |
+    | datum.datum                                  | 2018-08-08      |
+    | datum.langFormaat                            | 8 augustus 2018 |
+    | inOnderzoek.datum                            | true            |
+    | inOnderzoek.plaats                           | true            |
+    | inOnderzoek.land                             | true            |
+    | inOnderzoek.datumIngangOnderzoek.type        | Datum           |
+    | inOnderzoek.datumIngangOnderzoek.datum       | 2002-07-01      |
+    | inOnderzoek.datumIngangOnderzoek.langFormaat | 1 juli 2002     |
